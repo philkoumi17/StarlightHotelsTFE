@@ -8,7 +8,7 @@ using StarlightHotels.API.Models;
 
 namespace StarlightHotels.API.Migrations
 {
-    [DbContext(typeof(HotelChainContext))]
+    [DbContext(typeof(ApplicationDbContext))]
     partial class HotelChainContextModelSnapshot : ModelSnapshot
     {
         protected override void BuildModel(ModelBuilder modelBuilder)

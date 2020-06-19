@@ -9,9 +9,9 @@ using StarmaniaHotels.API.Models;
 
 namespace StarlightHotels.API.Models
 {
-    public class HotelChainContext : IdentityDbContext<ApplicationUser>
+    public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
     {
-        public HotelChainContext(DbContextOptions options):base(options)
+        public ApplicationDbContext(DbContextOptions options):base(options)
         {
 
         }
