@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace StarmaniaHotels.API.Models
+namespace StarlightHotels.API.Models
 {
     public class Image
     {

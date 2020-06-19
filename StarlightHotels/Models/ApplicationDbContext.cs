@@ -5,7 +5,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
-using StarmaniaHotels.API.Models;
+using StarlightHotels.API.Models;
 
 namespace StarlightHotels.API.Models
 {

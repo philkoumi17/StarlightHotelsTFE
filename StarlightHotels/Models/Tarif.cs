@@ -5,7 +5,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace StarmaniaHotels.API.Models
+namespace StarlightHotels.API.Models
 {
     [Table("Tarif")]
     public class Tarif

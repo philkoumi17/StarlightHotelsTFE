@@ -220,7 +220,7 @@ namespace StarlightHotels.API.Migrations
                     b.ToTable("AspNetUsers");
                 });
 
-            modelBuilder.Entity("StarmaniaHotels.API.Models.Categorie", b =>
+            modelBuilder.Entity("StarlightHotels.API.Models.Categorie", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -250,7 +250,7 @@ namespace StarlightHotels.API.Migrations
                     b.ToTable("Catégorie");
                 });
 
-            modelBuilder.Entity("StarmaniaHotels.API.Models.Chambre", b =>
+            modelBuilder.Entity("StarlightHotels.API.Models.Chambre", b =>
                 {
                     b.Property<int>("ChNum")
                         .ValueGeneratedOnAdd()
@@ -278,7 +278,7 @@ namespace StarlightHotels.API.Migrations
                     b.ToTable("Chambre");
                 });
 
-            modelBuilder.Entity("StarmaniaHotels.API.Models.ChambreReservee", b =>
+            modelBuilder.Entity("StarlightHotels.API.Models.ChambreReservee", b =>
                 {
                     b.Property<int>("ChNum")
                         .HasColumnType("int");
@@ -311,7 +311,7 @@ namespace StarlightHotels.API.Migrations
                     b.ToTable("ReservationChambre");
                 });
 
-            modelBuilder.Entity("StarmaniaHotels.API.Models.Client", b =>
+            modelBuilder.Entity("StarlightHotels.API.Models.Client", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -379,7 +379,7 @@ namespace StarlightHotels.API.Migrations
                     b.ToTable("Client");
                 });
 
-            modelBuilder.Entity("StarmaniaHotels.API.Models.Etat", b =>
+            modelBuilder.Entity("StarlightHotels.API.Models.Etat", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -394,7 +394,7 @@ namespace StarlightHotels.API.Migrations
                     b.ToTable("Etat");
                 });
 
-            modelBuilder.Entity("StarmaniaHotels.API.Models.Facture", b =>
+            modelBuilder.Entity("StarlightHotels.API.Models.Facture", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -418,7 +418,7 @@ namespace StarlightHotels.API.Migrations
                     b.ToTable("Facture");
                 });
 
-            modelBuilder.Entity("StarmaniaHotels.API.Models.Formule", b =>
+            modelBuilder.Entity("StarlightHotels.API.Models.Formule", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -436,7 +436,7 @@ namespace StarlightHotels.API.Migrations
                     b.ToTable("Formule");
                 });
 
-            modelBuilder.Entity("StarmaniaHotels.API.Models.Hotel", b =>
+            modelBuilder.Entity("StarlightHotels.API.Models.Hotel", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -501,7 +501,7 @@ namespace StarlightHotels.API.Migrations
                     b.ToTable("Hotel");
                 });
 
-            modelBuilder.Entity("StarmaniaHotels.API.Models.HotelCategorie", b =>
+            modelBuilder.Entity("StarlightHotels.API.Models.HotelCategorie", b =>
                 {
                     b.Property<int>("HotelId")
                         .HasColumnType("int");
@@ -524,7 +524,7 @@ namespace StarlightHotels.API.Migrations
                     b.ToTable("HotelCategories");
                 });
 
-            modelBuilder.Entity("StarmaniaHotels.API.Models.HotelFormule", b =>
+            modelBuilder.Entity("StarlightHotels.API.Models.HotelFormule", b =>
                 {
                     b.Property<int>("HotelId")
                         .HasColumnType("int");
@@ -539,7 +539,7 @@ namespace StarlightHotels.API.Migrations
                     b.ToTable("HotelFormule");
                 });
 
-            modelBuilder.Entity("StarmaniaHotels.API.Models.HotelService", b =>
+            modelBuilder.Entity("StarlightHotels.API.Models.HotelService", b =>
                 {
                     b.Property<int>("HotelId")
                         .HasColumnType("int");
@@ -554,7 +554,7 @@ namespace StarlightHotels.API.Migrations
                     b.ToTable("HotelService");
                 });
 
-            modelBuilder.Entity("StarmaniaHotels.API.Models.HotelTheme", b =>
+            modelBuilder.Entity("StarlightHotels.API.Models.HotelTheme", b =>
                 {
                     b.Property<int>("HotelId")
                         .HasColumnType("int");
@@ -569,7 +569,7 @@ namespace StarlightHotels.API.Migrations
                     b.ToTable("HotelThemes");
                 });
 
-            modelBuilder.Entity("StarmaniaHotels.API.Models.Image", b =>
+            modelBuilder.Entity("StarlightHotels.API.Models.Image", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -590,7 +590,7 @@ namespace StarlightHotels.API.Migrations
                     b.ToTable("Images");
                 });
 
-            modelBuilder.Entity("StarmaniaHotels.API.Models.Participant", b =>
+            modelBuilder.Entity("StarlightHotels.API.Models.Participant", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -615,7 +615,7 @@ namespace StarlightHotels.API.Migrations
                     b.ToTable("Participant");
                 });
 
-            modelBuilder.Entity("StarmaniaHotels.API.Models.Pays", b =>
+            modelBuilder.Entity("StarlightHotels.API.Models.Pays", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -631,7 +631,7 @@ namespace StarlightHotels.API.Migrations
                     b.ToTable("Pays");
                 });
 
-            modelBuilder.Entity("StarmaniaHotels.API.Models.Reservation", b =>
+            modelBuilder.Entity("StarlightHotels.API.Models.Reservation", b =>
                 {
                     b.Property<int>("IdRes")
                         .ValueGeneratedOnAdd()
@@ -666,7 +666,7 @@ namespace StarlightHotels.API.Migrations
                     b.ToTable("Reservation");
                 });
 
-            modelBuilder.Entity("StarmaniaHotels.API.Models.Saison", b =>
+            modelBuilder.Entity("StarlightHotels.API.Models.Saison", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -687,7 +687,7 @@ namespace StarlightHotels.API.Migrations
                     b.ToTable("Saison");
                 });
 
-            modelBuilder.Entity("StarmaniaHotels.API.Models.Service", b =>
+            modelBuilder.Entity("StarlightHotels.API.Models.Service", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -706,7 +706,7 @@ namespace StarlightHotels.API.Migrations
                     b.ToTable("Service");
                 });
 
-            modelBuilder.Entity("StarmaniaHotels.API.Models.Tarif", b =>
+            modelBuilder.Entity("StarlightHotels.API.Models.Tarif", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -737,7 +737,7 @@ namespace StarlightHotels.API.Migrations
                     b.ToTable("Tarif");
                 });
 
-            modelBuilder.Entity("StarmaniaHotels.API.Models.Theme", b =>
+            modelBuilder.Entity("StarlightHotels.API.Models.Theme", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -804,161 +804,161 @@ namespace StarlightHotels.API.Migrations
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("StarmaniaHotels.API.Models.Chambre", b =>
+            modelBuilder.Entity("StarlightHotels.API.Models.Chambre", b =>
                 {
-                    b.HasOne("StarmaniaHotels.API.Models.Categorie", "Categorie")
+                    b.HasOne("StarlightHotels.API.Models.Categorie", "Categorie")
                         .WithMany("Chambres")
                         .HasForeignKey("CategorieId");
 
-                    b.HasOne("StarmaniaHotels.API.Models.Hotel", "Hotel")
+                    b.HasOne("StarlightHotels.API.Models.Hotel", "Hotel")
                         .WithMany("Chambres")
                         .HasForeignKey("HotelId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("StarmaniaHotels.API.Models.ChambreReservee", b =>
+            modelBuilder.Entity("StarlightHotels.API.Models.ChambreReservee", b =>
                 {
-                    b.HasOne("StarmaniaHotels.API.Models.Chambre", "Chambre")
+                    b.HasOne("StarlightHotels.API.Models.Chambre", "Chambre")
                         .WithMany("ChambreReservees")
                         .HasForeignKey("ChNum")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("StarmaniaHotels.API.Models.Reservation", "Reservation")
+                    b.HasOne("StarlightHotels.API.Models.Reservation", "Reservation")
                         .WithMany("ChambreReservees")
                         .HasForeignKey("IdRes")
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("StarmaniaHotels.API.Models.Client", b =>
+            modelBuilder.Entity("StarlightHotels.API.Models.Client", b =>
                 {
                     b.HasOne("StarlightHotels.API.Models.ApplicationUser", "ApplicationUser")
                         .WithMany("Clients")
                         .HasForeignKey("ApplicationUserId");
 
-                    b.HasOne("StarmaniaHotels.API.Models.Pays", "Pays")
+                    b.HasOne("StarlightHotels.API.Models.Pays", "Pays")
                         .WithMany("Clients")
                         .HasForeignKey("PaysId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("StarmaniaHotels.API.Models.Facture", b =>
+            modelBuilder.Entity("StarlightHotels.API.Models.Facture", b =>
                 {
-                    b.HasOne("StarmaniaHotels.API.Models.Reservation", "Reservation")
+                    b.HasOne("StarlightHotels.API.Models.Reservation", "Reservation")
                         .WithOne("Facture")
-                        .HasForeignKey("StarmaniaHotels.API.Models.Facture", "ResId")
+                        .HasForeignKey("StarlightHotels.API.Models.Facture", "ResId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("StarmaniaHotels.API.Models.Hotel", b =>
+            modelBuilder.Entity("StarlightHotels.API.Models.Hotel", b =>
                 {
-                    b.HasOne("StarmaniaHotels.API.Models.Pays", "Pays")
+                    b.HasOne("StarlightHotels.API.Models.Pays", "Pays")
                         .WithMany("Hotels")
                         .HasForeignKey("PaysId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("StarmaniaHotels.API.Models.HotelCategorie", b =>
+            modelBuilder.Entity("StarlightHotels.API.Models.HotelCategorie", b =>
                 {
-                    b.HasOne("StarmaniaHotels.API.Models.Categorie", "Categorie")
+                    b.HasOne("StarlightHotels.API.Models.Categorie", "Categorie")
                         .WithMany("HotelCategories")
                         .HasForeignKey("CatId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("StarmaniaHotels.API.Models.Hotel", "Hotel")
+                    b.HasOne("StarlightHotels.API.Models.Hotel", "Hotel")
                         .WithMany("HotelCategories")
                         .HasForeignKey("HotelId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("StarmaniaHotels.API.Models.HotelFormule", b =>
+            modelBuilder.Entity("StarlightHotels.API.Models.HotelFormule", b =>
                 {
-                    b.HasOne("StarmaniaHotels.API.Models.Formule", "Formule")
+                    b.HasOne("StarlightHotels.API.Models.Formule", "Formule")
                         .WithMany("HotelFormules")
                         .HasForeignKey("FormId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("StarmaniaHotels.API.Models.Hotel", "Hotel")
+                    b.HasOne("StarlightHotels.API.Models.Hotel", "Hotel")
                         .WithMany("HotelFormules")
                         .HasForeignKey("HotelId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("StarmaniaHotels.API.Models.HotelService", b =>
+            modelBuilder.Entity("StarlightHotels.API.Models.HotelService", b =>
                 {
-                    b.HasOne("StarmaniaHotels.API.Models.Hotel", "Hotel")
+                    b.HasOne("StarlightHotels.API.Models.Hotel", "Hotel")
                         .WithMany("HotelServices")
                         .HasForeignKey("HotelId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("StarmaniaHotels.API.Models.Service", "Service")
+                    b.HasOne("StarlightHotels.API.Models.Service", "Service")
                         .WithMany("HotelServices")
                         .HasForeignKey("ServId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("StarmaniaHotels.API.Models.HotelTheme", b =>
+            modelBuilder.Entity("StarlightHotels.API.Models.HotelTheme", b =>
                 {
-                    b.HasOne("StarmaniaHotels.API.Models.Hotel", "Hotel")
+                    b.HasOne("StarlightHotels.API.Models.Hotel", "Hotel")
                         .WithMany("HotelThemes")
                         .HasForeignKey("HotelId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("StarmaniaHotels.API.Models.Theme", "Theme")
+                    b.HasOne("StarlightHotels.API.Models.Theme", "Theme")
                         .WithMany("HotelThemes")
                         .HasForeignKey("ThemeId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("StarmaniaHotels.API.Models.Image", b =>
+            modelBuilder.Entity("StarlightHotels.API.Models.Image", b =>
                 {
-                    b.HasOne("StarmaniaHotels.API.Models.Hotel", "Hotel")
+                    b.HasOne("StarlightHotels.API.Models.Hotel", "Hotel")
                         .WithMany("Images")
                         .HasForeignKey("HotelId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("StarmaniaHotels.API.Models.Reservation", b =>
+            modelBuilder.Entity("StarlightHotels.API.Models.Reservation", b =>
                 {
-                    b.HasOne("StarmaniaHotels.API.Models.Client", "Client")
+                    b.HasOne("StarlightHotels.API.Models.Client", "Client")
                         .WithOne("Reservation")
-                        .HasForeignKey("StarmaniaHotels.API.Models.Reservation", "ClientId")
+                        .HasForeignKey("StarlightHotels.API.Models.Reservation", "ClientId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("StarmaniaHotels.API.Models.Etat", "Etat")
+                    b.HasOne("StarlightHotels.API.Models.Etat", "Etat")
                         .WithMany("Reservations")
                         .HasForeignKey("EtatId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("StarmaniaHotels.API.Models.Participant", "Participant")
+                    b.HasOne("StarlightHotels.API.Models.Participant", "Participant")
                         .WithOne("Reservation")
-                        .HasForeignKey("StarmaniaHotels.API.Models.Reservation", "PartId")
+                        .HasForeignKey("StarlightHotels.API.Models.Reservation", "PartId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("StarmaniaHotels.API.Models.Tarif", b =>
+            modelBuilder.Entity("StarlightHotels.API.Models.Tarif", b =>
                 {
-                    b.HasOne("StarmaniaHotels.API.Models.Categorie", "Categorie")
+                    b.HasOne("StarlightHotels.API.Models.Categorie", "Categorie")
                         .WithMany("Tarifs")
                         .HasForeignKey("CategorieId");
 
-                    b.HasOne("StarmaniaHotels.API.Models.Saison", "Saison")
+                    b.HasOne("StarlightHotels.API.Models.Saison", "Saison")
                         .WithMany("Tarifs")
                         .HasForeignKey("SaisonId");
                 });

@@ -6,7 +6,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using StarlightHotels.API.Models;
 
-namespace StarmaniaHotels.API.Models
+namespace StarlightHotels.API.Models
 {
     [Table("Client")]
     public class Client
