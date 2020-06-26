@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 namespace StarlightHotels.API.Models
 {
     [Table(name:"Facture")]
-    public class Facture
+    public class FactureModel
     {
         [Key]
         [Display(Name = "FAC_Id")]
@@ -24,6 +24,6 @@ namespace StarlightHotels.API.Models
         public decimal MontantTotal { get; set; }
 
         public int ResId { get; set; }
-        public Reservation Reservation { get; set; }
+        public ReservationModel Reservation { get; set; }
     }
 }

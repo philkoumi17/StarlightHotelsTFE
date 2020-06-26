@@ -9,7 +9,7 @@ using StarlightHotels.API.Models;
 namespace StarlightHotels.API.Models
 {
     [Table("Client")]
-    public class Client
+    public class ClientModel
     {
         [Key]
         [Display(Name = "CL_Id")]
@@ -66,10 +66,10 @@ namespace StarlightHotels.API.Models
         // Relation avec l'entité Pays
         [Display(Name = "CL_Pays_Id")]
         public int PaysId { get; set; }
-        public Pays Pays { get; set; }
+        public PaysModel Pays { get; set; }
 
         public ApplicationUser ApplicationUser { get; set; }
 
-        public Reservation Reservation { get; set; }
+        public ReservationModel Reservation { get; set; }
     }
 }

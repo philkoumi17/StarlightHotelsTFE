@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 namespace StarlightHotels.API.Models
 {
     [Table("Tarif")]
-    public class Tarif
+    public class TarifModel
     {
         [Key]
         [Display(Name = "TAR_Id")]
@@ -18,9 +18,9 @@ namespace StarlightHotels.API.Models
         public decimal Prix { get; set; }
 
         public int CatId { get; set; }
-        public Categorie Categorie { get; set; }
+        public CategorieModel Categorie { get; set; }
 
         public int SaId { get; set; }
-        public Saison Saison { get; set; }
+        public SaisonModel Saison { get; set; }
     }
 }

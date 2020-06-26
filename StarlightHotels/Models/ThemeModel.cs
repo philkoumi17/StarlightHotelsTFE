@@ -7,19 +7,17 @@ using System.Threading.Tasks;
 
 namespace StarlightHotels.API.Models
 {
-    [Table("Formule")]
-    public class Formule
+    [Table("Theme")]
+    public class ThemeModel
     {
         [Key]
-        [Display(Name = "FOR_Id")]
+        [Display(Name = "THEME_Id")]
         public int Id { get; set; }
 
-        [Display(Name = "FOR_Libelle")]
+        [Display(Name = "THEME_Libelle")]
+        [StringLength(50)]
         public string Libelle { get; set; }
 
-        [Display(Name = "FOR_Montant")]
-        public decimal Montant { get; set; }
-
-        public ICollection<HotelFormule> HotelFormules { get; set; }
+        public ICollection<HotelThemeModel> HotelThemes { get; set; }
     }
 }

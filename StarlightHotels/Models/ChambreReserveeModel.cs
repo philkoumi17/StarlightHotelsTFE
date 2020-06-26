@@ -8,13 +8,13 @@ using System.Threading.Tasks;
 namespace StarlightHotels.API.Models
 {
     [Table("ReservationChambre")]
-    public class ChambreReservee
+    public class ChambreReserveeModel
     {
         public int ChNum { get; set; }
-        public Chambre Chambre { get; set; }
+        public ChambreModel Chambre { get; set; }
 
         public int IdRes { get; set; }
-        public Reservation Reservation { get; set; }
+        public ReservationModel Reservation { get; set; }
 
         [Display(Name = "RESCH_NbAdultes")]
         public int NbAdultes { get; set; }

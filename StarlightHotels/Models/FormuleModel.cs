@@ -7,16 +7,19 @@ using System.Threading.Tasks;
 
 namespace StarlightHotels.API.Models
 {
-    [Table("Etat")]
-    public class Etat
+    [Table("Formule")]
+    public class FormuleModel
     {
         [Key]
-        [Display(Name = "ETAT_Id")]
+        [Display(Name = "FOR_Id")]
         public int Id { get; set; }
 
-        [Display(Name = "ETAT_Libelle")]
+        [Display(Name = "FOR_Libelle")]
         public string Libelle { get; set; }
 
-        public ICollection<Reservation> Reservations { get; set; }
+        [Display(Name = "FOR_Montant")]
+        public decimal Montant { get; set; }
+
+        public ICollection<HotelFormuleModel> HotelFormules { get; set; }
     }
 }

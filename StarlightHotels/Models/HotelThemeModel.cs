@@ -5,12 +5,12 @@ using System.Threading.Tasks;
 
 namespace StarlightHotels.API.Models
 {
-    public class HotelTheme
+    public class HotelThemeModel
     {
         public int HotelId { get; set; }
-        public Hotel Hotel { get; set; }
+        public HotelModel Hotel { get; set; }
 
         public int ThemeId { get; set; }
-        public Theme Theme { get; set; }
+        public ThemeModel Theme { get; set; }
     }
 }

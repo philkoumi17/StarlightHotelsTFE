@@ -22,14 +22,14 @@ namespace StarlightHotels.API.Controllers
 
         // GET: api/Reservations
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Reservation>>> GetReservations()
+        public async Task<ActionResult<IEnumerable<ReservationModel>>> GetReservations()
         {
             return await _context.Reservations.ToListAsync();
         }
 
         // GET: api/Reservations/5
         [HttpGet("{id}")]
-        public async Task<ActionResult<Reservation>> GetReservation(int id)
+        public async Task<ActionResult<ReservationModel>> GetReservation(int id)
         {
             var reservation = await _context.Reservations.FindAsync(id);
 
@@ -45,7 +45,7 @@ namespace StarlightHotels.API.Controllers
         // To protect from overposting attacks, enable the specific properties you want to bind to, for
         // more details, see https://go.microsoft.com/fwlink/?linkid=2123754.
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutReservation(int id, Reservation reservation)
+        public async Task<IActionResult> PutReservation(int id, ReservationModel reservation)
         {
             if (id != reservation.IdRes)
             {
@@ -77,7 +77,7 @@ namespace StarlightHotels.API.Controllers
         // To protect from overposting attacks, enable the specific properties you want to bind to, for
         // more details, see https://go.microsoft.com/fwlink/?linkid=2123754.
         [HttpPost]
-        public async Task<ActionResult<Reservation>> PostReservation(Reservation reservation)
+        public async Task<ActionResult<ReservationModel>> PostReservation(ReservationModel reservation)
         {
             _context.Reservations.Add(reservation);
             await _context.SaveChangesAsync();
@@ -87,7 +87,7 @@ namespace StarlightHotels.API.Controllers
 
         // DELETE: api/Reservations/5
         [HttpDelete("{id}")]
-        public async Task<ActionResult<Reservation>> DeleteReservation(int id)
+        public async Task<ActionResult<ReservationModel>> DeleteReservation(int id)
         {
             var reservation = await _context.Reservations.FindAsync(id);
             if (reservation == null)

@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 namespace StarlightHotels.API.Models
 {
     [Table("Saison")]
-    public class Saison
+    public class SaisonModel
     {
         [Key]
         [Display(Name = "SA_Id")]
@@ -25,6 +25,6 @@ namespace StarlightHotels.API.Models
         [DataType(DataType.Date)]
         public DateTime DateFin { get; set; }
 
-        public List<Tarif> Tarifs { get; set; }
+        public List<TarifModel> Tarifs { get; set; }
     }
 }

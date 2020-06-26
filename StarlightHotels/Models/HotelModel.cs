@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 namespace StarlightHotels.API.Models
 {
     [Table("Hotel")]
-    public class Hotel
+    public class HotelModel
     {
         [Key]
         [Display(Name = "HOTEL_Id")]
@@ -52,7 +52,7 @@ namespace StarlightHotels.API.Models
 
         // Relation avec l'entité Pays
         public int PaysId { get; set; }
-        public Pays Pays { get; set; }
+        public PaysModel Pays { get; set; }
 
         [Required]
         [Display(Name = "HOTEL_Telephone")]
@@ -75,13 +75,13 @@ namespace StarlightHotels.API.Models
         [Display(Name = "HOTEL_Coefficient")]
         public bool Coefficient { get; set; }
 
-        public List<Chambre> Chambres { get; set; }
+        public List<ChambreModel> Chambres { get; set; }
 
-        public List<Image> Images { get; set; }
+        public List<ImageModel> Images { get; set; }
 
-        public ICollection<HotelFormule> HotelFormules { get; set; }
-        public ICollection<HotelService> HotelServices { get; set; }
-        public ICollection<HotelTheme> HotelThemes { get; set; }
-        public ICollection<HotelCategorie> HotelCategories { get; set; }
+        public ICollection<HotelFormuleModel> HotelFormules { get; set; }
+        public ICollection<HotelServiceModel> HotelServices { get; set; }
+        public ICollection<HotelThemeModel> HotelThemes { get; set; }
+        public ICollection<HotelCategorieModel> HotelCategories { get; set; }
     }
 }

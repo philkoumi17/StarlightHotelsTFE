@@ -22,14 +22,14 @@ namespace StarlightHotels.API.Controllers
 
         // GET: api/Participant
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Participant>>> GetParticipants()
+        public async Task<ActionResult<IEnumerable<ParticipantModel>>> GetParticipants()
         {
             return await _context.Participants.ToListAsync();
         }
 
         // GET: api/Participant/5
         [HttpGet("{id}")]
-        public async Task<ActionResult<Participant>> GetParticipant(int id)
+        public async Task<ActionResult<ParticipantModel>> GetParticipant(int id)
         {
             var participant = await _context.Participants.FindAsync(id);
 
@@ -45,7 +45,7 @@ namespace StarlightHotels.API.Controllers
         // To protect from overposting attacks, enable the specific properties you want to bind to, for
         // more details, see https://go.microsoft.com/fwlink/?linkid=2123754.
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutParticipant(int id, Participant participant)
+        public async Task<IActionResult> PutParticipant(int id, ParticipantModel participant)
         {
             if (id != participant.Id)
             {
@@ -77,7 +77,7 @@ namespace StarlightHotels.API.Controllers
         // To protect from overposting attacks, enable the specific properties you want to bind to, for
         // more details, see https://go.microsoft.com/fwlink/?linkid=2123754.
         [HttpPost]
-        public async Task<ActionResult<Participant>> PostParticipant(Participant participant)
+        public async Task<ActionResult<ParticipantModel>> PostParticipant(ParticipantModel participant)
         {
             _context.Participants.Add(participant);
             await _context.SaveChangesAsync();
@@ -87,7 +87,7 @@ namespace StarlightHotels.API.Controllers
 
         // DELETE: api/Participant/5
         [HttpDelete("{id}")]
-        public async Task<ActionResult<Participant>> DeleteParticipant(int id)
+        public async Task<ActionResult<ParticipantModel>> DeleteParticipant(int id)
         {
             var participant = await _context.Participants.FindAsync(id);
             if (participant == null)

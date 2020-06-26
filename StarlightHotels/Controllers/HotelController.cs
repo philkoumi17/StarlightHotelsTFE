@@ -22,14 +22,14 @@ namespace StarlightHotels.API.Controllers
 
         // GET: api/Hotels
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Hotel>>> GetHotels()
+        public async Task<ActionResult<IEnumerable<HotelModel>>> GetHotels()
         {
             return await _context.Hotels.ToListAsync();
         }
 
         // GET: api/Hotels/5
         [HttpGet("{id}")]
-        public async Task<ActionResult<Hotel>> GetHotel(int id)
+        public async Task<ActionResult<HotelModel>> GetHotel(int id)
         {
             var hotel = await _context.Hotels.FindAsync(id);
 
@@ -45,7 +45,7 @@ namespace StarlightHotels.API.Controllers
         // To protect from overposting attacks, enable the specific properties you want to bind to, for
         // more details, see https://go.microsoft.com/fwlink/?linkid=2123754.
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutHotel(int id, Hotel hotel)
+        public async Task<IActionResult> PutHotel(int id, HotelModel hotel)
         {
             if (id != hotel.Id)
             {
@@ -77,7 +77,7 @@ namespace StarlightHotels.API.Controllers
         // To protect from overposting attacks, enable the specific properties you want to bind to, for
         // more details, see https://go.microsoft.com/fwlink/?linkid=2123754.
         [HttpPost]
-        public async Task<ActionResult<Hotel>> PostHotel(Hotel hotel)
+        public async Task<ActionResult<HotelModel>> PostHotel(HotelModel hotel)
         {
             _context.Hotels.Add(hotel);
             await _context.SaveChangesAsync();
@@ -87,7 +87,7 @@ namespace StarlightHotels.API.Controllers
 
         // DELETE: api/Hotels/5
         [HttpDelete("{id}")]
-        public async Task<ActionResult<Hotel>> DeleteHotel(int id)
+        public async Task<ActionResult<HotelModel>> DeleteHotel(int id)
         {
             var hotel = await _context.Hotels.FindAsync(id);
             if (hotel == null)

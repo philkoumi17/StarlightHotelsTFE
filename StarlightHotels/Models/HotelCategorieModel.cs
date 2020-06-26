@@ -6,13 +6,13 @@ using System.Threading.Tasks;
 
 namespace StarlightHotels.API.Models
 {
-    public class HotelCategorie
+    public class HotelCategorieModel
     {
         public int HotelId { get; set; }
-        public Hotel Hotel { get; set; }
+        public HotelModel Hotel { get; set; }
 
         public int CatId { get; set; }
-        public Categorie Categorie { get; set; }
+        public CategorieModel Categorie { get; set; }
 
         [Display(Name = "HOTCAT_Image")]
         [DataType(DataType.ImageUrl)]

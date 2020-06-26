@@ -7,13 +7,13 @@ using System.Threading.Tasks;
 
 namespace StarlightHotels.API.Models
 {
-    [Table("HotelFormule")]
-    public class HotelFormule
+    [Table("HotelService")]
+    public class HotelServiceModel
     {
         public int HotelId { get; set; }
-        public Hotel Hotel { get; set; }
+        public HotelModel Hotel { get; set; }
 
-        public int FormId { get; set; }
-        public Formule Formule { get; set; }
+        public int ServId { get; set; }
+        public ServiceModel Service { get; set; }
     }
 }

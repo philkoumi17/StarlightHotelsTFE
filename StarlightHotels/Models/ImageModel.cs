@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace StarlightHotels.API.Models
 {
-    public class Image
+    public class ImageModel
     {
         [Key]
         [Display(Name = "IM_Id")]
@@ -18,6 +18,6 @@ namespace StarlightHotels.API.Models
         public string ImageUrl { get; set; }
 
         public int HotelId { get; set; }
-        public Hotel Hotel { get; set; }
+        public HotelModel Hotel { get; set; }
     }
 }

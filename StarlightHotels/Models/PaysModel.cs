@@ -7,17 +7,18 @@ using System.Threading.Tasks;
 
 namespace StarlightHotels.API.Models
 {
-    [Table("Theme")]
-    public class Theme
+    [Table("Pays")]
+    public class PaysModel
     {
         [Key]
-        [Display(Name = "THEME_Id")]
+        [Display(Name = "PAYS_Id")]
         public int Id { get; set; }
 
-        [Display(Name = "THEME_Libelle")]
+        [Display(Name = "PAYS_Nom")]
         [StringLength(50)]
-        public string Libelle { get; set; }
+        public string Nom { get; set; }
 
-        public ICollection<HotelTheme> HotelThemes { get; set; }
+        public ICollection<HotelModel> Hotels { get; set; }
+        public ICollection<ClientModel> Clients { get; set; }
     }
 }

@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 namespace StarlightHotels.API.Models
 {
     [Table("Reservation")]
-    public class Reservation
+    public class ReservationModel
     {
         [Key]
         [Display(Name = "RES_Id")]
@@ -16,11 +16,11 @@ namespace StarlightHotels.API.Models
 
         // Relation avec l'entité Client
         public int ClientId { get; set; }
-        public Client Client { get; set; }
+        public ClientModel Client { get; set; }
 
         // Relation avec l'entité Participant
         public int PartId { get; set; }
-        public Participant Participant { get; set; }
+        public ParticipantModel Participant { get; set; }
 
         [Display(Name = "RES_DateReservation")]
         [DataType(DataType.Date)]
@@ -31,10 +31,10 @@ namespace StarlightHotels.API.Models
 
         // Relation avec l'entité Etat
         public int EtatId { get; set; }
-        public Etat Etat { get; set; }
+        public EtatModel Etat { get; set; }
 
-        public Facture Facture { get; set; }
+        public FactureModel Facture { get; set; }
 
-        public ICollection<ChambreReservee> ChambreReservees { get; set; }
+        public ICollection<ChambreReserveeModel> ChambreReservees { get; set; }
     }
 }

@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 namespace StarlightHotels.API.Models
 {
     [Table("Chambre")]
-    public class Chambre
+    public class ChambreModel
     {
         [Key]
         [Display(Name = "CH_Num")]
@@ -18,11 +18,11 @@ namespace StarlightHotels.API.Models
         public string ImageChambre { get; set; }
 
         public int HotelId { get; set; }
-        public Hotel Hotel { get; set; }
+        public HotelModel Hotel { get; set; }
 
         public int CatId { get; set; }
-        public Categorie Categorie { get; set; }
+        public CategorieModel Categorie { get; set; }
 
-        public ICollection<ChambreReservee> ChambreReservees { get; set; }
+        public ICollection<ChambreReserveeModel> ChambreReservees { get; set; }
     }
 }

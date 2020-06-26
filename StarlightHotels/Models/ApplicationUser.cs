@@ -13,6 +13,6 @@ namespace StarlightHotels.API.Models
         [Column(TypeName = "nvarchar(150)")]
         public string FullName { get; set; }
 
-        public ICollection<Client> Clients { get; set; }
+        public ICollection<ClientModel> Clients { get; set; }
     }
 }

@@ -21,113 +21,113 @@ namespace StarlightHotels.API.Models
             base.OnModelCreating(modelBuilder);
 
             // Gestion pour la table HotelCategorie
-            modelBuilder.Entity<HotelCategorie>()
+            modelBuilder.Entity<HotelCategorieModel>()
                 .HasKey(ht => new { ht.HotelId, ht.CatId });
 
-            modelBuilder.Entity<HotelCategorie>()
+            modelBuilder.Entity<HotelCategorieModel>()
                 .HasOne(pt => pt.Hotel)
                 .WithMany(p => p.HotelCategories)
                 .HasForeignKey(pt => pt.HotelId);
 
-            modelBuilder.Entity<HotelCategorie>()
+            modelBuilder.Entity<HotelCategorieModel>()
                 .HasOne(pt => pt.Categorie)
                 .WithMany(t => t.HotelCategories)
                 .HasForeignKey(pt => pt.CatId);
 
             // Gestion pour la table HotelFormule
-            modelBuilder.Entity<HotelFormule>()
+            modelBuilder.Entity<HotelFormuleModel>()
                 .HasKey(hf => new { hf.HotelId, hf.FormId });
 
-            modelBuilder.Entity<HotelFormule>()
+            modelBuilder.Entity<HotelFormuleModel>()
                 .HasOne(pt => pt.Hotel)
                 .WithMany(p => p.HotelFormules)
                 .HasForeignKey(pt => pt.HotelId);
 
-            modelBuilder.Entity<HotelFormule>()
+            modelBuilder.Entity<HotelFormuleModel>()
                 .HasOne(pt => pt.Formule)
                 .WithMany(t => t.HotelFormules)
                 .HasForeignKey(pt => pt.FormId);
 
             // Gestion pour la table HotelService
-            modelBuilder.Entity<HotelService>()
+            modelBuilder.Entity<HotelServiceModel>()
                 .HasKey(hs => new { hs.HotelId, hs.ServId });
 
-            modelBuilder.Entity<HotelService>()
+            modelBuilder.Entity<HotelServiceModel>()
                 .HasOne(pt => pt.Hotel)
                 .WithMany(p => p.HotelServices)
                 .HasForeignKey(pt => pt.HotelId);
 
-            modelBuilder.Entity<HotelService>()
+            modelBuilder.Entity<HotelServiceModel>()
                 .HasOne(pt => pt.Service)
                 .WithMany(t => t.HotelServices)
                 .HasForeignKey(pt => pt.ServId);
 
             // Gestion pour la table HotelTheme
-            modelBuilder.Entity<HotelTheme>()
+            modelBuilder.Entity<HotelThemeModel>()
                 .HasKey(ht => new { ht.HotelId, ht.ThemeId });
 
-            modelBuilder.Entity<HotelTheme>()
+            modelBuilder.Entity<HotelThemeModel>()
                 .HasOne(pt => pt.Hotel)
                 .WithMany(p => p.HotelThemes)
                 .HasForeignKey(pt => pt.HotelId);
 
-            modelBuilder.Entity<HotelTheme>()
+            modelBuilder.Entity<HotelThemeModel>()
                 .HasOne(pt => pt.Theme)
                 .WithMany(t => t.HotelThemes)
                 .HasForeignKey(pt => pt.ThemeId);
 
             // Gestion pour la table ChambreReservee
-            modelBuilder.Entity<ChambreReservee>()
+            modelBuilder.Entity<ChambreReserveeModel>()
                 .HasKey(ht => new { ht.ChNum, ht.IdRes });
 
-            modelBuilder.Entity<ChambreReservee>()
+            modelBuilder.Entity<ChambreReserveeModel>()
                 .HasOne(pt => pt.Chambre)
                 .WithMany(t => t.ChambreReservees)
                 .HasForeignKey(pt => pt.ChNum);
 
-            modelBuilder.Entity<ChambreReservee>()
+            modelBuilder.Entity<ChambreReserveeModel>()
                 .HasOne(pt => pt.Reservation)
                 .WithMany(p => p.ChambreReservees)
                 .HasForeignKey(pt => pt.IdRes)
                 .OnDelete(DeleteBehavior.ClientSetNull);
 
             // Autres relations
-            modelBuilder.Entity<Reservation>()
+            modelBuilder.Entity<ReservationModel>()
                 .HasOne(a => a.Facture)
                 .WithOne(b => b.Reservation)
-                .HasForeignKey<Facture>(b => b.ResId);
+                .HasForeignKey<FactureModel>(b => b.ResId);
 
-            modelBuilder.Entity<Client>()
+            modelBuilder.Entity<ClientModel>()
                 .HasOne(a => a.Reservation)
                 .WithOne(b => b.Client)
-                .HasForeignKey<Reservation>(b => b.ClientId);
+                .HasForeignKey<ReservationModel>(b => b.ClientId);
 
-            modelBuilder.Entity<Participant>()
+            modelBuilder.Entity<ParticipantModel>()
                 .HasOne(a => a.Reservation)
                 .WithOne(b => b.Participant)
-                .HasForeignKey<Reservation>(b => b.PartId);
+                .HasForeignKey<ReservationModel>(b => b.PartId);
         }
 
         public DbSet<ApplicationUser> ApplicationUsers { get; set; }
-        public DbSet<Categorie> Categories { get; set; }
-        public DbSet<Chambre> Chambres { get; set; }
-        public DbSet<ChambreReservee> ChambreReservees { get; set; }
-        public DbSet<Client> Clients { get; set; }
-        public DbSet<Etat> Etats { get; set; }
-        public DbSet<Facture> Factures { get; set; }
-        public DbSet<Hotel> Hotels { get; set; }
-        public DbSet<HotelCategorie> HotelCategories { get; set; }
-        public DbSet<HotelFormule> HotelFormules { get; set; }
-        public DbSet<HotelService> HotelServices { get; set; }
-        public DbSet<HotelTheme> HotelThemes { get; set; }
-        public DbSet<Image> Images { get; set; }
-        public DbSet<Participant> Participants { get; set; }
-        public DbSet<Pays> Pays { get; set; }
-        public DbSet<Reservation> Reservations { get; set; }
-        public DbSet<ChambreReservee> ReservationChambres { get; set; }
-        public DbSet<Saison> Saisons { get; set; }
-        public DbSet<Service> Services { get; set; }
-        public DbSet<Tarif> Tarifs { get; set; }
-        public DbSet<Theme> Themes { get; set; }
+        public DbSet<CategorieModel> Categories { get; set; }
+        public DbSet<ChambreModel> Chambres { get; set; }
+        public DbSet<ChambreReserveeModel> ChambreReservees { get; set; }
+        public DbSet<ClientModel> Clients { get; set; }
+        public DbSet<EtatModel> Etats { get; set; }
+        public DbSet<FactureModel> Factures { get; set; }
+        public DbSet<HotelModel> Hotels { get; set; }
+        public DbSet<HotelCategorieModel> HotelCategories { get; set; }
+        public DbSet<HotelFormuleModel> HotelFormules { get; set; }
+        public DbSet<HotelServiceModel> HotelServices { get; set; }
+        public DbSet<HotelThemeModel> HotelThemes { get; set; }
+        public DbSet<ImageModel> Images { get; set; }
+        public DbSet<ParticipantModel> Participants { get; set; }
+        public DbSet<PaysModel> Pays { get; set; }
+        public DbSet<ReservationModel> Reservations { get; set; }
+        public DbSet<ChambreReserveeModel> ReservationChambres { get; set; }
+        public DbSet<SaisonModel> Saisons { get; set; }
+        public DbSet<ServiceModel> Services { get; set; }
+        public DbSet<TarifModel> Tarifs { get; set; }
+        public DbSet<ThemeModel> Themes { get; set; }
     }
 }

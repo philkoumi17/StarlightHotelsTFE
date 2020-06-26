@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 namespace StarlightHotels.API.Models
 {
     [Table("Service")]
-    public class Service
+    public class ServiceModel
     {
         [Key]
         [Display(Name = "SERV_Id")]
@@ -22,6 +22,6 @@ namespace StarlightHotels.API.Models
         [Display(Name = "SERV_Payant")]
         public bool Payant { get; set; }
 
-        public ICollection<HotelService> HotelServices { get; set; }
+        public ICollection<HotelServiceModel> HotelServices { get; set; }
     }
 }

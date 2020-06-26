@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 namespace StarlightHotels.API.Models
 {
     [Table("Participant")]
-    public class Participant
+    public class ParticipantModel
     {
         [Key]
         [Display(Name = "PART_Id")]
@@ -29,6 +29,6 @@ namespace StarlightHotels.API.Models
         [DataType(DataType.Date)]
         public DateTime DateNaissance { get; set; }
 
-        public Reservation Reservation { get; set; }
+        public ReservationModel Reservation { get; set; }
     }
 }

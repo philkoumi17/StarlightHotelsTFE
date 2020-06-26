@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 namespace StarlightHotels.API.Models
 {
     [Table("Catégorie")]
-    public class Categorie
+    public class CategorieModel
     {
         [Key]
         [Display(Name = "CAT_Id")]
@@ -32,9 +32,9 @@ namespace StarlightHotels.API.Models
         [Display(Name = "CAT_MaxPers")]
         public int MaxPers { get; set; }
 
-        public List<Chambre> Chambres { get; set; }
-        public List<Tarif> Tarifs { get; set; }
+        public List<ChambreModel> Chambres { get; set; }
+        public List<TarifModel> Tarifs { get; set; }
 
-        public ICollection<HotelCategorie> HotelCategories { get; set; }
+        public ICollection<HotelCategorieModel> HotelCategories { get; set; }
     }
 }
