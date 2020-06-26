@@ -68,7 +68,6 @@ namespace StarlightHotels.API.Models
         public int PaysId { get; set; }
         public Pays Pays { get; set; }
 
-        public int AppUserId { get; set; }
         public ApplicationUser ApplicationUser { get; set; }
 
         public Reservation Reservation { get; set; }
