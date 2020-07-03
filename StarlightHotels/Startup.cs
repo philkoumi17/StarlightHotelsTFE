@@ -19,6 +19,8 @@ namespace StarlightHotels.API
 {
     public class Startup
     {
+        private readonly string MyAllowSpecificOrigins = "_myAllowSpecificOrigins";
+
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
@@ -48,15 +50,42 @@ namespace StarlightHotels.API
                 options.Password.RequireUppercase = false;
                 options.Password.RequiredLength = 4;
             });
+
+            #region CORS
+            services.AddCors(options =>
+            {
+                options.AddPolicy(MyAllowSpecificOrigins,
+                    builder =>
+                    {
+                        builder.WithOrigins("https://localhost:44315",
+                                "http://localhost:4200/")
+                            .AllowAnyOrigin()
+                            .AllowAnyMethod()
+                            .AllowAnyHeader();
+                    });
+            });
+            #endregion
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
+            app.Use(async (ctx, next) =>
+            {
+                await next();
+                if(ctx.Response.StatusCode == 204)
+                {
+                    ctx.Response.ContentLength = 0;
+                }
+            });
+
             if(env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
             }
+
+            // Shows UseCors with CorsPolicyBuilder.
+            app.UseCors(MyAllowSpecificOrigins);
 
             app.UseAuthentication();
 

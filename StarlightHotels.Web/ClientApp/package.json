@@ -32,6 +32,7 @@
     "jquery": "^3.5.1",
     "jw-bootstrap-switch-ng2": "2.0.1",
     "ng2-nouislider": "1.7.12",
+    "ngx-toastr": "^12.1.0",
     "nouislider": "9.2.0",
     "popper.js": "^1.14.4",
     "rxjs": "6.5.4",
