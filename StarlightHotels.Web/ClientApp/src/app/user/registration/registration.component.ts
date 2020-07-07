@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
-import { UserService } from 'app/shared/user.service';
+import { Component, OnInit, Inject } from '@angular/core';
+import { UserService } from "./../../shared/user.service";
 import { ToastrComponentlessModule, ToastrService } from 'ngx-toastr';
+import { MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog';
 
 @Component({
   selector: 'app-registration',
@@ -9,10 +10,13 @@ import { ToastrComponentlessModule, ToastrService } from 'ngx-toastr';
 })
 export class RegistrationComponent implements OnInit {
 
-  constructor(public service: UserService, private toastr:ToastrService) { }
+  constructor(public service: UserService, private toastr: ToastrService, 
+    public dialogRef: MatDialogRef<RegistrationComponent>,
+    @Inject(MAT_DIALOG_DATA) public data: any) { }
 
   ngOnInit(): void {
     this.service.formModel.reset();
+    console.log("fsqfsddf");
   }
 
   onSubmit(): void{
