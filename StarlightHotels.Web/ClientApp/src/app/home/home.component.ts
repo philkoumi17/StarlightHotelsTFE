@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { UserService } from '../shared/user.service';
 
 @Component({
   selector: 'app-home',
@@ -7,10 +9,19 @@ import { Component, OnInit } from '@angular/core';
   ]
 })
 export class HomeComponent implements OnInit {
+  userDetails;
   title = 'StarlightHotels';
-  constructor() { }
+  constructor(private router:Router, private service:UserService) { }
 
   ngOnInit(): void {
+    this.service.getUserProfile().subscribe(
+      res => {
+        this.userDetails = res;
+      },
+      err => {
+        console.log(err);
+      }
+    );
   }
 
 }

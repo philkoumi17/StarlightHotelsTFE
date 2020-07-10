@@ -19,7 +19,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "StarlightHotels.Mobile", "S
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Web", "Web", "{45622829-8922-4367-B803-4E280B7DBE9A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StarlightHotels.Web", "StarlightHotels.Web\StarlightHotels.Web.csproj", "{BDE41ADE-AFAA-4E1F-B8EA-70ED0D5A8072}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "StarlightHotels.Web", "StarlightHotels.Web\StarlightHotels.Web.csproj", "{BDE41ADE-AFAA-4E1F-B8EA-70ED0D5A8072}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Utilities", "Utilities", "{606E46BC-F896-487E-9307-F3D91E225530}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StarlightHotels.Utilities", "StarlightHotels.Utilities\StarlightHotels.Utilities.csproj", "{BC6E2D92-6F2E-4727-A76F-8513A84CED49}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -185,6 +189,30 @@ Global
 		{BDE41ADE-AFAA-4E1F-B8EA-70ED0D5A8072}.Release|x64.Build.0 = Release|Any CPU
 		{BDE41ADE-AFAA-4E1F-B8EA-70ED0D5A8072}.Release|x86.ActiveCfg = Release|Any CPU
 		{BDE41ADE-AFAA-4E1F-B8EA-70ED0D5A8072}.Release|x86.Build.0 = Release|Any CPU
+		{BC6E2D92-6F2E-4727-A76F-8513A84CED49}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BC6E2D92-6F2E-4727-A76F-8513A84CED49}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BC6E2D92-6F2E-4727-A76F-8513A84CED49}.Debug|ARM.ActiveCfg = Debug|Any CPU
+		{BC6E2D92-6F2E-4727-A76F-8513A84CED49}.Debug|ARM.Build.0 = Debug|Any CPU
+		{BC6E2D92-6F2E-4727-A76F-8513A84CED49}.Debug|iPhone.ActiveCfg = Debug|Any CPU
+		{BC6E2D92-6F2E-4727-A76F-8513A84CED49}.Debug|iPhone.Build.0 = Debug|Any CPU
+		{BC6E2D92-6F2E-4727-A76F-8513A84CED49}.Debug|iPhoneSimulator.ActiveCfg = Debug|Any CPU
+		{BC6E2D92-6F2E-4727-A76F-8513A84CED49}.Debug|iPhoneSimulator.Build.0 = Debug|Any CPU
+		{BC6E2D92-6F2E-4727-A76F-8513A84CED49}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{BC6E2D92-6F2E-4727-A76F-8513A84CED49}.Debug|x64.Build.0 = Debug|Any CPU
+		{BC6E2D92-6F2E-4727-A76F-8513A84CED49}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{BC6E2D92-6F2E-4727-A76F-8513A84CED49}.Debug|x86.Build.0 = Debug|Any CPU
+		{BC6E2D92-6F2E-4727-A76F-8513A84CED49}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BC6E2D92-6F2E-4727-A76F-8513A84CED49}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BC6E2D92-6F2E-4727-A76F-8513A84CED49}.Release|ARM.ActiveCfg = Release|Any CPU
+		{BC6E2D92-6F2E-4727-A76F-8513A84CED49}.Release|ARM.Build.0 = Release|Any CPU
+		{BC6E2D92-6F2E-4727-A76F-8513A84CED49}.Release|iPhone.ActiveCfg = Release|Any CPU
+		{BC6E2D92-6F2E-4727-A76F-8513A84CED49}.Release|iPhone.Build.0 = Release|Any CPU
+		{BC6E2D92-6F2E-4727-A76F-8513A84CED49}.Release|iPhoneSimulator.ActiveCfg = Release|Any CPU
+		{BC6E2D92-6F2E-4727-A76F-8513A84CED49}.Release|iPhoneSimulator.Build.0 = Release|Any CPU
+		{BC6E2D92-6F2E-4727-A76F-8513A84CED49}.Release|x64.ActiveCfg = Release|Any CPU
+		{BC6E2D92-6F2E-4727-A76F-8513A84CED49}.Release|x64.Build.0 = Release|Any CPU
+		{BC6E2D92-6F2E-4727-A76F-8513A84CED49}.Release|x86.ActiveCfg = Release|Any CPU
+		{BC6E2D92-6F2E-4727-A76F-8513A84CED49}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -196,6 +224,7 @@ Global
 		{163584D7-1C89-46EA-9C5C-CFC516C12951} = {D1E67962-6D10-4615-8297-1F63672CCE22}
 		{5B87C9E1-6569-4AD0-AD33-F1265A0440CB} = {D1E67962-6D10-4615-8297-1F63672CCE22}
 		{BDE41ADE-AFAA-4E1F-B8EA-70ED0D5A8072} = {45622829-8922-4367-B803-4E280B7DBE9A}
+		{BC6E2D92-6F2E-4727-A76F-8513A84CED49} = {606E46BC-F896-487E-9307-F3D91E225530}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {5B031109-03D5-4D65-AFC1-F6AAFD8F7A32}

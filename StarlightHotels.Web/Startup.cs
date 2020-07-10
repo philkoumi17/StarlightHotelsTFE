@@ -57,7 +57,7 @@ namespace StarlightHotels.Web
                 }
             });
 
-            if (env.IsDevelopment())
+            if(env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
             }
@@ -96,7 +96,7 @@ namespace StarlightHotels.Web
 
                 spa.Options.SourcePath = "ClientApp";
 
-                if (env.IsDevelopment())
+                if(env.IsDevelopment())
                 {
                     spa.UseAngularCliServer(npmScript: "start");
                 }

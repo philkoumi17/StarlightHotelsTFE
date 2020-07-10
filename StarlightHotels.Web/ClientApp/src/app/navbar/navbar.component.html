@@ -1,5 +1,5 @@
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-    <a class="navbar-brand" href="#">StarlightHotels</a>
+    <a class="navbar-brand" routerLink="/home">StarlightHotels</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor02" aria-controls="navbarColor02" aria-expanded="false" aria-label="Toggle navigation" wfd-id="649">
 		<span class="navbar-toggler-icon" wfd-id="457"></span>
 	</button>
@@ -7,12 +7,12 @@
     <div class="collapse navbar-collapse" id="navbarColor02" wfd-id="449">
         <ul class="navbar-nav mr-auto">
             <li class="nav-item active">
-                <a class="nav-link" href="#">Home</a>
+                <a class="nav-link" routerLink="/home">Home</a>
             </li>
             <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown" id="hotelsdropdownlink" aria-haspopup="true" aria-expanded="false">Hotels</a>
                 <div class="dropdown-menu">
-                    <a href="#" class="dropdown-item">Show hotels</a>
+                    <a routerLink="/hotel" class="dropdown-item">Show hotels</a>
                     <a href="#" class="dropdown-item">New Hotel</a>
                 </div>
             </li>
@@ -36,7 +36,7 @@
                     <a href="#" class="dropdown-item">Edit my profile</a>
                     <a href="#" class="dropdown-item">Edit my password</a>
                     <div class="dropdown-divider"></div>
-                    <a href="#" class="dropdown-item">Sign out</a>
+                    <a class="dropdown-item" (click)="onLogout()">Sign out</a>
                 </div>
             </li>
         </ul>

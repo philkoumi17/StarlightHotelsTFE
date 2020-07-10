@@ -1,14 +1,14 @@
 import { Injectable } from '@angular/core';
 import { FormBuilder, Validators, FormGroup } from '@angular/forms';
-import { HttpClient } from "@angular/common/http";
+import { HttpClient, HttpHeaders } from "@angular/common/http";
 
 @Injectable({
   providedIn: 'root'
 })
-export class UserService {
-
+export class UserService
+{
   constructor(private fb:FormBuilder, private http:HttpClient) { }
-  readonly BaseURI = "https://localhost:44315";
+  readonly BaseURI = "https://localhost:44315/api";
 
   formModel = this.fb.group({
     UserName : ['', Validators.required],
@@ -37,13 +37,24 @@ export class UserService {
     }
   }
 
-  register(){
+  register()
+  {
     var body = {
       UserName: this.formModel.value.UserName,
       Email: this.formModel.value.Email,
       FullName: this.formModel.value.FullName,
       Password: this.formModel.value.Passwords.Password,
     };
-    return this.http.post(this.BaseURI + '/api/Account/Register', body);
+    return this.http.post(this.BaseURI + '/Account/Register', body);
+  }
+
+  login(formData)
+  {
+    return this.http.post(this.BaseURI + '/Account/Login', formData);
+  }
+
+  getUserProfile()
+  {
+    return this.http.get(this.BaseURI + '/UserProfile');
   }
 }

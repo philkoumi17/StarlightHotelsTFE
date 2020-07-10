@@ -1,7 +1,8 @@
 import { Component, OnInit, Inject } from '@angular/core';
-import { RegistrationComponent } from '../user/registration/registration.component';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog';
+import { UserComponent } from '../user/user.component';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-navbar',
@@ -11,17 +12,24 @@ import { MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialo
 })
 export class NavbarComponent implements OnInit {
 
-  constructor(public dialog: MatDialog) { }
+  constructor(public dialog: MatDialog, private router:Router) { }
 
   ngOnInit(): void {
   }
 
   openUserDialog(): void {
     console.log("this.openUserDialog()");
-    const dialogRef = this.dialog.open(RegistrationComponent, {
-    disableClose: true,
-    width: '50%',
-    height: '',
-    data: { data: null}
-  });
-}}
+    const dialogRef = this.dialog.open(UserComponent, {
+      disableClose: true,
+      width: '50%',
+      height: '80%',
+      data: { data: null}
+    });
+  }
+  
+  onLogout()
+  {
+    localStorage.removeItem('token');
+    this.router.navigate(['/home']);
+  }
+}

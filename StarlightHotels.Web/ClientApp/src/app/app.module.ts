@@ -1,18 +1,23 @@
+import { HttpClientModule, HTTP_INTERCEPTORS } from "@angular/common/http";
+import { CUSTOM_ELEMENTS_SCHEMA, NgModule, NO_ERRORS_SCHEMA } from '@angular/core';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { MatDialogModule } from '@angular/material/dialog';
+import { MatTableModule } from '@angular/material/table';
+import { MatTabsModule } from '@angular/material/tabs';
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
-import { ReactiveFormsModule, FormsModule } from '@angular/forms';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ToastrModule } from 'ngx-toastr';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { NavbarComponent } from './navbar/navbar.component';
 import { FooterComponent } from './footer/footer.component';
-import { UserComponent } from './user/user.component';
-import { RegistrationComponent } from './user/registration/registration.component';
-import { UserService } from "./shared/user.service";
 import { HomeComponent } from './home/home.component';
-import { HttpClientModule } from "@angular/common/http";
-import { ToastrModule } from 'ngx-toastr';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { MatDialogModule } from '@angular/material/dialog';
+import { HotelComponent } from './hotel/hotel.component';
+import { NavbarComponent } from './navbar/navbar.component';
+import { UserService } from "./shared/user.service";
+import { LoginComponent } from './user/login/login.component';
+import { RegistrationComponent } from './user/registration/registration.component';
+import { UserComponent } from './user/user.component';
+import { AuthInterceptor } from "./auth/auth.interceptor";
 
 @NgModule({
   declarations: [
@@ -21,7 +26,9 @@ import { MatDialogModule } from '@angular/material/dialog';
     FooterComponent,
     UserComponent,
     RegistrationComponent,
-    HomeComponent
+    HomeComponent,
+    LoginComponent,
+    HotelComponent
   ],
   imports: [
     BrowserModule,
@@ -30,14 +37,25 @@ import { MatDialogModule } from '@angular/material/dialog';
     HttpClientModule,
     FormsModule,
     MatDialogModule,
+    BrowserAnimationsModule,
     ToastrModule.forRoot({
       progressBar: true
     }),
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    MatTabsModule,
+    MatTableModule
   ],
-  providers: [UserService],
+  providers: [UserService, {
+    provide: HTTP_INTERCEPTORS,
+    useClass: AuthInterceptor,
+    multi: true
+  }], 
   entryComponents: [
     RegistrationComponent
+  ],
+  schemas: [
+    CUSTOM_ELEMENTS_SCHEMA,
+    NO_ERRORS_SCHEMA
   ],
   bootstrap: [AppComponent]
 })

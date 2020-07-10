@@ -8,15 +8,14 @@ import { MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialo
   templateUrl: './registration.component.html',
   styles: []
 })
-export class RegistrationComponent implements OnInit {
-
+export class RegistrationComponent implements OnInit
+{
   constructor(public service: UserService, private toastr: ToastrService, 
     public dialogRef: MatDialogRef<RegistrationComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any) { }
 
   ngOnInit(): void {
     this.service.formModel.reset();
-    console.log("fsqfsddf");
   }
 
   onSubmit(): void{
@@ -26,6 +25,7 @@ export class RegistrationComponent implements OnInit {
         {
           this.service.formModel.reset();
           this.toastr.success('New user created', 'Registration successful !');
+          this.dialogRef.close();
         }
         else
         {
