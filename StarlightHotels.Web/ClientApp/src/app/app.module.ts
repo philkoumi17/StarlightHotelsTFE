@@ -13,7 +13,7 @@ import { FooterComponent } from './footer/footer.component';
 import { HomeComponent } from './home/home.component';
 import { HotelComponent } from './hotel/hotel.component';
 import { NavbarComponent } from './navbar/navbar.component';
-import { UserService } from "./shared/user.service";
+import { UserService } from "./services/user.service";
 import { LoginComponent } from './user/login/login.component';
 import { RegistrationComponent } from './user/registration/registration.component';
 import { UserComponent } from './user/user.component';
