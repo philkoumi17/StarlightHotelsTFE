@@ -1,12 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Claims;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using StarlightHotels.API.Models;
+using StarlightHotels.API.ViewModels;
 
 namespace StarlightHotels.API.Controllers
 {
@@ -24,16 +26,24 @@ namespace StarlightHotels.API.Controllers
         // GET: /api/UserProfile
         [HttpGet]
         [Authorize]
-        public async Task<Object> GetUserProfile()
+        public async Task<ActionResult<ApplicationUserModel>> GetUserProfile()
         {
-            string userId = User.Claims.First(c => c.Type == "UserID").Value;
-            var user = await _userManager.FindByIdAsync(userId);
-            return new
+            Claim tokenClaim = User.Claims.First(c => c.Type == "UserID");
+            if(tokenClaim == null)
             {
-                user.FullName,
-                user.Email,
-                user.UserName
+                return Unauthorized();
+            }
+
+            string userId = tokenClaim.Value;
+            var user = await _userManager.FindByIdAsync(userId);
+            var userM = new ApplicationUserModel()
+            {
+                FullName = user.FullName,
+                Email = user.Email,
+                UserName = user.UserName
             };
+
+            return Ok(userM);
         }
     }
 }

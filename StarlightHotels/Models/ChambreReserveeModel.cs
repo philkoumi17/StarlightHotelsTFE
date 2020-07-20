@@ -10,30 +10,40 @@ namespace StarlightHotels.API.Models
     [Table("ReservationChambre")]
     public class ChambreReserveeModel
     {
+        [Column("CH_Num")]
+        [Display(Name = "Chambre")]
         public int ChNum { get; set; }
         public ChambreModel Chambre { get; set; }
 
+        [Column("RES_Id")]
+        [Display(Name = "Réservation")]
         public int IdRes { get; set; }
         public ReservationModel Reservation { get; set; }
 
+        [Column("RESCH_NbAdultes")]
         [Display(Name = "RESCH_NbAdultes")]
         public int NbAdultes { get; set; }
 
-        [Display(Name = "RESCH_NbEnfants")]
+        [Column("RESCH_NbEnfants")]
+        [Display(Name = "Nombre d'enfants")]
         public int NbEnfants { get; set; }
 
-        [Display(Name = "RESCH_DateArrivee")]
+        [Column("RESCH_DateArrivee")]
+        [Display(Name = "Date d'arrivée")]
         [DataType(DataType.Date)]
         public DateTime DateArrivee { get; set; }
 
-        [Display(Name = "RESCH_DateDepart")]
+        [Column("RESCH_DateDepart")]
+        [Display(Name = "Date de départ")]
         [DataType(DataType.Date)]
         public DateTime DateDepart { get; set; }
 
-        [Display(Name = "RESCH_LitSup")]
+        [Column("RESCH_LitSup")]
+        [Display(Name = "Lit supplémentaire")]
         public bool LitSupplementaire { get; set; }
 
-        [Display(Name = "RESCH_MontantTotal")]
+        [Column("RESCH_MontantTotal")]
+        [Display(Name = "Montant total")]
         public decimal MontantTotal { get; set; }
     }
 }

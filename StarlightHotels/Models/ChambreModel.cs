@@ -11,15 +11,25 @@ namespace StarlightHotels.API.Models
     public class ChambreModel
     {
         [Key]
-        [Display(Name = "CH_Num")]
+        [Column("CH_Num")]
+        [Display(Name = "Numéro de chambre")]
         public int ChNum { get; set; }
 
-        [Display(Name = "CH_Image")]
+        [Column("CH_Image")]
+        [Display(Name = "Image de la chambre")]
         public string ImageChambre { get; set; }
 
+        [Column("CH_Disponibilite")]
+        [Display(Name = "Actif")]
+        public bool? Disponible { get; set; }
+
+        [Column("CH_HOTEL_Id")]
+        [Display(Name = "Hotel")]
         public int HotelId { get; set; }
         public HotelModel Hotel { get; set; }
 
+        [Column("CH_CAT_Id")]
+        [Display(Name = "Categorie")]
         public int CatId { get; set; }
         public CategorieModel Categorie { get; set; }
 

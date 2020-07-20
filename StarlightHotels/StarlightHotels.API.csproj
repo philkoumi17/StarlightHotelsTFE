@@ -5,13 +5,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Compile Remove="Migrations\20200619161054_InitialCreate.cs" />
-    <Compile Remove="Migrations\20200619161054_InitialCreate.Designer.cs" />
-    <Compile Remove="Migrations\20200619161343_InitialCreate.cs" />
-    <Compile Remove="Migrations\20200619161343_InitialCreate.Designer.cs" />
-  </ItemGroup>
-
-  <ItemGroup>
     <None Remove="Models\HotelChainContext.cs~RF6797469.TMP" />
   </ItemGroup>
 

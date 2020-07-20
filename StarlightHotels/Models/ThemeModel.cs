@@ -11,10 +11,12 @@ namespace StarlightHotels.API.Models
     public class ThemeModel
     {
         [Key]
-        [Display(Name = "THEME_Id")]
+        [Column("THEME_Id")]
+        [Display(Name = "Id")]
         public int Id { get; set; }
 
-        [Display(Name = "THEME_Libelle")]
+        [Column("THEME_Libelle")]
+        [Display(Name = "Libelle")]
         [StringLength(50)]
         public string Libelle { get; set; }
 

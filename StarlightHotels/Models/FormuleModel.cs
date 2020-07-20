@@ -11,13 +11,16 @@ namespace StarlightHotels.API.Models
     public class FormuleModel
     {
         [Key]
+        [Column("FOR_Id")]
         [Display(Name = "FOR_Id")]
         public int Id { get; set; }
 
-        [Display(Name = "FOR_Libelle")]
+        [Column("FOR_Libelle")]
+        [Display(Name = "Libellé")]
         public string Libelle { get; set; }
 
-        [Display(Name = "FOR_Montant")]
+        [Column("FOR_Montant")]
+        [Display(Name = "Prix")]
         public decimal Montant { get; set; }
 
         public ICollection<HotelFormuleModel> HotelFormules { get; set; }

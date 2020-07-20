@@ -48,117 +48,117 @@ namespace StarlightHotels.API.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Catégorie",
+                name: "Categorie",
                 columns: table => new
                 {
-                    Id = table.Column<int>(nullable: false)
+                    CAT_Id = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    Type = table.Column<string>(maxLength: 50, nullable: true),
-                    Descriptif = table.Column<string>(maxLength: 255, nullable: true),
-                    Image = table.Column<string>(maxLength: 255, nullable: true),
-                    Superficie = table.Column<double>(nullable: false),
-                    MaxPers = table.Column<int>(nullable: false)
+                    CAT_Type = table.Column<string>(maxLength: 50, nullable: true),
+                    CAT_Descriptif = table.Column<string>(maxLength: 255, nullable: true),
+                    CAT_Image = table.Column<string>(maxLength: 255, nullable: true),
+                    CAT_Superficie = table.Column<double>(nullable: false),
+                    CAT_MaxPers = table.Column<int>(nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Catégorie", x => x.Id);
+                    table.PrimaryKey("PK_Categorie", x => x.CAT_Id);
                 });
 
             migrationBuilder.CreateTable(
                 name: "Etat",
                 columns: table => new
                 {
-                    Id = table.Column<int>(nullable: false)
+                    ETAT_Id = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    Libelle = table.Column<string>(nullable: true)
+                    ETAT_Libelle = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Etat", x => x.Id);
+                    table.PrimaryKey("PK_Etat", x => x.ETAT_Id);
                 });
 
             migrationBuilder.CreateTable(
                 name: "Formule",
                 columns: table => new
                 {
-                    Id = table.Column<int>(nullable: false)
+                    FOR_Id = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    Libelle = table.Column<string>(nullable: true),
-                    Montant = table.Column<decimal>(nullable: false)
+                    FOR_Libelle = table.Column<string>(nullable: true),
+                    FOR_Montant = table.Column<decimal>(nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Formule", x => x.Id);
+                    table.PrimaryKey("PK_Formule", x => x.FOR_Id);
                 });
 
             migrationBuilder.CreateTable(
                 name: "Participant",
                 columns: table => new
                 {
-                    Id = table.Column<int>(nullable: false)
+                    PART_Id = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    Nom = table.Column<string>(maxLength: 60, nullable: false),
-                    Prenom = table.Column<string>(maxLength: 60, nullable: false),
-                    DateNaissance = table.Column<DateTime>(nullable: false)
+                    PART_Nom = table.Column<string>(maxLength: 60, nullable: false),
+                    PART_Prenom = table.Column<string>(maxLength: 60, nullable: false),
+                    PART_DateNaissance = table.Column<DateTime>(nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Participant", x => x.Id);
+                    table.PrimaryKey("PK_Participant", x => x.PART_Id);
                 });
 
             migrationBuilder.CreateTable(
                 name: "Pays",
                 columns: table => new
                 {
-                    Id = table.Column<int>(nullable: false)
+                    PAYS_Id = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    Nom = table.Column<string>(maxLength: 50, nullable: true)
+                    PAYS_Nom = table.Column<string>(maxLength: 50, nullable: true)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Pays", x => x.Id);
+                    table.PrimaryKey("PK_Pays", x => x.PAYS_Id);
                 });
 
             migrationBuilder.CreateTable(
                 name: "Saison",
                 columns: table => new
                 {
-                    Id = table.Column<int>(nullable: false)
+                    SA_Id = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    Libelle = table.Column<string>(nullable: true),
-                    DateDebut = table.Column<DateTime>(nullable: false),
-                    DateFin = table.Column<DateTime>(nullable: false)
+                    SA_Libellé = table.Column<string>(nullable: true),
+                    SA_DateDebut = table.Column<DateTime>(nullable: false),
+                    SA_DateFin = table.Column<DateTime>(nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Saison", x => x.Id);
+                    table.PrimaryKey("PK_Saison", x => x.SA_Id);
                 });
 
             migrationBuilder.CreateTable(
                 name: "Service",
                 columns: table => new
                 {
-                    Id = table.Column<int>(nullable: false)
+                    SERV_Id = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    Description = table.Column<string>(maxLength: 255, nullable: true),
-                    Payant = table.Column<bool>(nullable: false)
+                    SERV_Description = table.Column<string>(maxLength: 255, nullable: true),
+                    SERV_Payant = table.Column<bool>(nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Service", x => x.Id);
+                    table.PrimaryKey("PK_Service", x => x.SERV_Id);
                 });
 
             migrationBuilder.CreateTable(
                 name: "Theme",
                 columns: table => new
                 {
-                    Id = table.Column<int>(nullable: false)
+                    THEME_Id = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    Libelle = table.Column<string>(maxLength: 50, nullable: true)
+                    THEME_Libelle = table.Column<string>(maxLength: 50, nullable: true)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Theme", x => x.Id);
+                    table.PrimaryKey("PK_Theme", x => x.THEME_Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -271,24 +271,23 @@ namespace StarlightHotels.API.Migrations
                 name: "Client",
                 columns: table => new
                 {
-                    Id = table.Column<int>(nullable: false)
+                    CL_Id = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    Nom = table.Column<string>(maxLength: 60, nullable: false),
-                    Prenom = table.Column<string>(maxLength: 60, nullable: false),
-                    DateNaissance = table.Column<DateTime>(nullable: false),
-                    Sexe = table.Column<string>(maxLength: 1, nullable: false),
-                    Email = table.Column<string>(maxLength: 60, nullable: false),
-                    Rue = table.Column<string>(maxLength: 100, nullable: false),
-                    NumeroRue = table.Column<string>(maxLength: 100, nullable: false),
-                    CodePostal = table.Column<string>(maxLength: 20, nullable: false),
-                    Ville = table.Column<string>(maxLength: 60, nullable: false),
-                    PaysId = table.Column<int>(nullable: false),
-                    AppUserId = table.Column<int>(nullable: false),
+                    CL_Nom = table.Column<string>(maxLength: 60, nullable: false),
+                    CL_Prenom = table.Column<string>(maxLength: 60, nullable: false),
+                    CL_DateNaissance = table.Column<DateTime>(nullable: false),
+                    CL_Sexe = table.Column<string>(maxLength: 1, nullable: false),
+                    CL_Email = table.Column<string>(maxLength: 60, nullable: false),
+                    CL_Rue = table.Column<string>(maxLength: 100, nullable: false),
+                    CL_Numero = table.Column<string>(maxLength: 100, nullable: false),
+                    CL_CodePostal = table.Column<string>(maxLength: 20, nullable: false),
+                    CL_Ville = table.Column<string>(maxLength: 60, nullable: false),
+                    CL_PAYS_Id = table.Column<int>(nullable: false),
                     ApplicationUserId = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Client", x => x.Id);
+                    table.PrimaryKey("PK_Client", x => x.CL_Id);
                     table.ForeignKey(
                         name: "FK_Client_AspNetUsers_ApplicationUserId",
                         column: x => x.ApplicationUserId,
@@ -296,10 +295,10 @@ namespace StarlightHotels.API.Migrations
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
-                        name: "FK_Client_Pays_PaysId",
-                        column: x => x.PaysId,
+                        name: "FK_Client_Pays_CL_PAYS_Id",
+                        column: x => x.CL_PAYS_Id,
                         principalTable: "Pays",
-                        principalColumn: "Id",
+                        principalColumn: "PAYS_Id",
                         onDelete: ReferentialAction.Cascade);
                 });
 
@@ -307,30 +306,32 @@ namespace StarlightHotels.API.Migrations
                 name: "Hotel",
                 columns: table => new
                 {
-                    Id = table.Column<int>(nullable: false)
+                    HOTEL_Id = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    Nom = table.Column<string>(maxLength: 50, nullable: false),
-                    NbEtoiles = table.Column<int>(nullable: false),
-                    NbChambres = table.Column<int>(nullable: false),
-                    Description = table.Column<string>(maxLength: 255, nullable: false),
-                    Adresse = table.Column<string>(maxLength: 255, nullable: false),
-                    CodePostal = table.Column<string>(maxLength: 20, nullable: false),
-                    Ville = table.Column<string>(maxLength: 60, nullable: false),
-                    PaysId = table.Column<int>(nullable: false),
-                    Telephone = table.Column<string>(maxLength: 100, nullable: false),
-                    EnPromotion = table.Column<bool>(nullable: false),
-                    TopDestination = table.Column<bool>(nullable: false),
-                    Actif = table.Column<bool>(nullable: false),
-                    Coefficient = table.Column<bool>(nullable: false)
+                    HOTEL_Nom = table.Column<string>(maxLength: 50, nullable: false),
+                    HOTEL_NombreEtoiles = table.Column<int>(nullable: false),
+                    HOTEL_NombreChambres = table.Column<int>(nullable: false),
+                    HOTEL_Description = table.Column<string>(maxLength: 255, nullable: false),
+                    HOTEL_Adresse = table.Column<string>(maxLength: 255, nullable: false),
+                    HOTEL_CodePostal = table.Column<string>(maxLength: 20, nullable: false),
+                    HOTEL_Ville = table.Column<string>(maxLength: 60, nullable: false),
+                    HOTEL_PAYS_Id = table.Column<int>(nullable: false),
+                    HOTEL_Telephone = table.Column<string>(maxLength: 100, nullable: false),
+                    HOTEL_EnPromotion = table.Column<bool>(nullable: false),
+                    HOTEL_TopDestination = table.Column<bool>(nullable: false),
+                    HOTEL_Actif = table.Column<bool>(nullable: false),
+                    HOTEL_Coefficient = table.Column<float>(nullable: false),
+                    HOTEL_CheckIn = table.Column<string>(maxLength: 50, nullable: false),
+                    HOTEL_CheckOut = table.Column<string>(maxLength: 50, nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Hotel", x => x.Id);
+                    table.PrimaryKey("PK_Hotel", x => x.HOTEL_Id);
                     table.ForeignKey(
-                        name: "FK_Hotel_Pays_PaysId",
-                        column: x => x.PaysId,
+                        name: "FK_Hotel_Pays_HOTEL_PAYS_Id",
+                        column: x => x.HOTEL_PAYS_Id,
                         principalTable: "Pays",
-                        principalColumn: "Id",
+                        principalColumn: "PAYS_Id",
                         onDelete: ReferentialAction.Cascade);
                 });
 
@@ -338,28 +339,28 @@ namespace StarlightHotels.API.Migrations
                 name: "Tarif",
                 columns: table => new
                 {
-                    Id = table.Column<int>(nullable: false)
+                    TAR_Id = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    Prix = table.Column<decimal>(nullable: false),
-                    CatId = table.Column<int>(nullable: false),
+                    TAR_Prix = table.Column<decimal>(nullable: false),
+                    TAR_CAT_Id = table.Column<int>(nullable: false),
                     CategorieId = table.Column<int>(nullable: true),
-                    SaId = table.Column<int>(nullable: false),
+                    TAR_SA_Id = table.Column<int>(nullable: false),
                     SaisonId = table.Column<int>(nullable: true)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Tarif", x => x.Id);
+                    table.PrimaryKey("PK_Tarif", x => x.TAR_Id);
                     table.ForeignKey(
-                        name: "FK_Tarif_Catégorie_CategorieId",
+                        name: "FK_Tarif_Categorie_CategorieId",
                         column: x => x.CategorieId,
-                        principalTable: "Catégorie",
-                        principalColumn: "Id",
+                        principalTable: "Categorie",
+                        principalColumn: "CAT_Id",
                         onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
                         name: "FK_Tarif_Saison_SaisonId",
                         column: x => x.SaisonId,
                         principalTable: "Saison",
-                        principalColumn: "Id",
+                        principalColumn: "SA_Id",
                         onDelete: ReferentialAction.Restrict);
                 });
 
@@ -367,34 +368,34 @@ namespace StarlightHotels.API.Migrations
                 name: "Reservation",
                 columns: table => new
                 {
-                    IdRes = table.Column<int>(nullable: false)
+                    RES_Id = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    ClientId = table.Column<int>(nullable: false),
-                    PartId = table.Column<int>(nullable: false),
-                    DateReservation = table.Column<DateTime>(nullable: false),
-                    Montant = table.Column<decimal>(nullable: false),
-                    EtatId = table.Column<int>(nullable: false)
+                    RES_CLI_Id = table.Column<int>(nullable: false),
+                    RES_PART_Id = table.Column<int>(nullable: false),
+                    RES_DateReservation = table.Column<DateTime>(nullable: false),
+                    RES_Montant = table.Column<decimal>(nullable: false),
+                    RES_ETAT_Id = table.Column<int>(nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Reservation", x => x.IdRes);
+                    table.PrimaryKey("PK_Reservation", x => x.RES_Id);
                     table.ForeignKey(
-                        name: "FK_Reservation_Client_ClientId",
-                        column: x => x.ClientId,
+                        name: "FK_Reservation_Client_RES_CLI_Id",
+                        column: x => x.RES_CLI_Id,
                         principalTable: "Client",
-                        principalColumn: "Id",
+                        principalColumn: "CL_Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_Reservation_Etat_EtatId",
-                        column: x => x.EtatId,
+                        name: "FK_Reservation_Etat_RES_ETAT_Id",
+                        column: x => x.RES_ETAT_Id,
                         principalTable: "Etat",
-                        principalColumn: "Id",
+                        principalColumn: "ETAT_Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_Reservation_Participant_PartId",
-                        column: x => x.PartId,
+                        name: "FK_Reservation_Participant_RES_PART_Id",
+                        column: x => x.RES_PART_Id,
                         principalTable: "Participant",
-                        principalColumn: "Id",
+                        principalColumn: "PART_Id",
                         onDelete: ReferentialAction.Cascade);
                 });
 
@@ -402,53 +403,53 @@ namespace StarlightHotels.API.Migrations
                 name: "Chambre",
                 columns: table => new
                 {
-                    ChNum = table.Column<int>(nullable: false)
+                    CH_Num = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    ImageChambre = table.Column<string>(nullable: true),
-                    HotelId = table.Column<int>(nullable: false),
-                    CatId = table.Column<int>(nullable: false),
-                    CategorieId = table.Column<int>(nullable: true)
+                    CH_Image = table.Column<string>(nullable: true),
+                    CH_Disponibilite = table.Column<bool>(nullable: true),
+                    CH_HOTEL_Id = table.Column<int>(nullable: false),
+                    CH_CAT_Id = table.Column<int>(nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Chambre", x => x.ChNum);
+                    table.PrimaryKey("PK_Chambre", x => x.CH_Num);
                     table.ForeignKey(
-                        name: "FK_Chambre_Catégorie_CategorieId",
-                        column: x => x.CategorieId,
-                        principalTable: "Catégorie",
-                        principalColumn: "Id",
+                        name: "FK_Chambre_Categorie_CH_CAT_Id",
+                        column: x => x.CH_CAT_Id,
+                        principalTable: "Categorie",
+                        principalColumn: "CAT_Id",
                         onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
-                        name: "FK_Chambre_Hotel_HotelId",
-                        column: x => x.HotelId,
+                        name: "FK_Chambre_Hotel_CH_HOTEL_Id",
+                        column: x => x.CH_HOTEL_Id,
                         principalTable: "Hotel",
-                        principalColumn: "Id",
+                        principalColumn: "HOTEL_Id",
                         onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
-                name: "HotelCategories",
+                name: "HotelCategorie",
                 columns: table => new
                 {
-                    HotelId = table.Column<int>(nullable: false),
-                    CatId = table.Column<int>(nullable: false),
-                    ImageUrl = table.Column<string>(maxLength: 255, nullable: true),
-                    Descriptif = table.Column<string>(maxLength: 255, nullable: true)
+                    HOTEL_Id = table.Column<int>(nullable: false),
+                    CAT_Id = table.Column<int>(nullable: false),
+                    HOTCAT_Image = table.Column<string>(maxLength: 255, nullable: true),
+                    HOTCAT_Descriptif = table.Column<string>(maxLength: 255, nullable: true)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_HotelCategories", x => new { x.HotelId, x.CatId });
+                    table.PrimaryKey("PK_HotelCategorie", x => new { x.HOTEL_Id, x.CAT_Id });
                     table.ForeignKey(
-                        name: "FK_HotelCategories_Catégorie_CatId",
-                        column: x => x.CatId,
-                        principalTable: "Catégorie",
-                        principalColumn: "Id",
+                        name: "FK_HotelCategorie_Categorie_CAT_Id",
+                        column: x => x.CAT_Id,
+                        principalTable: "Categorie",
+                        principalColumn: "CAT_Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_HotelCategories_Hotel_HotelId",
-                        column: x => x.HotelId,
+                        name: "FK_HotelCategorie_Hotel_HOTEL_Id",
+                        column: x => x.HOTEL_Id,
                         principalTable: "Hotel",
-                        principalColumn: "Id",
+                        principalColumn: "HOTEL_Id",
                         onDelete: ReferentialAction.Cascade);
                 });
 
@@ -456,23 +457,23 @@ namespace StarlightHotels.API.Migrations
                 name: "HotelFormule",
                 columns: table => new
                 {
-                    HotelId = table.Column<int>(nullable: false),
-                    FormId = table.Column<int>(nullable: false)
+                    HOTEL_Id = table.Column<int>(nullable: false),
+                    FOR_Id = table.Column<int>(nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_HotelFormule", x => new { x.HotelId, x.FormId });
+                    table.PrimaryKey("PK_HotelFormule", x => new { x.HOTEL_Id, x.FOR_Id });
                     table.ForeignKey(
-                        name: "FK_HotelFormule_Formule_FormId",
-                        column: x => x.FormId,
+                        name: "FK_HotelFormule_Formule_FOR_Id",
+                        column: x => x.FOR_Id,
                         principalTable: "Formule",
-                        principalColumn: "Id",
+                        principalColumn: "FOR_Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_HotelFormule_Hotel_HotelId",
-                        column: x => x.HotelId,
+                        name: "FK_HotelFormule_Hotel_HOTEL_Id",
+                        column: x => x.HOTEL_Id,
                         principalTable: "Hotel",
-                        principalColumn: "Id",
+                        principalColumn: "HOTEL_Id",
                         onDelete: ReferentialAction.Cascade);
                 });
 
@@ -480,67 +481,67 @@ namespace StarlightHotels.API.Migrations
                 name: "HotelService",
                 columns: table => new
                 {
-                    HotelId = table.Column<int>(nullable: false),
-                    ServId = table.Column<int>(nullable: false)
+                    HOTEL_Id = table.Column<int>(nullable: false),
+                    SERV_Id = table.Column<int>(nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_HotelService", x => new { x.HotelId, x.ServId });
+                    table.PrimaryKey("PK_HotelService", x => new { x.HOTEL_Id, x.SERV_Id });
                     table.ForeignKey(
-                        name: "FK_HotelService_Hotel_HotelId",
-                        column: x => x.HotelId,
+                        name: "FK_HotelService_Hotel_HOTEL_Id",
+                        column: x => x.HOTEL_Id,
                         principalTable: "Hotel",
-                        principalColumn: "Id",
+                        principalColumn: "HOTEL_Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_HotelService_Service_ServId",
-                        column: x => x.ServId,
+                        name: "FK_HotelService_Service_SERV_Id",
+                        column: x => x.SERV_Id,
                         principalTable: "Service",
-                        principalColumn: "Id",
+                        principalColumn: "SERV_Id",
                         onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
-                name: "HotelThemes",
+                name: "HotelTheme",
                 columns: table => new
                 {
-                    HotelId = table.Column<int>(nullable: false),
-                    ThemeId = table.Column<int>(nullable: false)
+                    HOTEL_Id = table.Column<int>(nullable: false),
+                    THEME_Id = table.Column<int>(nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_HotelThemes", x => new { x.HotelId, x.ThemeId });
+                    table.PrimaryKey("PK_HotelTheme", x => new { x.HOTEL_Id, x.THEME_Id });
                     table.ForeignKey(
-                        name: "FK_HotelThemes_Hotel_HotelId",
-                        column: x => x.HotelId,
+                        name: "FK_HotelTheme_Hotel_HOTEL_Id",
+                        column: x => x.HOTEL_Id,
                         principalTable: "Hotel",
-                        principalColumn: "Id",
+                        principalColumn: "HOTEL_Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_HotelThemes_Theme_ThemeId",
-                        column: x => x.ThemeId,
+                        name: "FK_HotelTheme_Theme_THEME_Id",
+                        column: x => x.THEME_Id,
                         principalTable: "Theme",
-                        principalColumn: "Id",
+                        principalColumn: "THEME_Id",
                         onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
-                name: "Images",
+                name: "Image",
                 columns: table => new
                 {
-                    Id = table.Column<int>(nullable: false)
+                    IM_Id = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    ImageUrl = table.Column<string>(maxLength: 255, nullable: true),
-                    HotelId = table.Column<int>(nullable: false)
+                    IM_Image = table.Column<string>(maxLength: 255, nullable: true),
+                    IM_HOTEL_Id = table.Column<int>(nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Images", x => x.Id);
+                    table.PrimaryKey("PK_Image", x => x.IM_Id);
                     table.ForeignKey(
-                        name: "FK_Images_Hotel_HotelId",
-                        column: x => x.HotelId,
+                        name: "FK_Image_Hotel_IM_HOTEL_Id",
+                        column: x => x.IM_HOTEL_Id,
                         principalTable: "Hotel",
-                        principalColumn: "Id",
+                        principalColumn: "HOTEL_Id",
                         onDelete: ReferentialAction.Cascade);
                 });
 
@@ -548,20 +549,20 @@ namespace StarlightHotels.API.Migrations
                 name: "Facture",
                 columns: table => new
                 {
-                    Id = table.Column<int>(nullable: false)
+                    FAC_Id = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    DateFacture = table.Column<DateTime>(nullable: false),
-                    MontantTotal = table.Column<decimal>(nullable: false),
-                    ResId = table.Column<int>(nullable: false)
+                    FAC_Date = table.Column<DateTime>(nullable: false),
+                    FAC_MontantTotal = table.Column<decimal>(nullable: false),
+                    FAC_RES_Id = table.Column<int>(nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Facture", x => x.Id);
+                    table.PrimaryKey("PK_Facture", x => x.FAC_Id);
                     table.ForeignKey(
-                        name: "FK_Facture_Reservation_ResId",
-                        column: x => x.ResId,
+                        name: "FK_Facture_Reservation_FAC_RES_Id",
+                        column: x => x.FAC_RES_Id,
                         principalTable: "Reservation",
-                        principalColumn: "IdRes",
+                        principalColumn: "RES_Id",
                         onDelete: ReferentialAction.Cascade);
                 });
 
@@ -569,29 +570,29 @@ namespace StarlightHotels.API.Migrations
                 name: "ReservationChambre",
                 columns: table => new
                 {
-                    ChNum = table.Column<int>(nullable: false),
-                    IdRes = table.Column<int>(nullable: false),
-                    NbAdultes = table.Column<int>(nullable: false),
-                    NbEnfants = table.Column<int>(nullable: false),
-                    DateArrivee = table.Column<DateTime>(nullable: false),
-                    DateDepart = table.Column<DateTime>(nullable: false),
-                    LitSupplementaire = table.Column<bool>(nullable: false),
-                    MontantTotal = table.Column<decimal>(nullable: false)
+                    CH_Num = table.Column<int>(nullable: false),
+                    RES_Id = table.Column<int>(nullable: false),
+                    RESCH_NbAdultes = table.Column<int>(nullable: false),
+                    RESCH_NbEnfants = table.Column<int>(nullable: false),
+                    RESCH_DateArrivee = table.Column<DateTime>(nullable: false),
+                    RESCH_DateDepart = table.Column<DateTime>(nullable: false),
+                    RESCH_LitSup = table.Column<bool>(nullable: false),
+                    RESCH_MontantTotal = table.Column<decimal>(nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_ReservationChambre", x => new { x.ChNum, x.IdRes });
+                    table.PrimaryKey("PK_ReservationChambre", x => new { x.CH_Num, x.RES_Id });
                     table.ForeignKey(
-                        name: "FK_ReservationChambre_Chambre_ChNum",
-                        column: x => x.ChNum,
+                        name: "FK_ReservationChambre_Chambre_CH_Num",
+                        column: x => x.CH_Num,
                         principalTable: "Chambre",
-                        principalColumn: "ChNum",
+                        principalColumn: "CH_Num",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_ReservationChambre_Reservation_IdRes",
-                        column: x => x.IdRes,
+                        name: "FK_ReservationChambre_Reservation_RES_Id",
+                        column: x => x.RES_Id,
                         principalTable: "Reservation",
-                        principalColumn: "IdRes",
+                        principalColumn: "RES_Id",
                         onDelete: ReferentialAction.Restrict);
                 });
 
@@ -635,14 +636,14 @@ namespace StarlightHotels.API.Migrations
                 filter: "[NormalizedUserName] IS NOT NULL");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Chambre_CategorieId",
+                name: "IX_Chambre_CH_CAT_Id",
                 table: "Chambre",
-                column: "CategorieId");
+                column: "CH_CAT_Id");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Chambre_HotelId",
+                name: "IX_Chambre_CH_HOTEL_Id",
                 table: "Chambre",
-                column: "HotelId");
+                column: "CH_HOTEL_Id");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Client_ApplicationUserId",
@@ -650,67 +651,67 @@ namespace StarlightHotels.API.Migrations
                 column: "ApplicationUserId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Client_PaysId",
+                name: "IX_Client_CL_PAYS_Id",
                 table: "Client",
-                column: "PaysId");
+                column: "CL_PAYS_Id");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Facture_ResId",
+                name: "IX_Facture_FAC_RES_Id",
                 table: "Facture",
-                column: "ResId",
+                column: "FAC_RES_Id",
                 unique: true);
 
             migrationBuilder.CreateIndex(
-                name: "IX_Hotel_PaysId",
+                name: "IX_Hotel_HOTEL_PAYS_Id",
                 table: "Hotel",
-                column: "PaysId");
+                column: "HOTEL_PAYS_Id");
 
             migrationBuilder.CreateIndex(
-                name: "IX_HotelCategories_CatId",
-                table: "HotelCategories",
-                column: "CatId");
+                name: "IX_HotelCategorie_CAT_Id",
+                table: "HotelCategorie",
+                column: "CAT_Id");
 
             migrationBuilder.CreateIndex(
-                name: "IX_HotelFormule_FormId",
+                name: "IX_HotelFormule_FOR_Id",
                 table: "HotelFormule",
-                column: "FormId");
+                column: "FOR_Id");
 
             migrationBuilder.CreateIndex(
-                name: "IX_HotelService_ServId",
+                name: "IX_HotelService_SERV_Id",
                 table: "HotelService",
-                column: "ServId");
+                column: "SERV_Id");
 
             migrationBuilder.CreateIndex(
-                name: "IX_HotelThemes_ThemeId",
-                table: "HotelThemes",
-                column: "ThemeId");
+                name: "IX_HotelTheme_THEME_Id",
+                table: "HotelTheme",
+                column: "THEME_Id");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Images_HotelId",
-                table: "Images",
-                column: "HotelId");
+                name: "IX_Image_IM_HOTEL_Id",
+                table: "Image",
+                column: "IM_HOTEL_Id");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Reservation_ClientId",
+                name: "IX_Reservation_RES_CLI_Id",
                 table: "Reservation",
-                column: "ClientId",
+                column: "RES_CLI_Id",
                 unique: true);
 
             migrationBuilder.CreateIndex(
-                name: "IX_Reservation_EtatId",
+                name: "IX_Reservation_RES_ETAT_Id",
                 table: "Reservation",
-                column: "EtatId");
+                column: "RES_ETAT_Id");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Reservation_PartId",
+                name: "IX_Reservation_RES_PART_Id",
                 table: "Reservation",
-                column: "PartId",
+                column: "RES_PART_Id",
                 unique: true);
 
             migrationBuilder.CreateIndex(
-                name: "IX_ReservationChambre_IdRes",
+                name: "IX_ReservationChambre_RES_Id",
                 table: "ReservationChambre",
-                column: "IdRes");
+                column: "RES_Id");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Tarif_CategorieId",
@@ -744,7 +745,7 @@ namespace StarlightHotels.API.Migrations
                 name: "Facture");
 
             migrationBuilder.DropTable(
-                name: "HotelCategories");
+                name: "HotelCategorie");
 
             migrationBuilder.DropTable(
                 name: "HotelFormule");
@@ -753,10 +754,10 @@ namespace StarlightHotels.API.Migrations
                 name: "HotelService");
 
             migrationBuilder.DropTable(
-                name: "HotelThemes");
+                name: "HotelTheme");
 
             migrationBuilder.DropTable(
-                name: "Images");
+                name: "Image");
 
             migrationBuilder.DropTable(
                 name: "ReservationChambre");
@@ -786,7 +787,7 @@ namespace StarlightHotels.API.Migrations
                 name: "Saison");
 
             migrationBuilder.DropTable(
-                name: "Catégorie");
+                name: "Categorie");
 
             migrationBuilder.DropTable(
                 name: "Hotel");

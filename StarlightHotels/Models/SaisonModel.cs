@@ -11,17 +11,21 @@ namespace StarlightHotels.API.Models
     public class SaisonModel
     {
         [Key]
-        [Display(Name = "SA_Id")]
+        [Column("SA_Id")]
+        [Display(Name = "Id")]
         public int Id { get; set; }
 
-        [Display(Name = "SA_Libellé")]
+        [Column("SA_Libellé")]
+        [Display(Name = "Libellé")]
         public string Libelle { get; set; }
 
-        [Display(Name = "SA_DateDebut")]
+        [Column("SA_DateDebut")]
+        [Display(Name = "Date de début")]
         [DataType(DataType.Date)]
         public DateTime DateDebut { get; set; }
 
-        [Display(Name = "SA_DateFin")]
+        [Column("SA_DateFin")]
+        [Display(Name = "Date de fin")]
         [DataType(DataType.Date)]
         public DateTime DateFin { get; set; }
 

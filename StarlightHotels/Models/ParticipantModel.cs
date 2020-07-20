@@ -11,21 +11,25 @@ namespace StarlightHotels.API.Models
     public class ParticipantModel
     {
         [Key]
-        [Display(Name = "PART_Id")]
+        [Column("PART_Id")]
+        [Display(Name = "Id")]
         public int Id { get; set; }
 
         [Required]
-        [Display(Name = "PART_Nom")]
+        [Column("PART_Nom")]
+        [Display(Name = "Nom")]
         [StringLength(60)]
         public string Nom { get; set; }
 
         [Required]
-        [Display(Name = "PART_Prenom")]
+        [Column("PART_Prenom")]
+        [Display(Name = "Prenom")]
         [StringLength(60)]
         public string Prenom { get; set; }
 
         [Required]
-        [Display(Name = "PART_DateNaissance")]
+        [Column("PART_DateNaissance")]
+        [Display(Name = "Date de naissance")]
         [DataType(DataType.Date)]
         public DateTime DateNaissance { get; set; }
 

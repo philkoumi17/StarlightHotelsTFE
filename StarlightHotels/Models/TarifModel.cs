@@ -11,15 +11,21 @@ namespace StarlightHotels.API.Models
     public class TarifModel
     {
         [Key]
-        [Display(Name = "TAR_Id")]
+        [Column("TAR_Id")]
+        [Display(Name = "Id")]
         public int Id { get; set; }
 
-        [Display(Name = "TAR_Prix")]
+        [Column("TAR_Prix")]
+        [Display(Name = "Prix")]
         public decimal Prix { get; set; }
 
+        [Column("TAR_CAT_Id")]
+        [Display(Name = "Categorie")]
         public int CatId { get; set; }
         public CategorieModel Categorie { get; set; }
 
+        [Column("TAR_SA_Id")]
+        [Display(Name = "Saison")]
         public int SaId { get; set; }
         public SaisonModel Saison { get; set; }
     }

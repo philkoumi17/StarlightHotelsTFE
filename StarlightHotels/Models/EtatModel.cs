@@ -11,10 +11,12 @@ namespace StarlightHotels.API.Models
     public class EtatModel
     {
         [Key]
-        [Display(Name = "ETAT_Id")]
+        [Column("ETAT_Id")]
+        [Display(Name = "Id")]
         public int Id { get; set; }
 
-        [Display(Name = "ETAT_Libelle")]
+        [Column("ETAT_Libelle")]
+        [Display(Name = "Libelle")]
         public string Libelle { get; set; }
 
         public ICollection<ReservationModel> Reservations { get; set; }

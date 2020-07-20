@@ -23,7 +23,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "StarlightHotels.Web", "Star
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Utilities", "Utilities", "{606E46BC-F896-487E-9307-F3D91E225530}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StarlightHotels.Utilities", "StarlightHotels.Utilities\StarlightHotels.Utilities.csproj", "{BC6E2D92-6F2E-4727-A76F-8513A84CED49}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "StarlightHotels.Utilities", "StarlightHotels.Utilities\StarlightHotels.Utilities.csproj", "{BC6E2D92-6F2E-4727-A76F-8513A84CED49}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

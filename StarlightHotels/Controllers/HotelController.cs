@@ -20,14 +20,15 @@ namespace StarlightHotels.API.Controllers
             _context = context;
         }
 
-        // GET: api/Hotels
+        // GET: api/Hotel
         [HttpGet]
+        [Route("GetHotels")]
         public async Task<ActionResult<IEnumerable<HotelModel>>> GetHotels()
         {
             return await _context.Hotels.ToListAsync();
         }
 
-        // GET: api/Hotels/5
+        // GET: api/Hotel/5
         [HttpGet("{id}")]
         public async Task<ActionResult<HotelModel>> GetHotel(int id)
         {
@@ -41,13 +42,13 @@ namespace StarlightHotels.API.Controllers
             return hotel;
         }
 
-        // PUT: api/Hotels/5
+        // PUT: api/Hotel/5
         // To protect from overposting attacks, enable the specific properties you want to bind to, for
         // more details, see https://go.microsoft.com/fwlink/?linkid=2123754.
         [HttpPut("{id}")]
         public async Task<IActionResult> PutHotel(int id, HotelModel hotel)
         {
-            if (id != hotel.Id)
+            if(id != hotel.Id)
             {
                 return BadRequest();
             }
@@ -58,9 +59,9 @@ namespace StarlightHotels.API.Controllers
             {
                 await _context.SaveChangesAsync();
             }
-            catch (DbUpdateConcurrencyException)
+            catch(DbUpdateConcurrencyException)
             {
-                if (!HotelExists(id))
+                if(!HotelExists(id))
                 {
                     return NotFound();
                 }
@@ -73,7 +74,7 @@ namespace StarlightHotels.API.Controllers
             return NoContent();
         }
 
-        // POST: api/Hotels
+        // POST: api/Hotel
         // To protect from overposting attacks, enable the specific properties you want to bind to, for
         // more details, see https://go.microsoft.com/fwlink/?linkid=2123754.
         [HttpPost]
@@ -85,7 +86,7 @@ namespace StarlightHotels.API.Controllers
             return CreatedAtAction("GetHotel", new { id = hotel.Id }, hotel);
         }
 
-        // DELETE: api/Hotels/5
+        // DELETE: api/Hotel/5
         [HttpDelete("{id}")]
         public async Task<ActionResult<HotelModel>> DeleteHotel(int id)
         {

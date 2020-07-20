@@ -7,29 +7,35 @@ using System.Threading.Tasks;
 
 namespace StarlightHotels.API.Models
 {
-    [Table("Catégorie")]
+    [Table("Categorie")]
     public class CategorieModel
     {
         [Key]
-        [Display(Name = "CAT_Id")]
+        [Column("CAT_Id")]
+        [Display(Name = "Id")]
         public int Id { get; set; }
 
-        [Display(Name = "CAT_Type")]
+        [Column("CAT_Type")]
+        [Display(Name = "Type")]
         [StringLength(50)]
         public string Type { get; set; }
 
-        [Display(Name = "CAT_Descriptif")]
+        [Column("CAT_Descriptif")]
+        [Display(Name = "Description")]
         [StringLength(255)]
         public string Descriptif { get; set; }
 
-        [Display(Name = "CAT_Image")]
+        [Column("CAT_Image")]
+        [Display(Name = "Image")]
         [StringLength(255)]
         public string Image { get; set; }
 
-        [Display(Name = "CAT_Superficie")]
+        [Column("CAT_Superficie")]
+        [Display(Name = "Superficie")]
         public double Superficie { get; set; }
 
-        [Display(Name = "CAT_MaxPers")]
+        [Column("CAT_MaxPers")]
+        [Display(Name = "MaxPers")]
         public int MaxPers { get; set; }
 
         public List<ChambreModel> Chambres { get; set; }

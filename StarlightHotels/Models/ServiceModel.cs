@@ -11,15 +11,18 @@ namespace StarlightHotels.API.Models
     public class ServiceModel
     {
         [Key]
-        [Display(Name = "SERV_Id")]
+        [Column("SERV_Id")]
+        [Display(Name = "Id")]
         public int Id { get; set; }
 
-        [Display(Name = "SERV_Description")]
+        [Column("SERV_Description")]
+        [Display(Name = "Description")]
         [DataType(DataType.MultilineText)]
         [StringLength(255)]
         public string Description { get; set; }
 
-        [Display(Name = "SERV_Payant")]
+        [Column("SERV_Payant")]
+        [Display(Name = "Payant")]
         public bool Payant { get; set; }
 
         public ICollection<HotelServiceModel> HotelServices { get; set; }

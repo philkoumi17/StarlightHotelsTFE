@@ -11,18 +11,23 @@ namespace StarlightHotels.API.Models
     public class FactureModel
     {
         [Key]
-        [Display(Name = "FAC_Id")]
+        [Column("FAC_Id")]
+        [Display(Name = "Id")]
         public int Id { get; set; }
 
         [Required]
-        [Display(Name = "FAC_Date")]
+        [Column("FAC_Date")]
+        [Display(Name = "Date de la facture")]
         [DataType(DataType.Date)]
         public DateTime DateFacture { get; set; }
 
         [Required]
-        [Display(Name = "FAC_MontantTotal")]
+        [Column("FAC_MontantTotal")]
+        [Display(Name = "Montant Total")]
         public decimal MontantTotal { get; set; }
 
+        [Column("FAC_RES_Id")]
+        [Display(Name = "Réservation")]
         public int ResId { get; set; }
         public ReservationModel Reservation { get; set; }
     }

@@ -11,10 +11,12 @@ namespace StarlightHotels.API.Models
     public class PaysModel
     {
         [Key]
-        [Display(Name = "PAYS_Id")]
+        [Column("PAYS_Id")]
+        [Display(Name = "Id")]
         public int Id { get; set; }
 
-        [Display(Name = "PAYS_Nom")]
+        [Column("PAYS_Nom")]
+        [Display(Name = "Nom")]
         [StringLength(50)]
         public string Nom { get; set; }
 
