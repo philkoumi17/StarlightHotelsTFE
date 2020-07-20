@@ -1,7 +1,7 @@
 import { Component, OnInit, Inject } from '@angular/core';
-import { UserService } from "./../../services/user.service";
-import { ToastrComponentlessModule, ToastrService } from 'ngx-toastr';
-import { MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog';
+import { UserService } from "../../../services/user.service";
+import { ToastrService } from 'ngx-toastr';
+import { MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog';
 
 @Component({
   selector: 'app-registration',

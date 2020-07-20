@@ -1,7 +1,7 @@
 <mat-tab-group mat-stretch-tabs>
     <mat-tab label="Sign in">
         <br>
-        <app-login></app-login>
+        <app-login (closeDialog)="closeDialog()"></app-login>
     </mat-tab>
     <mat-tab label="Sign up">
         <br>

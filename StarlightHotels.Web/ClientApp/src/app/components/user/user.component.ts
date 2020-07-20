@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { MatDialogRef } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-user',
@@ -7,9 +8,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class UserComponent implements OnInit {
 
-  constructor() { }
+  constructor(private dialogRef: MatDialogRef<any>) { }
 
   ngOnInit(): void {
   }
 
+  closeDialog(){
+    this.dialogRef.close();
+  }
 }

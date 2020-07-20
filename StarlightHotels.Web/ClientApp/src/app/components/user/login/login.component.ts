@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, EventEmitter, Output } from '@angular/core';
 import { NgForm } from '@angular/forms';
-import { UserService } from "src/app/services/user.service";
+import { UserService } from "../../../services/user.service";
+import { AuthenticationService } from "../../../services/authentication.service";
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 
@@ -16,7 +17,9 @@ export class LoginComponent implements OnInit {
     Password: ''
   }
 
-  constructor(private service:UserService, private router:Router, private toastr:ToastrService) { }
+  @Output() closeDialog: EventEmitter<any> = new EventEmitter();
+
+  constructor(private service:UserService, private router:Router, private toastr:ToastrService, private authService: AuthenticationService) { }
 
   ngOnInit(): void {
     if(localStorage.getItem('token') != null)
@@ -29,7 +32,7 @@ export class LoginComponent implements OnInit {
   {
     this.service.login(form.value).subscribe(
       (res:any) => {
-        localStorage.setItem('token', res.token);
+        this.authService.setToken(res.token);
         this.router.navigateByUrl('/home');
       },
       err => {
@@ -43,5 +46,6 @@ export class LoginComponent implements OnInit {
         }
       }
     );
+    this.closeDialog.emit();
   }
 }

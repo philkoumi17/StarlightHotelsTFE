@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { FormBuilder, Validators, FormGroup } from '@angular/forms';
 import { HttpClient, HttpHeaders } from "@angular/common/http";
+import { UserModel } from "../models/user.model";
 
 @Injectable({
   providedIn: 'root'
@@ -55,6 +56,11 @@ export class UserService
 
   getUserProfile()
   {
-    return this.http.get(this.BaseURI + '/UserProfile');
+    return this.http.get<UserModel>(this.BaseURI + '/UserProfile');
+  }
+
+  getUserProfileAsync()
+  {
+    return this.http.get<UserModel>(this.BaseURI + '/UserProfile').toPromise();
   }
 }
