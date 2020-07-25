@@ -25,6 +25,7 @@ import { AuthInterceptor } from "./auth/auth.interceptor";
 import { HotelDetailComponent } from './components/hotel/hotel-detail/hotel-detail.component';
 import { HotelCreateComponent } from './components/hotel/hotel-create/hotel-create.component';
 import { UserDetailComponent } from './components/user/user-detail/user-detail.component';
+import { AdminComponent } from './components/admin/admin.component';
 
 @NgModule({
   declarations: [
@@ -38,7 +39,8 @@ import { UserDetailComponent } from './components/user/user-detail/user-detail.c
     HotelComponent,
     HotelDetailComponent,
     HotelCreateComponent,
-    UserDetailComponent
+    UserDetailComponent,
+    AdminComponent
   ],
   imports: [
     BrowserModule,

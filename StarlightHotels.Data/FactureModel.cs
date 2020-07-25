@@ -5,7 +5,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace StarlightHotels.API.Models
+namespace StarlightHotels.Models
 {
     [Table(name:"Facture")]
     public class FactureModel
@@ -18,7 +18,7 @@ namespace StarlightHotels.API.Models
         [Required]
         [Column("FAC_Date")]
         [Display(Name = "Date de la facture")]
-        [DataType(DataType.Date)]
+        [DataType(DataType.DateTime)]
         public DateTime DateFacture { get; set; }
 
         [Required]

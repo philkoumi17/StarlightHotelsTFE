@@ -4,9 +4,9 @@ using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Identity;
-using StarlightHotels.API.Models;
+using StarlightHotels.Models;
 
-namespace StarlightHotels.API.Models
+namespace StarlightHotels.Models
 {
     public class ApplicationUser : IdentityUser
     {

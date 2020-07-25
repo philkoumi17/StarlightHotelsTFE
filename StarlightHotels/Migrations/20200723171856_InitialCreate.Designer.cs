@@ -10,7 +10,7 @@ using StarlightHotels.API.Models;
 namespace StarlightHotels.API.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20200720161532_InitialCreate")]
+    [Migration("20200723171856_InitialCreate")]
     partial class InitialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)

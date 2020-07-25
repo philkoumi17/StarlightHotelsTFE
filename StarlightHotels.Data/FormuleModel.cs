@@ -5,7 +5,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace StarlightHotels.API.Models
+namespace StarlightHotels.Models
 {
     [Table("Formule")]
     public class FormuleModel
@@ -21,6 +21,7 @@ namespace StarlightHotels.API.Models
 
         [Column("FOR_Montant")]
         [Display(Name = "Prix")]
+        [DataType(DataType.Currency)]
         public decimal Montant { get; set; }
 
         public ICollection<HotelFormuleModel> HotelFormules { get; set; }

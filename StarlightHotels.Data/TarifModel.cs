@@ -5,7 +5,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace StarlightHotels.API.Models
+namespace StarlightHotels.Models
 {
     [Table("Tarif")]
     public class TarifModel
@@ -17,6 +17,7 @@ namespace StarlightHotels.API.Models
 
         [Column("TAR_Prix")]
         [Display(Name = "Prix")]
+        [DataType(DataType.Currency)]
         public decimal Prix { get; set; }
 
         [Column("TAR_CAT_Id")]

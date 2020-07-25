@@ -1,1 +1,162 @@
-<p>hotel-create works!</p>
+<div class="container">
+    <form [formGroup]="hotelService.formModel" class="normal-form">
+        <mat-grid-list cols="2" rowHeight="300px">
+            <mat-grid-title>
+                <div class="controles-container">
+                    <input type="hidden" />
+                    <mat-form-field>
+                        <input formControlName="nom" matInput placeholder="Name" required>
+                    </mat-form-field>
+                    <br>
+                    <mat-form-field>
+                        <input formControlName="nbEtoiles" matInput placeholder="Number of stars" required>
+                    </mat-form-field>
+                    <br>
+                    <mat-form-field>
+                        <input formControlName="nbChambres" matInput placeholder="Number of rooms" required>
+                    </mat-form-field>
+                    <br>
+                    <mat-form-field>
+                        <input formControlName="nom" matInput placeholder="Name" required>
+                    </mat-form-field>
+                    <br>
+                    <mat-form-field>
+                        <input formControlName="nom" matInput placeholder="Name">
+                    </mat-form-field>
+                    <br>
+                    <mat-form-field>
+                        <input formControlName="nom" matInput placeholder="Name">
+                    </mat-form-field>
+                    <br>
+                    <mat-form-field>
+                        <input formControlName="nom" matInput placeholder="Name">
+                    </mat-form-field>
+                    <br>
+                    <mat-form-field>
+                        <input formControlName="nom" matInput placeholder="Name">
+                    </mat-form-field>
+                </div>
+            </mat-grid-title>
+        </mat-grid-list>
+    </form>
+</div>
+
+<!-- <div class="container">
+    <mat-card>
+        <mat-toolbar color="accent">
+            <div style="text-align:center" style="color:white;text-align: right;">
+                Hotel's list
+            </div>
+        </mat-toolbar>
+        <br><br>
+        <mat-card-content>
+            <form [formGroup]="hotelForm" (submit)="onFormSubmit(hotelForm.value)">
+                <table>
+                    <tr>
+                        <td class="tbl1">
+                            <mat-form-field class="demo-full-width">
+                                <input formControlName="Nom" matTooltip="Enter hotel's name" matInput placeholder="Hotel's name">
+                            </mat-form-field>
+                            <mat-error>
+                                <span *ngIf="!hotelForm.get('Nom').value && hotelForm.get('Nom').touched"></span>
+                            </mat-error>
+                        </td>
+                        <td class="tbl1">
+                            <mat-form-field class="demo-full-width">
+                                <input formControlName="NbEtoiles" matTooltip="Enter the number of stars" matInput placeholder="Hotel's stars">
+                            </mat-form-field>
+                            <mat-error>
+                                <span *ngIf="!hotelForm.get('NbEtoiles').value && hotelForm.get('NbEtoiles').touched"></span>
+                            </mat-error>
+                        </td>
+                        <td class="tbl1">
+                            <mat-form-field class="demo-full-width">
+                                <input formControlName="NbChambres" matTooltip="Enter the total of rooms" matInput placeholder="Hotel's rooms">
+                            </mat-form-field>
+                            <mat-error>
+                                <span *ngIf="!hotelForm.get('NbChambres').value && hotelForm.get('NbChambres').touched"></span>
+                            </mat-error>
+                        </td>
+                        <td class="tbl1">
+                            <mat-form-field class="demo-full-width">
+                                <input formControlName="Description" matTooltip="Enter the number" matInput placeholder="Hotel's stars">
+                            </mat-form-field>
+                            <mat-error>
+                                <span *ngIf="!hotelForm.get('Description').value && hotelForm.get('Description').touched"></span>
+                            </mat-error>
+                        </td>
+                        <td class="tbl1">
+                            <mat-form-field class="demo-full-width" appearance="fill">
+                                <mat-label>Textarea</mat-label>
+                                <textarea matInput></textarea>
+                            </mat-form-field>
+                            <mat-error>
+                                <span *ngIf="!hotelForm.get('Description').value && hotelForm.get('Description').touched"></span>
+                            </mat-error>
+                        </td>
+                        <td class="tbl1">
+                            <mat-form-field class="demo-full-width">
+                                <input matInput [matDatepicker]="picker" matTooltip="Enter Date Of Birth" formControlName="DateOfBirth" placeholder="Choose Date Of Birth">
+                                <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                                <mat-datepicker #picker></mat-datepicker>
+                            </mat-form-field>
+                            <mat-error>
+                                <span *ngIf="!hotelForm.get('DateOfBirth').value && hotelForm.get('DateOfBirth').touched"></span>
+                            </mat-error>
+                        </td>
+                        <td class="tbl1">
+                            <mat-form-field class="demo-full-width">
+                                <input formControlName="EmailId" matTooltip="Enter EmailId" matInput placeholder="EmailId">
+                            </mat-form-field>
+                            <mat-error>
+                                <span *ngIf="!hotelForm.get('EmailId').value && hotelForm.get('EmailId').touched"></span>
+                            </mat-error>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="tbl1">
+                            <span>Gender</span>
+                            <br><br>
+                            <mat-radio-group matTooltip="Enter Gender" formControlName="Gender">
+                                <mat-radio-button value="0">Male</mat-radio-button>
+                                <mat-radio-button value="1">Female</mat-radio-button>
+                            </mat-radio-group>
+                            <mat-error>
+                                <span *ngIf="!hotelForm.get('Gender').value && hotelForm.get('Gender').touched"></span>
+                            </mat-error>
+                        </td>
+                        <td class="tbl1">
+                            <mat-form-field class="demo-full-width">
+                                <input matTooltip="Enter Address" formControlName="Address" matInput placeholder="Address">
+                            </mat-form-field>
+                            <mat-error>
+                                <span *ngIf="!hotelForm.get('Address').value && hotelForm.get('Address').touched"></span>
+                            </mat-error>
+                        </td>
+                        <td class="tbl1">
+                            <mat-form-field class="demo-full-width">
+                                <input formControlName="PinCode" matTooltip="Enter Pine Code" matInput placeholder="PinCode">
+                            </mat-form-field>
+                            <mat-error>
+                                <span *ngIf="!hotelForm.get('PinCode').value && hotelForm.get('PinCode').touched"></span>
+                            </mat-error>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td class="content-center">
+                            <button type="submit" mat-raised-button color="accent" matTooltip="Click Submit Button" [disabled]="!hotelForm.valid">Submit</button>
+                            <button type="reset" mat-raised-button color="accent" matTooltip="Click Reset Button" (click)="resetForm()">Reset</button>
+                        </td>
+                        <td>
+                            <p *ngIf="dataSaved" style="color:rgb(0, 128, 0);font-size:20px;font-weight:bold" Class="success" align="left">
+                                {{massage}}
+                            </p>
+                        </td>
+                    </tr>
+                </table>
+                <br><br>
+            </form>
+        </mat-card-content>
+    </mat-card>
+</div> -->

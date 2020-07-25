@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using StarlightHotels.API.Models;
+using StarlightHotels.Models;
 
 namespace StarlightHotels.API.Controllers
 {
@@ -34,7 +34,7 @@ namespace StarlightHotels.API.Controllers
         {
             var hotel = await _context.Hotels.FindAsync(id);
 
-            if (hotel == null)
+            if(hotel == null)
             {
                 return NotFound();
             }
@@ -91,7 +91,7 @@ namespace StarlightHotels.API.Controllers
         public async Task<ActionResult<HotelModel>> DeleteHotel(int id)
         {
             var hotel = await _context.Hotels.FindAsync(id);
-            if (hotel == null)
+            if(hotel == null)
             {
                 return NotFound();
             }
@@ -105,6 +105,14 @@ namespace StarlightHotels.API.Controllers
         private bool HotelExists(int id)
         {
             return _context.Hotels.Any(e => e.Id == id);
+        }
+
+        // Get: api/Hotel/GetCountries
+        [HttpGet]
+        [Route("GetCountries")]
+        public async Task<ActionResult<IEnumerable<PaysModel>>> GetCountries()
+        {
+            return await _context.Pays.ToListAsync();
         }
     }
 }

@@ -14,43 +14,47 @@ import { HotelComponent } from '../hotel.component';
 
 export class HotelDetailComponent implements OnInit {
   // Hotel's info
-  Id: number;
-  Nom: string;
-  NbEtoiles: number;
-  NbChambres: number;
-  Description: string;
-  Adresse: string;
-  CodePostal: string;
-  Ville: string;
-  Pays: Pays;
-  Telephone: string;
-  EnPromotion: boolean;
-  TopDestination: boolean;
-  Actif: boolean;
-  Coefficient: boolean;
+  id: number;
+  nom: string;
+  nbEtoiles: number;
+  nbChambres: number;
+  description: string;
+  adresse: string;
+  codePostal: string;
+  ville: string;
+  pays: Pays;
+  telephone: string;
+  enPromotion: boolean;
+  topDestination: boolean;
+  actif: boolean;
+  coefficient: boolean;
+  checkIn: string;
+  checkOut: string;
   Hotel: Hotel;
 
   constructor(private service: HotelService, private dialogRef: MatDialogRef<HotelComponent>, @Inject(MAT_DIALOG_DATA) data)
   {
-    this.Id = data.Id;
+    this.id = data.Id;
   }
 
   ngOnInit(): void {
     this.service.getHotels().subscribe(result => {  
-      this.Hotel = result.find(a => a.Id == this.Id);  
-      this.Nom = this.Hotel.Nom;  
-      this.NbEtoiles = this.Hotel.NbEtoiles;  
-      this.NbChambres = this.Hotel.NbChambres;
-      this.Description = this.Hotel.Description;
-      this.Adresse = this.Hotel.Adresse;
-      this.CodePostal = this.Hotel.CodePostal;
-      this.Ville = this.Hotel.Ville;  
-      this.Pays = this.Hotel.Pays;
-      this.Telephone = this.Hotel.Telephone;
-      this.EnPromotion = this.Hotel.EnPromotion;
-      this.TopDestination = this.Hotel.TopDestination;
-      this.Actif = this.Hotel.Actif;
-      this.Coefficient = this.Hotel.Coefficient;
+      this.Hotel = result.find(a => a.id == this.id);  
+      this.nom = this.Hotel.nom;  
+      this.nbEtoiles = this.Hotel.nbEtoiles;  
+      this.nbChambres = this.Hotel.nbChambres;
+      this.description = this.Hotel.description;
+      this.adresse = this.Hotel.adresse;
+      this.codePostal = this.Hotel.codePostal;
+      this.ville = this.Hotel.ville;  
+      this.pays = this.Hotel.pays;
+      this.telephone = this.Hotel.telephone;
+      this.enPromotion = this.Hotel.enPromotion;
+      this.topDestination = this.Hotel.topDestination;
+      this.actif = this.Hotel.actif;
+      this.coefficient = this.Hotel.coefficient;
+      this.checkIn = this.Hotel.checkIn;
+      this.checkOut = this.Hotel.checkOut;
     })  
   }
   

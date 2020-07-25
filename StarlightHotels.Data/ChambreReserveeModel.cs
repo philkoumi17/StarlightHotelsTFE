@@ -5,7 +5,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace StarlightHotels.API.Models
+namespace StarlightHotels.Models
 {
     [Table("ReservationChambre")]
     public class ChambreReserveeModel
@@ -30,12 +30,12 @@ namespace StarlightHotels.API.Models
 
         [Column("RESCH_DateArrivee")]
         [Display(Name = "Date d'arrivée")]
-        [DataType(DataType.Date)]
+        [DataType(DataType.DateTime)]
         public DateTime DateArrivee { get; set; }
 
         [Column("RESCH_DateDepart")]
         [Display(Name = "Date de départ")]
-        [DataType(DataType.Date)]
+        [DataType(DataType.DateTime)]
         public DateTime DateDepart { get; set; }
 
         [Column("RESCH_LitSup")]

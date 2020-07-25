@@ -5,7 +5,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace StarlightHotels.API.Models
+namespace StarlightHotels.Models
 {
     [Table("Hotel")]
     public class HotelModel
@@ -94,14 +94,14 @@ namespace StarlightHotels.API.Models
         [Required]
         [Column("HOTEL_CheckIn")]
         [Display(Name = "Check-In")]
-        [DataType(DataType.Time)]
+        [DataType(DataType.DateTime)]
         [StringLength(50)]
         public string CheckIn { get; set; }
 
         [Required]
         [Column("HOTEL_CheckOut")]
         [Display(Name = "HOTEL_Check-Out")]
-        [DataType(DataType.Time)]
+        [DataType(DataType.DateTime)]
         [StringLength(50)]
         public string CheckOut { get; set; }
 

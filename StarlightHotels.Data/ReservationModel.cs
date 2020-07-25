@@ -5,7 +5,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace StarlightHotels.API.Models
+namespace StarlightHotels.Models
 {
     [Table("Reservation")]
     public class ReservationModel
@@ -29,11 +29,12 @@ namespace StarlightHotels.API.Models
 
         [Column("RES_DateReservation")]
         [Display(Name = "Date de la réservation")]
-        [DataType(DataType.Date)]
+        [DataType(DataType.DateTime)]
         public DateTime DateReservation { get; set; }
 
         [Column("RES_Montant")]
         [Display(Name = "Prix total")]
+        [DataType(DataType.Currency)]
         public decimal Montant { get; set; }
 
         // Relation avec l'entité Etat

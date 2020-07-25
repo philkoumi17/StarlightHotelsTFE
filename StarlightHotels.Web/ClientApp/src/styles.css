@@ -1,5 +1,6 @@
 /* You can add global styles to this file, and also import other style files */
 
+@import "~@angular/material/prebuilt-themes/indigo-pink.css";
 html,
 body {
     height: 100%;
@@ -105,4 +106,15 @@ div.form-group label:first-child {
 
 table {
     width: 100%;
+}
+
+
+/* Angular Material css */
+
+div.container {
+    margin: 0px 40px;
+}
+
+.fill-remaining-space {
+    flex: 1 1 auto;
 }

@@ -1,63 +1,65 @@
-<mat-dialog-content>
-    <mat-toolbar color="accent" style="background-color:darkblue;">
-        Hotel details
-    </mat-toolbar>
-    <br>
-    <table class="table">
-        <tr>
-            <th> Name </th>
-            <td> {{Nom}} </td>
-        </tr>
-        <tr>
-            <th> Number of stars </th>
-            <td> {{NbEtoiles}} </td>
-        </tr>
-        <tr>
-            <th> Number of rooms </th>
-            <td> {{NbChambres}} </td>
-        </tr>
-        <tr>
-            <th> Description </th>
-            <td> {{Description}} </td>
-        </tr>
-        <tr>
-            <th> Address </th>
-            <td> {{Adresse}} </td>
-        </tr>
-        <tr>
-            <th> Postal code </th>
-            <td> {{CodePostal}} </td>
-        </tr>
-        <tr>
-            <th> City </th>
-            <td> {{Ville}} </td>
-        </tr>
-        <tr>
-            <th> Country </th>
-            <td> {{Pays}} </td>
-        </tr>
-        <tr>
-            <th> Phone number </th>
-            <td> {{Telephone}} </td>
-        </tr>
-        <tr>
-            <th> With promotion </th>
-            <td> {{EnPromotion}} </td>
-        </tr>
-        <tr>
-            <th> Destination's top </th>
-            <td> {{TopDestination}} </td>
-        </tr>
-        <tr>
-            <th> Enabled </th>
-            <td> {{Actif}} </td>
-        </tr>
-        <tr>
-            <th> Percent </th>
-            <td> {{Coefficient}} </td>
-        </tr>
-    </table>
-</mat-dialog-content>
-<mat-dialog-actions align="center">
-    <button class="mat-raised-button btn btn-danger" (click)="close()">Close</button>
-</mat-dialog-actions>
+<div class="container">
+    <mat-dialog-content>
+        <mat-toolbar color="accent" style="background-color:darkblue;">
+            Hotel details
+        </mat-toolbar>
+        <br>
+        <table class="table">
+            <tr>
+                <th> Name </th>
+                <td> {{nom}} </td>
+            </tr>
+            <tr>
+                <th> Number of stars </th>
+                <td> {{nbEtoiles}} </td>
+            </tr>
+            <tr>
+                <th> Number of rooms </th>
+                <td> {{nbChambres}} </td>
+            </tr>
+            <tr>
+                <th> Description </th>
+                <td> {{description}} </td>
+            </tr>
+            <tr>
+                <th> Address </th>
+                <td> {{adresse}} </td>
+            </tr>
+            <tr>
+                <th> Postal code </th>
+                <td> {{codePostal}} </td>
+            </tr>
+            <tr>
+                <th> City </th>
+                <td> {{ville}} </td>
+            </tr>
+            <tr>
+                <th> Country </th>
+                <td> {{pays.nom}} </td>
+            </tr>
+            <tr>
+                <th> Phone number </th>
+                <td> {{telephone}} </td>
+            </tr>
+            <tr>
+                <th> With promotion </th>
+                <td> {{enPromotion}} </td>
+            </tr>
+            <tr>
+                <th> Destination's top </th>
+                <td> {{topDestination}} </td>
+            </tr>
+            <tr>
+                <th> Enabled </th>
+                <td> {{actif}} </td>
+            </tr>
+            <tr>
+                <th> Percent </th>
+                <td> {{coefficient}} </td>
+            </tr>
+        </table>
+    </mat-dialog-content>
+    <mat-dialog-actions align="center">
+        <button class="mat-raised-button btn btn-danger" (click)="close()">Close</button>
+    </mat-dialog-actions>
+</div>

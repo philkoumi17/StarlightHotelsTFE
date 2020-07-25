@@ -408,7 +408,7 @@ namespace StarlightHotels.API.Migrations
                     CH_Image = table.Column<string>(nullable: true),
                     CH_Disponibilite = table.Column<bool>(nullable: true),
                     CH_HOTEL_Id = table.Column<int>(nullable: false),
-                    CH_CAT_Id = table.Column<int>(nullable: false)
+                    CH_CAT_Id = table.Column<int>(nullable: true)
                 },
                 constraints: table =>
                 {

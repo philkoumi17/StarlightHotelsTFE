@@ -8,8 +8,8 @@ import { UserModel } from "../models/user.model";
 })
 export class UserService
 {
-  constructor(private fb:FormBuilder, private http:HttpClient) { }
   readonly BaseURI = "https://localhost:44315/api";
+  constructor(private fb: FormBuilder, private http: HttpClient) { }
 
   formModel = this.fb.group({
     UserName : ['', Validators.required],

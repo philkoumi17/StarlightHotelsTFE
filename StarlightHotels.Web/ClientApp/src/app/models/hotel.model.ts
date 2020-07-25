@@ -2,18 +2,20 @@ import { Pays } from "./pays.model";
 
 export class Hotel
 {
-    Id: number;
-    Nom: string;
-    NbEtoiles: number;
-    NbChambres: number;
-    Description: string;
-    Adresse: string;
-    CodePostal: string;
-    Ville: string;
-    Pays: Pays;
-    Telephone: string;
-    EnPromotion: boolean;
-    TopDestination: boolean;
-    Actif: boolean;
-    Coefficient: boolean;
+    id: number;
+    nom: string;
+    nbEtoiles: number;
+    nbChambres: number;
+    description: string;
+    adresse: string;
+    codePostal: string;
+    ville: string;
+    pays: Pays;
+    telephone: string;
+    enPromotion: boolean;
+    topDestination: boolean;
+    actif: boolean;
+    coefficient: boolean;
+    checkIn: string;
+    checkOut: string;
 }

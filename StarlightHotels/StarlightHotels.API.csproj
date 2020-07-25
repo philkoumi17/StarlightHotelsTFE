@@ -5,7 +5,10 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <None Remove="Models\HotelChainContext.cs~RF6797469.TMP" />
+    <Compile Remove="Migrations\20200723171417_AlterTablesForDate.cs" />
+    <Compile Remove="Migrations\20200723171417_AlterTablesForDate.Designer.cs" />
+    <Compile Remove="Migrations\20200723171644_InitialCreate.cs" />
+    <Compile Remove="Migrations\20200723171644_InitialCreate.Designer.cs" />
   </ItemGroup>
 
   <ItemGroup>
@@ -28,6 +31,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\StarlightHotels.Data\StarlightHotels.Models.csproj" />
     <ProjectReference Include="..\StarlightHotels.Utilities\StarlightHotels.Utilities.csproj" />
   </ItemGroup>
 
