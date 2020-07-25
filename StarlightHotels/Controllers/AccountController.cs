@@ -10,8 +10,8 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
-using StarlightHotels.API.Models;
-using StarlightHotels.API.ViewModels;
+using StarlightHotels.Models;
+using StarlightHotels.Models.ViewModels;
 using StarlightHotels.Utilities;
 
 namespace StarlightHotels.API.Controllers

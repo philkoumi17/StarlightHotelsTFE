@@ -7,8 +7,8 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
-using StarlightHotels.API.Models;
-using StarlightHotels.API.ViewModels;
+using StarlightHotels.Models.ViewModels;
+using StarlightHotels.Models;
 
 namespace StarlightHotels.API.Controllers
 {

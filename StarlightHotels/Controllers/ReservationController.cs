@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using StarlightHotels.API.Models;
+using StarlightHotels.Models;
 
 namespace StarlightHotels.API.Controllers
 {
