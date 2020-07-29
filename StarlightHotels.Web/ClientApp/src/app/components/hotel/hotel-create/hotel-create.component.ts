@@ -15,14 +15,13 @@ import { MatDialogRef } from '@angular/material/dialog';
   ]
 })
 export class HotelCreateComponent implements OnInit {
-  options: FormGroup;
-  dataSaved = false;  
+  options: FormGroup; 
   hotelForm: any;  
   allHotels: Observable<Hotel[]>;
   allCountries: Pays[];
   selectedCountry: Pays;
-  hotelIdUpdate = null;  
-  message = null;
+  minEndDate = new Date();
+  minStartDate = new Date();
 
   constructor(private formbulider: FormBuilder, public hotelService : HotelService, private toastr: ToastrService, private dialogRef: MatDialogRef<any>) { }
 
@@ -30,7 +29,7 @@ export class HotelCreateComponent implements OnInit {
     this.LoadData();
   }
 
-  LoadData()
+  async LoadData()
   {  
     this.allHotels = this.hotelService.getHotels();
     this.hotelService.getCountries().subscribe(
@@ -41,45 +40,28 @@ export class HotelCreateComponent implements OnInit {
     )
   }
 
-  CreateHotel(hotel: Hotel)
+  createHotel()
   {  
-    if(this.hotelIdUpdate == null)
+    this.hotelService.insertHotel().subscribe(  
+      () => {  
+        this.toastr.success('New hotel saved with success', 'Insertion with success !');
+      }  
+    );
+    this.dialogRef.close("ok");
+  }
+
+  updateHotel(hotel: Hotel)
+  {  
+    if(hotel.id != null)
     {  
-      this.hotelService.insertHotel().subscribe(  
-        () => {  
-          this.dataSaved = true;  
-          this.toastr.success('New hotel saved with success', 'Insertion with success !');
-          this.LoadData();  
-          this.hotelIdUpdate = null;  
-          this.hotelForm.reset();  
-        }  
-      );  
-    }
-    else
-    {  
-      hotel.id = this.hotelIdUpdate;  
       this.hotelService.updateHotel(hotel.id, hotel).subscribe(() => {  
-        this.dataSaved = true;  
-        this.toastr.success('This hotel is updated with success', 'Update successful !');  
-        this.LoadData();  
-        this.hotelIdUpdate = null;  
-        this.hotelForm.reset();  
+        this.toastr.success('This hotel is updated with success', 'Update successful !');
       });  
     }  
   }
 
   onFormSubmit()
   {  
-    this.dataSaved = false;  
-    const hotel = this.hotelForm.value;  
-    this.CreateHotel(hotel);  
-    this.hotelForm.reset();  
-  }
-
-  resetForm()
-  {  
-    this.hotelForm.reset();  
-    this.message = null;  
-    this.dataSaved = false;  
+    this.createHotel(); 
   }
 }

@@ -23,39 +23,26 @@ export class HotelComponent implements OnInit {
   faPlus = faPlus;
   dataSaved = false;  
   hotelForm: any;  
-  allHotels: Observable<Hotel[]>;
+  allHotels: Hotel[];
   allCountries: Pays[];
   hotelIdUpdate = null;  
   message = null; 
   hotelCountryId;
   hotelCountryName: string; 
 
-  constructor(private formbulider: FormBuilder, private hotelService : HotelService, private toastr: ToastrService, public dialog: MatDialog) { }
+  constructor(private formbuilder: FormBuilder, private hotelService : HotelService, private toastr: ToastrService, public dialog: MatDialog) { }
  
-  ngOnInit() {
-    this.hotelForm = this.formbulider.group({    
-      nom: ['', [Validators.required]],
-      nbEtoiles: ['', [Validators.required]],
-      nbChambres: ['', [Validators.required]],
-      description: ['', [Validators.required]],
-      adresse: ['', [Validators.required]],
-      codePostal: ['', [Validators.required]],
-      ville: ['', [Validators.required]],
-      pays: ['', [Validators.required]],
-      telephone: ['', [Validators.required]],
-      enPromotion: ['', [Validators.required]],
-      topDestination: ['', [Validators.required]],
-      actif: ['', [Validators.required]],
-      coefficient: ['', [Validators.required]],
-      checkIn: ['', [Validators.required]],
-      checkOut: ['', [Validators.required]],
-    });  
-    this.LoadData();
+  async ngOnInit() {
+    await this.LoadData();
   }
 
-  LoadData()
+  async LoadData()
   {  
-    this.allHotels = this.hotelService.getHotels();
+    //this.allHotels = 
+    await this.hotelService.getHotelsAsync().then((data) =>{
+        this.allHotels = data;
+    }).catch(console.log);
+
     this.hotelService.getCountries().subscribe(
       (data) => {
         this.allCountries = data;
@@ -148,7 +135,7 @@ export class HotelComponent implements OnInit {
   }
   
   // A dialog for hotel's creation
-  openDialogHotelForm()
+  async openDialogHotelForm()
   {  
     debugger;  
     const dialogConfig = new MatDialogConfig();  
@@ -157,11 +144,11 @@ export class HotelComponent implements OnInit {
     dialogConfig.width = '1000px';  
     dialogConfig.height = '1000px';   
     const dialogRef = this.dialog.open(HotelCreateComponent, dialogConfig);
-    dialogRef.afterClosed().subscribe(result => {
+    dialogRef.afterClosed().subscribe(async result => {
       if(result === 'ok')
       {
         // refresh table
-        this.LoadData()
+        await this.LoadData()
       } 
     });
   }

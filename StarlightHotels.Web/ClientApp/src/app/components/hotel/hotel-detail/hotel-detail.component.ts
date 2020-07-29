@@ -28,8 +28,8 @@ export class HotelDetailComponent implements OnInit {
   topDestination: boolean;
   actif: boolean;
   coefficient: boolean;
-  checkIn: string;
-  checkOut: string;
+  checkIn: Date;
+  checkOut: Date;
   Hotel: Hotel;
 
   constructor(private service: HotelService, private dialogRef: MatDialogRef<HotelComponent>, @Inject(MAT_DIALOG_DATA) data)

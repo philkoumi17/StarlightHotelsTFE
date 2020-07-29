@@ -11,31 +11,34 @@ import { Pays } from '../models/pays.model';
 export class HotelService
 {
   readonly baseURI = "https://localhost:44315/api";
-  floatLabelControl = new FormControl('yes');
   constructor(private http: HttpClient, private fb: FormBuilder) { }
 
   formModel = this.fb.group({
     nom: ['', [Validators.required]],
-    nbEtoiles: ['', [Validators.required]],
-    nbChambres: ['', [Validators.required]],
+    nbEtoiles: [0, [Validators.required]],
+    nbChambres: [0, [Validators.required]],
     description: ['', [Validators.required]],
     adresse: ['', [Validators.required]],
     codePostal: ['', [Validators.required]],
     ville: ['', [Validators.required]],
-    pays: ['', [Validators.required]],
+    pays: [null, [Validators.required]],
     telephone: ['', [Validators.required]],
-    enPromotion: ['', [Validators.required]],
-    topDestination: ['', [Validators.required]],
-    actif: ['', [Validators.required]],
-    coefficient: ['', [Validators.required]],
-    checkIn: ['', [Validators.required]],
-    checkOut: ['', [Validators.required]],
-    floatLabel: this.floatLabelControl
+    enPromotion: [false, [Validators.required]],
+    topDestination: [false, [Validators.required]],
+    actif: [false, [Validators.required]],
+    coefficient: [0, [Validators.required]],
+    checkIn: [null, [Validators.required]],
+    checkOut: [null, [Validators.required]]
   });
 
   getHotels(): Observable<Hotel[]>
   {  
     return this.http.get<Hotel[]>(`${this.baseURI}/Hotel/GetHotels`);  
+  }
+
+  async getHotelsAsync()
+  {  
+    return await this.http.get<Hotel[]>(`${this.baseURI}/Hotel/GetHotels`).toPromise();  
   }
 
   getCountries(): Observable<Pays[]>
@@ -50,7 +53,7 @@ export class HotelService
 
   insertHotel()
   {
-    var body = {
+    var body : Hotel = {
       nom: this.formModel.value.nom,
       nbEtoiles: this.formModel.value.nbEtoiles,
       nbChambres: this.formModel.value.nbChambres,
@@ -58,7 +61,7 @@ export class HotelService
       adresse: this.formModel.value.adresse,
       codePostal: this.formModel.value.codePostal,
       ville: this.formModel.value.ville,
-      pays: this.formModel.value.pays,
+      paysId: this.formModel.value.pays.id,
       telephone: this.formModel.value.telephone,
       enPromotion: this.formModel.value.enPromotion,
       topDestination: this.formModel.value.topDestination,
@@ -67,7 +70,8 @@ export class HotelService
       checkIn: this.formModel.value.checkIn,
       checkOut: this.formModel.value.checkOut,
     };
-    return this.http.post(this.baseURI + '/Hotel', body);  
+    console.log(body);
+    return this.http.post<Hotel>(this.baseURI + '/Hotel', body);
   }  
 
   updateHotel(hotelId: number, hotel: Hotel): Observable<Hotel>

@@ -4,20 +4,20 @@
             <mat-grid-title>
                 <div class="controles-container">
                     <mat-form-field>
-                        <input formControlName="nom" matInput placeholder="Name" required>
+                        <input formControlName="nom" matInput placeholder="Name">
                     </mat-form-field>
                     <br>
                     <mat-form-field>
-                        <input formControlName="nbEtoiles" matInput placeholder="Number of stars" required>
+                        <input formControlName="nbEtoiles" matInput placeholder="Number of stars">
                     </mat-form-field>
                     <br>
                     <mat-form-field>
-                        <input formControlName="nbChambres" matInput placeholder="Number of rooms" required>
+                        <input formControlName="nbChambres" matInput placeholder="Number of rooms">
                     </mat-form-field>
                     <br>
                     <mat-form-field appearance="fill">
                         <mat-label>Description</mat-label>
-                        <textarea matInput></textarea>
+                        <textarea matInput formControlName="description"></textarea>
                     </mat-form-field>
                     <br>
                     <mat-form-field>
@@ -33,9 +33,8 @@
                     </mat-form-field>
                     <br>
                     <mat-form-field appearance="fill">
-                        <mat-label>Select a country..</mat-label>
-                        <mat-select formControlName="pays">
-                            <mat-option *ngFor="let p of allCountries" [ngValue]="p">{{ p.nom }}</mat-option>
+                        <mat-select formControlName="pays" placeholder="Select a country...">
+                            <mat-option *ngFor="let p of allCountries" [value]="p">{{ p.nom }}</mat-option>
                         </mat-select>
                     </mat-form-field>
                     <mat-form-field>
@@ -43,28 +42,45 @@
                     </mat-form-field>
                     <div>
                         <label>With promotion: </label>
-                        <mat-radio-group aria-label="With promotion">
+                        <mat-radio-group aria-label="With promotion" formControlName="enPromotion">
+                            <mat-radio-button value="1">Yes</mat-radio-button>
+                            <mat-radio-button value="0">No</mat-radio-button>
+                        </mat-radio-group>
+                    </div>
+                    <br>
+                    <div>
+                        <label>Destination's top: </label>
+                        <mat-radio-group aria-label="Destination's top" formControlName="topDestination">
+                            <mat-radio-button value="1">Yes</mat-radio-button>
+                            <mat-radio-button value="0">No</mat-radio-button>
+                        </mat-radio-group>
+                    </div>
+                    <div>
+                        <label>Enabled: </label>
+                        <mat-radio-group aria-label="Enabled" formControlName="actif">
                             <mat-radio-button value="1">Yes</mat-radio-button>
                             <mat-radio-button value="0">No</mat-radio-button>
                         </mat-radio-group>
                     </div>
                     <mat-form-field>
-                        <input formControlName="topDestination" matInput placeholder="Destination's top">
-                    </mat-form-field>
-                    <mat-form-field>
-                        <input formControlName="actif" matInput placeholder="Enabled">
-                    </mat-form-field>
-                    <mat-form-field>
                         <input formControlName="coefficient" matInput placeholder="Coefficient">
                     </mat-form-field>
                     <mat-form-field>
-                        <input formControlName="checkIn" matInput placeholder="Check-In">
+                        <input matInput placeholder="checkIn" [min]="minEndDate" [matDatepicker]="endDate" formControlName="checkIn">
+                        <mat-datepicker-toggle matSuffix [for]="endDate"></mat-datepicker-toggle>
+                        <mat-datepicker #endDate></mat-datepicker>
                     </mat-form-field>
                     <mat-form-field>
-                        <input formControlName="checkOut" matInput placeholder="Check-Out">
+                        <input matInput placeholder="checkOut" [min]="minStartDate" [matDatepicker]="startDate" formControlName="checkOut">
+                        <mat-datepicker-toggle matSuffix [for]="startDate"></mat-datepicker-toggle>
+                        <mat-datepicker #startDate></mat-datepicker>
                     </mat-form-field>
                 </div>
             </mat-grid-title>
+            <div class="content-center">
+                <button type="submit" mat-raised-button color="accent" matTooltip="Click Submit Button" (click)="onFormSubmit()">Submit</button>
+                <button type="reset" mat-raised-button color="accent" matTooltip="Click Reset Button">Reset</button>
+            </div>
         </mat-grid-list>
     </form>
 </div>

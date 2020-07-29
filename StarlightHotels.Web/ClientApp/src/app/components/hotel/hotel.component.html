@@ -25,7 +25,7 @@
             <th class="tbl2">Check-out</th>
             <th class="tbl2" colspan="2" style="text-align: center;">Actions</th>
         </tr>
-        <tr *ngFor="let hotel of allHotels | async">
+        <tr *ngFor="let hotel of allHotels">
             <td class="tbl2">{{ hotel.nom }}</td>
             <td class="tbl2">{{ hotel.nbEtoiles }}</td>
             <td class="tbl2">{{ hotel.nbChambres }}</td>

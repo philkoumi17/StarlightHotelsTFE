@@ -29,6 +29,9 @@ import { AdminComponent } from './components/admin/admin.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { MatRadioModule } from '@angular/material/radio';
 import { ReservationComponent } from './components/reservation/reservation.component';
+import { MatDatepickerModule } from '@angular/material/datepicker'; 
+import { MatNativeDateModule } from '@angular/material/core';
+
 
 @NgModule({
   declarations: [
@@ -65,7 +68,9 @@ import { ReservationComponent } from './components/reservation/reservation.compo
     MatTabsModule,
     MatTableModule,
     MatRadioModule,
-    FontAwesomeModule
+    FontAwesomeModule,
+    MatDatepickerModule, 
+    MatNativeDateModule
   ],
   providers: [UserService, {
     provide: HTTP_INTERCEPTORS,

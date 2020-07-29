@@ -1,5 +1,5 @@
 export class Pays
 {
-    id: number;
+    id?: number;
     nom: string;
 }
