@@ -8,11 +8,11 @@
                     </mat-form-field>
                     <br>
                     <mat-form-field>
-                        <input formControlName="nbEtoiles" matInput placeholder="Number of stars">
+                        <input type="number" formControlName="nbEtoiles" matInput placeholder="Number of stars">
                     </mat-form-field>
                     <br>
                     <mat-form-field>
-                        <input formControlName="nbChambres" matInput placeholder="Number of rooms">
+                        <input type="number" formControlName="nbChambres" matInput placeholder="Number of rooms">
                     </mat-form-field>
                     <br>
                     <mat-form-field appearance="fill">
@@ -38,33 +38,36 @@
                         </mat-select>
                     </mat-form-field>
                     <mat-form-field>
-                        <input formControlName="telephone" matInput placeholder="Telephone">
+                        <input type="tel" formControlName="telephone" matInput placeholder="Telephone">
                     </mat-form-field>
                     <div>
-                        <label>With promotion: </label>
-                        <mat-radio-group aria-label="With promotion" formControlName="enPromotion">
-                            <mat-radio-button value="1">Yes</mat-radio-button>
-                            <mat-radio-button value="0">No</mat-radio-button>
+                        <label for="enPromotion">With promotion: </label>
+                        <mat-radio-group aria-label="With promotion">
+                            <mat-radio-button type="radio" value="true" formControlName="enPromotion">Yes</mat-radio-button>
+                            <mat-radio-button type="radio" value="false" formControlName="enPromotion">No</mat-radio-button>
                         </mat-radio-group>
                     </div>
                     <br>
                     <div>
-                        <label>Destination's top: </label>
-                        <mat-radio-group aria-label="Destination's top" formControlName="topDestination">
-                            <mat-radio-button value="1">Yes</mat-radio-button>
-                            <mat-radio-button value="0">No</mat-radio-button>
+                        <label for="topDestination">Destination's top: </label>
+                        <mat-radio-group aria-label="Destination's top">
+                            <mat-radio-button type="radio" value="true" formControlName="topDestination">Yes</mat-radio-button>
+                            <mat-radio-button type="radio" value="false" formControlName="topDestination">No</mat-radio-button>
                         </mat-radio-group>
                     </div>
+                    <br>
                     <div>
-                        <label>Enabled: </label>
-                        <mat-radio-group aria-label="Enabled" formControlName="actif">
-                            <mat-radio-button value="1">Yes</mat-radio-button>
-                            <mat-radio-button value="0">No</mat-radio-button>
+                        <label for="actif">Enabled: </label>
+                        <mat-radio-group aria-label="Enabled">
+                            <mat-radio-button type="radio" value="true" formControlName="actif">Yes</mat-radio-button>
+                            <mat-radio-button type="radio" value="false" formControlName="actif">No</mat-radio-button>
                         </mat-radio-group>
                     </div>
+                    <br>
                     <mat-form-field>
-                        <input formControlName="coefficient" matInput placeholder="Coefficient">
+                        <input type="number" formControlName="coefficient" matInput placeholder="Coefficient">
                     </mat-form-field>
+                    <br>
                     <mat-form-field>
                         <input matInput placeholder="checkIn" [min]="minEndDate" [matDatepicker]="endDate" formControlName="checkIn">
                         <mat-datepicker-toggle matSuffix [for]="endDate"></mat-datepicker-toggle>

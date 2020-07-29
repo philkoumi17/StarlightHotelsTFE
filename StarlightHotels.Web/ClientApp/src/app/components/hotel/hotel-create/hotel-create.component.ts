@@ -22,6 +22,9 @@ export class HotelCreateComponent implements OnInit {
   selectedCountry: Pays;
   minEndDate = new Date();
   minStartDate = new Date();
+  withPromo = true;
+  destTop = true;
+  activeHotel = true;
 
   constructor(private formbulider: FormBuilder, public hotelService : HotelService, private toastr: ToastrService, private dialogRef: MatDialogRef<any>) { }
 

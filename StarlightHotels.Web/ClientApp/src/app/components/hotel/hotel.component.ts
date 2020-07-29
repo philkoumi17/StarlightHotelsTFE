@@ -80,10 +80,7 @@ export class HotelComponent implements OnInit {
   loadHotelToEdit(hotelId: number)
   {  
     this.hotelService.getHotelById(hotelId).subscribe(hotel => {  
-      this.message = null;  
-      this.dataSaved = false;  
-      this.hotelIdUpdate = hotel.id;
-      this.hotelCountryId = hotel.pays.id;  
+      this.hotelForm.controls['id'].setValue(hotel.id);  
       this.hotelForm.controls['nom'].setValue(hotel.nom);  
       this.hotelForm.controls['nbEtoiles'].setValue(hotel.nbEtoiles);  
       this.hotelForm.controls['nbChambres'].setValue(hotel.nbChambres);  
