@@ -1,11 +1,11 @@
 <app-navbar></app-navbar>
-<app-hotel-create></app-hotel-create>
 <div class="container">
     <mat-toolbar>
         <span class="fill-remaining-space"></span>
         <span>Hotel's list</span>
         <span class="fill-remaining-space"></span>
     </mat-toolbar>
+    <button mat-raised-button color="primary" (click)="openDialogHotelForm()"><fa-icon [icon]="faPlus"></fa-icon>  Create</button>
     <table class="table">
         <tr ngclass="btn-primary">
             <th class="tbl2">Name</th>
@@ -23,8 +23,7 @@
             <th class="tbl2">Coefficient</th>
             <th class="tbl2">Check-in</th>
             <th class="tbl2">Check-out</th>
-            <th class="tbl2">Edit</th>
-            <th class="tbl2">Delete</th>
+            <th class="tbl2" colspan="2" style="text-align: center;">Actions</th>
         </tr>
         <tr *ngFor="let hotel of allHotels | async">
             <td class="tbl2">{{ hotel.nom }}</td>
@@ -39,10 +38,14 @@
             <td class="tbl2">{{ hotel.enPromotion == 0 ? 'Non' : 'Oui' }}</td>
             <td class="tbl2">{{ hotel.topDestination == 0 ? 'Non' : 'Oui' }}</td>
             <td class="tbl2">{{ hotel.actif == 0 ? 'Non' : 'Oui' }}</td>
+            <td class="tbl2">{{ hotel.coefficient }}</td>
             <td class="tbl2">{{ hotel.checkIn | date }}</td>
             <td class="tbl2">{{ hotel.checkOut | date }}</td>
             <td class="tbl2">
-                <button type="button" class="btn btn-info" matTooltip="Click Edit Button" (click)="LoadDataHotel(hotel.Id)">Edit</button>
+                <button type="button" class="btn btn-info" matTooltip="Click Details Button" (click)="LoadDataHotel(hotel.Id)">Details</button>
+            </td>
+            <td class="tbl2">
+                <button type="button" class="btn btn-warning" matTooltip="Click Edit Button" (click)="LoadDataHotel(hotel.Id)">Edit</button>
             </td>
             <td class="tbl2">
                 <button type="button" class="btn btn-danger" matTooltip="Click Delete Button" (click)="delete(hotelId)">Delete</button>

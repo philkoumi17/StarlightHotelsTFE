@@ -10,6 +10,8 @@ import { Observable } from 'rxjs';
 import { FormBuilder, Validators } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
 import { Pays } from 'src/app/models/pays.model';
+import { HotelCreateComponent } from './hotel-create/hotel-create.component';
+import { faPlus } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-hotel',
@@ -18,6 +20,7 @@ import { Pays } from 'src/app/models/pays.model';
   ]
 })
 export class HotelComponent implements OnInit {
+  faPlus = faPlus;
   dataSaved = false;  
   hotelForm: any;  
   allHotels: Observable<Hotel[]>;
@@ -27,7 +30,7 @@ export class HotelComponent implements OnInit {
   hotelCountryId;
   hotelCountryName: string; 
 
-  constructor(private formbulider: FormBuilder, private hotelService : HotelService, private toastr: ToastrService) { }
+  constructor(private formbulider: FormBuilder, private hotelService : HotelService, private toastr: ToastrService, public dialog: MatDialog) { }
  
   ngOnInit() {
     this.hotelForm = this.formbulider.group({    
@@ -58,8 +61,7 @@ export class HotelComponent implements OnInit {
         this.allCountries = data;
         console.log(this.allCountries);
       }
-    )
-    
+    )   
   }
 
   getCountryName(paysId){
@@ -113,7 +115,7 @@ export class HotelComponent implements OnInit {
     });
   }
   
-  delete(hotelId: number) {  
+  /* delete(hotelId: number) {  
     if(confirm("Are you sure you want to delete this ?"))
     {   
       this.hotelService.deleteHotel(hotelId).subscribe(() => {  
@@ -124,9 +126,10 @@ export class HotelComponent implements OnInit {
         this.hotelForm.reset();  
       });  
     }  
-  }    
+  } */    
 
-  /* openDialog(data)
+  // A dialog for hotel's details
+  openDialogHotelDetail(data)
   {  
     debugger;  
     const dialogConfig = new MatDialogConfig();  
@@ -142,5 +145,24 @@ export class HotelComponent implements OnInit {
         Id: data.Id  
     };  
     this.dialog.open(HotelDetailComponent, dialogConfig);  
-  } */  
+  }
+  
+  // A dialog for hotel's creation
+  openDialogHotelForm()
+  {  
+    debugger;  
+    const dialogConfig = new MatDialogConfig();  
+    dialogConfig.disableClose = true;  
+    dialogConfig.autoFocus = true;
+    dialogConfig.width = '1000px';  
+    dialogConfig.height = '1000px';   
+    const dialogRef = this.dialog.open(HotelCreateComponent, dialogConfig);
+    dialogRef.afterClosed().subscribe(result => {
+      if(result === 'ok')
+      {
+        // refresh table
+        this.LoadData()
+      } 
+    });
+  }
 }

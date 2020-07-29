@@ -22,7 +22,7 @@ export class HotelDetailComponent implements OnInit {
   adresse: string;
   codePostal: string;
   ville: string;
-  pays: Pays;
+  pays: string;
   telephone: string;
   enPromotion: boolean;
   topDestination: boolean;
@@ -47,7 +47,7 @@ export class HotelDetailComponent implements OnInit {
       this.adresse = this.Hotel.adresse;
       this.codePostal = this.Hotel.codePostal;
       this.ville = this.Hotel.ville;  
-      this.pays = this.Hotel.pays;
+      this.pays = this.Hotel.pays.nom;
       this.telephone = this.Hotel.telephone;
       this.enPromotion = this.Hotel.enPromotion;
       this.topDestination = this.Hotel.topDestination;

@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { FormBuilder, Validators, FormGroup } from '@angular/forms';
+import { FormBuilder, Validators, FormGroup, FormControl } from '@angular/forms';
 import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { Hotel } from '../models/hotel.model';
 import { Observable } from 'rxjs';
@@ -11,6 +11,7 @@ import { Pays } from '../models/pays.model';
 export class HotelService
 {
   readonly baseURI = "https://localhost:44315/api";
+  floatLabelControl = new FormControl('yes');
   constructor(private http: HttpClient, private fb: FormBuilder) { }
 
   formModel = this.fb.group({
@@ -29,6 +30,7 @@ export class HotelService
     coefficient: ['', [Validators.required]],
     checkIn: ['', [Validators.required]],
     checkOut: ['', [Validators.required]],
+    floatLabel: this.floatLabelControl
   });
 
   getHotels(): Observable<Hotel[]>

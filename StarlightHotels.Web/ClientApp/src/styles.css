@@ -1,6 +1,5 @@
 /* You can add global styles to this file, and also import other style files */
 
-@import "~@angular/material/prebuilt-themes/indigo-pink.css";
 html,
 body {
     height: 100%;
@@ -13,7 +12,7 @@ body {
 input.form-control,
 input.form-control:focus {
     background-color: #636b7b;
-    color: #fff;
+    /*color: #fff; */
     border: 1px solid #636b7b;
 }
 
@@ -34,7 +33,7 @@ div.form-group label:not(.text-danger) {
 
 div.form-group.required>label:first-child:after {
     content: '*';
-    color: #fff;
+    /*color: #fff; */
     padding-left: 5px;
 }
 
@@ -72,7 +71,7 @@ div.form-group.required>label:first-child:after {
 }
 
 .tab-header h2.active {
-    color: #fff;
+    /*color: #fff; */
     border-bottom: 4px solid #fff;
 }
 

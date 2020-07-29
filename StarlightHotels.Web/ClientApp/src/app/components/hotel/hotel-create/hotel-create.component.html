@@ -3,7 +3,6 @@
         <mat-grid-list cols="2" rowHeight="300px">
             <mat-grid-title>
                 <div class="controles-container">
-                    <input type="hidden" />
                     <mat-form-field>
                         <input formControlName="nom" matInput placeholder="Name" required>
                     </mat-form-field>
@@ -16,24 +15,53 @@
                         <input formControlName="nbChambres" matInput placeholder="Number of rooms" required>
                     </mat-form-field>
                     <br>
-                    <mat-form-field>
-                        <input formControlName="nom" matInput placeholder="Name" required>
+                    <mat-form-field appearance="fill">
+                        <mat-label>Description</mat-label>
+                        <textarea matInput></textarea>
                     </mat-form-field>
                     <br>
                     <mat-form-field>
-                        <input formControlName="nom" matInput placeholder="Name">
+                        <input formControlName="adresse" matInput placeholder="Address">
                     </mat-form-field>
                     <br>
                     <mat-form-field>
-                        <input formControlName="nom" matInput placeholder="Name">
+                        <input formControlName="codePostal" matInput placeholder="Postal code">
                     </mat-form-field>
                     <br>
                     <mat-form-field>
-                        <input formControlName="nom" matInput placeholder="Name">
+                        <input formControlName="ville" matInput placeholder="City">
                     </mat-form-field>
                     <br>
+                    <mat-form-field appearance="fill">
+                        <mat-label>Select a country..</mat-label>
+                        <mat-select formControlName="pays">
+                            <mat-option *ngFor="let p of allCountries" [ngValue]="p">{{ p.nom }}</mat-option>
+                        </mat-select>
+                    </mat-form-field>
                     <mat-form-field>
-                        <input formControlName="nom" matInput placeholder="Name">
+                        <input formControlName="telephone" matInput placeholder="Telephone">
+                    </mat-form-field>
+                    <div>
+                        <label>With promotion: </label>
+                        <mat-radio-group aria-label="With promotion">
+                            <mat-radio-button value="1">Yes</mat-radio-button>
+                            <mat-radio-button value="0">No</mat-radio-button>
+                        </mat-radio-group>
+                    </div>
+                    <mat-form-field>
+                        <input formControlName="topDestination" matInput placeholder="Destination's top">
+                    </mat-form-field>
+                    <mat-form-field>
+                        <input formControlName="actif" matInput placeholder="Enabled">
+                    </mat-form-field>
+                    <mat-form-field>
+                        <input formControlName="coefficient" matInput placeholder="Coefficient">
+                    </mat-form-field>
+                    <mat-form-field>
+                        <input formControlName="checkIn" matInput placeholder="Check-In">
+                    </mat-form-field>
+                    <mat-form-field>
+                        <input formControlName="checkOut" matInput placeholder="Check-Out">
                     </mat-form-field>
                 </div>
             </mat-grid-title>

@@ -16,16 +16,19 @@ import { AppComponent } from './app.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { HomeComponent } from './components/home/home.component';
 import { HotelComponent } from './components/hotel/hotel.component';
-import { NavbarComponent } from './components/navbar/navbar.component';
-import { UserService } from "./services/user.service";
-import { LoginComponent } from './components/user/login/login.component';
-import { RegistrationComponent } from './components/user/registration/registration.component';
-import { UserComponent } from './components/user/user.component';
-import { AuthInterceptor } from "./auth/auth.interceptor";
 import { HotelDetailComponent } from './components/hotel/hotel-detail/hotel-detail.component';
 import { HotelCreateComponent } from './components/hotel/hotel-create/hotel-create.component';
+import { NavbarComponent } from './components/navbar/navbar.component';
+import { UserComponent } from './components/user/user.component';
+import { UserService } from "./services/user.service";
 import { UserDetailComponent } from './components/user/user-detail/user-detail.component';
+import { LoginComponent } from './components/user/login/login.component';
+import { RegistrationComponent } from './components/user/registration/registration.component';
+import { AuthInterceptor } from "./auth/auth.interceptor";
 import { AdminComponent } from './components/admin/admin.component';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { MatRadioModule } from '@angular/material/radio';
+import { ReservationComponent } from './components/reservation/reservation.component';
 
 @NgModule({
   declarations: [
@@ -40,7 +43,8 @@ import { AdminComponent } from './components/admin/admin.component';
     HotelDetailComponent,
     HotelCreateComponent,
     UserDetailComponent,
-    AdminComponent
+    AdminComponent,
+    ReservationComponent
   ],
   imports: [
     BrowserModule,
@@ -59,7 +63,9 @@ import { AdminComponent } from './components/admin/admin.component';
     MatInputModule,  
     MatSelectModule,   
     MatTabsModule,
-    MatTableModule
+    MatTableModule,
+    MatRadioModule,
+    FontAwesomeModule
   ],
   providers: [UserService, {
     provide: HTTP_INTERCEPTORS,
@@ -67,7 +73,8 @@ import { AdminComponent } from './components/admin/admin.component';
     multi: true
   }], 
   entryComponents: [
-    RegistrationComponent
+    RegistrationComponent,
+    HotelCreateComponent
   ],
   schemas: [
     CUSTOM_ELEMENTS_SCHEMA,
