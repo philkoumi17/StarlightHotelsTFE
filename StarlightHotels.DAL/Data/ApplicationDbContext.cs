@@ -7,7 +7,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using StarlightHotels.Models;
 
-namespace StarlightHotels.Models
+namespace StarlightHotels.DAL.Data
 {
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
     {
@@ -47,6 +47,20 @@ namespace StarlightHotels.Models
                 .HasOne(pt => pt.Formule)
                 .WithMany(t => t.HotelFormules)
                 .HasForeignKey(pt => pt.FormId);
+
+            // Gestion pour la table HotelPromotion
+            modelBuilder.Entity<HotelPromotionModel>()
+                .HasKey(hp => new { hp.HotelId, hp.PromoId });
+
+            modelBuilder.Entity<HotelPromotionModel>()
+                .HasOne(pt => pt.Hotel)
+                .WithMany(p => p.HotelPromotions)
+                .HasForeignKey(pt => pt.HotelId);
+
+            modelBuilder.Entity<HotelPromotionModel>()
+                .HasOne(pt => pt.Promotion)
+                .WithMany(t => t.HotelPromotions)
+                .HasForeignKey(pt => pt.PromoId);
 
             // Gestion pour la table HotelService
             modelBuilder.Entity<HotelServiceModel>()
@@ -118,11 +132,13 @@ namespace StarlightHotels.Models
         public DbSet<HotelModel> Hotels { get; set; }
         public DbSet<HotelCategorieModel> HotelCategories { get; set; }
         public DbSet<HotelFormuleModel> HotelFormules { get; set; }
+        public DbSet<HotelPromotionModel> HotelPromotionModels { get; set; }
         public DbSet<HotelServiceModel> HotelServices { get; set; }
         public DbSet<HotelThemeModel> HotelThemes { get; set; }
         public DbSet<ImageModel> Images { get; set; }
         public DbSet<ParticipantModel> Participants { get; set; }
         public DbSet<PaysModel> Pays { get; set; }
+        public DbSet<PromotionModel> PromotionModels { get; set; }
         public DbSet<ReservationModel> Reservations { get; set; }
         public DbSet<ChambreReserveeModel> ReservationChambres { get; set; }
         public DbSet<SaisonModel> Saisons { get; set; }

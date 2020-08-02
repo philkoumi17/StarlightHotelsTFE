@@ -16,6 +16,7 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
+using StarlightHotels.DAL.Data;
 using StarlightHotels.Models;
 using StarlightHotels.Utilities;
 

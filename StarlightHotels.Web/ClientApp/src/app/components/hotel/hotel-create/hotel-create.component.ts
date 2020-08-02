@@ -50,18 +50,15 @@ export class HotelCreateComponent implements OnInit {
     this.dialogRef.close("ok");
   }
 
-  updateHotel(hotel: Hotel)
-  {  
-    if(hotel.id != null)
-    {  
-      this.hotelService.updateHotel(hotel.id, hotel).subscribe(() => {  
-        this.toastr.success('This hotel is updated with success', 'Update successful !');
-      });  
-    }  
-  }
-
   onFormSubmit()
   {  
-    this.createHotel(); 
+    if(this.hotelForm.value.id == 0)
+    {
+      this.createHotel();
+    }
+    else
+    {
+      this.updateHotel();
+    }
   }
 }

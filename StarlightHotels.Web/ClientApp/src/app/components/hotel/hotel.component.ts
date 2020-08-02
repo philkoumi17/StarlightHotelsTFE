@@ -30,15 +30,16 @@ export class HotelComponent implements OnInit {
   hotelCountryId;
   hotelCountryName: string; 
 
-  constructor(private formbuilder: FormBuilder, private hotelService : HotelService, private toastr: ToastrService, public dialog: MatDialog) { }
+  constructor(private formbuilder: FormBuilder, private hotelService : HotelService, private toastr: ToastrService, 
+    public dialog: MatDialog) { }
  
-  async ngOnInit() {
-    await this.LoadData();
+  async ngOnInit()
+  {
+    await this.loadData();
   }
 
-  async LoadData()
-  {  
-    //this.allHotels = 
+  async loadData()
+  { 
     await this.hotelService.getHotelsAsync().then((data) =>{
         this.allHotels = data;
     }).catch(console.log);
@@ -61,25 +62,35 @@ export class HotelComponent implements OnInit {
     return paysName;
   }
 
-  CreateHotel(hotel: Hotel)
+  updateHotel(hotel: Hotel)
   {  
-    if(this.hotelIdUpdate == null)
+    if(hotel.id != 0)
     {  
-      this.hotelService.insertHotel().subscribe(  
-        () => {  
-          this.dataSaved = true;  
-          this.toastr.success('New hotel saved with success', 'Insertion with success !');
-          this.LoadData();  
-          this.hotelIdUpdate = null;  
-          this.hotelForm.reset();  
-        }  
-      );  
-    }
+      this.hotelService.updateHotel().subscribe(() => {
+        this.hotelForm.controls['id'].setValue(hotel.id);  
+        this.hotelForm.controls['nom'].setValue(hotel.nom);  
+        this.hotelForm.controls['nbEtoiles'].setValue(hotel.nbEtoiles);  
+        this.hotelForm.controls['nbChambres'].setValue(hotel.nbChambres);  
+        this.hotelForm.controls['description'].setValue(hotel.description);  
+        this.hotelForm.controls['adresse'].setValue(hotel.adresse);  
+        this.hotelForm.controls['codePostal'].setValue(hotel.codePostal);
+        this.hotelForm.controls['ville'].setValue(hotel.ville);  
+        this.hotelForm.controls['pays'].setValue(hotel.pays.nom); 
+        this.hotelForm.controls['telephone'].setValue(hotel.telephone);  
+        this.hotelForm.controls['enPromotion'].setValue(hotel.enPromotion); 
+        this.hotelForm.controls['topDestination'].setValue(hotel.topDestination);  
+        this.hotelForm.controls['actif'].setValue(hotel.actif); 
+        this.hotelForm.controls['coefficient'].setValue(hotel.coefficient);
+        this.hotelForm.controls['checkIn'].setValue(hotel.checkIn);
+        this.hotelForm.controls['checkOut'].setValue(hotel.checkOut);
+        this.toastr.success('This hotel is updated with success', 'Update successful !');
+      });  
+    }  
   }
 
-  loadHotelToEdit(hotelId: number)
+  editHotel(hotelId: number)
   {  
-    this.hotelService.getHotelById(hotelId).subscribe(hotel => {  
+    this.hotelService.updateHotel().subscribe(hotel => {  
       this.hotelForm.controls['id'].setValue(hotel.id);  
       this.hotelForm.controls['nom'].setValue(hotel.nom);  
       this.hotelForm.controls['nbEtoiles'].setValue(hotel.nbEtoiles);  
@@ -145,7 +156,7 @@ export class HotelComponent implements OnInit {
       if(result === 'ok')
       {
         // refresh table
-        await this.LoadData()
+        await this.loadData()
       } 
     });
   }

@@ -1,7 +1,7 @@
 ﻿using System;
 using Microsoft.EntityFrameworkCore.Migrations;
 
-namespace StarlightHotels.API.Migrations
+namespace StarlightHotels.DAL.Migrations
 {
     public partial class InitialCreate : Migration
     {
@@ -117,6 +117,20 @@ namespace StarlightHotels.API.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Pays", x => x.PAYS_Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Promotion",
+                columns: table => new
+                {
+                    PR_Id = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    PR_Libelle = table.Column<string>(nullable: true),
+                    PR_Pourcentage = table.Column<float>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Promotion", x => x.PR_Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -343,22 +357,20 @@ namespace StarlightHotels.API.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     TAR_Prix = table.Column<decimal>(nullable: false),
                     TAR_CAT_Id = table.Column<int>(nullable: false),
-                    CategorieId = table.Column<int>(nullable: true),
-                    TAR_SA_Id = table.Column<int>(nullable: false),
-                    SaisonId = table.Column<int>(nullable: true)
+                    TAR_SA_Id = table.Column<int>(nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Tarif", x => x.TAR_Id);
                     table.ForeignKey(
-                        name: "FK_Tarif_Categorie_CategorieId",
-                        column: x => x.CategorieId,
+                        name: "FK_Tarif_Categorie_TAR_CAT_Id",
+                        column: x => x.TAR_CAT_Id,
                         principalTable: "Categorie",
                         principalColumn: "CAT_Id",
                         onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
-                        name: "FK_Tarif_Saison_SaisonId",
-                        column: x => x.SaisonId,
+                        name: "FK_Tarif_Saison_TAR_SA_Id",
+                        column: x => x.TAR_SA_Id,
                         principalTable: "Saison",
                         principalColumn: "SA_Id",
                         onDelete: ReferentialAction.Restrict);
@@ -408,7 +420,7 @@ namespace StarlightHotels.API.Migrations
                     CH_Image = table.Column<string>(nullable: true),
                     CH_Disponibilite = table.Column<bool>(nullable: true),
                     CH_HOTEL_Id = table.Column<int>(nullable: false),
-                    CH_CAT_Id = table.Column<int>(nullable: true)
+                    CH_CAT_Id = table.Column<int>(nullable: false)
                 },
                 constraints: table =>
                 {
@@ -474,6 +486,32 @@ namespace StarlightHotels.API.Migrations
                         column: x => x.HOTEL_Id,
                         principalTable: "Hotel",
                         principalColumn: "HOTEL_Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "HotelPromotion",
+                columns: table => new
+                {
+                    HOTEL_Id = table.Column<int>(nullable: false),
+                    PR_Id = table.Column<int>(nullable: false),
+                    HOTELPR_DateDebut = table.Column<DateTime>(nullable: false),
+                    HOTELPR_DateFin = table.Column<DateTime>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_HotelPromotion", x => new { x.HOTEL_Id, x.PR_Id });
+                    table.ForeignKey(
+                        name: "FK_HotelPromotion_Hotel_HOTEL_Id",
+                        column: x => x.HOTEL_Id,
+                        principalTable: "Hotel",
+                        principalColumn: "HOTEL_Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_HotelPromotion_Promotion_PR_Id",
+                        column: x => x.PR_Id,
+                        principalTable: "Promotion",
+                        principalColumn: "PR_Id",
                         onDelete: ReferentialAction.Cascade);
                 });
 
@@ -677,6 +715,11 @@ namespace StarlightHotels.API.Migrations
                 column: "FOR_Id");
 
             migrationBuilder.CreateIndex(
+                name: "IX_HotelPromotion_PR_Id",
+                table: "HotelPromotion",
+                column: "PR_Id");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_HotelService_SERV_Id",
                 table: "HotelService",
                 column: "SERV_Id");
@@ -714,14 +757,14 @@ namespace StarlightHotels.API.Migrations
                 column: "RES_Id");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Tarif_CategorieId",
+                name: "IX_Tarif_TAR_CAT_Id",
                 table: "Tarif",
-                column: "CategorieId");
+                column: "TAR_CAT_Id");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Tarif_SaisonId",
+                name: "IX_Tarif_TAR_SA_Id",
                 table: "Tarif",
-                column: "SaisonId");
+                column: "TAR_SA_Id");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
@@ -751,6 +794,9 @@ namespace StarlightHotels.API.Migrations
                 name: "HotelFormule");
 
             migrationBuilder.DropTable(
+                name: "HotelPromotion");
+
+            migrationBuilder.DropTable(
                 name: "HotelService");
 
             migrationBuilder.DropTable(
@@ -770,6 +816,9 @@ namespace StarlightHotels.API.Migrations
 
             migrationBuilder.DropTable(
                 name: "Formule");
+
+            migrationBuilder.DropTable(
+                name: "Promotion");
 
             migrationBuilder.DropTable(
                 name: "Service");

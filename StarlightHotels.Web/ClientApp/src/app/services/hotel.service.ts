@@ -11,6 +11,9 @@ import { Pays } from '../models/pays.model';
 export class HotelService
 {
   readonly baseURI = "https://localhost:44315/api";
+  formData: Hotel;
+  list: Hotel[];
+
   constructor(private http: HttpClient, private fb: FormBuilder) { }
 
   formModel = this.fb.group({
@@ -74,13 +77,21 @@ export class HotelService
     return this.http.post<Hotel>(this.baseURI + '/Hotel', body);
   }  
 
-  updateHotel(hotelId: number, hotel: Hotel): Observable<Hotel>
+  updateHotel(): Observable<Hotel>
   {
-    return this.http.put<Hotel>(this.baseURI + '/Hotel/id=' + hotelId, hotel);  
-  }  
+    console.log()
+    return this.http.put<Hotel>(this.baseURI + '/Hotel/' + this.formData.id, this.formData);  
+  }
 
   deleteHotel(hotelId: number): Observable<number>
   {  
     return this.http.delete<number>(this.baseURI + '/Hotel/id=' + hotelId);  
+  }
+
+  refreshList()
+  {
+    this.http.get(this.baseURI + "/Hotel")
+    .toPromise()
+    .then(res => this.list = res as Hotel[]);
   }
 }

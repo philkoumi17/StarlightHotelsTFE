@@ -113,5 +113,6 @@ namespace StarlightHotels.Models
         public ICollection<HotelServiceModel> HotelServices { get; set; }
         public ICollection<HotelThemeModel> HotelThemes { get; set; }
         public ICollection<HotelCategorieModel> HotelCategories { get; set; }
+        public ICollection<HotelPromotionModel> HotelPromotions { get; set; }
     }
 }
