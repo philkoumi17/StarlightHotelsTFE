@@ -10,9 +10,9 @@ import { MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog';
 })
 export class RegistrationComponent implements OnInit
 {
-  constructor(public service: UserService, private toastr: ToastrService, 
-    public dialogRef: MatDialogRef<RegistrationComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: any) { }
+  constructor(public service: UserService, private toastr: ToastrService,
+              public dialogRef: MatDialogRef<RegistrationComponent>,
+              @Inject(MAT_DIALOG_DATA) public data: any) { }
 
   ngOnInit(): void {
     this.service.formModel.reset();

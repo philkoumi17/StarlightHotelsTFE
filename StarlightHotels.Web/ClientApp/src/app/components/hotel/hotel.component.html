@@ -9,40 +9,20 @@
     <table class="table">
         <tr ngclass="btn-primary">
             <th class="tbl2">Name</th>
-            <th class="tbl2">Number of stars</th>
             <th class="tbl2">Number of rooms</th>
-            <th class="tbl2">Description</th>
-            <th class="tbl2">Address</th>
-            <th class="tbl2">Postal code</th>
             <th class="tbl2">City</th>
             <th class="tbl2">Country</th>
-            <th class="tbl2">Telephone</th>
-            <th class="tbl2">With promotion</th>
-            <th class="tbl2">Destination's top</th>
             <th class="tbl2">Activited</th>
-            <th class="tbl2">Coefficient</th>
-            <th class="tbl2">Check-in</th>
-            <th class="tbl2">Check-out</th>
-            <th class="tbl2" colspan="3" style="text-align: center;">Actions</th>
+            <th class="tbl2" colspan="3" style="text-align: center;">Show | Update | Deactivate</th>
         </tr>
         <tr *ngFor="let hotel of allHotels">
             <td class="tbl2">{{ hotel.nom }}</td>
-            <td class="tbl2">{{ hotel.nbEtoiles }}</td>
             <td class="tbl2">{{ hotel.nbChambres }}</td>
-            <td class="tbl2">{{ hotel.description }}</td>
             <td class="tbl2">{{ hotel.adresse }}</td>
-            <td class="tbl2">{{ hotel.codePostal }}</td>
-            <td class="tbl2">{{ hotel.ville }}</td>
             <td class="tbl2">{{ getCountryName(hotel.paysId) }}</td>
-            <td class="tbl2">{{ hotel.telephone }}</td>
-            <td class="tbl2">{{ hotel.enPromotion == 0 ? 'Non' : 'Oui' }}</td>
-            <td class="tbl2">{{ hotel.topDestination == 0 ? 'Non' : 'Oui' }}</td>
             <td class="tbl2">{{ hotel.actif == 0 ? 'Non' : 'Oui' }}</td>
-            <td class="tbl2">{{ hotel.coefficient }}</td>
-            <td class="tbl2">{{ hotel.checkIn | date }}</td>
-            <td class="tbl2">{{ hotel.checkOut | date }}</td>
             <td class="tbl2">
-                <button type="button" class="btn btn-info" matTooltip="Click Details Button" (click)="LoadDataHotel(hotel.Id)">Details</button>
+                <button type="button" class="btn btn-info" matTooltip="Click Details Button" (click)="openDialogHotelDetail(hotel)">Details</button>
             </td>
             <td class="tbl2">
                 <button type="button" class="btn btn-warning" matTooltip="Click Edit Button" (click)="LoadDataHotel(hotel.Id)">Edit</button>

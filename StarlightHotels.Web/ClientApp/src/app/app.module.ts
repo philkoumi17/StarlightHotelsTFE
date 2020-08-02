@@ -1,10 +1,10 @@
-import { HttpClientModule, HTTP_INTERCEPTORS } from "@angular/common/http";
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { CUSTOM_ELEMENTS_SCHEMA, NgModule, NO_ERRORS_SCHEMA } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatInputModule } from '@angular/material/input';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatCheckboxModule } from '@angular/material/checkbox';
-import { MatSelectModule } from '@angular/material/select'; 
+import { MatSelectModule } from '@angular/material/select';
 import { MatTableModule } from '@angular/material/table';
 import { MatTabsModule } from '@angular/material/tabs';
 import { MatToolbarModule} from '@angular/material/toolbar';
@@ -79,7 +79,8 @@ import { MatNativeDateModule } from '@angular/material/core';
   }], 
   entryComponents: [
     RegistrationComponent,
-    HotelCreateComponent
+    HotelCreateComponent,
+    HotelDetailComponent
   ],
   schemas: [
     CUSTOM_ELEMENTS_SCHEMA,

@@ -4,58 +4,66 @@
             Hotel details
         </mat-toolbar>
         <br>
-        <table class="table">
+        <table class="table" *ngIf="hotel">
             <tr>
                 <th> Name </th>
-                <td> {{nom}} </td>
+                <td> {{hotel.nom}} </td>
             </tr>
             <tr>
                 <th> Number of stars </th>
-                <td> {{nbEtoiles}} </td>
+                <td> {{hotel.nbEtoiles}} </td>
             </tr>
             <tr>
                 <th> Number of rooms </th>
-                <td> {{nbChambres}} </td>
+                <td> {{hotel.nbChambres}} </td>
             </tr>
             <tr>
                 <th> Description </th>
-                <td> {{description}} </td>
+                <td> {{hotel.description}} </td>
             </tr>
             <tr>
                 <th> Address </th>
-                <td> {{adresse}} </td>
+                <td> {{hotel.adresse}} </td>
             </tr>
             <tr>
                 <th> Postal code </th>
-                <td> {{codePostal}} </td>
+                <td> {{hotel.codePostal}} </td>
             </tr>
             <tr>
                 <th> City </th>
-                <td> {{ville}} </td>
+                <td> {{hotel.ville}} </td>
             </tr>
             <tr>
                 <th> Country </th>
-                <td> {{pays}} </td>
+                <td> {{hotel.pays}} </td>
             </tr>
             <tr>
                 <th> Phone number </th>
-                <td> {{telephone}} </td>
+                <td> {{hotel.telephone}} </td>
             </tr>
             <tr>
                 <th> With promotion </th>
-                <td> {{enPromotion}} </td>
+                <td> {{hotel.enPromotion}} </td>
             </tr>
             <tr>
                 <th> Destination's top </th>
-                <td> {{topDestination}} </td>
+                <td> {{hotel.topDestination}} </td>
             </tr>
             <tr>
                 <th> Enabled </th>
-                <td> {{actif}} </td>
+                <td> {{hotel.actif}} </td>
             </tr>
             <tr>
                 <th> Percent </th>
-                <td> {{coefficient}} </td>
+                <td> {{hotel.coefficient}} </td>
+            </tr>
+            <tr>
+                <th> Check-In </th>
+                <td> {{hotel.checkIn}} </td>
+            </tr>
+            <tr>
+                <th> Check-Out </th>
+                <td> {{hotel.checkOut}} </td>
             </tr>
         </table>
     </mat-dialog-content>

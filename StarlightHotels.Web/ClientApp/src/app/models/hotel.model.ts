@@ -1,4 +1,4 @@
-import { Pays } from "./pays.model";
+import { Pays } from './pays.model';
 
 export class Hotel
 {
@@ -16,7 +16,7 @@ export class Hotel
     enPromotion: boolean;
     topDestination: boolean;
     actif: boolean;
-    coefficient: boolean;
+    coefficient: number;
     checkIn: Date;
     checkOut: Date;
 }

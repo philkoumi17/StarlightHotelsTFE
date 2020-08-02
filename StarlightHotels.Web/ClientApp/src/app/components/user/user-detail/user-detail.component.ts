@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { UserService } from "../../../services/user.service";
+import { UserService } from '../../../services/user.service';
 import { UserModel } from '../../../models/user.model';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-user-detail',
@@ -10,14 +11,16 @@ import { UserModel } from '../../../models/user.model';
 export class UserDetailComponent implements OnInit {
   user: UserModel;
 
-  constructor(private userService: UserService) { }
+  constructor(private router: Router, private userService: UserService) { }
 
   ngOnInit(): void {
     this.userService.getUserProfile().subscribe(
-      (data) =>{
-        this.user = data;
-      }
+      res => {
+        this.user = res;
+      },
+      err => {
+        console.log(err);
+      },
     );
   }
-
 }
