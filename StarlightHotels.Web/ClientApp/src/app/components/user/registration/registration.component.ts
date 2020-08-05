@@ -1,5 +1,5 @@
 import { Component, OnInit, Inject } from '@angular/core';
-import { UserService } from "../../../services/user.service";
+import { UserService } from '../../../services/user.service';
 import { ToastrService } from 'ngx-toastr';
 import { MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog';
 
@@ -20,8 +20,8 @@ export class RegistrationComponent implements OnInit
 
   onSubmit(): void{
     this.service.register().subscribe(
-      (res:any) => {
-        if(res.succeeded)
+      (res: any) => {
+        if (res.succeeded)
         {
           this.service.formModel.reset();
           this.toastr.success('New user created', 'Registration successful !');
@@ -30,13 +30,12 @@ export class RegistrationComponent implements OnInit
         else
         {
           res.errors.forEach(element => {
-            switch(element.code)
+            switch (element.code)
             {
               case 'DuplicateUserName':
                 // Username is already taken
                 this.toastr.error('Username is already taken', 'Registration failed !');
                 break;
-              
               default:
                 // Registration failed
                 this.toastr.error(element.description, 'Registration failed !');

@@ -50,13 +50,16 @@ export class HotelService
     return this.http.get<Pays[]>(`${this.baseURI}/Hotel/GetCountries`);
   }
 
-  // tslint:disable-next-line: typedef
+  async getCitiesByCountry(paysId: number)
+  {
+    return await this.http.get<string[]>(this.baseURI + '/Hotel/GetCitiesByCountry/' + paysId).toPromise();
+  }
+
   async getHotelById(hotelId)
   {
     return await this.http.get<Hotel>(this.baseURI + '/Hotel/' + hotelId).toPromise();
   }
 
-  // tslint:disable-next-line: typedef
   insertHotel()
   {
     var body: Hotel = {

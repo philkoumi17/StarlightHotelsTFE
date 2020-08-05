@@ -30,7 +30,7 @@ export class HotelCreateComponent implements OnInit {
 
   ngOnInit(): void {
 
-    if(this.data.id){
+    if (this.data.id){
       this.hotelService.getHotelById(this.data.id).then(result => {
         // tslint:disable-next-line: triple-equals
         this.hotel = result;
@@ -44,7 +44,7 @@ export class HotelCreateComponent implements OnInit {
   // tslint:disable-next-line: typedef
   async LoadData()
   {
-    //this.allHotels = this.hotelService.getHotels();
+    // this.allHotels = this.hotelService.getHotels();
     this.hotelService.getCountries().subscribe(
       (data) => {
         this.allCountries = data;
