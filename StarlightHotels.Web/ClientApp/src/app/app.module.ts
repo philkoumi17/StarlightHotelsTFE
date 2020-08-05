@@ -31,6 +31,7 @@ import { MatRadioModule } from '@angular/material/radio';
 import { ReservationComponent } from './components/reservation/reservation.component';
 import { MatDatepickerModule } from '@angular/material/datepicker'; 
 import { MatNativeDateModule } from '@angular/material/core';
+import { ContactComponent } from './components/home/contact/contact.component';
 
 
 @NgModule({
@@ -47,7 +48,8 @@ import { MatNativeDateModule } from '@angular/material/core';
     HotelCreateComponent,
     UserDetailComponent,
     AdminComponent,
-    ReservationComponent
+    ReservationComponent,
+    ContactComponent
   ],
   imports: [
     BrowserModule,
