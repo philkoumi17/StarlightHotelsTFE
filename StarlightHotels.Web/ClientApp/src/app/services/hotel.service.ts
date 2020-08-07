@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { FormBuilder, Validators, FormGroup, FormControl } from '@angular/forms';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Hotel } from '../models/hotel.model';
-import { Observable } from 'rxjs';
+import { Observable, BehaviorSubject } from 'rxjs';
 import { Pays } from '../models/pays.model';
 
 @Injectable({
@@ -13,6 +13,11 @@ export class HotelService
   readonly baseURI = 'https://localhost:44315/api';
   formData: Hotel;
   list: Hotel[];
+  hotelInstance: Hotel;
+
+  // Observable
+  private hotelBehavior = new BehaviorSubject<Hotel>(this.hotelInstance);
+  hotelData = this.hotelBehavior.asObservable();
 
   constructor(private http: HttpClient, private fb: FormBuilder) { }
 
@@ -50,19 +55,23 @@ export class HotelService
     return this.http.get<Pays[]>(`${this.baseURI}/Hotel/GetCountries`);
   }
 
+  // tslint:disable-next-line: typedef
   async getCitiesByCountry(paysId: number)
   {
     return await this.http.get<string[]>(this.baseURI + '/Hotel/GetCitiesByCountry/' + paysId).toPromise();
   }
 
+  // tslint:disable-next-line: typedef
   async getHotelById(hotelId)
   {
     return await this.http.get<Hotel>(this.baseURI + '/Hotel/' + hotelId).toPromise();
   }
 
+  // tslint:disable-next-line: typedef
   insertHotel()
   {
-    var body: Hotel = {
+    // tslint:disable-next-line: prefer-const
+    let body: Hotel = {
       nom: this.formModel.value.nom,
       nbEtoiles: this.formModel.value.nbEtoiles,
       nbChambres: this.formModel.value.nbChambres,
@@ -90,6 +99,13 @@ export class HotelService
     return this.http.put<Hotel>(this.baseURI + '/Hotel/' + this.formData.id, this.formData);
   }
 
+  // update hotel
+  // tslint:disable-next-line: typedef
+  majHotel(hotel)
+  {
+    this.hotelBehavior.next(hotel);
+  }
+
   deleteHotel(hotelId: number): Observable<number>
   {
     return this.http.delete<number>(this.baseURI + '/Hotel/id=' + hotelId);
@@ -101,5 +117,12 @@ export class HotelService
     this.http.get(this.baseURI + '/Hotel')
     .toPromise()
     .then(res => this.list = res as Hotel[]);
+  }
+
+  // tslint:disable-next-line: typedef
+  async searchHotels(paysId: number, city: string, arrD?: Date, depD?: Date, )
+  {
+    // tslint:disable-next-line: max-line-length
+    return await this.http.get<Hotel>(`${this.baseURI}/Hotel/SearchHotels?paysId=${paysId}&city=${city}&arrDate=${arrD}&depDate=${depD}&nbA=${depD}&depDate=${depD}`).toPromise();
   }
 }

@@ -32,6 +32,7 @@ import { ReservationComponent } from './components/reservation/reservation.compo
 import { MatDatepickerModule } from '@angular/material/datepicker'; 
 import { MatNativeDateModule } from '@angular/material/core';
 import { ContactComponent } from './components/home/contact/contact.component';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 
 @NgModule({
@@ -72,7 +73,7 @@ import { ContactComponent } from './components/home/contact/contact.component';
     MatRadioModule,
     FontAwesomeModule,
     MatDatepickerModule, 
-    MatNativeDateModule
+    MatNativeDateModule, NgbModule
   ],
   providers: [UserService, {
     provide: HTTP_INTERCEPTORS,
