@@ -120,7 +120,7 @@ export class HotelService
   }
 
   // tslint:disable-next-line: typedef
-  async searchHotels(paysId: number, city: string, arrD?: Date, depD?: Date, )
+  async searchHotels(paysId: number, city: string, arrD?: Date, depD?: Date)
   {
     // tslint:disable-next-line: max-line-length
     return await this.http.get<Hotel>(`${this.baseURI}/Hotel/SearchHotels?paysId=${paysId}&city=${city}&arrDate=${arrD}&depDate=${depD}&nbA=${depD}&depDate=${depD}`).toPromise();

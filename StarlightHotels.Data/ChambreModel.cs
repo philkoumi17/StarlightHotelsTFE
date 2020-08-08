@@ -15,10 +15,6 @@ namespace StarlightHotels.Models
         [Display(Name = "Numéro de chambre")]
         public int ChNum { get; set; }
 
-        [Column("CH_Image")]
-        [Display(Name = "Image de la chambre")]
-        public string ImageChambre { get; set; }
-
         [Column("CH_Disponibilite")]
         [Display(Name = "Actif")]
         public bool? Disponible { get; set; }

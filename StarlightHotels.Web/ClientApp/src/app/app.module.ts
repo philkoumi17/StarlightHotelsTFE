@@ -20,20 +20,20 @@ import { HotelDetailComponent } from './components/hotel/hotel-detail/hotel-deta
 import { HotelCreateComponent } from './components/hotel/hotel-create/hotel-create.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { UserComponent } from './components/user/user.component';
-import { UserService } from "./services/user.service";
+import { UserService } from './services/user.service';
 import { UserDetailComponent } from './components/user/user-detail/user-detail.component';
 import { LoginComponent } from './components/user/login/login.component';
 import { RegistrationComponent } from './components/user/registration/registration.component';
-import { AuthInterceptor } from "./auth/auth.interceptor";
+import { AuthInterceptor } from './auth/auth.interceptor';
 import { AdminComponent } from './components/admin/admin.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { MatRadioModule } from '@angular/material/radio';
 import { ReservationComponent } from './components/reservation/reservation.component';
-import { MatDatepickerModule } from '@angular/material/datepicker'; 
+import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 import { ContactComponent } from './components/home/contact/contact.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-
+import { HotelSearchComponent } from './components/hotel/hotel-search/hotel-search.component';
 
 @NgModule({
   declarations: [
@@ -50,7 +50,8 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     UserDetailComponent,
     AdminComponent,
     ReservationComponent,
-    ContactComponent
+    ContactComponent,
+    HotelSearchComponent
   ],
   imports: [
     BrowserModule,
@@ -63,23 +64,23 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
       progressBar: true
     }),
     BrowserAnimationsModule,
-    MatCheckboxModule,  
-    MatDialogModule,  
-    MatToolbarModule,  
-    MatInputModule,  
-    MatSelectModule,   
+    MatCheckboxModule,
+    MatDialogModule,
+    MatToolbarModule,
+    MatInputModule,
+    MatSelectModule,
     MatTabsModule,
     MatTableModule,
     MatRadioModule,
     FontAwesomeModule,
-    MatDatepickerModule, 
+    MatDatepickerModule,
     MatNativeDateModule, NgbModule
   ],
   providers: [UserService, {
     provide: HTTP_INTERCEPTORS,
     useClass: AuthInterceptor,
     multi: true
-  }], 
+  }],
   entryComponents: [
     RegistrationComponent,
     HotelCreateComponent,

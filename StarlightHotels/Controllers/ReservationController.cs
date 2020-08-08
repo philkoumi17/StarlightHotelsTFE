@@ -34,7 +34,7 @@ namespace StarlightHotels.API.Controllers
         {
             var reservation = await _context.Reservations.FindAsync(id);
 
-            if (reservation == null)
+            if(reservation == null)
             {
                 return NotFound();
             }

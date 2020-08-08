@@ -108,12 +108,34 @@ namespace StarlightHotels.API.Controllers
             return _context.Hotels.Any(e => e.Id == id);
         }
 
+        // Return the list of countries
         // Get: api/Hotel/GetCountries
         [HttpGet]
         [Route("GetCountries")]
         public async Task<ActionResult<IEnumerable<PaysModel>>> GetCountries()
         {
             return await _context.Pays.ToListAsync();
+        }
+
+        // Return the list of cities by the country's choice
+        // Get: api/Hotel/GetCitiesByCountry
+        [HttpGet]
+        [Route("GetCitiesByCountry/{paysId}")]
+        public async Task<ActionResult<List<string>>> GetCitiesByCountry(int paysId)
+        {
+            var hotels = await _context.Hotels.Where(h => h.PaysId == paysId).ToListAsync();
+            var villes = hotels.Select(s => s.Ville).ToList();
+            return villes.Distinct().ToList();
+        }
+
+        // Get: api/Hotel/SearchHotels
+        [HttpGet]
+        [Route("SearchHotels")]
+        public async Task<ActionResult<List<string>>> SearchHotels(int paysId, string city, DateTime arrDate, DateTime depDate)
+        {
+            var hotels = await _context.Hotels.Where(h => h.PaysId == paysId && h.Ville == city).ToListAsync();
+            
+            return Ok(hotels);
         }
     }
 }

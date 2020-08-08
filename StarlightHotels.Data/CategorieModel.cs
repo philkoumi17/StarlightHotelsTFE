@@ -25,11 +25,6 @@ namespace StarlightHotels.Models
         [StringLength(255)]
         public string Descriptif { get; set; }
 
-        [Column("CAT_Image")]
-        [Display(Name = "Image")]
-        [StringLength(255)]
-        public string Image { get; set; }
-
         [Column("CAT_Superficie")]
         [Display(Name = "Superficie")]
         public double Superficie { get; set; }

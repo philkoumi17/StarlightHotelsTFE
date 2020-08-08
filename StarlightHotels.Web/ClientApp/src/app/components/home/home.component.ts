@@ -15,6 +15,7 @@ import { NgbDateStruct } from '@ng-bootstrap/ng-bootstrap';
 export class HomeComponent implements OnInit {
   modelArrival: NgbDateStruct;
   modelDeparture: NgbDateStruct;
+  city: string;
   allCountries: Pays[];
   allCities: string[];
   paysId: number;
@@ -47,9 +48,18 @@ export class HomeComponent implements OnInit {
     this.selectedCity = city;
   }
 
-  // tslint:disable-next-line: typedef
   onSearch()
   {
 
   }
+
+  // tslint:disable-next-line: typedef
+  /* async onSearch()
+  {
+    await this.service.searchHotels(this.paysId, this.city, this.modelArrival, this.modelDeparture).then(
+      (data) => {
+        this.service.majHotel(data);
+        this.router.navigateByUrl('/hotel-search');
+    });
+  } */
 }
