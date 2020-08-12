@@ -71,7 +71,7 @@ export class HotelComponent implements OnInit {
   updateHotel(hotel: Hotel)
   {
     // tslint:disable-next-line: triple-equals
-    if (hotel.id != 0)
+    if(hotel.id != 0)
     {
       this.hotelService.updateHotel().subscribe(() => {
         this.hotelForm.controls.id.setValue(hotel.id);
@@ -117,19 +117,6 @@ export class HotelComponent implements OnInit {
       this.hotelForm.controls['checkOut'].setValue(hotel.checkOut);
     });
   }
-
-  /* delete(hotelId: number) {
-    if(confirm("Are you sure you want to delete this ?"))
-    {
-      this.hotelService.deleteHotel(hotelId).subscribe(() => {
-        this.dataSaved = true;
-        this.toastr.success('This hotel is deleted with success', 'Deletion successful !');
-        this.LoadData();
-        this.hotelIdUpdate = null;
-        this.hotelForm.reset();
-      });
-    }
-  } */
 
   // A dialog for hotel's details
   // tslint:disable-next-line: typedef

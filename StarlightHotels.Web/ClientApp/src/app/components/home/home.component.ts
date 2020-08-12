@@ -3,7 +3,7 @@ import { Router } from '@angular/router';
 import { UserService } from '../../services/user.service';
 import { Pays } from 'src/app/models/pays.model';
 import { HotelService } from 'src/app/services/hotel.service';
-import { NgbDateStruct } from '@ng-bootstrap/ng-bootstrap';
+import { NgbDateStruct, NgbDate } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-home',
@@ -15,11 +15,11 @@ import { NgbDateStruct } from '@ng-bootstrap/ng-bootstrap';
 export class HomeComponent implements OnInit {
   modelArrival: NgbDateStruct;
   modelDeparture: NgbDateStruct;
-  city: string;
   allCountries: Pays[];
   allCities: string[];
   paysId: number;
   selectedCity: string;
+  minDate: NgbDateStruct;
   title = 'StarlightHotels';
   constructor(private router: Router, private service: HotelService, private userService: UserService) { }
 
@@ -29,6 +29,8 @@ export class HomeComponent implements OnInit {
         this.allCountries = data;
       }
     );
+    let today = new Date();
+    this.minDate = {year: today.getFullYear(), month: today.getMonth(), day: today.getDay()};
   }
 
   // tslint:disable-next-line: typedef
@@ -48,18 +50,23 @@ export class HomeComponent implements OnInit {
     this.selectedCity = city;
   }
 
-  onSearch()
-  {
-
-  }
-
   // tslint:disable-next-line: typedef
-  /* async onSearch()
+  async onSearch()
   {
-    await this.service.searchHotels(this.paysId, this.city, this.modelArrival, this.modelDeparture).then(
-      (data) => {
-        this.service.majHotel(data);
-        this.router.navigateByUrl('/hotel-search');
-    });
-  } */
+    let dateA = new Date(this.modelArrival.year, this.modelArrival.month, this.modelArrival.day);
+    let dateB = new Date(this.modelDeparture.year, this.modelDeparture.month, this.modelDeparture.day);
+    // TODO for validation on dates
+    if (dateA < dateB)
+    {
+      await this.service.searchHotels(this.paysId, this.selectedCity, dateA, dateB).then(
+        (data) => {
+          this.service.setHotel(data);
+          this.router.navigateByUrl('/hotel-search');
+      });
+    }
+    else
+    {
+      console.log('ERROR! Choose an other date before the date departure');
+    }
+  }
 }
