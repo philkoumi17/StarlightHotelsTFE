@@ -7,6 +7,8 @@ import { HotelComponent } from './components/hotel/hotel.component';
 import { AuthGuard } from './auth/auth.guard';
 import { UserDetailComponent } from './components/user/user-detail/user-detail.component';
 import { ContactComponent } from './components/home/contact/contact.component';
+import { HotelSearchComponent } from './components/hotel/hotel-search/hotel-search.component';
+import { ReservationComponent } from './components/reservation/reservation.component';
 
 
 const routes: Routes = [
@@ -16,6 +18,8 @@ const routes: Routes = [
   { path: 'user-detail', component: UserDetailComponent},
   // Si aucune connaissance du lien, cela redirige vers la page d'accueil
   { path: 'hotel', component: HotelComponent},
+  { path: 'hotel-search', component: HotelSearchComponent},
+  { path: 'book-hotel/:id', component: ReservationComponent},
   { path: '**', redirectTo: '' }
 ];
 

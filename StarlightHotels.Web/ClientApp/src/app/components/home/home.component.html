@@ -45,9 +45,9 @@
                         </div>
                         <!-- Dates -->
                         <div class="col-sm ">
-                            <label for="checkOutDate ">Arrival date :</label>
+                            <label for="checkOutDate">Arrival date :</label>
                             <div class="input-group">
-                                <input class="form-control" placeholder="yyyy-mm-dd" name="arrival" [(ngModel)]="modelArrival" ngbDatepicker #arrD="ngbDatepicker">
+                                <input class="form-control" placeholder="yyyy-mm-dd" name="arrival" [minDate]="minDate" [(ngModel)]="modelArrival" ngbDatepicker #arrD="ngbDatepicker">
                                 <div class="input-group-append">
                                     <button class="btn btn-outline-secondary calendar" (click)="arrD.toggle()" type="button"></button>
                                 </div>
@@ -72,7 +72,7 @@
                                 <option *ngFor="let v of allCities" [value]="v">{{ v }}</option>
                             </select>
                         </div>
-                        <div class="col-sm ">
+                        <div class="col-sm">
                             <label for="checkOutDate">Departure date :</label>
                             <div class="input-group">
                                 <input class="form-control" placeholder="yyyy-mm-dd" name="departure" [(ngModel)]="modelDeparture" ngbDatepicker #depD="ngbDatepicker">

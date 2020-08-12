@@ -87,22 +87,6 @@ namespace StarlightHotels.API.Controllers
             return CreatedAtAction("GetHotel", new { id = hotel.Id }, hotel);
         }
 
-        // DELETE: api/Hotel/5
-        [HttpDelete("{id}")]
-        public async Task<ActionResult<HotelModel>> DeleteHotel(int id)
-        {
-            var hotel = await _context.Hotels.FindAsync(id);
-            if(hotel == null)
-            {
-                return NotFound();
-            }
-
-            _context.Hotels.Remove(hotel);
-            await _context.SaveChangesAsync();
-
-            return hotel;
-        }
-
         private bool HotelExists(int id)
         {
             return _context.Hotels.Any(e => e.Id == id);
@@ -131,10 +115,31 @@ namespace StarlightHotels.API.Controllers
         // Get: api/Hotel/SearchHotels
         [HttpGet]
         [Route("SearchHotels")]
-        public async Task<ActionResult<List<string>>> SearchHotels(int paysId, string city, DateTime arrDate, DateTime depDate)
+        public async Task<ActionResult<List<HotelModel>>> SearchHotels(int paysId, string city, string arrDate, string depDate)
         {
-            var hotels = await _context.Hotels.Where(h => h.PaysId == paysId && h.Ville == city).ToListAsync();
+            var hotels = await _context.Hotels.Where(h => h.PaysId == paysId && h.Ville == city && h.Actif == true).ToListAsync();
             
+            return Ok(hotels);
+        }
+
+        // Get: api/Hotel/SearchHotelsByTheme
+        [HttpGet]
+        [Route("SearchHotelsByTheme")]
+        public async Task<ActionResult<List<HotelModel>>> SearchHotelsByTheme(int themeId)
+        {
+            var hotelThemes = await _context.HotelThemes.Where(h => h.ThemeId == themeId).ToListAsync();
+            var hotels = await _context.Hotels.Where(h => h.HotelThemes == hotelThemes && h.Actif == true).ToListAsync();
+
+            return Ok(hotels);
+        }
+
+        // Get: api/Hotel/SearchHotelsByTop
+        [HttpGet]
+        [Route("SearchHotelsByTop")]
+        public async Task<ActionResult<List<HotelModel>>> SearchHotelsByTop()
+        {
+            var hotels = await _context.Hotels.Where(h => h.TopDestination == true && h.Actif == true).ToListAsync();
+
             return Ok(hotels);
         }
     }

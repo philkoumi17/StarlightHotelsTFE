@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Hotel } from 'src/app/models/hotel.model';
 import { HotelService } from 'src/app/services/hotel.service';
+import { Pays } from 'src/app/models/pays.model';
 
 @Component({
   selector: 'app-hotel-search',
@@ -8,13 +9,12 @@ import { HotelService } from 'src/app/services/hotel.service';
   styleUrls: ['./hotel-search.component.css']
 })
 export class HotelSearchComponent implements OnInit {
-  hotel: Hotel;
+  hotellist: Hotel[];
 
   constructor(private hotelService: HotelService) { }
 
   ngOnInit(): void
   {
-    this.hotelService.hotelData.subscribe(data => this.hotel = data);
+    this.hotelService.hotelData.subscribe(data => this.hotellist = data);
   }
-
 }
