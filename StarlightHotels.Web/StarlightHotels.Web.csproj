@@ -28,6 +28,10 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Remove="ClientApp\src\app\models\search-hotel.model.ts" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Folder Include="_intellisense\" />
   </ItemGroup>
 

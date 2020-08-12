@@ -1,10 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using StarlightHotels.API.Models;
 using StarlightHotels.DAL.Data;
 using StarlightHotels.Models;
 
@@ -113,12 +112,25 @@ namespace StarlightHotels.API.Controllers
         }
 
         // Get: api/Hotel/SearchHotels
-        [HttpGet]
+        [HttpPost]
         [Route("SearchHotels")]
-        public async Task<ActionResult<List<HotelModel>>> SearchHotels(int paysId, string city, string arrDate, string depDate)
+        public async Task<ActionResult<List<HotelModel>>> SearchHotels(SearchHotelModel searchHotel)
         {
-            var hotels = await _context.Hotels.Where(h => h.PaysId == paysId && h.Ville == city && h.Actif == true).ToListAsync();
-            
+            List<HotelModel> hotels;
+
+            if (searchHotel.PaysId == 0)
+            {
+                hotels = await _context.Hotels.Where(h => h.Actif).ToListAsync();
+            }
+            else if(string.IsNullOrEmpty(searchHotel.City))
+            {
+                hotels = await _context.Hotels.Where(h => h.PaysId == searchHotel.PaysId && h.Actif).ToListAsync();
+            }
+            else
+            {
+                hotels = await _context.Hotels.Where(h => h.PaysId == searchHotel.PaysId && h.Ville == searchHotel .City && h.Actif).ToListAsync();
+            }
+
             return Ok(hotels);
         }
 
