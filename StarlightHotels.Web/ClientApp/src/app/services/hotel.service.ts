@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { FormBuilder, Validators, FormGroup, FormControl } from '@angular/forms';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Hotel } from '../models/hotel.model';
+import { SearchHotelModel } from '../models/search-hotel.model';
 import { Observable, BehaviorSubject } from 'rxjs';
 import { Pays } from '../models/pays.model';
 
@@ -114,9 +115,22 @@ export class HotelService
     .then(res => this.list = res as Hotel[]);
   }
 
+  /**
+   * Search hotel from api
+   * @param paysId
+   * @param city
+   * @param arrD
+   * @param depD
+   */
   async searchHotels(paysId: number, city: string, arrD?: Date, depD?: Date)
   {
-    // tslint:disable-next-line: max-line-length
-    return await this.http.get<Hotel[]>(`${this.baseURI}/Hotel/SearchHotels?paysId=${paysId}&city=${city}&arrDate=${arrD}&depDate=${depD}`).toPromise();
+    let searchHotelModel: SearchHotelModel = {
+      paysId: paysId,
+      city: city,
+      arrivalDate: arrD,
+      departureDate: depD
+    } as SearchHotelModel;
+
+    return await this.http.post<Hotel[]>(this.baseURI + '/Hotel/SearchHotels', searchHotelModel).toPromise();
   }
 }
