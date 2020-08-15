@@ -1,1 +1,56 @@
-<p>reservation works!</p>
+<app-navbar></app-navbar>
+<div class="container">
+    <h1 class="mt-3" style="text-align: center;">My bookings:</h1>
+    <div class="row">
+        <div class="col-12">
+            <table class="table" data-toggle="table" data-search="true" data-pagination="true">
+                <thead style="text-align: center;">
+                    <tr>
+                        <th data-sortable="true">Ref</th>
+                        <th data-sortable="true">Debut du séjour</th>
+                        <th data-sortable="true">Nombre d'adultes</th>
+                        <th data-sortable="true">Nombre d'enfants</th>
+                        <th data-sortable="true">Statut de la réservation</th>
+                        <th>Montant total</th>
+                        <th>Display | Cancel</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>1</td>
+                        <td>Enceintes</td>
+                        <td>35 €</td>
+                        <td>1</td>
+                        <td>1</td>
+                        <td>1</td>
+                        <td style="border-collapse: collapse;">
+                            <button class="btn btn-info" ng-click="r.changeView('requests/edit/' + request.id)">
+                                <i class="fas fa-info-circle"></i> Detail
+                            </button>
+                            <button class="btn btn-danger" ng-click="r.changeView('requests/edit/' + request.id)">
+                                <i class="fas fa-window-close"></i> Cancel
+                            </button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>2</td>
+                        <td>Enceintes</td>
+                        <td>35 €</td>
+                        <td>1</td>
+                        <td>1</td>
+                        <td>1</td>
+                        <td>
+                            <button class="btn btn-info" ng-click="r.changeView('requests/edit/' + request.id)">
+                                <i class="fas fa-info-circle"></i> Detail
+                            </button>
+                            <button class="btn btn-danger" ng-click="r.changeView('requests/edit/' + request.id)">
+                                <i class="fas fa-window-close"></i> Cancel
+                            </button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+<app-footer></app-footer>

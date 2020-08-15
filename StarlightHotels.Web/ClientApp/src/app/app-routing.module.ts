@@ -9,6 +9,8 @@ import { UserDetailComponent } from './components/user/user-detail/user-detail.c
 import { ContactComponent } from './components/home/contact/contact.component';
 import { HotelSearchComponent } from './components/hotel/hotel-search/hotel-search.component';
 import { ReservationComponent } from './components/reservation/reservation.component';
+import { ReservationCreateComponent } from './components/reservation/reservation-create/reservation-create.component';
+import { ReservationDetailTarifComponent } from './components/reservation/reservation-create/reservation-detail-tarif/reservation-detail-tarif.component';
 
 
 const routes: Routes = [
@@ -19,7 +21,10 @@ const routes: Routes = [
   // Si aucune connaissance du lien, cela redirige vers la page d'accueil
   { path: 'hotel', component: HotelComponent},
   { path: 'hotel-search', component: HotelSearchComponent},
-  { path: 'book-hotel/:id', component: ReservationComponent},
+  { path: 'list-of-bookings', component: ReservationComponent},
+  { path: 'book-hotel/:id', component: ReservationCreateComponent},
+  { path: 'book-hotel/detailTarif/:id', component: ReservationDetailTarifComponent},
+  // { path: 'book-hotel/:id', component: ReservationCreateComponent},
   { path: '**', redirectTo: '' }
 ];
 

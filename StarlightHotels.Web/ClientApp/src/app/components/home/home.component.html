@@ -1,297 +1,285 @@
 <app-navbar></app-navbar>
 <div class="jumbotron mt-3">
-  <header>
-    <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
-      <ol class="carousel-indicators">
-        <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
-        <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
-        <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
-      </ol>
-      <div class="carousel-inner">
-        <div class="carousel-item active">
-          <img src="https://theseboots.travel/wp-content/uploads/2019/02/image-8-1024x385.png" class="d-block w-100" alt="...">
-        </div>
-        <div class="carousel-item">
-          <img src="https://www.multi-skype-launcher.com/wp-content/uploads/2019/04/travel-1200x480.jpg" class="d-block w-100" alt="...">
-        </div>
-        <div class="carousel-item">
-          <img src="https://www.samanthasault.com/wp-content/uploads/2019/05/Cas-Costas-2-1200x480.jpg" class="d-block w-100" alt="...">
-        </div>
-      </div>
-      <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
-        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-        <span class="sr-only">Previous</span>
-      </a>
-      <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
-        <span class="carousel-control-next-icon" aria-hidden="true"></span>
-        <span class="sr-only">Next</span>
-      </a>
-    </div>
-  </header>
-
-  <div class="card card-primary">
-    <div class="card-header">
-      <h3 class="card-title"><span class="glyphicon glyphicon-search"></span> Search</h3>
-    </div>
-    <div class="card-body" style="align-content: center;">
-      <div class="container ">
-        <form>
-          <div class="row">
-            <div class="col-sm ">
-              <label for="txtPays">Country: </label>
-              <select class="form-control" #p (change)="getCities(p.value)">
-                <option>All</option>
-                <option *ngFor="let pays of allCountries" [value]="pays.id">{{pays.nom}}</option>
-              </select>
-            </div>
-            <!-- Dates -->
-            <div class="col-sm ">
-              <label for="checkOutDate">Arrival date :</label>
-              <div class="input-group">
-                <input class="form-control"
-                       placeholder="yyyy-mm-dd"
-                       name="arrival"
-                       [(ngModel)]="modelArrival"
-                       ngbDatepicker
-                       #arrD="ngbDatepicker"
-                       [minDate]="fromDate">
-                <div class="input-group-append">
-                  <button class="btn btn-outline-secondary calendar" (click)="arrD.toggle()" type="button"></button>
+    <header>
+        <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+            <ol class="carousel-indicators">
+                <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+                <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+                <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+            </ol>
+            <div class="carousel-inner">
+                <div class="carousel-item active">
+                    <img src="https://theseboots.travel/wp-content/uploads/2019/02/image-8-1024x385.png" class="d-block w-100" alt="...">
                 </div>
-              </div>
-            </div>
-
-            <div class="col-sm ">
-              <label for="nbAdults ">Adults :</label>
-              <input type="number" class="form-control">
-            </div>
-            <div class="col-sm ">
-              <div class="form-group ">
-                <input type="button" value="Search" (click)="onSearch()" class="btn btn-primary mt-4 mr-3 ">
-              </div>
-            </div>
-          </div>
-          <div class="row">
-            <div class="col-sm ">
-              <label for="txtPays ">City: </label>
-              <select id="countryChoice" #v class="form-control" (change)="setCity(v.value)">
-                <option>All</option>
-                <option *ngFor="let v of allCities" [value]="v">{{ v }}</option>
-              </select>
-            </div>
-            <div class="col-sm">
-              <label for="checkOutDate">Departure date :</label>
-              <div class="input-group">
-                <input class="form-control"
-                       placeholder="yyyy-mm-dd"
-                       name="departure"
-                       [(ngModel)]="modelDeparture"
-                       ngbDatepicker
-                       #depD="ngbDatepicker"
-                       [minDate]="modelArrival">
-                <div class="input-group-append">
-                  <button class="btn btn-outline-secondary calendar" (click)="depD.toggle()" type="button"></button>
+                <div class="carousel-item">
+                    <img src="https://www.multi-skype-launcher.com/wp-content/uploads/2019/04/travel-1200x480.jpg" class="d-block w-100" alt="...">
                 </div>
-              </div>
+                <div class="carousel-item">
+                    <img src="https://www.samanthasault.com/wp-content/uploads/2019/05/Cas-Costas-2-1200x480.jpg" class="d-block w-100" alt="...">
+                </div>
             </div>
-            <div class="col-sm ">
-              <label for="nbAdults">Children :</label>
-              <input type="number" class="form-control ">
-            </div>
-            <div class="col-sm">
-            </div>
-          </div>
-          <div class="row error text-danger" *ngIf="error">
-              <label for="error">{{errorMessage}}</label>
-          </div>
-        </form>
-      </div>
-    </div>
-  </div>
+            <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="sr-only">Previous</span>
+            </a>
+            <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="sr-only">Next</span>
+            </a>
+        </div>
+    </header>
 
-  <div class="container ">
-    <div class="col-lg-12 ">
-      <h1 class="font-weight-light text-center text-lg-left mt-4 mb-0 ">Our Popular Destinations</h1>
-      <hr class="mt-2 mb-5 ">
-      <div class="row text-center text-lg-left ">
-        <div class="col-lg-6 col-md-4 col-6 p-1 ">
-          <a href="# " class="d-block h-100 ">
-            <img class="img-fluid w-100 " src="https://source.unsplash.com/pWkk7iiCoDM/400x300 " alt=" ">
-          </a>
-          <div class="card-img-overlay text-white ">
-            <h2 class="ugali ">Mwanza</h2>
-          </div>
+    <div class="card card-primary">
+        <div class="card-header">
+            <h3 class="card-title"><i class="fas fa-search"></i> Search</h3>
         </div>
-        <div class="col-lg-3 col-md-4 col-6 p-1 ">
-          <a href="# " class="d-block mb-4 h-100 ">
-            <img class="img-fluid " src="https://source.unsplash.com/aob0ukAYfuI/400x300 " alt=" ">
-          </a>
-          <div class="card-img-overlay text-white ">
-            <h2 class="ugali ">Mwanza</h2>
-          </div>
-        </div>
-        <div class="col-lg-3 col-md-4 col-6 p-1 ">
-          <a href="# " class="d-block h-100 ">
-            <img class="img-fluid " src="https://source.unsplash.com/EUfxH-pze7s/400x300 " alt=" ">
-          </a>
-          <div class="card-img-overlay text-white ">
-            <h2>Arusha</h2>
-          </div>
-        </div>
-        <div class="col-lg-3 col-md-6 col-6 p-1 ">
-          <a href="# " class="d-block h-100 ">
-            <img class="img-fluid " src="https://source.unsplash.com/M185_qYH8vg/400x300 " alt=" ">
-          </a>
-          <div class="card-img-overlay text-white ">
-            <h2 class="ugali ">Mwanza</h2>
-          </div>
-        </div>
-        <div class="col-lg-3 col-md-4 col-6 p-1 ">
-          <a href="# " class="d-block mb-4 h-100 ">
-            <img class="img-fluid " src="https://source.unsplash.com/sesveuG_rNo/400x300 " alt=" ">
-          </a>
-          <div class="card-img-overlay text-white ">
-            <h2 class="ugali ">Mwanza</h2>
-          </div>
-        </div>
-        <div class="col-lg-6 col-md-8 col-8 p-1 ">
-          <a href="# " class="d-block h-100 ">
-            <img class="img-fluid w-100 fix-im " src="https://source.unsplash.com/AvhMzHwiE_0/400x300 " alt=" ">
-          </a>
-          <div class="card-img-overlay text-white ">
-            <h2 class="ugali ">Mwanza</h2>
-          </div>
-        </div>
-        <div class="col-lg-4 col-md-8 col-6 p-1 fix-im ">
-          <a href="# " class="d-block h-100 ">
-            <img class="img-fluid " src="https://source.unsplash.com/sesveuG_rNo/400x300 " alt=" ">
-          </a>
-          <div class="card-img-overlay text-white ">
-            <h2 class="ugali ">Mwanza</h2>
-          </div>
-        </div>
-        <div class="col-lg-4 col-md-6 col-8 p-1 ">
-          <a href="# " class="d-block h-100 ">
-            <img class="img-fluid fix-im " src="https://source.unsplash.com/AvhMzHwiE_0/400x300 " alt=" ">
-          </a>
-          <div class="card-img-overlay text-white ">
-            <h2 class="ugali ">Mwanza</h2>
-          </div>
-        </div>
-        <div class="col-lg-4 col-md-4 col-6 p-1 ">
-          <a href="# " class="d-block h-100 ">
-            <img class="img-fluid fix-im " src="https://source.unsplash.com/2gYsZUmockw/400x300 " alt=" ">
-          </a>
-          <div class="card-img-overlay text-white ">
-            <h2 class="ugali ">Mwanza</h2>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
+        <div class="card-body" style="align-content: center;">
+            <div class="container">
+                <form>
+                    <div class="row">
+                        <div class="col-sm ">
+                            <label for="txtPays">Country: </label>
+                            <select class="form-control" #p (change)="getCities(p.value)">
+                              <option>All</option>
+                              <option *ngFor="let pays of allCountries" [value]="pays.id">{{pays.nom}}</option>
+                            </select>
+                        </div>
+                        <!-- Dates -->
+                        <div class="col-sm ">
+                            <label for="checkOutDate">Arrival date :</label>
+                            <div class="input-group">
+                                <input class="form-control" placeholder="yyyy-mm-dd" name="arrival" [(ngModel)]="modelArrival" ngbDatepicker #arrD="ngbDatepicker" [minDate]="fromDate">
+                                <div class="input-group-append">
+                                    <button class="btn btn-outline-secondary calendar" (click)="arrD.toggle()" type="button"></button>
+                                </div>
+                            </div>
+                        </div>
 
-  <!-- Header -->
-  <header class="bg-primary text-center py-5 mb-4 ">
+                        <div class="col-sm ">
+                            <label for="nbAdults ">Adults :</label>
+                            <input type="number" class="form-control">
+                        </div>
+                        <div class="col-sm ">
+                            <div class="form-group ">
+                                <input type="button" value="Search" (click)="onSearch()" class="btn btn-primary mt-4 mr-3 ">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm ">
+                            <label for="txtPays ">City: </label>
+                            <select id="countryChoice" #v class="form-control" (change)="setCity(v.value)">
+                              <option>All</option>
+                              <option *ngFor="let v of allCities" [value]="v">{{ v }}</option>
+                            </select>
+                        </div>
+                        <div class="col-sm">
+                            <label for="checkOutDate">Departure date :</label>
+                            <div class="input-group">
+                                <input class="form-control" placeholder="yyyy-mm-dd" name="departure" [(ngModel)]="modelDeparture" ngbDatepicker #depD="ngbDatepicker" [minDate]="modelArrival">
+                                <div class="input-group-append">
+                                    <button class="btn btn-outline-secondary calendar" (click)="depD.toggle()" type="button"></button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm ">
+                            <label for="nbAdults">Children :</label>
+                            <input type="number" class="form-control ">
+                        </div>
+                        <div class="col-sm">
+                        </div>
+                    </div>
+                    <div class="row error text-danger" *ngIf="error">
+                        <label for="error">{{errorMessage}}</label>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
     <div class="container ">
-      <h1 class="font-weight-light text-white " style="text-align: center; ">Book With Us Now and get 10% discount!</h1>
+        <div class="col-lg-12 ">
+            <h1 class="font-weight-light text-center text-lg-left mt-4 mb-0 ">Our Popular Destinations</h1>
+            <hr class="mt-2 mb-5 ">
+            <div class="row text-center text-lg-left ">
+                <div class="col-lg-6 col-md-4 col-6 p-1 ">
+                    <a href="# " class="d-block h-100 ">
+                        <img class="img-fluid w-100 " src="https://source.unsplash.com/pWkk7iiCoDM/400x300 " alt=" ">
+                    </a>
+                    <div class="card-img-overlay text-white ">
+                        <h2 class="ugali ">Mwanza</h2>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-4 col-6 p-1 ">
+                    <a href="# " class="d-block mb-4 h-100 ">
+                        <img class="img-fluid " src="https://source.unsplash.com/aob0ukAYfuI/400x300 " alt=" ">
+                    </a>
+                    <div class="card-img-overlay text-white ">
+                        <h2 class="ugali ">Mwanza</h2>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-4 col-6 p-1 ">
+                    <a href="# " class="d-block h-100 ">
+                        <img class="img-fluid " src="https://source.unsplash.com/EUfxH-pze7s/400x300 " alt=" ">
+                    </a>
+                    <div class="card-img-overlay text-white ">
+                        <h2>Arusha</h2>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6 col-6 p-1 ">
+                    <a href="# " class="d-block h-100 ">
+                        <img class="img-fluid " src="https://source.unsplash.com/M185_qYH8vg/400x300 " alt=" ">
+                    </a>
+                    <div class="card-img-overlay text-white ">
+                        <h2 class="ugali ">Mwanza</h2>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-4 col-6 p-1 ">
+                    <a href="# " class="d-block mb-4 h-100 ">
+                        <img class="img-fluid " src="https://source.unsplash.com/sesveuG_rNo/400x300 " alt=" ">
+                    </a>
+                    <div class="card-img-overlay text-white ">
+                        <h2 class="ugali ">Mwanza</h2>
+                    </div>
+                </div>
+                <div class="col-lg-6 col-md-8 col-8 p-1 ">
+                    <a href="# " class="d-block h-100 ">
+                        <img class="img-fluid w-100 fix-im " src="https://source.unsplash.com/AvhMzHwiE_0/400x300 " alt=" ">
+                    </a>
+                    <div class="card-img-overlay text-white ">
+                        <h2 class="ugali ">Mwanza</h2>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-8 col-6 p-1 fix-im ">
+                    <a href="# " class="d-block h-100 ">
+                        <img class="img-fluid " src="https://source.unsplash.com/sesveuG_rNo/400x300 " alt=" ">
+                    </a>
+                    <div class="card-img-overlay text-white ">
+                        <h2 class="ugali ">Mwanza</h2>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6 col-8 p-1 ">
+                    <a href="# " class="d-block h-100 ">
+                        <img class="img-fluid fix-im " src="https://source.unsplash.com/AvhMzHwiE_0/400x300 " alt=" ">
+                    </a>
+                    <div class="card-img-overlay text-white ">
+                        <h2 class="ugali ">Mwanza</h2>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-4 col-6 p-1 ">
+                    <a href="# " class="d-block h-100 ">
+                        <img class="img-fluid fix-im " src="https://source.unsplash.com/2gYsZUmockw/400x300 " alt=" ">
+                    </a>
+                    <div class="card-img-overlay text-white ">
+                        <h2 class="ugali ">Mwanza</h2>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
-  </header>
 
-  <h2>Nos chambres</h2>
-
-  <div class="row mt-5 ">
-    <div class="col-md-4 ">
-      <div class="card bg-light mb-3 ">
-        <div class="card-header text-center ">
-          3 chambres, <strong>49&euro; / nuit</strong>
-          <br>
-          <small>Pas encore noté</small>
+    <!-- Header -->
+    <header class="bg-primary text-center py-5 mb-4 ">
+        <div class="container">
+            <h1 class="font-weight-light text-white" style="text-align: center; ">Book With Us Now and get 10% discount!</h1>
         </div>
+    </header>
 
-        <img src="http://placehold.it/1000x400 " alt="Image de l 'hôtel" style="height: 200px; width: 100%; display: block;">
+    <h2>Nos chambres</h2>
 
-        <div class="card-body">
-          <h4 class="card-title">Hôtel de ouf!</h4>
-          <p class="card-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Maxime, atque?</p>
-          <a href="#" class="btn btn-info">En savoir plus !</a>
+    <div class="row mt-5">
+        <div class="col-md-4">
+            <div class="card bg-light mb-3">
+                <div class="card-header text-center">
+                    3 chambres, <strong>49&euro; / nuit</strong>
+                    <br>
+                    <small>Pas encore noté</small>
+                </div>
+
+                <img src="http://placehold.it/1000x400 " alt="Image de l 'hôtel" style="height: 200px; width: 100%; display: block;">
+
+                <div class="card-body">
+                    <h4 class="card-title">Hôtel de ouf!</h4>
+                    <p class="card-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Maxime, atque?</p>
+                    <a href="#" class="btn btn-info">En savoir plus !</a>
+                </div>
+            </div>
         </div>
-      </div>
+        <div class="col-md-4">
+            <div class="card bg-light mb-3">
+                <div class="card-header text-center">
+                    3 chambres, <strong>49&euro; / nuit</strong>
+                    <br>
+                    <small>Pas encore noté</small>
+                </div>
+
+                <img src="http://placehold.it/1000x400" alt="Image de l'hôtel" style="height: 200px; width: 100%; display: block;">
+
+                <div class="card-body">
+                    <h4 class="card-title">Hôtel de ouf!</h4>
+                    <p class="card-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Maxime, atque?</p>
+                    <a href="#" class="btn btn-info">En savoir plus !</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4 ">
+            <div class="card bg-light mb-3 ">
+                <div class="card-header text-center ">
+                    3 chambres, <strong>49&euro; / nuit</strong>
+                    <br>
+                    <small>Pas encore noté</small>
+                </div>
+
+                <img src="http://placehold.it/1000x400 " alt="Image de l 'hôtel" style="height: 200px; width: 100%; display: block;">
+
+                <div class="card-body">
+                    <h4 class="card-title">Hôtel de ouf!</h4>
+                    <p class="card-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Maxime, atque?</p>
+                    <a href="#" class="btn btn-info">En savoir plus !</a>
+                </div>
+            </div>
+        </div>
     </div>
-    <div class="col-md-4">
-      <div class="card bg-light mb-3">
-        <div class="card-header text-center">
-          3 chambres, <strong>49&euro; / nuit</strong>
-          <br>
-          <small>Pas encore noté</small>
-        </div>
-
-        <img src="http://placehold.it/1000x400" alt="Image de l'hôtel" style="height: 200px; width: 100%; display: block;">
-
-        <div class="card-body">
-          <h4 class="card-title">Hôtel de ouf!</h4>
-          <p class="card-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Maxime, atque?</p>
-          <a href="#" class="btn btn-info">En savoir plus !</a>
-        </div>
-      </div>
-    </div>
-    <div class="col-md-4 ">
-      <div class="card bg-light mb-3 ">
-        <div class="card-header text-center ">
-          3 chambres, <strong>49&euro; / nuit</strong>
-          <br>
-          <small>Pas encore noté</small>
-        </div>
-
-        <img src="http://placehold.it/1000x400 " alt="Image de l 'hôtel" style="height: 200px; width: 100%; display: block;">
-
-        <div class="card-body">
-          <h4 class="card-title">Hôtel de ouf!</h4>
-          <p class="card-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Maxime, atque?</p>
-          <a href="#" class="btn btn-info">En savoir plus !</a>
-        </div>
-      </div>
-    </div>
-  </div>
 </div>
 <div class="card card-primary">
-  <div class="card-header">
-    <h3 style="text-align: center;">Météo des top destinations</h3>
-  </div>
-  <div class="card-body">
-    <div class="list-inline">
-      <div class="card-body form-inline">
-        <div class="col-lg-2">
-          <!-- weather widget start -->
-          <a target="_blank" href="https://hotelmix.fr/weather/brussels-18068"><img src="https://w.bookcdn.com/weather/picture/1_18068_1_3_137AE9_160_ffffff_333333_08488D_1_ffffff_333333_0_6.png?scode=2&domid=581&anc_id=37465" alt="booked.net" /></a>
-          <!-- weather widget end -->
-        </div>
-        <div class="col-lg-2">
-          <!-- weather widget start -->
-          <a target="_blank" href="https://hotelmix.fr/weather/paris-18145"><img src="https://w.bookcdn.com/weather/picture/1_18145_1_3_137AE9_160_ffffff_333333_08488D_1_ffffff_333333_0_6.png?scode=124&domid=581&anc_id=84174" alt="booked.net" /></a>
-          <!-- weather widget end -->
-        </div>
-        <div class="col-lg-2">
-          <!-- weather widget start -->
-          <a target="_blank" href="https://hotelmix.fr/weather/london-18114"><img src="https://w.bookcdn.com/weather/picture/1_18114_1_3_137AE9_160_ffffff_333333_08488D_1_ffffff_333333_0_6.png?scode=124&domid=581&anc_id=18942" alt="booked.net" /></a>
-          <!-- weather widget end -->
-        </div>
-        <div class="col-lg-2">
-          <!-- weather widget start -->
-          <a target="_blank" href="https://hotelmix.fr/weather/saint-denis-2706"><img src="https://w.bookcdn.com/weather/picture/1_2706_1_3_137AE9_160_ffffff_333333_08488D_1_ffffff_333333_0_6.png?scode=124&domid=581&anc_id=45985" alt="booked.net" /></a>
-          <!-- weather widget end -->
-        </div>
-        <div class="col-lg-2">
-          <!-- weather widget start -->
-          <a target="_blank" href="https://hotelmix.fr/weather/marrakesh-18158"><img src="https://w.bookcdn.com/weather/picture/1_18158_1_3_137AE9_160_ffffff_333333_08488D_1_ffffff_333333_0_6.png?scode=124&domid=581&anc_id=53998" alt="booked.net" /></a>
-          <!-- weather widget end -->
-        </div>
-        <div class="col-lg-2">
-          <!-- weather widget start -->
-          <a target="_blank" href="https://hotelmix.fr/weather/antananarivo-9868"><img src="https://w.bookcdn.com/weather/picture/1_9868_1_3_137AE9_160_ffffff_333333_08488D_1_ffffff_333333_0_6.png?scode=124&domid=581&anc_id=72283" alt="booked.net" /></a>
-          <!-- weather widget end -->
-        </div>
-      </div>
+    <div class="card-header">
+        <h3 style="text-align: center;">Météo des top destinations</h3>
     </div>
-  </div>
+    <div class="card-body">
+        <div class="list-inline">
+            <div class="card-body form-inline">
+                <div class="col-lg-2">
+                    <!-- weather widget start -->
+                    <a target="_blank" href="https://hotelmix.fr/weather/brussels-18068"><img src="https://w.bookcdn.com/weather/picture/1_18068_1_3_137AE9_160_ffffff_333333_08488D_1_ffffff_333333_0_6.png?scode=2&domid=581&anc_id=37465" alt="booked.net" /></a>
+                    <!-- weather widget end -->
+                </div>
+                <div class="col-lg-2">
+                    <!-- weather widget start -->
+                    <a target="_blank" href="https://hotelmix.fr/weather/paris-18145"><img src="https://w.bookcdn.com/weather/picture/1_18145_1_3_137AE9_160_ffffff_333333_08488D_1_ffffff_333333_0_6.png?scode=124&domid=581&anc_id=84174" alt="booked.net" /></a>
+                    <!-- weather widget end -->
+                </div>
+                <div class="col-lg-2">
+                    <!-- weather widget start -->
+                    <a target="_blank" href="https://hotelmix.fr/weather/london-18114"><img src="https://w.bookcdn.com/weather/picture/1_18114_1_3_137AE9_160_ffffff_333333_08488D_1_ffffff_333333_0_6.png?scode=124&domid=581&anc_id=18942" alt="booked.net" /></a>
+                    <!-- weather widget end -->
+                </div>
+                <div class="col-lg-2">
+                    <!-- weather widget start -->
+                    <a target="_blank" href="https://hotelmix.fr/weather/saint-denis-2706"><img src="https://w.bookcdn.com/weather/picture/1_2706_1_3_137AE9_160_ffffff_333333_08488D_1_ffffff_333333_0_6.png?scode=124&domid=581&anc_id=45985" alt="booked.net" /></a>
+                    <!-- weather widget end -->
+                </div>
+                <div class="col-lg-2">
+                    <!-- weather widget start -->
+                    <a target="_blank" href="https://hotelmix.fr/weather/marrakesh-18158"><img src="https://w.bookcdn.com/weather/picture/1_18158_1_3_137AE9_160_ffffff_333333_08488D_1_ffffff_333333_0_6.png?scode=124&domid=581&anc_id=53998" alt="booked.net" /></a>
+                    <!-- weather widget end -->
+                </div>
+                <div class="col-lg-2">
+                    <!-- weather widget start -->
+                    <a target="_blank" href="https://hotelmix.fr/weather/antananarivo-9868"><img src="https://w.bookcdn.com/weather/picture/1_9868_1_3_137AE9_160_ffffff_333333_08488D_1_ffffff_333333_0_6.png?scode=124&domid=581&anc_id=72283" alt="booked.net" /></a>
+                    <!-- weather widget end -->
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
 <app-footer></app-footer>

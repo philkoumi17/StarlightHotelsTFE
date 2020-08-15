@@ -34,6 +34,9 @@ import { MatNativeDateModule } from '@angular/material/core';
 import { ContactComponent } from './components/home/contact/contact.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { HotelSearchComponent } from './components/hotel/hotel-search/hotel-search.component';
+import { ReservationCreateComponent } from './components/reservation/reservation-create/reservation-create.component';
+import { ReservationDetailComponent } from './components/reservation/reservation-detail/reservation-detail.component';
+import { ReservationDetailTarifComponent } from './components/reservation/reservation-create/reservation-detail-tarif/reservation-detail-tarif.component';
 
 @NgModule({
   declarations: [
@@ -51,7 +54,10 @@ import { HotelSearchComponent } from './components/hotel/hotel-search/hotel-sear
     AdminComponent,
     ReservationComponent,
     ContactComponent,
-    HotelSearchComponent
+    HotelSearchComponent,
+    ReservationCreateComponent,
+    ReservationDetailComponent,
+    ReservationDetailTarifComponent
   ],
   imports: [
     BrowserModule,
