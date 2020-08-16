@@ -37,6 +37,7 @@ import { HotelSearchComponent } from './components/hotel/hotel-search/hotel-sear
 import { ReservationCreateComponent } from './components/reservation/reservation-create/reservation-create.component';
 import { ReservationDetailComponent } from './components/reservation/reservation-detail/reservation-detail.component';
 import { ReservationDetailTarifComponent } from './components/reservation/reservation-create/reservation-detail-tarif/reservation-detail-tarif.component';
+import { ReservationConfirmationComponent } from './components/reservation/reservation-confirmation/reservation-confirmation.component';
 
 @NgModule({
   declarations: [
@@ -57,7 +58,8 @@ import { ReservationDetailTarifComponent } from './components/reservation/reserv
     HotelSearchComponent,
     ReservationCreateComponent,
     ReservationDetailComponent,
-    ReservationDetailTarifComponent
+    ReservationDetailTarifComponent,
+    ReservationConfirmationComponent
   ],
   imports: [
     BrowserModule,
@@ -90,7 +92,10 @@ import { ReservationDetailTarifComponent } from './components/reservation/reserv
   entryComponents: [
     RegistrationComponent,
     HotelCreateComponent,
-    HotelDetailComponent
+    HotelDetailComponent,
+    ReservationCreateComponent,
+    ReservationDetailComponent,
+    ReservationConfirmationComponent
   ],
   schemas: [
     CUSTOM_ELEMENTS_SCHEMA,

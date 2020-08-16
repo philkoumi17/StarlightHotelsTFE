@@ -12,7 +12,7 @@
                         <th data-sortable="true">Nombre d'enfants</th>
                         <th data-sortable="true">Statut de la réservation</th>
                         <th>Montant total</th>
-                        <th>Display | Cancel</th>
+                        <th>Display | Download | Cancel</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -25,10 +25,13 @@
                         <td>1</td>
                         <td style="border-collapse: collapse;">
                             <button class="btn btn-info" ng-click="r.changeView('requests/edit/' + request.id)">
-                                <i class="fas fa-info-circle"></i> Detail
+                                <i class="fas fa-info-circle"></i>
+                            </button>
+                            <button class="btn btn-info" ng-click="r.changeView('requests/edit/' + request.id)">
+                                <i class="fas fa-file-pdf"></i>
                             </button>
                             <button class="btn btn-danger" ng-click="r.changeView('requests/edit/' + request.id)">
-                                <i class="fas fa-window-close"></i> Cancel
+                                <i class="fas fa-window-close"></i>
                             </button>
                         </td>
                     </tr>
@@ -41,10 +44,13 @@
                         <td>1</td>
                         <td>
                             <button class="btn btn-info" ng-click="r.changeView('requests/edit/' + request.id)">
-                                <i class="fas fa-info-circle"></i> Detail
+                                <i class="fas fa-info-circle"></i>
+                            </button>
+                            <button class="btn btn-info" ng-click="r.changeView('requests/edit/' + request.id)">
+                                <i class="fas fa-file-pdf"></i>
                             </button>
                             <button class="btn btn-danger" ng-click="r.changeView('requests/edit/' + request.id)">
-                                <i class="fas fa-window-close"></i> Cancel
+                                <i class="fas fa-window-close"></i>
                             </button>
                         </td>
                     </tr>

@@ -11,6 +11,7 @@ import { HotelSearchComponent } from './components/hotel/hotel-search/hotel-sear
 import { ReservationComponent } from './components/reservation/reservation.component';
 import { ReservationCreateComponent } from './components/reservation/reservation-create/reservation-create.component';
 import { ReservationDetailTarifComponent } from './components/reservation/reservation-create/reservation-detail-tarif/reservation-detail-tarif.component';
+import { ReservationConfirmationComponent } from './components/reservation/reservation-confirmation/reservation-confirmation.component';
 
 
 const routes: Routes = [
@@ -23,8 +24,8 @@ const routes: Routes = [
   { path: 'hotel-search', component: HotelSearchComponent},
   { path: 'list-of-bookings', component: ReservationComponent},
   { path: 'book-hotel/:id', component: ReservationCreateComponent},
+  { path: 'book-hotel/confirm', component: ReservationConfirmationComponent},
   { path: 'book-hotel/detailTarif/:id', component: ReservationDetailTarifComponent},
-  // { path: 'book-hotel/:id', component: ReservationCreateComponent},
   { path: '**', redirectTo: '' }
 ];
 
