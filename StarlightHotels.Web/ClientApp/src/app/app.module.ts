@@ -38,6 +38,8 @@ import { ReservationCreateComponent } from './components/reservation/reservation
 import { ReservationDetailComponent } from './components/reservation/reservation-detail/reservation-detail.component';
 import { ReservationDetailTarifComponent } from './components/reservation/reservation-create/reservation-detail-tarif/reservation-detail-tarif.component';
 import { ReservationConfirmationComponent } from './components/reservation/reservation-confirmation/reservation-confirmation.component';
+import { ExecutePaymentComponent } from './components/reservation/execute-payment/execute-payment.component';
+import { ConfirmedReservationComponent } from './components/reservation/confirmed-reservation/confirmed-reservation.component';
 
 @NgModule({
   declarations: [
@@ -59,7 +61,9 @@ import { ReservationConfirmationComponent } from './components/reservation/reser
     ReservationCreateComponent,
     ReservationDetailComponent,
     ReservationDetailTarifComponent,
-    ReservationConfirmationComponent
+    ReservationConfirmationComponent,
+    ExecutePaymentComponent,
+    ConfirmedReservationComponent
   ],
   imports: [
     BrowserModule,
