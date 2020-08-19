@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using StarlightHotels.DAL.Data;
 using StarlightHotels.Models;
+using StarlightHotels.Models.ViewModels;
 
 namespace StarlightHotels.API.Controllers
 {
@@ -21,14 +22,14 @@ namespace StarlightHotels.API.Controllers
             _context = context;
         }
 
-        // GET: api/Reservations
+        // GET: api/Reservation
         [HttpGet]
         public async Task<ActionResult<IEnumerable<ReservationModel>>> GetReservations()
         {
             return await _context.Reservations.ToListAsync();
         }
 
-        // GET: api/Reservations/5
+        // GET: api/Reservation/5
         [HttpGet("{id}")]
         public async Task<ActionResult<ReservationModel>> GetReservation(int id)
         {
@@ -42,7 +43,21 @@ namespace StarlightHotels.API.Controllers
             return reservation;
         }
 
-        // PUT: api/Reservations/5
+        // GET: api/Reservation/Client/5
+        [HttpGet("Client/{id}")]
+        public async Task<ActionResult<List<ReservationModel>>> GetReservationByClient(int id)
+        {
+            var reservation = await _context.Reservations.Where(r => r.ClientId == id).ToListAsync();
+
+            if(reservation == null)
+            {
+                return NotFound();
+            }
+
+            return reservation;
+        }
+
+        // PUT: api/Reservation/5
         // To protect from overposting attacks, enable the specific properties you want to bind to, for
         // more details, see https://go.microsoft.com/fwlink/?linkid=2123754.
         [HttpPut("{id}")]
@@ -74,7 +89,7 @@ namespace StarlightHotels.API.Controllers
             return NoContent();
         }
 
-        // POST: api/Reservations
+        // POST: api/Reservation
         // To protect from overposting attacks, enable the specific properties you want to bind to, for
         // more details, see https://go.microsoft.com/fwlink/?linkid=2123754.
         [HttpPost]
@@ -84,22 +99,6 @@ namespace StarlightHotels.API.Controllers
             await _context.SaveChangesAsync();
 
             return CreatedAtAction("GetReservation", new { id = reservation.IdRes }, reservation);
-        }
-
-        // DELETE: api/Reservations/5
-        [HttpDelete("{id}")]
-        public async Task<ActionResult<ReservationModel>> DeleteReservation(int id)
-        {
-            var reservation = await _context.Reservations.FindAsync(id);
-            if (reservation == null)
-            {
-                return NotFound();
-            }
-
-            _context.Reservations.Remove(reservation);
-            await _context.SaveChangesAsync();
-
-            return reservation;
         }
 
         private bool ReservationExists(int id)

@@ -12,6 +12,7 @@ import { ReservationComponent } from './components/reservation/reservation.compo
 import { ReservationCreateComponent } from './components/reservation/reservation-create/reservation-create.component';
 import { ReservationDetailTarifComponent } from './components/reservation/reservation-create/reservation-detail-tarif/reservation-detail-tarif.component';
 import { ReservationConfirmationComponent } from './components/reservation/reservation-confirmation/reservation-confirmation.component';
+import { DashboardComponent } from './components/dashboard/dashboard.component';
 
 
 const routes: Routes = [
@@ -26,6 +27,7 @@ const routes: Routes = [
   { path: 'book-hotel/:id', component: ReservationCreateComponent},
   { path: 'book-hotel/confirm', component: ReservationConfirmationComponent},
   { path: 'book-hotel/detailTarif/:id', component: ReservationDetailTarifComponent},
+  { path: 'dashboard', component: DashboardComponent},
   { path: '**', redirectTo: '' }
 ];
 

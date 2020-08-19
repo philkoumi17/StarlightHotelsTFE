@@ -98,6 +98,7 @@ export class HotelService
   }
 
   // update hotel
+  // tslint:disable-next-line: typedef
   setHotel(hotel)
   {
     this.hotelBehavior.next(hotel);

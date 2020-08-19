@@ -25,7 +25,6 @@ import { UserDetailComponent } from './components/user/user-detail/user-detail.c
 import { LoginComponent } from './components/user/login/login.component';
 import { RegistrationComponent } from './components/user/registration/registration.component';
 import { AuthInterceptor } from './auth/auth.interceptor';
-import { AdminComponent } from './components/admin/admin.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { MatRadioModule } from '@angular/material/radio';
 import { ReservationComponent } from './components/reservation/reservation.component';
@@ -40,6 +39,7 @@ import { ReservationDetailTarifComponent } from './components/reservation/reserv
 import { ReservationConfirmationComponent } from './components/reservation/reservation-confirmation/reservation-confirmation.component';
 import { ExecutePaymentComponent } from './components/reservation/execute-payment/execute-payment.component';
 import { ConfirmedReservationComponent } from './components/reservation/confirmed-reservation/confirmed-reservation.component';
+import { DashboardComponent } from './components/dashboard/dashboard.component';
 
 @NgModule({
   declarations: [
@@ -54,7 +54,6 @@ import { ConfirmedReservationComponent } from './components/reservation/confirme
     HotelDetailComponent,
     HotelCreateComponent,
     UserDetailComponent,
-    AdminComponent,
     ReservationComponent,
     ContactComponent,
     HotelSearchComponent,
@@ -63,7 +62,8 @@ import { ConfirmedReservationComponent } from './components/reservation/confirme
     ReservationDetailTarifComponent,
     ReservationConfirmationComponent,
     ExecutePaymentComponent,
-    ConfirmedReservationComponent
+    ConfirmedReservationComponent,
+    DashboardComponent
   ],
   imports: [
     BrowserModule,
@@ -86,7 +86,8 @@ import { ConfirmedReservationComponent } from './components/reservation/confirme
     MatRadioModule,
     FontAwesomeModule,
     MatDatepickerModule,
-    MatNativeDateModule, NgbModule
+    MatNativeDateModule,
+    NgbModule
   ],
   providers: [UserService, {
     provide: HTTP_INTERCEPTORS,

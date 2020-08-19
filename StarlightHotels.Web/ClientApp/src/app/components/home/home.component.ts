@@ -75,7 +75,7 @@ export class HomeComponent implements OnInit {
   async onSearch() {
 
     this.error = false;
-    this.errorMessage = "";
+    this.errorMessage = '';
 
     if (!this.modelDeparture) {
       this.error = true;

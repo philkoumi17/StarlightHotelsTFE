@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace StarlightHotels.API.Models
+namespace StarlightHotels.Models.ViewModels
 {
-    public class SearchHotelModel
+    public class SearchHotelViewModel
     {
         public int PaysId { get; set; }
 
