@@ -45,5 +45,29 @@ namespace StarlightHotels.API.Controllers
 
             return Ok(userM);
         }
+
+        [HttpGet]
+        [Authorize(Roles = "Admin")]
+        [Route("ForAdmin")]
+        public string GetForAdmin()
+        {
+            return "Web method for Admin";
+        }
+
+        [HttpGet]
+        [Authorize(Roles = "Client")]
+        [Route("ForCustomer")]
+        public string GetForCustomer()
+        {
+            return "Web method for Client";
+        }
+
+        [HttpGet]
+        [Authorize(Roles = "Admin, Client")]
+        [Route("ForAdminOrCustomer")]
+        public string GetForAdminOrCustomer()
+        {
+            return "Web method for Admin or Client";
+        }
     }
 }
