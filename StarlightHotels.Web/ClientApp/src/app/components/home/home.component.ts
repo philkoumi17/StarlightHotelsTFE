@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { NgbDateStruct, NgbDate, NgbCalendar, NgbDateParserFormatter } from '@ng-bootstrap/ng-bootstrap';
 import { HotelService } from '../../services/hotel.service';
 import { Pays } from '../../models/pays.model';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-home',
@@ -35,11 +36,11 @@ export class HomeComponent implements OnInit {
   constructor(
     private router: Router,
     private service: HotelService,
+    private toastr: ToastrService,
     private calendar: NgbCalendar,
     public formatter: NgbDateParserFormatter) {
     this.fromDate = calendar.getToday();
     this.modelArrival = calendar.getToday();
-
   }
 
   ngOnInit(): void {
@@ -74,11 +75,11 @@ export class HomeComponent implements OnInit {
   async onSearch() {
 
     this.error = false;
-    this.errorMessage = "";
+    this.errorMessage = '';
 
     if (!this.modelDeparture) {
       this.error = true;
-      this.errorMessage = 'Please select a departure date from the hotel'
+      this.toastr.warning('Please select a departure date from the hotel');
       return;
     }
 

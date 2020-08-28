@@ -25,7 +25,6 @@ import { UserDetailComponent } from './components/user/user-detail/user-detail.c
 import { LoginComponent } from './components/user/login/login.component';
 import { RegistrationComponent } from './components/user/registration/registration.component';
 import { AuthInterceptor } from './auth/auth.interceptor';
-import { AdminComponent } from './components/admin/admin.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { MatRadioModule } from '@angular/material/radio';
 import { ReservationComponent } from './components/reservation/reservation.component';
@@ -34,6 +33,13 @@ import { MatNativeDateModule } from '@angular/material/core';
 import { ContactComponent } from './components/home/contact/contact.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { HotelSearchComponent } from './components/hotel/hotel-search/hotel-search.component';
+import { ReservationCreateComponent } from './components/reservation/reservation-create/reservation-create.component';
+import { ReservationDetailComponent } from './components/reservation/reservation-detail/reservation-detail.component';
+import { ReservationDetailTarifComponent } from './components/reservation/reservation-create/reservation-detail-tarif/reservation-detail-tarif.component';
+import { ReservationConfirmationComponent } from './components/reservation/reservation-confirmation/reservation-confirmation.component';
+import { ExecutePaymentComponent } from './components/reservation/execute-payment/execute-payment.component';
+import { ConfirmedReservationComponent } from './components/reservation/confirmed-reservation/confirmed-reservation.component';
+import { DashboardComponent } from './components/dashboard/dashboard.component';
 
 @NgModule({
   declarations: [
@@ -48,10 +54,16 @@ import { HotelSearchComponent } from './components/hotel/hotel-search/hotel-sear
     HotelDetailComponent,
     HotelCreateComponent,
     UserDetailComponent,
-    AdminComponent,
     ReservationComponent,
     ContactComponent,
-    HotelSearchComponent
+    HotelSearchComponent,
+    ReservationCreateComponent,
+    ReservationDetailComponent,
+    ReservationDetailTarifComponent,
+    ReservationConfirmationComponent,
+    ExecutePaymentComponent,
+    ConfirmedReservationComponent,
+    DashboardComponent
   ],
   imports: [
     BrowserModule,
@@ -74,7 +86,8 @@ import { HotelSearchComponent } from './components/hotel/hotel-search/hotel-sear
     MatRadioModule,
     FontAwesomeModule,
     MatDatepickerModule,
-    MatNativeDateModule, NgbModule
+    MatNativeDateModule,
+    NgbModule
   ],
   providers: [UserService, {
     provide: HTTP_INTERCEPTORS,
@@ -84,7 +97,10 @@ import { HotelSearchComponent } from './components/hotel/hotel-search/hotel-sear
   entryComponents: [
     RegistrationComponent,
     HotelCreateComponent,
-    HotelDetailComponent
+    HotelDetailComponent,
+    ReservationCreateComponent,
+    ReservationDetailComponent,
+    ReservationConfirmationComponent
   ],
   schemas: [
     CUSTOM_ELEMENTS_SCHEMA,

@@ -45,6 +45,7 @@ namespace StarlightHotels.API
                 options.UseSqlServer(Configuration.GetConnectionString("HotelChainConnection")));
 
             services.AddIdentity<ApplicationUser, IdentityRole>(options => options.SignIn.RequireConfirmedAccount = true)
+                .AddRoles<IdentityRole>()
                 .AddEntityFrameworkStores<ApplicationDbContext>();
 
             // Register the Swagger generator, defining 1 or more Swagger documents

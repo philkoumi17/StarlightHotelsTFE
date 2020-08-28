@@ -3,9 +3,9 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using StarlightHotels.API.Models;
 using StarlightHotels.DAL.Data;
 using StarlightHotels.Models;
+using StarlightHotels.Models.ViewModels;
 
 namespace StarlightHotels.API.Controllers
 {
@@ -114,11 +114,11 @@ namespace StarlightHotels.API.Controllers
         // Get: api/Hotel/SearchHotels
         [HttpPost]
         [Route("SearchHotels")]
-        public async Task<ActionResult<List<HotelModel>>> SearchHotels(SearchHotelModel searchHotel)
+        public async Task<ActionResult<List<HotelModel>>> SearchHotels(SearchHotelViewModel searchHotel)
         {
             List<HotelModel> hotels;
 
-            if (searchHotel.PaysId == 0)
+            if(searchHotel.PaysId == 0)
             {
                 hotels = await _context.Hotels.Where(h => h.Actif).ToListAsync();
             }

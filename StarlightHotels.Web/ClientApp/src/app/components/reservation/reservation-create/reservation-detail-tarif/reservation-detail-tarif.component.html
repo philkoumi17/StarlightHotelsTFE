@@ -1,0 +1,43 @@
+<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+    Launch demo modal
+</button>
+<div class="modal" id="exampleModal" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 class="modal-title">Fee's details</h2>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <table class="table table-hover">
+                    <thead>
+                        <tr>
+                            <th scope="col">Nights</th>
+                            <th scope="col">Fees for the room</th>
+                            <th scope="col">Fee's for the arrangement</th>
+                            <th scope="col">Total amount</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr class="table-info">
+                            <td scope="col">sdfsdf</td>
+                            <td scope="col">sdfdsfq</td>
+                            <td scope="col">dsfsdqfqsdf</td>
+                            <td scope="col">fqsdfdsdfsdqf</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary">Save changes</button>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="text/javascript">
+    $('#exampleModalLabel').modal('show')
+</script>

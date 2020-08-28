@@ -1,0 +1,226 @@
+<app-navbar></app-navbar>
+<div class="container">
+    <h1>Name of the hotel</h1>
+    <i class="fas fa-star"></i>
+    <i class="fas fa-star"></i>
+    <i class="fas fa-star"></i>
+    <i class="fas fa-star"></i>
+    <div class="card mt-3">
+        <div class="card-header">
+            <h3 class="card-title" style="text-align: center;"><i class="fas fa-sun"></i> - Sejour</h3>
+        </div>
+        <div class="card-body" style="align-content: center;">
+            <div class="container">
+                <form>
+                    <div class="row">
+                        <!-- Dates -->
+                        <div class="col-sm ">
+                            <label for="checkOutDate">Arrival date :</label>
+                            <div class="input-group">
+                                <input class="form-control" placeholder="yyyy-mm-dd" name="arrival" [minDate]="minDate" [(ngModel)]="modelArrival" ngbDatepicker #arrD="ngbDatepicker">
+                                <div class="input-group-append">
+                                    <button class="btn btn-outline-secondary calendar" (click)="arrD.toggle()" type="button"></button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-sm ">
+                            <label for="nbAdults">Adults :</label>
+                            <input type="number" class="form-control">
+                        </div>
+                        <div class="col-sm ">
+                            <div class="form-group ">
+                                <input type="button" value="Refresh" class="btn btn-primary mt-4 mr-3">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm">
+                            <label for="checkOutDate">Departure date :</label>
+                            <div class="input-group">
+                                <input class="form-control" placeholder="yyyy-mm-dd" name="departure" [(ngModel)]="modelDeparture" ngbDatepicker #depD="ngbDatepicker">
+                                <div class="input-group-append">
+                                    <button class="btn btn-outline-secondary calendar" (click)="depD.toggle()" type="button"></button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm">
+                            <label for="nbAdults">Children :</label>
+                            <input type="number" class="form-control">
+                        </div>
+                        <div class="col-sm">
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <div class="mt-3"></div>
+
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="card card-default">
+                <div class="card-header">
+                    <h3 class="card-title" style="text-align: center;"><i class="fas fa-bed"></i> - Rooms</h3>
+                </div>
+                <div class="card-header">
+                    <div class="card-body" style="border-radius: 0%;">
+                        <div class="row">
+                            <div class="col-lg-2">
+                                <img src="http://placehold.it/150x150" alt="" />
+                            </div>
+                            <div class="col-lg-5">
+                                <label for="">Type de chambre</label>
+                                <p><span>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ducimus blanditiis nostrum rem! Velit non aliquam nihil reiciendis iure, adipisci dolor. Veritatis animi, hic blanditiis illum incidunt laborum rerum magni voluptas?</span><span>Vitae, eum qui? Consequuntur natus magni voluptatem, repellat unde aperiam alias nam? Corrupti totam reiciendis culpa perspiciatis, sint, error consectetur ullam fugiat, nisi facilis aspernatur. Molestiae optio pariatur ipsa eaque!</span></p>
+                            </div>
+                            <div class="col-lg-5">
+                                <div class="form-group">
+                                    <label for="exampleFormControlSelect1">Quantité: </label>
+                                    <div class="col-sm-9">
+                                        <select class="form-control" id="exampleFormControlSelect1" style="width: auto;">
+                                            <option>0</option>
+                                            <option>1</option>
+                                            <option>2</option>
+                                            <option>3</option>
+                                            <option>4</option>
+                                            <option>5</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="">Prix / nuit: </label>
+                                    <div class="col-md-8">
+                                        <input readonly="True" class="form-control text-box single-line" id="prix0" name="" type="number" value="123">
+                                    </div>
+                                    <i class="fas fa-euro-sign"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-header">
+                    <div class="card-body" style="border-radius: 0%;">
+                        <div class="row">
+                            <div class="col-lg-2">
+                                <img src="http://placehold.it/150x150" alt="" />
+                            </div>
+                            <div class="col-lg-5">
+                                <label for="">Type de chambre</label>
+                                <p><span>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ducimus blanditiis nostrum rem! Velit non aliquam nihil reiciendis iure, adipisci dolor. Veritatis animi, hic blanditiis illum incidunt laborum rerum magni voluptas?</span><span>Vitae, eum qui? Consequuntur natus magni voluptatem, repellat unde aperiam alias nam? Corrupti totam reiciendis culpa perspiciatis, sint, error consectetur ullam fugiat, nisi facilis aspernatur. Molestiae optio pariatur ipsa eaque!</span></p>
+                            </div>
+                            <div class="col-lg-5">
+                                <div class="form-group">
+                                    <label for="exampleFormControlSelect1">Quantité: </label>
+                                    <div class="col-sm-9">
+                                        <select class="form-control" id="exampleFormControlSelect1" style="width: auto;">
+                                            <option>0</option>
+                                            <option>1</option>
+                                            <option>2</option>
+                                            <option>3</option>
+                                            <option>4</option>
+                                            <option>5</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="">Prix / nuit: </label>
+                                    <div class="col-md-8">
+                                        <input readonly="True" class="form-control text-box single-line" id="prix0" name="" type="number" value="123">
+                                    </div>
+                                    <i class="fas fa-euro-sign"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-header">
+                    <div class="card-body" style="border-radius: 0%;">
+                        <div class="row">
+                            <div class="col-lg-2">
+                                <img src="http://placehold.it/150x150" alt="" />
+                            </div>
+                            <div class="col-lg-5">
+                                <label for="">Type de chambre</label>
+                                <p><span>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ducimus blanditiis nostrum rem! Velit non aliquam nihil reiciendis iure, adipisci dolor. Veritatis animi, hic blanditiis illum incidunt laborum rerum magni voluptas?</span><span>Vitae, eum qui? Consequuntur natus magni voluptatem, repellat unde aperiam alias nam? Corrupti totam reiciendis culpa perspiciatis, sint, error consectetur ullam fugiat, nisi facilis aspernatur. Molestiae optio pariatur ipsa eaque!</span></p>
+                            </div>
+                            <div class="col-lg-5">
+                                <div class="form-group">
+                                    <label for="exampleFormControlSelect1">Quantité: </label>
+                                    <div class="col-sm-9">
+                                        <select class="form-control" id="exampleFormControlSelect1" style="width: auto;">
+                                            <option>0</option>
+                                            <option>1</option>
+                                            <option>2</option>
+                                            <option>3</option>
+                                            <option>4</option>
+                                            <option>5</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="">Prix / nuit: </label>
+                                    <div class="col-md-8">
+                                        <input readonly="True" class="form-control text-box single-line" id="prix0" name="" type="number" value="123">
+                                    </div>
+                                    <i class="fas fa-euro-sign"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-header">
+                    <div class="card-body" style="border-radius: 0%;">
+                        <div class="row">
+                            <div class="col-lg-2">
+                                <img src="http://placehold.it/150x150" alt="" />
+                            </div>
+                            <div class="col-lg-5">
+                                <label for="">Type de chambre</label>
+                                <p><span>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ducimus blanditiis nostrum rem! Velit non aliquam nihil reiciendis iure, adipisci dolor. Veritatis animi, hic blanditiis illum incidunt laborum rerum magni voluptas?</span><span>Vitae, eum qui? Consequuntur natus magni voluptatem, repellat unde aperiam alias nam? Corrupti totam reiciendis culpa perspiciatis, sint, error consectetur ullam fugiat, nisi facilis aspernatur. Molestiae optio pariatur ipsa eaque!</span></p>
+                            </div>
+                            <div class="col-lg-5">
+                                <div class="form-group">
+                                    <label for="exampleFormControlSelect1">Quantité: </label>
+                                    <div class="col-sm-9">
+                                        <select class="form-control" id="exampleFormControlSelect1" style="width: auto;">
+                                            <option>0</option>
+                                            <option>1</option>
+                                            <option>2</option>
+                                            <option>3</option>
+                                            <option>4</option>
+                                            <option>5</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="">Prix / nuit: </label>
+                                    <div class="col-md-8">
+                                        <input readonly="True" class="form-control text-box single-line" id="prix0" name="" type="number" value="123">
+                                    </div>
+                                    <i class="fas fa-euro-sign"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <h3>
+                    <div class="row">
+                        <div class="form-group ml-auto">
+                            <label class="control-label">Montant total: </label>
+                            <div class="col-md-8">
+                                <input readonly="true" class="form-control text-box single-line" id="txtResaAmount" name="Resa.ReservationAmount" type="text" value="0,00">
+                                <i class="fas fa-euro-sign"></i>
+                            </div>
+                        </div>
+                    </div>
+                </h3>
+                <div class="form-group ml-auto">
+                    <button class="btn btn-primary" routerLink="/book-hotel/confirm">Next</button>
+                    <button class="btn btn-danger" routerLink="/home">Cancel</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<app-footer></app-footer>
