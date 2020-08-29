@@ -1,42 +1,62 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
 import { Routes, RouterModule } from '@angular/router';
-import { UserComponent } from './components/user/user.component';
-import { HomeComponent } from './components/home/home.component';
-import { HotelComponent } from './components/hotel/hotel.component';
-import { AuthGuard } from './auth/auth.guard';
-import { UserDetailComponent } from './components/user/user-detail/user-detail.component';
-import { ContactComponent } from './components/home/contact/contact.component';
-import { HotelSearchComponent } from './components/hotel/hotel-search/hotel-search.component';
-import { ReservationComponent } from './components/reservation/reservation.component';
-import { ReservationCreateComponent } from './components/reservation/reservation-create/reservation-create.component';
-import { ReservationDetailTarifComponent } from './components/reservation/reservation-create/reservation-detail-tarif/reservation-detail-tarif.component';
-import { ReservationConfirmationComponent } from './components/reservation/reservation-confirmation/reservation-confirmation.component';
-import { DashboardComponent } from './components/dashboard/dashboard.component';
-
-
 const routes: Routes = [
-  { path: '', component: HomeComponent},
-  { path: 'contact', component: ContactComponent},
-  { path: 'user', component: UserComponent},
-  { path: 'user-detail', component: UserDetailComponent},
-  // Si aucune connaissance du lien, cela redirige vers la page d'accueil
-  { path: 'hotel', component: HotelComponent},
-  { path: 'hotel-search', component: HotelSearchComponent},
-  { path: 'list-of-bookings', component: ReservationComponent},
-  { path: 'book-hotel/:id', component: ReservationCreateComponent},
-  { path: 'book-hotel/confirm', component: ReservationConfirmationComponent},
-  { path: 'book-hotel/detailTarif/:id', component: ReservationDetailTarifComponent},
-  { path: 'dashboard', component: DashboardComponent},
-  { path: '**', redirectTo: '' }
+  {
+    path: 'dashboard',
+    loadChildren: () =>
+      import('./dashboard/dashboard.module').then(m => m.DashboardModule)
+  },
+  {
+    path: 'hotels',
+    loadChildren: () =>
+      import('./hotels/hotel.module').then(m => m.HotelModule)
+  },
+  {
+    path: 'booking',
+    loadChildren: () =>
+      import('./booking/booking.module').then(m => m.BookingModule)
+  },
+  {
+    path: 'rooms',
+    loadChildren: () =>
+      import('./rooms/rooms.module').then(m => m.RoomModule)
+  },
+  {
+    path: 'departments',
+    loadChildren: () =>
+      import('./departments/departments.module').then(m => m.DepartmentsModule)
+  },
+  {
+    path: 'staff',
+    loadChildren: () => import('./staff/staff.module').then(m => m.StaffModule)
+  },
+  {
+    path: 'icons',
+    loadChildren: () => import('./icons/icons.module').then(m => m.IconsModule)
+  },
+  {
+    path: 'authentication',
+    loadChildren: () =>
+      import('./authentication/authentication.module').then(
+        m => m.AuthenticationModule
+      )
+  },
+  {
+    path: 'extra-pages',
+    loadChildren: () =>
+      import('./extra-pages/extra-pages.module').then(m => m.ExtraPagesModule)
+  },
+  {
+    path: '',
+    loadChildren: () => import('./components/main.module').then(m => m.MainModule)
+  },
+  {
+    path: '**',
+    redirectTo: ''
+  }
 ];
-
 @NgModule({
-  imports: [
-    CommonModule,
-    RouterModule.forRoot(routes, { useHash: false })
-  ],
+  imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule]
-  })
-
+})
 export class AppRoutingModule { }

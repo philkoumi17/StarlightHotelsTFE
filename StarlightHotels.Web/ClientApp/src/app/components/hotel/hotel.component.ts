@@ -11,7 +11,7 @@ import { FormBuilder, Validators } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
 import { Pays } from 'src/app/models/pays.model';
 import { HotelCreateComponent } from './hotel-create/hotel-create.component';
-import { faPlus } from '@fortawesome/free-solid-svg-icons';
+//import { faPlus } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-hotel',
@@ -20,7 +20,7 @@ import { faPlus } from '@fortawesome/free-solid-svg-icons';
   ]
 })
 export class HotelComponent implements OnInit {
-  faPlus = faPlus;
+  //faPlus = faPlus;
   dataSaved = false;
   hotelForm: any;
   allHotels: Hotel[];

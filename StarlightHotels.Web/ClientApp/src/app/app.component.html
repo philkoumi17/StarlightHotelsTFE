@@ -1,3 +1,5 @@
-<div>
-    <router-outlet></router-outlet>
-</div>
+<app-page-loader></app-page-loader>
+<app-header *ngIf="showItemBar(_router)"></app-header>
+<app-sidebar *ngIf="showItemBar(_router)"></app-sidebar>
+<app-right-sidebar></app-right-sidebar>
+<router-outlet></router-outlet>

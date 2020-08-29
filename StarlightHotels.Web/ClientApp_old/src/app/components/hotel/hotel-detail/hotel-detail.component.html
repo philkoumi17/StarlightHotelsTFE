@@ -1,0 +1,73 @@
+<div class="container">
+    <mat-dialog-content>
+        <mat-toolbar color="accent" style="background-color:darkblue;">
+            Hotel details
+        </mat-toolbar>
+        <br>
+        <table class="table" *ngIf="hotel">
+            <tr>
+                <th> Name </th>
+                <td> {{hotel.nom}} </td>
+            </tr>
+            <tr>
+                <th> Number of stars </th>
+                <td> {{hotel.nbEtoiles}} </td>
+            </tr>
+            <tr>
+                <th> Number of rooms </th>
+                <td> {{hotel.nbChambres}} </td>
+            </tr>
+            <tr>
+                <th> Description </th>
+                <td> {{hotel.description}} </td>
+            </tr>
+            <tr>
+                <th> Address </th>
+                <td> {{hotel.adresse}} </td>
+            </tr>
+            <tr>
+                <th> Postal code </th>
+                <td> {{hotel.codePostal}} </td>
+            </tr>
+            <tr>
+                <th> City </th>
+                <td> {{hotel.ville}} </td>
+            </tr>
+            <tr>
+                <th> Country </th>
+                <td> {{hotel.pays}} </td>
+            </tr>
+            <tr>
+                <th> Phone number </th>
+                <td> {{hotel.telephone}} </td>
+            </tr>
+            <tr>
+                <th> With promotion </th>
+                <td> {{hotel.enPromotion}} </td>
+            </tr>
+            <tr>
+                <th> Destination's top </th>
+                <td> {{hotel.topDestination}} </td>
+            </tr>
+            <tr>
+                <th> Enabled </th>
+                <td> {{hotel.actif}} </td>
+            </tr>
+            <tr>
+                <th> Percent </th>
+                <td> {{hotel.coefficient}} </td>
+            </tr>
+            <tr>
+                <th> Check-In </th>
+                <td> {{hotel.checkIn}} </td>
+            </tr>
+            <tr>
+                <th> Check-Out </th>
+                <td> {{hotel.checkOut}} </td>
+            </tr>
+        </table>
+    </mat-dialog-content>
+    <mat-dialog-actions align="center">
+        <button class="mat-raised-button btn btn-danger" (click)="close()">Close</button>
+    </mat-dialog-actions>
+</div>
