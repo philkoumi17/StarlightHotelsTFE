@@ -1,111 +1,119 @@
-import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
-import { CUSTOM_ELEMENTS_SCHEMA, NgModule, NO_ERRORS_SCHEMA } from '@angular/core';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { MatInputModule } from '@angular/material/input';
-import { MatDialogModule } from '@angular/material/dialog';
-import { MatCheckboxModule } from '@angular/material/checkbox';
-import { MatSelectModule } from '@angular/material/select';
-import { MatTableModule } from '@angular/material/table';
-import { MatTabsModule } from '@angular/material/tabs';
-import { MatToolbarModule} from '@angular/material/toolbar';
+import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { ToastrModule } from 'ngx-toastr';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { ReactiveFormsModule } from '@angular/forms';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { FooterComponent } from './components/footer/footer.component';
-import { HomeComponent } from './components/home/home.component';
-import { HotelComponent } from './components/hotel/hotel.component';
-import { HotelDetailComponent } from './components/hotel/hotel-detail/hotel-detail.component';
-import { HotelCreateComponent } from './components/hotel/hotel-create/hotel-create.component';
-import { NavbarComponent } from './components/navbar/navbar.component';
-import { UserComponent } from './components/user/user.component';
-import { UserService } from './services/user.service';
-import { UserDetailComponent } from './components/user/user-detail/user-detail.component';
-import { LoginComponent } from './components/user/login/login.component';
-import { RegistrationComponent } from './components/user/registration/registration.component';
-import { AuthInterceptor } from './auth/auth.interceptor';
-import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
-import { MatRadioModule } from '@angular/material/radio';
-import { ReservationComponent } from './components/reservation/reservation.component';
+import { HeaderComponent } from './layout/header/header.component';
+import { PageLoaderComponent } from './layout/page-loader/page-loader.component';
+import { SidebarComponent } from './layout/sidebar/sidebar.component';
+import { RightSidebarComponent } from './layout/right-sidebar/right-sidebar.component';
+import { LocationStrategy, HashLocationStrategy } from '@angular/common';
+import { DynamicScriptLoaderService } from './shared/services/dynamic-script-loader.service';
+import { ConfigService } from './shared/services/config.service';
+import { BookingService } from '../app/booking/all-booking/booking.service';
+import { RoomService } from '../app/rooms/all-rooms/rooms.service';
+import { DepartmentService } from '../app/departments/all-departments/department.service';
+import { StaffService } from './staff/all-staff/staff.service';
+import { RightSidebarService } from './shared/services/rightsidebar.service';
+import { NgxSpinnerModule } from "ngx-spinner";
+import {
+  PerfectScrollbarModule,
+  PERFECT_SCROLLBAR_CONFIG,
+  PerfectScrollbarConfigInterface,
+} from 'ngx-perfect-scrollbar';
+import { MatIconModule } from '@angular/material/icon';
+import { MatButtonModule } from '@angular/material/button';
+import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
-import { ContactComponent } from './components/home/contact/contact.component';
-import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-import { HotelSearchComponent } from './components/hotel/hotel-search/hotel-search.component';
-import { ReservationCreateComponent } from './components/reservation/reservation-create/reservation-create.component';
-import { ReservationDetailComponent } from './components/reservation/reservation-detail/reservation-detail.component';
-import { ReservationDetailTarifComponent } from './components/reservation/reservation-create/reservation-detail-tarif/reservation-detail-tarif.component';
-import { ReservationConfirmationComponent } from './components/reservation/reservation-confirmation/reservation-confirmation.component';
-import { ExecutePaymentComponent } from './components/reservation/execute-payment/execute-payment.component';
-import { ConfirmedReservationComponent } from './components/reservation/confirmed-reservation/confirmed-reservation.component';
-import { DashboardComponent } from './components/dashboard/dashboard.component';
+import { NgxMaskModule } from 'ngx-mask';
+import { MatTooltipModule } from '@angular/material/tooltip';
+import { MatListModule } from '@angular/material/list';
+import { MatSidenavModule } from '@angular/material/sidenav';
+import { MatDialogModule } from '@angular/material/dialog';
+import { MatButtonToggleModule } from '@angular/material/button-toggle';
+import { MatCheckboxModule } from '@angular/material/checkbox';
+import { MatSlideToggleModule } from '@angular/material/slide-toggle';
+import { MatMenuModule } from '@angular/material/menu';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+import { AgmCoreModule } from '@agm/core';
+import { ClickOutsideModule } from 'ng-click-outside';
+import { HttpClientModule } from '@angular/common/http';
+import {
+  NgxMatDatetimePickerModule,
+  NgxMatNativeDateModule,
+  NgxMatTimepickerModule
+} from '@angular-material-components/datetime-picker';
+import { HotelService } from './hotels/all-hotels/hotel.service';
+import { ToastrModule } from 'ngx-toastr';
+const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
+  suppressScrollX: true,
+  wheelPropagation: false,
+};
 
 @NgModule({
   declarations: [
     AppComponent,
-    NavbarComponent,
-    FooterComponent,
-    UserComponent,
-    RegistrationComponent,
-    HomeComponent,
-    LoginComponent,
-    HotelComponent,
-    HotelDetailComponent,
-    HotelCreateComponent,
-    UserDetailComponent,
-    ReservationComponent,
-    ContactComponent,
-    HotelSearchComponent,
-    ReservationCreateComponent,
-    ReservationDetailComponent,
-    ReservationDetailTarifComponent,
-    ReservationConfirmationComponent,
-    ExecutePaymentComponent,
-    ConfirmedReservationComponent,
-    DashboardComponent
+    HeaderComponent,
+    PageLoaderComponent,
+    SidebarComponent,
+    RightSidebarComponent,
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule,
-    ReactiveFormsModule,
-    HttpClientModule,
-    FormsModule,
     BrowserAnimationsModule,
+    AppRoutingModule,
+    NgbModule,
+    NgxSpinnerModule,
+    HttpClientModule,
+    ReactiveFormsModule,
+    PerfectScrollbarModule,
+    MatIconModule,
+    MatButtonModule,
+    MatProgressBarModule,
+    MatNativeDateModule,
+    MatDatepickerModule,
+    MatDialogModule,
+    MatTooltipModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatListModule,
+    MatSidenavModule,
+    MatButtonToggleModule,
+    MatCheckboxModule,
+    MatSlideToggleModule,
+    MatMenuModule,
+    ClickOutsideModule,
+    NgxMatDatetimePickerModule,
+    NgxMatNativeDateModule,
+    NgxMatTimepickerModule,
+    NgxMaskModule.forRoot(),
+    AgmCoreModule.forRoot({
+      apiKey: 'YOUR API KEY',
+    }),
     ToastrModule.forRoot({
       progressBar: true
     }),
-    BrowserAnimationsModule,
-    MatCheckboxModule,
-    MatDialogModule,
-    MatToolbarModule,
-    MatInputModule,
-    MatSelectModule,
-    MatTabsModule,
-    MatTableModule,
-    MatRadioModule,
-    FontAwesomeModule,
-    MatDatepickerModule,
-    MatNativeDateModule,
-    NgbModule
   ],
-  providers: [UserService, {
-    provide: HTTP_INTERCEPTORS,
-    useClass: AuthInterceptor,
-    multi: true
-  }],
-  entryComponents: [
-    RegistrationComponent,
-    HotelCreateComponent,
-    HotelDetailComponent,
-    ReservationCreateComponent,
-    ReservationDetailComponent,
-    ReservationConfirmationComponent
+  providers: [
+    //{ provide: LocationStrategy, useClass: HashLocationStrategy },
+    {
+      provide: PERFECT_SCROLLBAR_CONFIG,
+      useValue: DEFAULT_PERFECT_SCROLLBAR_CONFIG,
+    },
+    DynamicScriptLoaderService,
+    ConfigService,
+    RightSidebarService,
+    HotelService,
+    BookingService,
+    RoomService,
+    DepartmentService,
+    StaffService
   ],
-  schemas: [
-    CUSTOM_ELEMENTS_SCHEMA,
-    NO_ERRORS_SCHEMA
-  ],
-  bootstrap: [AppComponent]
+  entryComponents: [],
+  bootstrap: [AppComponent],
 })
 export class AppModule { }

@@ -1,0 +1,36 @@
+<app-navbar></app-navbar>
+<div class="container">
+    <mat-toolbar>
+        <span class="fill-remaining-space"></span>
+        <span>Hotel's list</span>
+        <span class="fill-remaining-space"></span>
+    </mat-toolbar>
+    <button mat-raised-button color="primary" (click)="openDialogHotelForm()"><fa-icon [icon]="faPlus"></fa-icon>  Create</button>
+    <table class="table">
+        <tr ngclass="btn-primary">
+            <th class="tbl2">Name</th>
+            <th class="tbl2">Number of rooms</th>
+            <th class="tbl2">City</th>
+            <th class="tbl2">Country</th>
+            <th class="tbl2">Activited</th>
+            <th class="tbl2" colspan="3" style="text-align: center;">Show | Update | Deactivate</th>
+        </tr>
+        <tr *ngFor="let hotel of allHotels">
+            <td class="tbl2">{{ hotel.nom }}</td>
+            <td class="tbl2">{{ hotel.nbChambres }}</td>
+            <td class="tbl2">{{ hotel.adresse }}</td>
+            <td class="tbl2">{{ getCountryName(hotel.paysId) }}</td>
+            <td class="tbl2">{{ hotel.actif == 0 ? 'Non' : 'Oui' }}</td>
+            <td class="tbl2">
+                <button type="button" class="btn btn-info" matTooltip="Click Details Button" (click)="openDialogHotelDetail(hotel)">Details</button>
+            </td>
+            <td class="tbl2">
+                <button type="button" class="btn btn-warning" matTooltip="Click Edit Button" (click)="LoadDataHotel(hotel.Id)">Edit</button>
+            </td>
+            <td class="tbl2">
+                <button type="button" class="btn btn-danger" matTooltip="Click Delete Button" (click)="delete(hotelId)">Delete</button>
+            </td>
+        </tr>
+    </table>
+</div>
+<app-footer></app-footer>

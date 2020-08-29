@@ -32,6 +32,12 @@
   </ItemGroup>
 
   <ItemGroup>
+    <TypeScriptCompile Remove="ClientApp\src\app\components\home\home.component.ts" />
+    <TypeScriptCompile Remove="ClientApp\src\app\components\main-routing.module.ts" />
+    <TypeScriptCompile Remove="ClientApp\src\app\components\main.module.ts" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Folder Include="_intellisense\" />
   </ItemGroup>
 
