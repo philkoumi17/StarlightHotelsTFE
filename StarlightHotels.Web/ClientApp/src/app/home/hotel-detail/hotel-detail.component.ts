@@ -3,7 +3,6 @@ import { Pays } from 'src/app/models/pays.model';
 import { Hotel } from 'src/app/models/hotel.model';
 import { HotelService } from 'src/app/services/hotel.service';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { HotelComponent } from '../hotel.component';
 
 @Component({
   selector: 'app-hotel-detail',
@@ -16,7 +15,7 @@ export class HotelDetailComponent implements OnInit {
   hotel: Hotel;
   edit: boolean;
 
-  constructor(private service: HotelService, private dialogRef: MatDialogRef<HotelComponent>,
+  constructor(private service: HotelService, private dialogRef: MatDialogRef<HotelDetailComponent>,
               @Inject(MAT_DIALOG_DATA) public data: any)
   {
     // this.id = data.Id;

@@ -45,73 +45,8 @@
   <!--/.Carousel Wrapper-->
 
   <div class="jumbotron mt-3">
-    <div class="card card-primary">
-      <div class="card-header">
-        <h3 class="card-title"><i class="fas fa-search"></i> Search</h3>
-      </div>
-      <div class="card-body" style="align-content: center;">
-        <div class="container">
-          <form>
-            <div class="row">
-              <div class="col-sm">
-                <label for="txtPays">Country: </label>
-                <select class="form-control" #p (change)="getCities(p.value)">
-                  <option>All</option>
-                  <option *ngFor="let pays of allCountries" [value]="pays.id">{{pays.nom}}</option>
-                </select>
-              </div>
-              <!-- Dates -->
-              <div class="col-sm">
-                <label for="checkOutDate">Arrival date :</label>
-                <div class="input-group">
-                  <div id="date-picker-example" class="md-form md-outline input-with-post-icon datepicker" inline="true">
-                    <input placeholder="Select date" type="text" id="example" class="form-control">
-                    <i class="fas fa-calendar input-prefix"></i>
-                  </div>
-                </div>
-              </div>
 
-              <div class="col-sm ">
-                <label for="nbAdults">Adults :</label>
-                <input type="number" class="form-control">
-              </div>
-              <div class="col-sm">
-                <div class="form-group">
-                  <input type="button" value="Search" (click)="onSearch()" class="btn btn-primary mt-4 mr-3 ">
-                </div>
-              </div>
-            </div>
-            <div class="row">
-              <div class="col-sm">
-                <label for="txtPays ">City: </label>
-                <select id="countryChoice" #v class="form-control" (change)="setCity(v.value)">
-                  <option>All</option>
-                  <option *ngFor="let v of allCities" [value]="v">{{ v }}</option>
-                </select>
-              </div>
-              <div class="col-sm">
-                <label for="checkOutDate">Departure date :</label>
-                <div class="input-group">
-                  <input class="form-control" placeholder="yyyy-mm-dd" name="departure" [(ngModel)]="modelDeparture" ngbDatepicker #depD="ngbDatepicker" [minDate]="modelArrival">
-                  <div class="input-group-append">
-                    <button class="btn btn-outline-secondary calendar" (click)="depD.toggle()" type="button"></button>
-                  </div>
-                </div>
-              </div>
-              <div class="col-sm ">
-                <label for="nbAdults">Children :</label>
-                <input type="number" class="form-control ">
-              </div>
-              <div class="col-sm">
-              </div>
-            </div>
-            <div class="row error text-danger" *ngIf="error">
-              <label for="error">{{errorMessage}}</label>
-            </div>
-          </form>
-        </div>
-      </div>
-    </div>
+    <app-search></app-search>
 
     <div class="container ">
       <div class="col-lg-12 ">
@@ -259,6 +194,7 @@
       </div>
     </div>
   </div>
+
   <div class="card card-primary">
     <div class="card-header">
       <h3 style="text-align: center;">Météo des top destinations</h3>

@@ -1,9 +1,5 @@
 import { NgModule, CUSTOM_ELEMENTS_SCHEMA, NO_ERRORS_SCHEMA } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { HotelComponent } from './hotel/hotel.component';
-import { HotelCreateComponent } from './hotel/hotel-create/hotel-create.component';
-import { HotelDetailComponent } from './hotel/hotel-detail/hotel-detail.component';
-import { HotelSearchComponent } from './hotel/hotel-search/hotel-search.component';
 import { ReservationComponent } from './reservation/reservation.component';
 import { ConfirmedReservationComponent } from './reservation/confirmed-reservation/confirmed-reservation.component';
 import { ExecutePaymentComponent } from './reservation/execute-payment/execute-payment.component';
@@ -30,10 +26,6 @@ import { AuthInterceptor } from '../auth/auth.interceptor';
 
 @NgModule({
   declarations: [
-    HotelComponent,
-    HotelCreateComponent,
-    HotelDetailComponent,
-    HotelSearchComponent,
     ReservationComponent,
     ConfirmedReservationComponent,
     ExecutePaymentComponent,
@@ -65,9 +57,6 @@ import { AuthInterceptor } from '../auth/auth.interceptor';
     multi: true
   }],
   entryComponents: [
-    RegistrationComponent,
-    HotelCreateComponent,
-    HotelDetailComponent,
     ReservationCreateComponent,
     ReservationDetailComponent,
     ReservationConfirmationComponent

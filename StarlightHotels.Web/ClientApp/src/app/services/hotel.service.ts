@@ -117,21 +117,11 @@ export class HotelService
   }
 
   /**
-   * Search hotel from api
-   * @param paysId
-   * @param city
-   * @param arrD
-   * @param depD
+   * Search for hotels
+   * @param searchHotelModel
    */
-  async searchHotels(paysId: number, city: string, arrD?: Date, depD?: Date)
+  async searchHotels(searchHotelModel: SearchHotelModel)
   {
-    let searchHotelModel: SearchHotelModel = {
-      paysId: paysId,
-      city: city,
-      arrivalDate: arrD,
-      departureDate: depD
-    } as SearchHotelModel;
-
     return await this.http.post<Hotel[]>(this.baseURI + '/Hotel/SearchHotels', searchHotelModel).toPromise();
   }
 }
