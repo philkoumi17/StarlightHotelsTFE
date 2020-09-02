@@ -24,6 +24,9 @@ import { UserComponent } from './user/user.component';
 import { LoginComponent } from './user/login/login.component';
 import { RegistrationComponent } from './user/registration/registration.component';
 import { UserDetailComponent } from './user/user-detail/user-detail.component';
+import { SearchComponent } from './search/search.component';
+import { HotelDetailComponent } from './hotel-detail/hotel-detail.component';
+import { HotelSearchComponent } from './hotel-search/hotel-search.component';
 
 @
 NgModule({
@@ -35,7 +38,10 @@ NgModule({
     UserComponent,
     LoginComponent,
     RegistrationComponent,
-    UserDetailComponent
+    UserDetailComponent,
+    SearchComponent,
+    HotelDetailComponent,
+    HotelSearchComponent,
   ],
   imports: [
     ReactiveFormsModule,
