@@ -1,20 +1,17 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { NgbDateStruct, NgbDate, NgbCalendar, NgbDateParserFormatter } from '@ng-bootstrap/ng-bootstrap';
-import { HotelService } from '../../services/hotel.service';
-import { Pays } from '../../models/pays.model';
+import { HotelService } from '../services/hotel.service';
+import { Pays } from '../models/pays.model';
 import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
-  styles: [
-    './home.component.css'
-  ]
+  styleUrls: ['./home.component.sass']
 })
 export class HomeComponent implements OnInit {
-
-  fromDate: NgbDate | null;
+  fromDate: NgbDate;
   modelArrival: NgbDate;
   modelDeparture: NgbDate;
   allCountries: Pays[];
@@ -39,8 +36,8 @@ export class HomeComponent implements OnInit {
     private toastr: ToastrService,
     private calendar: NgbCalendar,
     public formatter: NgbDateParserFormatter) {
-    this.fromDate = calendar.getToday();
-    this.modelArrival = calendar.getToday();
+    // this.fromDate = calendar.getToday();
+    // this.modelArrival = calendar.getToday();
   }
 
   ngOnInit(): void {
@@ -49,8 +46,8 @@ export class HomeComponent implements OnInit {
         this.allCountries = data;
       }
     );
-    let today = new Date();
-    this.minDate = { year: today.getFullYear(), month: today.getMonth(), day: today.getDay() };
+    // let today = new Date();
+    // this.minDate = { year: today.getFullYear(), month: today.getMonth(), day: today.getDay() };
   }
 
   // tslint:disable-next-line: typedef
@@ -67,7 +64,6 @@ export class HomeComponent implements OnInit {
   setCity(city: string) {
     this.selectedCity = city;
   }
-
 
   /**
    * Action on search

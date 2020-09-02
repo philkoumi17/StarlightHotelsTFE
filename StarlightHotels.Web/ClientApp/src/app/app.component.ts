@@ -14,9 +14,11 @@ import { PlatformLocation } from '@angular/common';
 })
 export class AppComponent {
   currentUrl: string;
-  constructor(public _router: Router, location: PlatformLocation, private spinner: NgxSpinnerService) {
+  constructor(public _router: Router, location: PlatformLocation, private spinner: NgxSpinnerService)
+  {
     this._router.events.subscribe((routerEvent: Event) => {
-      if (routerEvent instanceof NavigationStart) {
+      if(routerEvent instanceof NavigationStart)
+      {
         this.spinner.show();
         location.onPopState(() => {
           window.location.reload();
@@ -25,14 +27,16 @@ export class AppComponent {
           routerEvent.url.lastIndexOf('/') + 1
         );
       }
-      if (routerEvent instanceof NavigationEnd) {
+      if(routerEvent instanceof NavigationEnd)
+      {
         this.spinner.hide();
       }
       window.scrollTo(0, 0);
     });
   }
 
-  showItemBar(router: Router) {
-    return router.url.length > 1 && !router.url.includes('/authentication');
+  showItemBar(router: Router)
+  {
+    return router.url.length > 1 && !router.url.includes('/authentication') && !router.url.includes('/home');
   }
 }
