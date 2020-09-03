@@ -44,74 +44,74 @@
 </div>
 <!--/.Carousel Wrapper-->
 
-<div class="jumbotron mt-3">
-<div class="card card-primary">
-  <div class="card-header">
-    <h3 class="card-title"><i class="fas fa-search"></i> Search</h3>
-  </div>
-  <div class="card-body" style="align-content: center;">
-    <div class="container">
-      <form>
-        <div class="row">
-          <div class="col-sm">
-            <label for="txtPays">Country: </label>
-            <select class="form-control" #p (change)="getCities(p.value)">
-              <option>All</option>
-              <option *ngFor="let pays of allCountries" [value]="pays.id">{{pays.nom}}</option>
-            </select>
-          </div>
-          <!-- Dates -->
-          <div class="col-sm">
-            <label for="checkInDate">Arrival date :</label>
-            <div class="input-group">
-              <input type="text"
-                     placeholder="Datepicker"
-                     class="form-control"
-                     bsDatepicker>
-            </div>
-          </div>
+  <div class="jumbotron mt-3">
+    <div class="card card-primary">
+      <div class="card-header">
+        <h3 class="card-title"><i class="fas fa-search"></i> Search</h3>
+      </div>
+      <div class="card-body" style="align-content: center;">
+        <div class="container">
+          <form>
+            <div class="row">
+              <div class="col-sm">
+                <label for="txtPays">Country: </label>
+                <select class="form-control" #p (change)="getCities(p.value)">
+                  <option>All</option>
+                  <option *ngFor="let pays of allCountries" [value]="pays.id">{{pays.nom}}</option>
+                </select>
+              </div>
+              <!-- Dates -->
+              <div class="col-sm">
+                <label for="checkOutDate">Arrival date :</label>
+                <div class="input-group">
+                  <div id="date-picker-example" class="md-form md-outline input-with-post-icon datepicker" inline="true">
+                    <input placeholder="Select date" type="text" id="example" class="form-control">
+                    <i class="fas fa-calendar input-prefix"></i>
+                  </div>
+                </div>
+              </div>
 
-          <div class="col-sm">
-            <label for="nbAdults">Adults :</label>
-            <input type="number" class="form-control">
-          </div>
-          <div class="col-sm">
-            <div class="form-group">
-              <input type="button" value="Search" (click)="onSearch()" class="btn btn-primary mt-4 mr-3 ">
-            </div>
-          </div>
-        </div>
-        <div class="row">
-          <div class="col-sm">
-            <label for="txtPays ">City: </label>
-            <select id="countryChoice" #v class="form-control" (change)="setCity(v.value)">
-              <option>All</option>
-              <option *ngFor="let v of allCities" [value]="v">{{ v }}</option>
-            </select>
-          </div>
-          <div class="col-sm">
-            <label for="checkOutDate">Departure date :</label>
-            <div class="input-group">
-              <input class="form-control" placeholder="yyyy-mm-dd" name="departure" [(ngModel)]="modelDeparture" ngbDatepicker #depD="ngbDatepicker" [minDate]="modelArrival">
-              <div class="input-group-append">
-                <button class="btn btn-outline-secondary calendar" (click)="depD.toggle()" type="button"></button>
+              <div class="col-sm ">
+                <label for="nbAdults">Adults :</label>
+                <input type="number" class="form-control">
+              </div>
+              <div class="col-sm">
+                <div class="form-group">
+                  <input type="button" value="Search" (click)="onSearch()" class="btn btn-primary mt-4 mr-3 ">
+                </div>
               </div>
             </div>
-          </div>
-          <div class="col-sm ">
-            <label for="nbAdults">Children :</label>
-            <input type="number" class="form-control ">
-          </div>
-          <div class="col-sm">
-          </div>
+            <div class="row">
+              <div class="col-sm">
+                <label for="txtPays ">City: </label>
+                <select id="countryChoice" #v class="form-control" (change)="setCity(v.value)">
+                  <option>All</option>
+                  <option *ngFor="let v of allCities" [value]="v">{{ v }}</option>
+                </select>
+              </div>
+              <div class="col-sm">
+                <label for="checkOutDate">Departure date :</label>
+                <div class="input-group">
+                  <input class="form-control" placeholder="yyyy-mm-dd" name="departure" [(ngModel)]="modelDeparture" ngbDatepicker #depD="ngbDatepicker" [minDate]="modelArrival">
+                  <div class="input-group-append">
+                    <button class="btn btn-outline-secondary calendar" (click)="depD.toggle()" type="button"></button>
+                  </div>
+                </div>
+              </div>
+              <div class="col-sm ">
+                <label for="nbAdults">Children :</label>
+                <input type="number" class="form-control ">
+              </div>
+              <div class="col-sm">
+              </div>
+            </div>
+            <div class="row error text-danger" *ngIf="error">
+              <label for="error">{{errorMessage}}</label>
+            </div>
+          </form>
         </div>
-        <div class="row error text-danger" *ngIf="error">
-          <label for="error">{{errorMessage}}</label>
-        </div>
-      </form>
+      </div>
     </div>
-  </div>
-</div>
 
 <div class="container ">
   <div class="col-lg-12 ">
@@ -250,55 +250,55 @@
 
       <img src="http://placehold.it/1000x400 " alt="Image de l 'hôtel" style="height: 200px; width: 100%; display: block;">
 
-      <div class="card-body">
-        <h4 class="card-title">Hôtel de ouf!</h4>
-        <p class="card-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Maxime, atque?</p>
-        <a href="#" class="btn btn-info">En savoir plus !</a>
-      </div>
-    </div>
-  </div>
-</div>
-</div>
-<div class="card card-primary">
-  <div class="card-header">
-    <h3 style="text-align: center;">Météo des top destinations</h3>
-  </div>
-  <div class="card-body">
-    <div class="list-inline">
-      <div class="card-body form-inline">
-        <div class="col-lg-2">
-          <!-- weather widget start -->
-          <a target="_blank" href="https://hotelmix.fr/weather/brussels-18068"><img src="https://w.bookcdn.com/weather/picture/1_18068_1_3_137AE9_160_ffffff_333333_08488D_1_ffffff_333333_0_6.png?scode=2&domid=581&anc_id=37465" alt="booked.net"/></a>
-          <!-- weather widget end -->
-        </div>
-        <div class="col-lg-2">
-          <!-- weather widget start -->
-          <a target="_blank" href="https://hotelmix.fr/weather/paris-18145"><img src="https://w.bookcdn.com/weather/picture/1_18145_1_3_137AE9_160_ffffff_333333_08488D_1_ffffff_333333_0_6.png?scode=124&domid=581&anc_id=84174" alt="booked.net"/></a>
-          <!-- weather widget end -->
-        </div>
-        <div class="col-lg-2">
-          <!-- weather widget start -->
-          <a target="_blank" href="https://hotelmix.fr/weather/london-18114"><img src="https://w.bookcdn.com/weather/picture/1_18114_1_3_137AE9_160_ffffff_333333_08488D_1_ffffff_333333_0_6.png?scode=124&domid=581&anc_id=18942" alt="booked.net"/></a>
-          <!-- weather widget end -->
-        </div>
-        <div class="col-lg-2">
-          <!-- weather widget start -->
-          <a target="_blank" href="https://hotelmix.fr/weather/saint-denis-2706"><img src="https://w.bookcdn.com/weather/picture/1_2706_1_3_137AE9_160_ffffff_333333_08488D_1_ffffff_333333_0_6.png?scode=124&domid=581&anc_id=45985" alt="booked.net"/></a>
-          <!-- weather widget end -->
-        </div>
-        <div class="col-lg-2">
-          <!-- weather widget start -->
-          <a target="_blank" href="https://hotelmix.fr/weather/marrakesh-18158"><img src="https://w.bookcdn.com/weather/picture/1_18158_1_3_137AE9_160_ffffff_333333_08488D_1_ffffff_333333_0_6.png?scode=124&domid=581&anc_id=53998" alt="booked.net"/></a>
-          <!-- weather widget end -->
-        </div>
-        <div class="col-lg-2">
-          <!-- weather widget start -->
-          <a target="_blank" href="https://hotelmix.fr/weather/antananarivo-9868"><img src="https://w.bookcdn.com/weather/picture/1_9868_1_3_137AE9_160_ffffff_333333_08488D_1_ffffff_333333_0_6.png?scode=124&domid=581&anc_id=72283" alt="booked.net"/></a>
-          <!-- weather widget end -->
+          <div class="card-body">
+            <h4 class="card-title">Hôtel de ouf!</h4>
+            <p class="card-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Maxime, atque?</p>
+            <a href="#" class="btn btn-info">En savoir plus !</a>
+          </div>
         </div>
       </div>
     </div>
   </div>
-</div>
-<app-footer></app-footer>
+  <div class="card card-primary">
+    <div class="card-header">
+      <h3 style="text-align: center;">Météo des top destinations</h3>
+    </div>
+    <div class="card-body">
+      <div class="list-inline">
+        <div class="card-body form-inline">
+          <div class="col-lg-2">
+            <!-- weather widget start -->
+            <a target="_blank" href="https://hotelmix.fr/weather/brussels-18068"><img src="https://w.bookcdn.com/weather/picture/1_18068_1_3_137AE9_160_ffffff_333333_08488D_1_ffffff_333333_0_6.png?scode=2&domid=581&anc_id=37465" alt="booked.net" /></a>
+            <!-- weather widget end -->
+          </div>
+          <div class="col-lg-2">
+            <!-- weather widget start -->
+            <a target="_blank" href="https://hotelmix.fr/weather/paris-18145"><img src="https://w.bookcdn.com/weather/picture/1_18145_1_3_137AE9_160_ffffff_333333_08488D_1_ffffff_333333_0_6.png?scode=124&domid=581&anc_id=84174" alt="booked.net" /></a>
+            <!-- weather widget end -->
+          </div>
+          <div class="col-lg-2">
+            <!-- weather widget start -->
+            <a target="_blank" href="https://hotelmix.fr/weather/london-18114"><img src="https://w.bookcdn.com/weather/picture/1_18114_1_3_137AE9_160_ffffff_333333_08488D_1_ffffff_333333_0_6.png?scode=124&domid=581&anc_id=18942" alt="booked.net" /></a>
+            <!-- weather widget end -->
+          </div>
+          <div class="col-lg-2">
+            <!-- weather widget start -->
+            <a target="_blank" href="https://hotelmix.fr/weather/saint-denis-2706"><img src="https://w.bookcdn.com/weather/picture/1_2706_1_3_137AE9_160_ffffff_333333_08488D_1_ffffff_333333_0_6.png?scode=124&domid=581&anc_id=45985" alt="booked.net" /></a>
+            <!-- weather widget end -->
+          </div>
+          <div class="col-lg-2">
+            <!-- weather widget start -->
+            <a target="_blank" href="https://hotelmix.fr/weather/marrakesh-18158"><img src="https://w.bookcdn.com/weather/picture/1_18158_1_3_137AE9_160_ffffff_333333_08488D_1_ffffff_333333_0_6.png?scode=124&domid=581&anc_id=53998" alt="booked.net" /></a>
+            <!-- weather widget end -->
+          </div>
+          <div class="col-lg-2">
+            <!-- weather widget start -->
+            <a target="_blank" href="https://hotelmix.fr/weather/antananarivo-9868"><img src="https://w.bookcdn.com/weather/picture/1_9868_1_3_137AE9_160_ffffff_333333_08488D_1_ffffff_333333_0_6.png?scode=124&domid=581&anc_id=72283" alt="booked.net" /></a>
+            <!-- weather widget end -->
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <app-footer></app-footer>
 </div>
