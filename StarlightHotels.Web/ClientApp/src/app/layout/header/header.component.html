@@ -37,14 +37,14 @@
                                 <li>
                                     <a href="#" *ngFor="let notification of notifications" onClick="return false;">
                                         <span class="table-img msg-user">
-                      <img src="{{notification.userImg}}" alt="">
-                    </span>
+                                          <img src="{{notification.userImg}}" alt="">
+                                        </span>
                                         <span class="menu-info">
-                      <span class="menu-title">{{notification.userName}}</span>
-                                        <span class="menu-desc">
-                        <i class="material-icons">access_time</i> {{notification.time}}
-                      </span>
-                                        <span class="menu-desc">{{notification.message}}</span>
+                                          <span class="menu-title">{{notification.userName}}</span>
+                                          <span class="menu-desc">
+                                            <i class="material-icons">access_time</i> {{notification.time}}
+                                          </span>
+                                          <span class="menu-desc">{{notification.message}}</span>
                                         </span>
                                     </a>
                                 </li>
@@ -91,8 +91,8 @@
                 <!-- #END# Tasks -->
                 <li class="pull-right">
                     <button mat-icon-button (click)="toggleRightSidebar()" class="nav-notification-icons js-right-sidebar">
-            <mat-icon id="settingBtn">settings</mat-icon>
-          </button>
+                      <mat-icon id="settingBtn">settings</mat-icon>
+                    </button>
                 </li>
             </ul>
         </div>
