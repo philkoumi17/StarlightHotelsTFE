@@ -20,11 +20,11 @@ export class NavbarComponent implements OnInit {
   };
 
   constructor(public dialog: MatDialog, private router: Router, private authService: AuthenticationService,
-              private userService: UserService) { }
+    private userService: UserService) { }
 
+  // tslint:disable-next-line: typedef
   async ngOnInit() {
-    if(this.authService.isAuthenticated())
-    {
+    if (this.authService.isAuthenticated()) {
       await this.userService.getUserProfileAsync().then(
         (data) => {
           this.user = data;
@@ -40,17 +40,17 @@ export class NavbarComponent implements OnInit {
       disableClose: false,
       width: '50%',
       height: '80%',
-      data: { data: null}
+      data: { data: null }
     });
   }
 
-  isConnected()
-  {
+  // tslint:disable-next-line: typedef
+  isConnected() {
     return this.authService.isAuthenticated();
   }
 
-  onLogout()
-  {
+  // tslint:disable-next-line: typedef
+  onLogout() {
     localStorage.removeItem('token');
     this.router.navigate(['/']);
   }

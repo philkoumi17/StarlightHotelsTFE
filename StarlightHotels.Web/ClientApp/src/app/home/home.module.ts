@@ -35,6 +35,7 @@ import { ReservationCreateComponent } from './reservation/reservation-create/res
 import { ReservationDetailTarifComponent } from './reservation/reservation-create/reservation-detail-tarif/reservation-detail-tarif.component';
 import { ReservationDetailComponent } from './reservation/reservation-detail/reservation-detail.component';
 import { ParticipantComponent } from './participant/participant.component';
+import { AddParticipantComponent } from './participant/add-participant/add-participant.component';
 
 @
 NgModule({
@@ -57,7 +58,8 @@ NgModule({
     ReservationCreateComponent,
     ReservationDetailTarifComponent,
     ReservationDetailComponent,
-    ParticipantComponent
+    ParticipantComponent,
+    AddParticipantComponent
   ],
   imports: [
     ReactiveFormsModule,
