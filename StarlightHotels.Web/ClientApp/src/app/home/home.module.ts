@@ -27,6 +27,14 @@ import { UserDetailComponent } from './user/user-detail/user-detail.component';
 import { SearchComponent } from './search/search.component';
 import { HotelDetailComponent } from './hotel-detail/hotel-detail.component';
 import { HotelSearchComponent } from './hotel-search/hotel-search.component';
+import { ReservationComponent } from './reservation/reservation.component';
+import { ConfirmedReservationComponent } from './reservation/confirmed-reservation/confirmed-reservation.component';
+import { ExecutePaymentComponent } from './reservation/execute-payment/execute-payment.component';
+import { ReservationConfirmationComponent } from './reservation/reservation-confirmation/reservation-confirmation.component';
+import { ReservationCreateComponent } from './reservation/reservation-create/reservation-create.component';
+import { ReservationDetailTarifComponent } from './reservation/reservation-create/reservation-detail-tarif/reservation-detail-tarif.component';
+import { ReservationDetailComponent } from './reservation/reservation-detail/reservation-detail.component';
+import { ParticipantComponent } from './participant/participant.component';
 
 @
 NgModule({
@@ -42,6 +50,14 @@ NgModule({
     SearchComponent,
     HotelDetailComponent,
     HotelSearchComponent,
+    ReservationComponent,
+    ConfirmedReservationComponent,
+    ExecutePaymentComponent,
+    ReservationConfirmationComponent,
+    ReservationCreateComponent,
+    ReservationDetailTarifComponent,
+    ReservationDetailComponent,
+    ParticipantComponent
   ],
   imports: [
     ReactiveFormsModule,
@@ -66,6 +82,9 @@ NgModule({
     multi: true
   }],
   entryComponents: [
+    ReservationCreateComponent,
+    ReservationDetailComponent,
+    ReservationConfirmationComponent
   ],
   schemas: [
     CUSTOM_ELEMENTS_SCHEMA,
