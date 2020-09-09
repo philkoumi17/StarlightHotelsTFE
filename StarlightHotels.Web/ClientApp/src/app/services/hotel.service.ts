@@ -22,6 +22,10 @@ export class HotelService
   private hotelBehavior = new BehaviorSubject<Hotel[]>(this.hotelInstance);
   hotelData = this.hotelBehavior.asObservable();
 
+  searchInstance: SearchHotelModel = {} as SearchHotelModel;
+  private searchBehavior = new BehaviorSubject<SearchHotelModel>(this.searchInstance);
+  searchData = this.searchBehavior.asObservable();
+
   constructor(private http: HttpClient, private fb: FormBuilder) { }
 
   formModel = this.fb.group({
@@ -122,6 +126,7 @@ export class HotelService
    */
   async searchHotels(searchHotelModel: SearchHotelModel)
   {
+    this.searchBehavior.next(searchHotelModel);
     return await this.http.post<Hotel[]>(this.baseURI + '/Hotel/SearchHotels', searchHotelModel).toPromise();
   }
 }

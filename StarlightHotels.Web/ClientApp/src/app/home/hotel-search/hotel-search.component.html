@@ -1,7 +1,7 @@
 <app-navbar></app-navbar>
 
 <div class="container mt-5">
-    <app-search></app-search>
+    <app-search [searchInstance]="searchInstance"></app-search>
     <h2>Hotel's list of this </h2>
     <div class="card mb-3" *ngFor="let hotel of hotellist">
         <h3 class="card-header">{{ hotel.nom }}</h3>
