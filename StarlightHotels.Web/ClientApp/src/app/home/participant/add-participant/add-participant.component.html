@@ -1,1 +1,94 @@
-<p>add-participant works!</p>
+<div class="card card-primary">
+  <div class="card-header">
+    <h3 class="card-title"><i class="fas fa-users"></i> Add participant</h3>
+  </div>
+  <div class="card-body" style="align-content: center;">
+    <div class="container">
+      <form [formGroup]="addPartForm">
+        <div class="row">
+
+          <div class="col-sm">
+            <mat-form-field class="example-full-width mb-3" appearance="outline">
+              <mat-label>Title:</mat-label>
+              <mat-select formControlName="title">
+                <mat-option [value]="1">
+                  M.
+                </mat-option>
+                <mat-option [value]="2">
+                  Mme.
+                </mat-option>
+                <mat-option [value]="3">
+                  Ms.
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+
+          <div class="col-sm">
+            <mat-form-field class="example-full-width mb-3" appearance="outline">
+              <mat-label>First name:</mat-label>
+              <input matInput formControlName="firstName" type="text" required>
+              <mat-error *ngIf="addPart.get('firstName').hasError('required')">
+                First name is required
+              </mat-error>
+            </mat-form-field>
+          </div>
+
+          <div class="col-sm">
+            <mat-form-field class="example-full-width mb-3" appearance="outline">
+              <mat-label>Last name:</mat-label>
+              <input matInput formControlName="lastName" type="text" required>
+              <mat-error *ngIf="addPart.get('lastName').hasError('required')">
+                Last name is required
+              </mat-error>
+            </mat-form-field>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-sm">
+            <mat-form-field class="example-full-width mb-3" appearance="outline">
+              <mat-label>Country:</mat-label>
+              <mat-select formControlName="paysId">
+                <mat-option>
+                  Choose a country..
+                </mat-option>
+                <mat-option *ngFor="let pays of allCountries" [value]="pays.id">{{pays.nom}}</mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+
+          <div class="col-sm">
+            <mat-form-field class="example-full-width mb-3" appearance="outline">
+              <mat-label>Date of birth</mat-label>
+              <input matInput [matDatepicker]="picker1" formControlName="dateOfBirth" [max]="maxDate" required>
+              <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+              <mat-datepicker #picker1></mat-datepicker>
+              <mat-error *ngIf="addPart.get('dateOfBirth').hasError('required')">
+                Please select date
+              </mat-error>
+            </mat-form-field>
+          </div>
+
+          <div class="col-sm">
+            <mat-form-field class="example-full-width mb-3" appearance="outline">
+              <mat-label>Email:</mat-label>
+              <input matInput formControlName="addressMail" type="email" required>
+              <mat-error *ngIf="addPart.get('addressMail').hasError('required')">
+                Email address is required
+              </mat-error>
+            </mat-form-field>
+          </div>
+
+          <div class="col-sm">
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-sm">
+            <button [disabled]="!addPart.valid " class="btn btn-primary mt-4 mr-3 ">Search</button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
