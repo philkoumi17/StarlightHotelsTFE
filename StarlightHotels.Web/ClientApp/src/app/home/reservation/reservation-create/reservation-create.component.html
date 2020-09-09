@@ -28,16 +28,16 @@
               </div>
               <div class="col-lg-5">
                 <div class="form-group">
-                  <label for="exampleFormControlSelect1">Quantité: </label>
                   <div class="col-sm-9">
-                    <select class="form-control" id="exampleFormControlSelect1" style="width: auto;">
-                      <option>0</option>
-                      <option>1</option>
-                      <option>2</option>
-                      <option>3</option>
-                      <option>4</option>
-                      <option>5</option>
-                    </select>
+                    <mat-form-field class="example-full-width mb-3" appearance="outline">
+                      <mat-label>Quantity:</mat-label>
+                      <mat-select #choosedValue (valueChange)="getNbPart(choosedValue.value)">
+                        <mat-option [value]="0">
+                          Choose ..
+                        </mat-option>
+                        <mat-option *ngFor="let in of [0,1,2,3,4];let i = index" [value]="i">{{ i }}</mat-option>
+                      </mat-select>
+                    </mat-form-field>
                   </div>
                 </div>
                 <div class="form-group">
@@ -50,6 +50,9 @@
               </div>
             </div>
           </div>
+        </div>
+        <div *ngFor="let number of nb">
+          <app-add-participant></app-add-participant>
         </div>
         <div class="card-header">
           <div class="card-body" style="border-radius: 0%;">

@@ -9,6 +9,8 @@ import { ReservationDetailTarifComponent } from './reservation/reservation-creat
 import { UserDetailComponent } from './user/user-detail/user-detail.component';
 import { ContactComponent } from './contact/contact.component';
 import { UserComponent } from './user/user.component';
+import { RegistrationComponent } from './user/registration/registration.component';
+import { LoginComponent } from './user/login/login.component';
 
 const routes: Routes = [
   {
@@ -28,9 +30,11 @@ const routes: Routes = [
   { path: 'home/book-hotel/:id', component: ReservationCreateComponent },
   { path: 'home/book-hotel/confirm', component: ReservationConfirmationComponent },
   { path: 'home/book-hotel/detailTarif/:id', component: ReservationDetailTarifComponent },
-  { path: 'contact', component: ContactComponent },
-  { path: 'user', component: UserComponent },
-  { path: 'user-detail', component: UserDetailComponent },
+  { path: 'home/contact', component: ContactComponent },
+  { path: 'home/user', component: UserComponent },
+  { path: 'home/user/registration', component: RegistrationComponent },
+  { path: 'home/user/login', component: LoginComponent },
+  { path: 'home/user/user-detail', component: UserDetailComponent },
 ];
 @NgModule({
   imports: [RouterModule.forChild(routes)],
