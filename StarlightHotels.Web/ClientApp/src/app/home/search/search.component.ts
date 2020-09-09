@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { NgbDateParserFormatter, NgbCalendar, NgbDate, NgbDateStruct } from '@ng-bootstrap/ng-bootstrap';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
@@ -15,6 +15,7 @@ import { SearchHotelModel } from '../../models/search-hotel.model';
 /** search component*/
 export class SearchComponent implements OnInit{
 
+  @Input() searchInstance: SearchHotelModel;
   searchForm: FormGroup;
 
   minDate: Date;
@@ -44,6 +45,10 @@ export class SearchComponent implements OnInit{
         this.allCountries = data;
       }
     );
+
+    if (this.searchInstance) {
+      this.setSearchForm();
+    }
   }
 
 
@@ -55,6 +60,17 @@ export class SearchComponent implements OnInit{
       departureDate: ['', [Validators.required]],
       totalAdult: [1, [Validators.required]],
       totalChildren: [0, [Validators.required]],
+    });
+  }
+
+  setSearchForm() {
+    this.searchForm.patchValue({
+      paysId: this.searchInstance.paysId,
+      city: this.searchInstance.city,
+      arrivalDate: this.searchInstance.arrivalDate,
+      departureDate: this.searchInstance.departureDate,
+      totalAdult: this.searchInstance.totalAdult,
+      totalChildren: this.searchInstance.totalChildren
     });
   }
 

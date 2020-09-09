@@ -51,9 +51,12 @@
             </div>
           </div>
         </div>
-        <div *ngFor="let number of nb">
-          <app-add-participant></app-add-participant>
+
+        <!--Participants-->
+        <div *ngFor="let participant of participantList">
+          <app-add-participant [participant]="participant"></app-add-participant>
         </div>
+
         <div class="card-header">
           <div class="card-body" style="border-radius: 0%;">
             <div class="row">

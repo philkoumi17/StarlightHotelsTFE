@@ -1,9 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Pays } from '../../../models/pays.model';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { HotelService } from '../../../services/hotel.service';
+import { ParticipantModel } from '../../../models/participant.model';
 
 @Component({
   selector: 'app-add-participant',
@@ -11,6 +12,8 @@ import { HotelService } from '../../../services/hotel.service';
   styleUrls: ['./add-participant.component.sass']
 })
 export class AddParticipantComponent implements OnInit {
+
+  @Input() participant: ParticipantModel = {} as ParticipantModel;
 
   addPart: FormGroup;
 
@@ -41,7 +44,6 @@ export class AddParticipantComponent implements OnInit {
 
   addPartForm(): FormGroup {
     return this.fb.group({
-      paysId: [''],
       dateOfBirth: ['', [Validators.required]],
       firstName: ['', [Validators.required]],
       lastName: ['', [Validators.required]],
