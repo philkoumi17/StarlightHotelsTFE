@@ -8,12 +8,12 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { SearchHotelModel } from '../../models/search-hotel.model';
 
 @Component({
-    selector: 'app-search',
-    templateUrl: './search.component.html',
-    styleUrls: []
+  selector: 'app-search',
+  templateUrl: './search.component.html',
+  styleUrls: []
 })
 /** search component*/
-export class SearchComponent implements OnInit{
+export class SearchComponent implements OnInit {
 
   @Input() searchInstance: SearchHotelModel;
   searchForm: FormGroup;
@@ -21,7 +21,6 @@ export class SearchComponent implements OnInit{
   minDate: Date;
   allCountries: Pays[];
   allCities: string[] = [];
-  paysId: number = 0;
 
 
   title = 'StarlightHotels';
@@ -32,7 +31,6 @@ export class SearchComponent implements OnInit{
     private router: Router,
     private service: HotelService,
     private toastr: ToastrService,
-    private calendar: NgbCalendar,
     public formatter: NgbDateParserFormatter,
     private fb: FormBuilder) {
     this.searchForm = this.createSearchForm();
@@ -47,8 +45,14 @@ export class SearchComponent implements OnInit{
     );
 
     if (this.searchInstance) {
-      this.setSearchForm();
+      if (this.searchInstance.paysId) {
+        this.getCities(this.searchInstance.paysId).then(
+          (data) => {
+            this.setSearchForm();
+          });
+      }
     }
+
   }
 
 
@@ -75,10 +79,9 @@ export class SearchComponent implements OnInit{
   }
 
   getCities(paysId: number) {
-    this.paysId = paysId;
-    this.service.getCitiesByCountry(paysId).then(
+    return this.service.getCitiesByCountry(paysId).then(
       (data) => {
-        this.allCities = data;    
+        this.allCities = data;
       }
     );
   }
@@ -92,7 +95,6 @@ export class SearchComponent implements OnInit{
     this.errorMessage = '';
 
     let searchHotelModel: SearchHotelModel = this.searchForm.getRawValue();
-    console.log(searchHotelModel);
 
     await this.service.searchHotels(searchHotelModel).then(
       (data) => {

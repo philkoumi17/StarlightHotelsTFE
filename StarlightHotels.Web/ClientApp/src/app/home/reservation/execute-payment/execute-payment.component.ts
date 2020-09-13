@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 
 @Component({
   selector: 'app-execute-payment',
@@ -7,9 +7,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ExecutePaymentComponent implements OnInit {
 
+  @ViewChild('form') form: ElementRef;
+
   constructor() { }
 
   ngOnInit(): void {
+  }
+
+  submitForm() {
+    this.form.nativeElement.submit();
   }
 
 }

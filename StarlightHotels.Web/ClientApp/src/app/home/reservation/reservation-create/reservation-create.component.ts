@@ -3,6 +3,8 @@ import { NgbDateStruct } from '@ng-bootstrap/ng-bootstrap';
 import { ParticipantModel } from '../../../models/participant.model';
 import { ReservationService } from '../../../services/reservation.service';
 import { BehaviorSubject } from 'rxjs';
+import { HotelService } from '../../../services/hotel.service';
+import { SearchHotelModel } from '../../../models/search-hotel.model';
 
 @Component({
   selector: 'app-reservation-create',
@@ -16,13 +18,17 @@ export class ReservationCreateComponent implements OnInit {
   nb = [2];
 
   participantList: ParticipantModel[] = [];
+  searchInstance: SearchHotelModel = {} as SearchHotelModel;
 
-  constructor(private reservationService: ReservationService) { }
+  constructor(
+    private reservationService: ReservationService,
+    private hotelService: HotelService) { }
 
   ngOnInit(): void {
     let today = new Date();
     this.minDate = { year: today.getFullYear(), month: today.getMonth(), day: today.getDay() };
 
+    this.hotelService.searchData.subscribe(data => this.searchInstance = data);
     this.reservationService.participantData.subscribe(data => this.participantList = data);
   }
 

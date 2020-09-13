@@ -1,4 +1,4 @@
-﻿/*
+/*
  *  Document   : _general.scss
  *  Author     : RedStar Template
  *  Description: This scss file for all common style classes
@@ -61,6 +61,18 @@ section {
   &.content {
     margin: 75px 15px 0 275px;
     min-height: calc(100vh - 76px);
+    @include transition(0.5s);
+  }
+
+  &.homecontent {
+    width: 100%;
+    padding-right: 15px;
+    padding-left: 15px;
+    margin-right: auto;
+    margin-left: auto;
+    min-height: calc(100vh - 76px);
+    max-width: 1140px;
+    margin-top: 60px;
     @include transition(0.5s);
   }
 }

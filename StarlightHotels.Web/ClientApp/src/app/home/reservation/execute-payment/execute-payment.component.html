@@ -1,5 +1,5 @@
 <!-- <h2>Redirection vers la plateforme de paiement</h2> -->
-<form method="post" action="https://ogone.test.v-psp.com/ncol/test/orderstandard_utf8.asp" id=form1 name=form1>
+<form #form ngNoForm  method="post" action="https://ogone.test.v-psp.com/ncol/test/orderstandard_utf8.asp">
 
     <!-- paramètres généraux : voir Paramètres de formulaire -->
     <input type="hidden" name="PSPID" value="">
@@ -35,6 +35,5 @@
     <input type="hidden" name="EXCEPTIONURL" value="">
     <input type="hidden" name="CANCELURL" value="">
 
-    <input type="submit" value="" id=submit2 name=submit2>
-
+    <button type="submit">Submit</button>
 </form>

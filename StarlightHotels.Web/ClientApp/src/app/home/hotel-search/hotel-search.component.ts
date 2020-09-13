@@ -19,7 +19,5 @@ export class HotelSearchComponent implements OnInit {
   {
     this.hotelService.hotelData.subscribe(data => this.hotellist = data);
     this.hotelService.searchData.subscribe(data => this.searchInstance = data);
-
-    console.log(this.searchInstance);
   }
 }
