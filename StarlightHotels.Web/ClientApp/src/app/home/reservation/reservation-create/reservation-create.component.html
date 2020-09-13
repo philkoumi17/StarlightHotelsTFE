@@ -6,7 +6,7 @@
   <i class="fas fa-star"></i>
   <i class="fas fa-star"></i>
 
-  <app-search [searchInstance]="searchInstance"></app-search>
+  <app-search [searchInstance]="searchInstance" [isRoomSelection]="isRoomSelection"></app-search>
 
   <div class="row">
     <div class="col-sm-12">
@@ -173,7 +173,7 @@
         </h3>
         <div class="form-group ml-auto">
           <!--<button class="btn btn-primary" routerLink="/home/book-hotel/confirm">Next</button>-->
-          <a [routerLink]="['/home/confirm-hotel']" class="btn btn-info">Next</a>
+          <a [routerLink]="['/home/confirm-reservation/', reservationId]" class="btn btn-info">Next !</a>
         </div>
       </div>
     </div>

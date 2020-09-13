@@ -16,6 +16,8 @@ import { SearchHotelModel } from '../../models/search-hotel.model';
 export class SearchComponent implements OnInit {
 
   @Input() searchInstance: SearchHotelModel;
+  @Input() isRoomSelection: boolean;
+
   searchForm: FormGroup;
 
   minDate: Date;

@@ -1,4 +1,5 @@
-import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef, Input } from '@angular/core';
+import { PaymentModel } from '../../../models/payment.model';
 
 @Component({
   selector: 'app-execute-payment',
@@ -8,6 +9,8 @@ import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 export class ExecutePaymentComponent implements OnInit {
 
   @ViewChild('form') form: ElementRef;
+
+  @Input() payment: PaymentModel = {} as PaymentModel
 
   constructor() { }
 

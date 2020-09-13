@@ -22,7 +22,7 @@ const routes: Routes = [
   { path: 'home/hotel-search', component: HotelSearchComponent},
   { path: 'home/list-of-bookings', component: ReservationComponent },
   { path: 'home/book-hotel/:id', component: ReservationCreateComponent },
-  { path: 'home/confirm-hotel', component: ReservationConfirmationComponent },
+  { path: 'home/confirm-reservation/:id', component: ReservationConfirmationComponent },
   { path: 'home/book-hotel/detailTarif/:id', component: ReservationDetailTarifComponent },
   { path: 'home/contact', component: ContactComponent },
   { path: 'home/user', component: UserComponent },
