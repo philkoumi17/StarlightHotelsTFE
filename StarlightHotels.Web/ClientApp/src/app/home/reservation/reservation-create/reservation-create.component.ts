@@ -5,6 +5,7 @@ import { ReservationService } from '../../../services/reservation.service';
 import { BehaviorSubject } from 'rxjs';
 import { HotelService } from '../../../services/hotel.service';
 import { SearchHotelModel } from '../../../models/search-hotel.model';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-reservation-create',
@@ -15,16 +16,30 @@ export class ReservationCreateComponent implements OnInit {
   modelArrival: NgbDateStruct;
   modelDeparture: NgbDateStruct;
   minDate: NgbDateStruct;
-  nb = [2];
+
+  hotelId;
+  isRoomSelection: boolean = true;
 
   participantList: ParticipantModel[] = [];
   searchInstance: SearchHotelModel = {} as SearchHotelModel;
 
+  reservationId = 1; //TODO, set reservation id after save data in db
+
   constructor(
     private reservationService: ReservationService,
-    private hotelService: HotelService) { }
+    private hotelService: HotelService,
+    private route: ActivatedRoute) { }
 
   ngOnInit(): void {
+
+    this.route.paramMap.subscribe(params => {
+      this.hotelId = params.get('id');
+    });
+
+    //TODO: Get hotel rooms
+    console.log(this.hotelId);
+
+
     let today = new Date();
     this.minDate = { year: today.getFullYear(), month: today.getMonth(), day: today.getDay() };
 

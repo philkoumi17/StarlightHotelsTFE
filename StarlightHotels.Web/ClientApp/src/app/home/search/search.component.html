@@ -10,7 +10,7 @@
           <div class="col-sm">
             <mat-form-field class="example-full-width mb-3" appearance="outline">
               <mat-label>Country:</mat-label>
-              <mat-select formControlName="paysId" #choosedValue (valueChange)="getCities(choosedValue.value)">
+              <mat-select formControlName="paysId" #choosedValue (valueChange)="getCities(choosedValue.value)" [disabled]="isRoomSelection">
                 <mat-option [value]="'all'">
                   All
                 </mat-option>
@@ -51,7 +51,7 @@
           <div class="col-sm">
             <mat-form-field class="example-full-width mb-3" appearance="outline">
               <mat-label>City:</mat-label>
-              <mat-select formControlName="city">
+              <mat-select formControlName="city" [disabled]="isRoomSelection">
                 <mat-option [value]="'all'">
                   All
                 </mat-option>
