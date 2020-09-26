@@ -1,8 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using System.Text;
 
 namespace StarlightHotels.Models
 {
@@ -10,18 +8,18 @@ namespace StarlightHotels.Models
     public class PromotionModel
     {
         [Key]
-        [Column("PR_Id")]
+        [Column("PRO_Id")]
         [Display(Name = "Id")]
         public int Id { get; set; }
 
-        [Column("PR_Libelle")]
+        [Column("PRO_Libelle")]
         [Display(Name = "Libellé")]
         public string Libelle { get; set; }
 
-        [Column("PR_Pourcentage")]
+        [Column("PRO_Coefficient")]
         [Display(Name = "Pourcentage")]
         public float Pourcentage { get; set; }
 
-        public ICollection<HotelPromotionModel> HotelPromotions { get; set; }
+        public List<HotelPromotionModel> HotelPromotions { get; set; }
     }
 }

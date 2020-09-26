@@ -24,6 +24,8 @@ namespace StarlightHotels.Models
         [DataType(DataType.Currency)]
         public decimal Montant { get; set; }
 
+        public List<ChambreReserveeModel> ChambreReservees { get; set; }
+
         public ICollection<HotelFormuleModel> HotelFormules { get; set; }
     }
 }

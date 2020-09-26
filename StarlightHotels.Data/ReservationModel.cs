@@ -2,8 +2,6 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace StarlightHotels.Models
 {
@@ -15,17 +13,11 @@ namespace StarlightHotels.Models
         [Display(Name = "Id")]
         public int IdRes { get; set; }
 
-        // Relation avec l'entité Client
-        [Column("RES_CLI_Id")]
-        [Display(Name = "Client")]
-        public int ClientId { get; set; }
-        public ClientModel Client { get; set; }
-
-        // Relation avec l'entité Participant
-        [Column("RES_PART_Id")]
-        [Display(Name = "Participant")]
-        public int PartId { get; set; }
-        public ParticipantModel Participant { get; set; }
+        // Relation with the user entity
+        [Column("AppUser_Id")]
+        [Display(Name = "Utilisateur")]
+        public string ApplicationUserId { get; set; }
+        public ApplicationUser ApplicationUser { get; set; }
 
         [Column("RES_DateReservation")]
         [Display(Name = "Date de la réservation")]
@@ -37,14 +29,16 @@ namespace StarlightHotels.Models
         [DataType(DataType.Currency)]
         public decimal Montant { get; set; }
 
-        // Relation avec l'entité Etat
+        // Relation with the status entity
         [Column("RES_ETAT_Id")]
         [Display(Name = "Etat")]
         public int EtatId { get; set; }
         public EtatModel Etat { get; set; }
 
+        // Relation with the invoice entity
         public FactureModel Facture { get; set; }
 
-        public ICollection<ChambreReserveeModel> ChambreReservees { get; set; }
+        public List<ChambreReserveeModel> ChambreReservees { get; set; }
+        public List<ParticipantReservationModel> ParticipantReservations { get; set; }
     }
 }

@@ -2,23 +2,16 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace StarlightHotels.Models
 {
     [Table("ReservationChambre")]
     public class ChambreReserveeModel
     {
-        [Column("CH_Num")]
-        [Display(Name = "Chambre")]
-        public int ChNum { get; set; }
-        public ChambreModel Chambre { get; set; }
-
-        [Column("RES_Id")]
-        [Display(Name = "Réservation")]
-        public int IdRes { get; set; }
-        public ReservationModel Reservation { get; set; }
+        [Key]
+        [Column("RESCH_Id")]
+        [Display(Name = "RESCH_Id")]
+        public int IdResCh { get; set; }
 
         [Column("RESCH_NbAdultes")]
         [Display(Name = "RESCH_NbAdultes")]
@@ -45,5 +38,25 @@ namespace StarlightHotels.Models
         [Column("RESCH_MontantTotal")]
         [Display(Name = "Montant total")]
         public decimal MontantTotal { get; set; }
+
+        // Relation with the arrangement entity
+        [Column("RESCH_FOR_Id")]
+        [Display(Name = "Formule")]
+        public int FormuleId { get; set; }
+        public FormuleModel Formule { get; set; }
+
+        // Relation with the room entity
+        [Column("RESCH_CH_Num")]
+        [Display(Name = "Chambre")]
+        public int ChNum { get; set; }
+        public ChambreModel Chambre { get; set; }
+
+        // Relation with the booking entity
+        [Column("RES_Id")]
+        [Display(Name = "Réservation")]
+        public int IdRes { get; set; }
+        public ReservationModel Reservation { get; set; }
+
+        public List<ChambreReserveeServiceModel> ChambreReserveeServices { get; set; }
     }
 }

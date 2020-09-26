@@ -10,14 +10,14 @@ using StarlightHotels.DAL.Data;
 namespace StarlightHotels.DAL.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20200808011157_AlterTableCategorieAndChambre")]
-    partial class AlterTableCategorieAndChambre
+    [Migration("20200926133827_InitialCreate")]
+    partial class InitialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "3.1.5")
+                .HasAnnotation("ProductVersion", "3.1.8")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
@@ -160,9 +160,19 @@ namespace StarlightHotels.DAL.Migrations
                     b.Property<int>("AccessFailedCount")
                         .HasColumnType("int");
 
+                    b.Property<string>("CodePostal")
+                        .IsRequired()
+                        .HasColumnName("USER_CodePostal")
+                        .HasColumnType("nvarchar(20)")
+                        .HasMaxLength(20);
+
                     b.Property<string>("ConcurrencyStamp")
                         .IsConcurrencyToken()
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("DateNaissance")
+                        .HasColumnName("USER_DateNaissance")
+                        .HasColumnType("datetime2");
 
                     b.Property<string>("Email")
                         .HasColumnType("nvarchar(256)")
@@ -172,13 +182,19 @@ namespace StarlightHotels.DAL.Migrations
                         .HasColumnType("bit");
 
                     b.Property<string>("FullName")
-                        .HasColumnType("nvarchar(150)");
+                        .HasColumnType("nvarchar(50)");
 
                     b.Property<bool>("LockoutEnabled")
                         .HasColumnType("bit");
 
                     b.Property<DateTimeOffset?>("LockoutEnd")
                         .HasColumnType("datetimeoffset");
+
+                    b.Property<string>("Nom")
+                        .IsRequired()
+                        .HasColumnName("USER_Nom")
+                        .HasColumnType("nvarchar(60)")
+                        .HasMaxLength(60);
 
                     b.Property<string>("NormalizedEmail")
                         .HasColumnType("nvarchar(256)")
@@ -188,8 +204,18 @@ namespace StarlightHotels.DAL.Migrations
                         .HasColumnType("nvarchar(256)")
                         .HasMaxLength(256);
 
+                    b.Property<string>("NumeroRue")
+                        .IsRequired()
+                        .HasColumnName("USER_Numero")
+                        .HasColumnType("nvarchar(100)")
+                        .HasMaxLength(100);
+
                     b.Property<string>("PasswordHash")
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("PaysId")
+                        .HasColumnName("USER_PAYS_Id")
+                        .HasColumnType("int");
 
                     b.Property<string>("PhoneNumber")
                         .HasColumnType("nvarchar(max)");
@@ -197,8 +223,26 @@ namespace StarlightHotels.DAL.Migrations
                     b.Property<bool>("PhoneNumberConfirmed")
                         .HasColumnType("bit");
 
+                    b.Property<string>("Prenom")
+                        .IsRequired()
+                        .HasColumnName("USER_Prenom")
+                        .HasColumnType("nvarchar(60)")
+                        .HasMaxLength(60);
+
+                    b.Property<string>("Rue")
+                        .IsRequired()
+                        .HasColumnName("USER_Rue")
+                        .HasColumnType("nvarchar(100)")
+                        .HasMaxLength(100);
+
                     b.Property<string>("SecurityStamp")
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Sexe")
+                        .IsRequired()
+                        .HasColumnName("USER_Sexe")
+                        .HasColumnType("nvarchar(1)")
+                        .HasMaxLength(1);
 
                     b.Property<bool>("TwoFactorEnabled")
                         .HasColumnType("bit");
@@ -206,6 +250,12 @@ namespace StarlightHotels.DAL.Migrations
                     b.Property<string>("UserName")
                         .HasColumnType("nvarchar(256)")
                         .HasMaxLength(256);
+
+                    b.Property<string>("Ville")
+                        .IsRequired()
+                        .HasColumnName("USER_Ville")
+                        .HasColumnType("nvarchar(60)")
+                        .HasMaxLength(60);
 
                     b.HasKey("Id");
 
@@ -216,6 +266,8 @@ namespace StarlightHotels.DAL.Migrations
                         .IsUnique()
                         .HasName("UserNameIndex")
                         .HasFilter("[NormalizedUserName] IS NOT NULL");
+
+                    b.HasIndex("PaysId");
 
                     b.ToTable("AspNetUsers");
                 });
@@ -285,12 +337,17 @@ namespace StarlightHotels.DAL.Migrations
 
             modelBuilder.Entity("StarlightHotels.Models.ChambreReserveeModel", b =>
                 {
+                    b.Property<int>("IdResCh")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnName("RESCH_Id")
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
                     b.Property<int>("ChNum")
-                        .HasColumnName("CH_Num")
+                        .HasColumnName("RESCH_CH_Num")
                         .HasColumnType("int");
 
-                    b.Property<int>("IdRes")
-                        .HasColumnName("RES_Id")
+                    b.Property<int?>("ChambreChNum")
                         .HasColumnType("int");
 
                     b.Property<DateTime>("DateArrivee")
@@ -300,6 +357,14 @@ namespace StarlightHotels.DAL.Migrations
                     b.Property<DateTime>("DateDepart")
                         .HasColumnName("RESCH_DateDepart")
                         .HasColumnType("datetime2");
+
+                    b.Property<int>("FormuleId")
+                        .HasColumnName("RESCH_FOR_Id")
+                        .HasColumnType("int");
+
+                    b.Property<int>("IdRes")
+                        .HasColumnName("RES_Id")
+                        .HasColumnType("int");
 
                     b.Property<bool>("LitSupplementaire")
                         .HasColumnName("RESCH_LitSup")
@@ -317,87 +382,35 @@ namespace StarlightHotels.DAL.Migrations
                         .HasColumnName("RESCH_NbEnfants")
                         .HasColumnType("int");
 
-                    b.HasKey("ChNum", "IdRes");
+                    b.Property<int?>("ReservationIdRes")
+                        .HasColumnType("int");
 
-                    b.HasIndex("IdRes");
+                    b.HasKey("IdResCh");
+
+                    b.HasIndex("ChambreChNum");
+
+                    b.HasIndex("FormuleId");
+
+                    b.HasIndex("ReservationIdRes");
 
                     b.ToTable("ReservationChambre");
                 });
 
-            modelBuilder.Entity("StarlightHotels.Models.ClientModel", b =>
+            modelBuilder.Entity("StarlightHotels.Models.ChambreReserveeServiceModel", b =>
                 {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnName("CL_Id")
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<string>("ApplicationUserId")
-                        .HasColumnType("nvarchar(450)");
-
-                    b.Property<string>("CodePostal")
-                        .IsRequired()
-                        .HasColumnName("CL_CodePostal")
-                        .HasColumnType("nvarchar(20)")
-                        .HasMaxLength(20);
-
-                    b.Property<DateTime>("DateNaissance")
-                        .HasColumnName("CL_DateNaissance")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("Email")
-                        .IsRequired()
-                        .HasColumnName("CL_Email")
-                        .HasColumnType("nvarchar(60)")
-                        .HasMaxLength(60);
-
-                    b.Property<string>("Nom")
-                        .IsRequired()
-                        .HasColumnName("CL_Nom")
-                        .HasColumnType("nvarchar(60)")
-                        .HasMaxLength(60);
-
-                    b.Property<string>("NumeroRue")
-                        .IsRequired()
-                        .HasColumnName("CL_Numero")
-                        .HasColumnType("nvarchar(100)")
-                        .HasMaxLength(100);
-
-                    b.Property<int>("PaysId")
-                        .HasColumnName("CL_PAYS_Id")
+                    b.Property<int>("ReschId")
+                        .HasColumnName("RESCH_Id")
                         .HasColumnType("int");
 
-                    b.Property<string>("Prenom")
-                        .IsRequired()
-                        .HasColumnName("CL_Prenom")
-                        .HasColumnType("nvarchar(60)")
-                        .HasMaxLength(60);
+                    b.Property<int>("ServId")
+                        .HasColumnName("SERV_Id")
+                        .HasColumnType("int");
 
-                    b.Property<string>("Rue")
-                        .IsRequired()
-                        .HasColumnName("CL_Rue")
-                        .HasColumnType("nvarchar(100)")
-                        .HasMaxLength(100);
+                    b.HasKey("ReschId", "ServId");
 
-                    b.Property<string>("Sexe")
-                        .IsRequired()
-                        .HasColumnName("CL_Sexe")
-                        .HasColumnType("nvarchar(1)")
-                        .HasMaxLength(1);
+                    b.HasIndex("ServId");
 
-                    b.Property<string>("Ville")
-                        .IsRequired()
-                        .HasColumnName("CL_Ville")
-                        .HasColumnType("nvarchar(60)")
-                        .HasMaxLength(60);
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("ApplicationUserId");
-
-                    b.HasIndex("PaysId");
-
-                    b.ToTable("Client");
+                    b.ToTable("ChambreReserveeServices");
                 });
 
             modelBuilder.Entity("StarlightHotels.Models.EtatModel", b =>
@@ -713,6 +726,23 @@ namespace StarlightHotels.DAL.Migrations
                     b.ToTable("Participant");
                 });
 
+            modelBuilder.Entity("StarlightHotels.Models.ParticipantReservationModel", b =>
+                {
+                    b.Property<int>("PartId")
+                        .HasColumnName("PART_Id")
+                        .HasColumnType("int");
+
+                    b.Property<int>("ResId")
+                        .HasColumnName("RES_Id")
+                        .HasColumnType("int");
+
+                    b.HasKey("PartId", "ResId");
+
+                    b.HasIndex("ResId");
+
+                    b.ToTable("ParticipantReservation");
+                });
+
             modelBuilder.Entity("StarlightHotels.Models.PaysModel", b =>
                 {
                     b.Property<int>("Id")
@@ -735,16 +765,16 @@ namespace StarlightHotels.DAL.Migrations
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnName("PR_Id")
+                        .HasColumnName("PRO_Id")
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<string>("Libelle")
-                        .HasColumnName("PR_Libelle")
+                        .HasColumnName("PRO_Libelle")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<float>("Pourcentage")
-                        .HasColumnName("PR_Pourcentage")
+                        .HasColumnName("PRO_Coefficient")
                         .HasColumnType("real");
 
                     b.HasKey("Id");
@@ -760,9 +790,9 @@ namespace StarlightHotels.DAL.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<int>("ClientId")
-                        .HasColumnName("RES_CLI_Id")
-                        .HasColumnType("int");
+                    b.Property<string>("ApplicationUserId")
+                        .HasColumnName("AppUser_Id")
+                        .HasColumnType("nvarchar(450)");
 
                     b.Property<DateTime>("DateReservation")
                         .HasColumnName("RES_DateReservation")
@@ -776,19 +806,11 @@ namespace StarlightHotels.DAL.Migrations
                         .HasColumnName("RES_Montant")
                         .HasColumnType("decimal(18,2)");
 
-                    b.Property<int>("PartId")
-                        .HasColumnName("RES_PART_Id")
-                        .HasColumnType("int");
-
                     b.HasKey("IdRes");
 
-                    b.HasIndex("ClientId")
-                        .IsUnique();
+                    b.HasIndex("ApplicationUserId");
 
                     b.HasIndex("EtatId");
-
-                    b.HasIndex("PartId")
-                        .IsUnique();
 
                     b.ToTable("Reservation");
                 });
@@ -944,6 +966,15 @@ namespace StarlightHotels.DAL.Migrations
                         .IsRequired();
                 });
 
+            modelBuilder.Entity("StarlightHotels.Models.ApplicationUser", b =>
+                {
+                    b.HasOne("StarlightHotels.Models.PaysModel", "Pays")
+                        .WithMany("ApplicationUsers")
+                        .HasForeignKey("PaysId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
             modelBuilder.Entity("StarlightHotels.Models.ChambreModel", b =>
                 {
                     b.HasOne("StarlightHotels.Models.CategorieModel", "Categorie")
@@ -961,26 +992,30 @@ namespace StarlightHotels.DAL.Migrations
                 {
                     b.HasOne("StarlightHotels.Models.ChambreModel", "Chambre")
                         .WithMany("ChambreReservees")
-                        .HasForeignKey("ChNum")
+                        .HasForeignKey("ChambreChNum");
+
+                    b.HasOne("StarlightHotels.Models.FormuleModel", "Formule")
+                        .WithMany("ChambreReservees")
+                        .HasForeignKey("FormuleId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.HasOne("StarlightHotels.Models.ReservationModel", "Reservation")
                         .WithMany("ChambreReservees")
-                        .HasForeignKey("IdRes")
-                        .IsRequired();
+                        .HasForeignKey("ReservationIdRes");
                 });
 
-            modelBuilder.Entity("StarlightHotels.Models.ClientModel", b =>
+            modelBuilder.Entity("StarlightHotels.Models.ChambreReserveeServiceModel", b =>
                 {
-                    b.HasOne("StarlightHotels.Models.ApplicationUser", "ApplicationUser")
-                        .WithMany("Clients")
-                        .HasForeignKey("ApplicationUserId");
-
-                    b.HasOne("StarlightHotels.Models.PaysModel", "Pays")
-                        .WithMany("Clients")
-                        .HasForeignKey("PaysId")
+                    b.HasOne("StarlightHotels.Models.ChambreReserveeModel", "ChambreReservee")
+                        .WithMany("ChambreReserveeServices")
+                        .HasForeignKey("ReschId")
                         .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("StarlightHotels.Models.ServiceModel", "Service")
+                        .WithMany("ChambreReserveeServices")
+                        .HasForeignKey("ServId")
                         .IsRequired();
                 });
 
@@ -1086,23 +1121,29 @@ namespace StarlightHotels.DAL.Migrations
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("StarlightHotels.Models.ReservationModel", b =>
+            modelBuilder.Entity("StarlightHotels.Models.ParticipantReservationModel", b =>
                 {
-                    b.HasOne("StarlightHotels.Models.ClientModel", "Client")
-                        .WithOne("Reservation")
-                        .HasForeignKey("StarlightHotels.Models.ReservationModel", "ClientId")
+                    b.HasOne("StarlightHotels.Models.ParticipantModel", "Participant")
+                        .WithMany("ParticipantReservations")
+                        .HasForeignKey("PartId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+
+                    b.HasOne("StarlightHotels.Models.ReservationModel", "Reservation")
+                        .WithMany("ParticipantReservations")
+                        .HasForeignKey("ResId")
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("StarlightHotels.Models.ReservationModel", b =>
+                {
+                    b.HasOne("StarlightHotels.Models.ApplicationUser", "ApplicationUser")
+                        .WithMany("Reservations")
+                        .HasForeignKey("ApplicationUserId");
 
                     b.HasOne("StarlightHotels.Models.EtatModel", "Etat")
                         .WithMany("Reservations")
                         .HasForeignKey("EtatId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("StarlightHotels.Models.ParticipantModel", "Participant")
-                        .WithOne("Reservation")
-                        .HasForeignKey("StarlightHotels.Models.ReservationModel", "PartId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });

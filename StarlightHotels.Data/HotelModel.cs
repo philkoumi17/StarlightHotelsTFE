@@ -58,7 +58,7 @@ namespace StarlightHotels.Models
         [StringLength(60)]
         public string Ville { get; set; }
 
-        // Relation avec l'entité Pays
+        // Relation with the country entity
         [Column("HOTEL_PAYS_Id")]
         [Display(Name = "Pays")]
         public int PaysId { get; set; }
@@ -109,10 +109,10 @@ namespace StarlightHotels.Models
 
         public List<ImageModel> Images { get; set; }
 
-        public ICollection<HotelFormuleModel> HotelFormules { get; set; }
-        public ICollection<HotelServiceModel> HotelServices { get; set; }
-        public ICollection<HotelThemeModel> HotelThemes { get; set; }
-        public ICollection<HotelCategorieModel> HotelCategories { get; set; }
-        public ICollection<HotelPromotionModel> HotelPromotions { get; set; }
+        public List<HotelFormuleModel> HotelFormules { get; set; }
+        public List<HotelServiceModel> HotelServices { get; set; }
+        public List<HotelThemeModel> HotelThemes { get; set; }
+        public List<HotelCategorieModel> HotelCategories { get; set; }
+        public List<HotelPromotionModel> HotelPromotions { get; set; }
     }
 }

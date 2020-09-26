@@ -33,6 +33,6 @@ namespace StarlightHotels.Models
         [DataType(DataType.Date)]
         public DateTime DateNaissance { get; set; }
 
-        public ReservationModel Reservation { get; set; }
+        public List<ParticipantReservationModel> ParticipantReservations { get; set; }
     }
 }

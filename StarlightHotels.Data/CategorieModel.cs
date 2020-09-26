@@ -36,6 +36,6 @@ namespace StarlightHotels.Models
         public List<ChambreModel> Chambres { get; set; }
         public List<TarifModel> Tarifs { get; set; }
 
-        public ICollection<HotelCategorieModel> HotelCategories { get; set; }
+        public List<HotelCategorieModel> HotelCategories { get; set; }
     }
 }

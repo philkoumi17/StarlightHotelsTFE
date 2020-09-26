@@ -1,9 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace StarlightHotels.Models
 {
@@ -29,6 +26,6 @@ namespace StarlightHotels.Models
         public int CatId { get; set; }
         public CategorieModel Categorie { get; set; }
 
-        public ICollection<ChambreReserveeModel> ChambreReservees { get; set; }
+        public List<ChambreReserveeModel> ChambreReservees { get; set; }
     }
 }
