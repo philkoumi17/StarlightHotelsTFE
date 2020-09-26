@@ -142,17 +142,18 @@ namespace StarlightHotels.DAL.Data
         public DbSet<ChambreReserveeServiceModel> ChambreReserveeServices { get; set; }
         public DbSet<EtatModel> Etats { get; set; }
         public DbSet<FactureModel> Factures { get; set; }
+        public DbSet<FormuleModel> Formules { get; set; }
         public DbSet<HotelModel> Hotels { get; set; }
         public DbSet<HotelCategorieModel> HotelCategories { get; set; }
         public DbSet<HotelFormuleModel> HotelFormules { get; set; }
-        public DbSet<HotelPromotionModel> HotelPromotionModels { get; set; }
+        public DbSet<HotelPromotionModel> HotelPromotions { get; set; }
         public DbSet<HotelServiceModel> HotelServices { get; set; }
         public DbSet<HotelThemeModel> HotelThemes { get; set; }
         public DbSet<ImageModel> Images { get; set; }
         public DbSet<ParticipantModel> Participants { get; set; }
         public DbSet<ParticipantReservationModel> ParticipantReservations { get; set; }
         public DbSet<PaysModel> Pays { get; set; }
-        public DbSet<PromotionModel> PromotionModels { get; set; }
+        public DbSet<PromotionModel> Promotions { get; set; }
         public DbSet<ReservationModel> Reservations { get; set; }
         public DbSet<SaisonModel> Saisons { get; set; }
         public DbSet<ServiceModel> Services { get; set; }
