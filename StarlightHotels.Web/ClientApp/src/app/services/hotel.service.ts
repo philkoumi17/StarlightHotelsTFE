@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { FormBuilder, Validators, FormGroup, FormControl } from '@angular/forms';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http';
 import { Hotel } from '../models/hotel.model';
 import { SearchHotelModel } from '../models/search-hotel.model';
 import { Observable, BehaviorSubject } from 'rxjs';
@@ -12,7 +12,6 @@ import { Pays } from '../models/pays.model';
 export class HotelService
 {
   readonly baseURI = 'https://localhost:44315/api';
-  formData: Hotel;
   list: Hotel[];
 
   // For searching hotels
@@ -26,34 +25,43 @@ export class HotelService
   private searchBehavior = new BehaviorSubject<SearchHotelModel>(this.searchInstance);
   searchData = this.searchBehavior.asObservable();
 
+
+  dataChange: BehaviorSubject<Hotel[]> = new BehaviorSubject<Hotel[]>([]);
+  get data(): Hotel[] {
+    return this.dataChange.value;
+  }
+
   constructor(private http: HttpClient, private fb: FormBuilder) { }
 
   formModel = this.fb.group({
     nom: ['', [Validators.required]],
     nbEtoiles: [0, [Validators.required]],
     nbChambres: [0, [Validators.required]],
-    description: ['', [Validators.required]],
+    description: [''],
     adresse: ['', [Validators.required]],
     codePostal: ['', [Validators.required]],
     ville: ['', [Validators.required]],
+    paysId: [0, [Validators.required]],
     pays: [null, [Validators.required]],
     telephone: ['', [Validators.required]],
-    enPromotion: ['Yes', [Validators.required]],
-    topDestination: ['Yes', [Validators.required]],
-    actif: ['Yes', [Validators.required]],
-    coefficient: [0, [Validators.required]],
-    checkIn: [null, [Validators.required]],
-    checkOut: [null, [Validators.required]]
+    enPromotion: [false],
+    topDestination: [false],
+    actif: [false],
+    coefficient: [0],
+    checkIn: [new Date(), [Validators.required]],
+    checkOut: [new Date(), [Validators.required]]
   });
 
-  getHotels(): Observable<Hotel[]>
-  {
-    return this.http.get<Hotel[]>(`${this.baseURI}/Hotel/GetHotels`);
-  }
-
-  async getHotelsAsync()
-  {
-    return await this.http.get<Hotel[]>(`${this.baseURI}/Hotel/GetHotels`).toPromise();
+  /** CRUD METHODS */
+  getAllHotels(): void {
+    this.http.get<Hotel[]>(`${this.baseURI}/Hotel/GetHotels`).subscribe(
+      data => {
+        this.dataChange.next(data);
+      },
+      (error: HttpErrorResponse) => {
+        console.log(error.name + ' ' + error.message);
+      }
+    );
   }
 
   getCountries(): Observable<Pays[]>
@@ -81,24 +89,39 @@ export class HotelService
       adresse: this.formModel.value.adresse,
       codePostal: this.formModel.value.codePostal,
       ville: this.formModel.value.ville,
-      paysId: this.formModel.value.pays.id,
+      paysId: this.formModel.value.paysId,
       telephone: this.formModel.value.telephone,
-      enPromotion: this.formModel.value.enPromotion === 'Yes',
-      topDestination: this.formModel.value.topDestination === 'Yes',
-      actif: this.formModel.value.actif === 'Yes',
+      enPromotion: this.formModel.value.enPromotion,
+      topDestination: this.formModel.value.topDestination,
+      actif: this.formModel.value.actif,
       coefficient: this.formModel.value.coefficient,
       checkIn: this.formModel.value.checkIn,
       checkOut: this.formModel.value.checkOut,
     };
-    console.log(this.formModel.value.enPromotion);
     console.log(body);
-    return this.http.post<Hotel>(this.baseURI + '/Hotel', body);
+    console.log(this.baseURI + '/Hotel');
+    this.http.post<Hotel>(this.baseURI + '/Hotel', body).subscribe(
+      data => {
+        return data;
+      },
+      (error: HttpErrorResponse) => {
+        console.log(error.name + ' ' + error.message);
+      }
+    );
   }
 
-  updateHotel(): Observable<Hotel>
+  updateHotel(hotel: Hotel)
   {
-    console.log();
-    return this.http.put<Hotel>(this.baseURI + '/Hotel/' + this.formData.id, this.formData);
+    if (hotel && hotel.id) {
+      this.http.put<Hotel>(this.baseURI + '/Hotel/' + hotel.id, hotel).subscribe(
+        data => {
+          return data;
+        },
+        (error: HttpErrorResponse) => {
+          console.log(error.name + ' ' + error.message);
+        }
+      );
+    }
   }
 
   // update hotel

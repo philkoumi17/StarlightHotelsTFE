@@ -38,7 +38,7 @@ export const ROUTES: RouteInfo[] = [
     submenu: [
       {
         path: '/hotels/all-hotels',
-        title: 'List of hotels',
+        title: 'List des hotels',
         iconType: '',
         icon: '',
         class: 'ml-menu',
@@ -49,7 +49,7 @@ export const ROUTES: RouteInfo[] = [
       },
       {
         path: '/hotels/add-hotel',
-        title: 'Add a new hotel',
+        title: 'Ajouter une hotel',
         iconType: '',
         icon: '',
         class: 'ml-menu',
@@ -57,18 +57,7 @@ export const ROUTES: RouteInfo[] = [
         badge: '',
         badgeClass: '',
         submenu: [],
-      },
-      {
-        path: '/hotels/edit-hotel',
-        title: 'Edit this hotel',
-        iconType: '',
-        icon: '',
-        class: 'ml-menu',
-        groupTitle: false,
-        badge: '',
-        badgeClass: '',
-        submenu: [],
-      },
+      }
     ],
   },
 
