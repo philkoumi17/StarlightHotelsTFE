@@ -12,25 +12,32 @@ export class UserService
   constructor(private fb: FormBuilder, private http: HttpClient) { }
 
   formModel = this.fb.group({
-    UserName : ['', Validators.required],
-    Email : ['', Validators.email],
-    FullName : ['', Validators.required],
-    Passwords : this.fb.group({
-      Password : ['', Validators.required, Validators.minLength(4)],
-      ConfirmPassword : ['', Validators.required]
+    userName: ['', Validators.required],
+    nom: ['', Validators.required],
+    prenom: ['', Validators.required],
+    dateNaissance: ['', Validators.required],
+    sexe: ['', Validators.required],
+    rue: ['', Validators.required],
+    numeroRue: ['', Validators.required],
+    codePostal: ['', Validators.required],
+    ville: ['', Validators.required],
+    paysId: ['', Validators.required],
+    email : ['', Validators.email],
+    fullName : ['', Validators.required],
+    passwords : this.fb.group({
+      password : ['', Validators.required, Validators.minLength(4)],
+      confirmPassword : ['', Validators.required]
     }, {validator: this.comparePasswords })
   });
 
-  // tslint:disable-next-line: typedef
-  comparePasswords(fb: FormGroup){
-    // tslint:disable-next-line: prefer-const
-    let confirmPasswordCtrl = fb.get('ConfirmPassword');
+  comparePasswords(fb: FormGroup)
+  {
+    let confirmPasswordCtrl = fb.get('confirmPassword');
     // PasswordMismatch
     // confirmPswrdCtrl.errors={passwordMismatch:true}
-    if (confirmPasswordCtrl.errors == null || 'passwordMismatch' in confirmPasswordCtrl.errors)
+    if(confirmPasswordCtrl.errors == null || 'passwordMismatch' in confirmPasswordCtrl.errors)
     {
-      // tslint:disable-next-line: triple-equals
-      if (fb.get('Password').value != confirmPasswordCtrl.value)
+      if(fb.get('password').value != confirmPasswordCtrl.value)
       {
         confirmPasswordCtrl.setErrors({passwordMismatch: true});
       }
@@ -41,31 +48,37 @@ export class UserService
     }
   }
 
-  // tslint:disable-next-line: typedef
   register()
   {
-    var body = {
-      UserName: this.formModel.value.UserName,
-      Email: this.formModel.value.Email,
-      FullName: this.formModel.value.FullName,
-      Password: this.formModel.value.Passwords.Password,
+    var body: UserModel = {
+      userName: this.formModel.value.userName,
+      email: this.formModel.value.email,
+      nom: this.formModel.value.nom,
+      prenom: this.formModel.value.prenom,
+      dateNaissance: this.formModel.value.dateNaissance,
+      sexe: this.formModel.value.sexe,
+      rue: this.formModel.value.rue,
+      numeroRue: this.formModel.value.numeroRue,
+      codePostal: this.formModel.value.codePostal,
+      ville: this.formModel.value.ville,
+      paysId: this.formModel.value.paysId,
+      fullName: this.formModel.value.fullName,
+      password: this.formModel.value.passwords.password,
     };
+    console.log(body);
     return this.http.post(this.BaseURI + '/Account/Register', body);
   }
 
-  // tslint:disable-next-line: typedef
   login(formData)
   {
     return this.http.post(this.BaseURI + '/Account/Login', formData);
   }
 
-  // tslint:disable-next-line: typedef
   getUserProfile()
   {
     return this.http.get<UserModel>(this.BaseURI + '/UserProfile');
   }
 
-  // tslint:disable-next-line: typedef
   getUserProfileAsync()
   {
     return this.http.get<UserModel>(this.BaseURI + '/UserProfile').toPromise();

@@ -34,7 +34,7 @@ namespace StarlightHotels.API.Controllers
         // POST: /api/Account/Register
         [HttpPost]
         [Route("Register")]
-        public async Task<Object> PostAccount(AccountViewModel model)
+        public async Task<Object> RegisterAccount(AccountViewModel model)
         {
             // model.Role = "Admin";
             var applicationUser = new ApplicationUser()
