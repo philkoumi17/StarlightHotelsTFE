@@ -26,7 +26,7 @@ namespace StarlightHotels.API.Controllers
         // GET: /api/UserProfile
         [HttpGet]
         [Authorize]
-        public async Task<ActionResult<ApplicationUserModel>> GetUserProfile()
+        public async Task<ActionResult<AccountViewModel>> GetUserProfile()
         {
             Claim tokenClaim = User.Claims.First(c => c.Type == "UserID");
             if(tokenClaim == null)
@@ -36,7 +36,7 @@ namespace StarlightHotels.API.Controllers
 
             string userId = tokenClaim.Value;
             var user = await _userManager.FindByIdAsync(userId);
-            var userM = new ApplicationUserModel()
+            var userM = new AccountViewModel()
             {
                 FullName = user.FullName,
                 Email = user.Email,

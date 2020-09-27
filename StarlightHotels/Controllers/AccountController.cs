@@ -34,12 +34,21 @@ namespace StarlightHotels.API.Controllers
         // POST: /api/Account/Register
         [HttpPost]
         [Route("Register")]
-        public async Task<Object> PostAccount(ApplicationUserModel model)
+        public async Task<Object> PostAccount(AccountViewModel model)
         {
-            model.Role = "Admin";
+            // model.Role = "Admin";
             var applicationUser = new ApplicationUser()
             {
                 UserName = model.UserName,
+                Nom = model.Nom,
+                Prenom = model.Prenom,
+                DateNaissance = model.DateNaissance,
+                Sexe = model.Sexe,
+                Rue = model.Rue,
+                NumeroRue = model.NumeroRue,
+                CodePostal = model.CodePostal,
+                Ville = model.Ville,
+                PaysId = model.PaysId,
                 Email = model.Email,
                 FullName = model.FullName
             };
@@ -47,7 +56,6 @@ namespace StarlightHotels.API.Controllers
             try
             {
                 var result = await _userManager.CreateAsync(applicationUser, model.Password);
-                await _userManager.AddToRoleAsync(applicationUser, model.Role);
                 return Ok(result);
             }
             catch(Exception ex)
@@ -59,7 +67,7 @@ namespace StarlightHotels.API.Controllers
         // POST: /api/Account/Login
         [HttpPost]
         [Route("Login")]
-        public async Task<IActionResult> Login(LoginModel model)
+        public async Task<IActionResult> Login(LoginViewModel model)
         {
             var user = await _userManager.FindByNameAsync(model.UserName);
             if(user != null && await _userManager.CheckPasswordAsync(user, model.Password))
