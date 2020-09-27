@@ -1,10 +1,10 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
-import { HotelService } from './hotel.service';
+import { HotelService } from '../../services/hotel.service';
 import { HttpClient } from '@angular/common/http';
 import { MatDialog } from '@angular/material/dialog';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
-import { Hotel } from './hotel.model';
+import { Hotel } from '../../models/hotel.model';
 import { DataSource } from '@angular/cdk/collections';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { BehaviorSubject, fromEvent, merge, Observable } from 'rxjs';
@@ -13,6 +13,7 @@ import { FormDialogComponent } from './dialogs/form-dialog/form-dialog.component
 import { DeleteDialogComponent } from './dialogs/delete/delete.component';
 import { MatMenuTrigger } from '@angular/material/menu';
 import { SelectionModel } from '@angular/cdk/collections';
+import { FormBuilder } from '@angular/forms';
 
 @Component({
   selector: 'app-all-hotels',
@@ -22,15 +23,14 @@ import { SelectionModel } from '@angular/cdk/collections';
 export class AllHotelComponent implements OnInit {
   displayedColumns = [
     'select',
-    'img',
-    'name',
-    'gender',
-    'mobile',
-    'email',
-    'arriveDate',
-    'departDate',
-    'roomType',
-    'payment',
+    'nom',
+    'nbEtoiles',
+    'nbChambres',
+    'ville',
+    'checkIn',
+    'checkOut',
+    'coefficient',
+    'actif',
     'actions',
   ];
   exampleDatabase: HotelService | null;
@@ -42,7 +42,8 @@ export class AllHotelComponent implements OnInit {
     public httpClient: HttpClient,
     public dialog: MatDialog,
     public hotelService: HotelService,
-    private snackBar: MatSnackBar
+    private snackBar: MatSnackBar,
+    public fb: FormBuilder
   ) { }
   @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
   @ViewChild(MatSort, { static: true }) sort: MatSort;
@@ -69,7 +70,7 @@ export class AllHotelComponent implements OnInit {
         // After dialog is closed we're doing frontend updates
         // For add we're just pushing a new row inside DataServicex
         this.exampleDatabase.dataChange.value.unshift(
-          this.hotelService.getDialogData()
+          this.hotelService.formModel.value
         );
         this.refreshTable();
         this.showNotification(
@@ -85,11 +86,12 @@ export class AllHotelComponent implements OnInit {
     this.id = row.id;
     const dialogRef = this.dialog.open(FormDialogComponent, {
       data: {
-        booking: row,
+        hotel: row,
         action: 'edit',
       },
     });
     dialogRef.afterClosed().subscribe((result) => {
+      console.log(result)
       if (result === 1) {
         // When using an edit things are little different, firstly we find record inside DataService by id
         const foundIndex = this.exampleDatabase.dataChange.value.findIndex(
@@ -98,7 +100,7 @@ export class AllHotelComponent implements OnInit {
         // Then you update that record using data from dialogData (values you enetered)
         this.exampleDatabase.dataChange.value[
           foundIndex
-        ] = this.hotelService.getDialogData();
+        ] = this.hotelService.formModel.value;
         // And lastly refresh table
         this.refreshTable();
         this.showNotification(
@@ -169,7 +171,7 @@ export class AllHotelComponent implements OnInit {
     );
   }
   public loadData() {
-    this.exampleDatabase = new HotelService(this.httpClient);
+    this.exampleDatabase = new HotelService(this.httpClient, this.fb);
     this.dataSource = new ExampleDataSource(
       this.exampleDatabase,
       this.paginator,
@@ -216,7 +218,7 @@ export class ExampleDataSource extends DataSource<Hotel> {
   renderedData: Hotel[] = [];
   constructor(
     // tslint:disable-next-line: variable-name
-    public _exampleDatabase: HotelService,
+    public hotelService: HotelService,
     // tslint:disable-next-line: variable-name
     public _paginator: MatPaginator,
     // tslint:disable-next-line: variable-name
@@ -230,38 +232,42 @@ export class ExampleDataSource extends DataSource<Hotel> {
   connect(): Observable<Hotel[]> {
     // Listen for any changes in the base data, sorting, filtering, or pagination
     const displayDataChanges = [
-      this._exampleDatabase.dataChange,
+      this.hotelService.dataChange,
       this._sort.sortChange,
       this._filterChange,
       this._paginator.page,
     ];
-    this._exampleDatabase.getAllHotels();
+
+    this.hotelService.getAllHotels();
     return merge(...displayDataChanges).pipe(
       map(() => {
-        // Filter data
-        this.filteredData = this._exampleDatabase.data
-          .slice()
-          .filter((hotel: Hotel) => {
-            const searchStr = (
-              hotel.name +
-              hotel.arriveDate +
-              hotel.gender +
-              hotel.roomType +
-              hotel.email +
-              hotel.payment +
-              hotel.mobile
-            ).toLowerCase();
-            return searchStr.indexOf(this.filter.toLowerCase()) !== -1;
-          });
-        // Sort filtered data
-        const sortedData = this.sortData(this.filteredData.slice());
-        // Grab the page's slice of the filtered sorted data.
-        const startIndex = this._paginator.pageIndex * this._paginator.pageSize;
-        this.renderedData = sortedData.splice(
-          startIndex,
-          this._paginator.pageSize
-        );
-        return this.renderedData;
+        if (this.hotelService.data) {
+          // Filter data
+          this.filteredData = this.hotelService.data
+            .slice()
+            .filter((hotel: Hotel) => {
+              const searchStr = (
+                hotel.nom +
+                hotel.nbEtoiles +
+                hotel.nbChambres +
+                hotel.ville +
+                hotel.checkIn +
+                hotel.checkOut +
+                hotel.coefficient +
+                hotel.actif
+              ).toLowerCase();
+              return searchStr.indexOf(this.filter.toLowerCase()) !== -1;
+            });
+          // Sort filtered data
+          const sortedData = this.sortData(this.filteredData.slice());
+          // Grab the page's slice of the filtered sorted data.
+          const startIndex = this._paginator.pageIndex * this._paginator.pageSize;
+          this.renderedData = sortedData.splice(
+            startIndex,
+            this._paginator.pageSize
+          );
+          return this.renderedData;
+        }
       })
     );
   }
@@ -278,23 +284,20 @@ export class ExampleDataSource extends DataSource<Hotel> {
         case 'id':
           [propertyA, propertyB] = [a.id, b.id];
           break;
-        case 'name':
-          [propertyA, propertyB] = [a.name, b.name];
+        case 'nom':
+          [propertyA, propertyB] = [a.nom, b.nom];
           break;
-        case 'email':
-          [propertyA, propertyB] = [a.email, b.email];
+        case 'nbEtoiles':
+          [propertyA, propertyB] = [a.nbEtoiles, b.nbEtoiles];
           break;
-        case 'arriveDate':
-          [propertyA, propertyB] = [a.arriveDate, b.arriveDate];
+        case 'nbChambres':
+          [propertyA, propertyB] = [a.nbChambres, b.nbChambres];
           break;
-        case 'departDate':
-          [propertyA, propertyB] = [a.departDate, b.departDate];
+        case 'ville':
+          [propertyA, propertyB] = [a.ville, b.ville];
           break;
-        case 'roomType':
-          [propertyA, propertyB] = [a.roomType, b.roomType];
-          break;
-        case 'gender':
-          [propertyA, propertyB] = [a.gender, b.gender];
+        case 'coefficient':
+          [propertyA, propertyB] = [a.coefficient, b.coefficient];
           break;
       }
       const valueA = isNaN(+propertyA) ? propertyA : +propertyA;

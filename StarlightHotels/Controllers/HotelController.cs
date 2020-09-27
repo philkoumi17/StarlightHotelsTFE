@@ -43,10 +43,8 @@ namespace StarlightHotels.API.Controllers
         }
 
         // PUT: api/Hotel/5
-        // To protect from overposting attacks, enable the specific properties you want to bind to, for
-        // more details, see https://go.microsoft.com/fwlink/?linkid=2123754.
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutHotel(int id, HotelModel hotel)
+        public async Task<ActionResult<HotelModel>> PutHotel(int id, HotelModel hotel)
         {
             if(id != hotel.Id)
             {
@@ -71,7 +69,7 @@ namespace StarlightHotels.API.Controllers
                 }
             }
 
-            return NoContent();
+            return Ok(hotel);
         }
 
         // POST: api/Hotel

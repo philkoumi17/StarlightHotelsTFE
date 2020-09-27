@@ -1,6 +1,6 @@
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { Component, Inject } from '@angular/core';
-import { HotelService } from '../../hotel.service';
+import { HotelService } from '../../../../services/hotel.service';
 @Component({
   selector: 'app-delete',
   templateUrl: './delete.component.html',

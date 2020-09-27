@@ -24,6 +24,7 @@ import { EditHotelComponent } from './edit-hotel/edit-hotel.component';
 import { MaterialFileInputModule } from 'ngx-material-file-input';
 import { MatTabsModule } from '@angular/material/tabs';
 import { MatMenuModule } from '@angular/material/menu';
+import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 @NgModule({
   declarations: [
     AllHotelComponent,
@@ -53,7 +54,8 @@ import { MatMenuModule } from '@angular/material/menu';
     MatTabsModule,
     MaterialFileInputModule,
     MatMenuModule,
-    HotelRoutingModule
+    HotelRoutingModule,
+    MatSlideToggleModule
   ]
 })
 export class HotelModule { }

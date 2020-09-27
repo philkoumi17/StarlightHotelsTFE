@@ -1,14 +1,14 @@
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { Component, Inject } from '@angular/core';
-import { HotelService } from '../../hotel.service';
+import { HotelService } from '../../../../services/hotel.service';
 import {
-  FormControl,
   Validators,
   FormGroup,
   FormBuilder
 } from '@angular/forms';
-import { Hotel } from '../../hotel.model';
-import { formatDate } from '@angular/common';
+import { Hotel } from '../../../../models/hotel.model';
+import { Pays } from '../../../../models/pays.model';
+
 @Component({
   selector: 'app-form-dialog',
   templateUrl: './form-dialog.component.html',
@@ -17,8 +17,10 @@ import { formatDate } from '@angular/common';
 export class FormDialogComponent {
   action: string;
   dialogTitle: string;
-  hotelForm: FormGroup;
   hotel: Hotel;
+  allCountries: Pays[];
+  allCities: string[] = [];
+
   constructor(
     public dialogRef: MatDialogRef<FormDialogComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any,
@@ -28,46 +30,45 @@ export class FormDialogComponent {
     // Set the defaults
     this.action = data.action;
     if (this.action === 'edit') {
-      this.dialogTitle = data.hotel.name;
+      this.dialogTitle = data.hotel.nom;
       this.hotel = data.hotel;
     } else {
       this.dialogTitle = 'New Hotel';
-      this.hotel = new Hotel({});
+      this.hotel = {} as Hotel;
     }
-    this.hotelForm = this.createContactForm();
+    this.hotelService.formModel = this.createContactForm();
   }
-  formControl = new FormControl('', [
-    Validators.required
-    // Validators.email,
-  ]);
-  getErrorMessage() {
-    return this.formControl.hasError('required')
-      ? 'Required field'
-      : this.formControl.hasError('email')
-        ? 'Not a valid email'
-        : '';
+
+  ngOnInit(): void {
+    this.hotelService.getCountries().subscribe(
+      (data) => {
+        this.allCountries = data;
+      }
+    );
+
+    if (this.hotel && this.hotel.paysId) {
+      this.getCities(this.hotel.paysId);
+    }
   }
+
   createContactForm(): FormGroup {
     return this.fb.group({
       id: [this.hotel.id],
-      img: [this.hotel.img],
-      name: [this.hotel.name],
-      email: [
-        this.hotel.email,
-        [Validators.required, Validators.email, Validators.minLength(5)]
-      ],
-      arriveDate: [
-        formatDate(this.hotel.arriveDate, 'yyyy-MM-dd', 'en'),
-        [Validators.required]
-      ],
-      departDate: [
-        formatDate(this.hotel.departDate, 'yyyy-MM-dd', 'en'),
-        [Validators.required]
-      ],
-      gender: [this.hotel.gender],
-      mobile: [this.hotel.mobile],
-      roomType: [this.hotel.roomType],
-      payment: [this.hotel.payment]
+      nom: [this.hotel.nom, [Validators.required]],
+      nbEtoiles: [this.hotel.nbEtoiles, [Validators.required]],
+      nbChambres: [this.hotel.nbChambres, [Validators.required]],
+      description: [this.hotel.description],
+      adresse: [this.hotel.adresse, [Validators.required]],
+      codePostal: [this.hotel.codePostal],
+      ville: [this.hotel.ville, [Validators.required]],
+      paysId: [this.hotel.paysId, [Validators.required]],
+      telephone: [this.hotel.telephone, [Validators.required]],
+      enPromotion: [this.hotel.enPromotion, [Validators.required]],
+      topDestination: [this.hotel.topDestination, [Validators.required]],
+      actif: [this.hotel.actif, [Validators.required]],
+      coefficient: [this.hotel.coefficient, [Validators.required]],
+      checkIn: [this.hotel.checkIn, [Validators.required]],
+      checkOut: [this.hotel.checkOut, [Validators.required]],
     });
   }
   submit() {
@@ -76,7 +77,19 @@ export class FormDialogComponent {
   onNoClick(): void {
     this.dialogRef.close();
   }
-  public confirmAdd(): void {
-    this.hotelService.addHotel(this.hotelForm.getRawValue());
+  public Save(): void {
+    if (this.hotelService.formModel.value && this.hotelService.formModel.value.id) {
+      this.hotelService.updateHotel(this.hotelService.formModel.value);
+    } else {
+      this.hotelService.insertHotel();
+    }   
+  }
+
+  getCities(paysId: number) {
+    return this.hotelService.getCitiesByCountry(paysId).then(
+      (data) => {
+        this.allCities = data;
+      }
+    );
   }
 }

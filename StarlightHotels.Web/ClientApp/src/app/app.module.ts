@@ -47,7 +47,7 @@ import {
   NgxMatNativeDateModule,
   NgxMatTimepickerModule
 } from '@angular-material-components/datetime-picker';
-import { HotelService } from './hotels/all-hotels/hotel.service';
+import { HotelService } from './services/hotel.service';
 import { ToastrModule } from 'ngx-toastr';
 const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
   suppressScrollX: true,
