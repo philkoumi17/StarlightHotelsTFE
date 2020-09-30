@@ -1,4 +1,4 @@
-export class Etat
+export class EtatModel
 {
   id?: number;
   libelle: string;

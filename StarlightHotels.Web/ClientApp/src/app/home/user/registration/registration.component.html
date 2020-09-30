@@ -1,8 +1,60 @@
 <div class="container">
   <img src="/assets/img/add_user.png" class="mx-auto d-block">
   <form [formGroup]="service.formModel" autocomplete="off" (submit)="onSubmit()">
+    <div class="form-group required">
+      <label>Nom</label>
+      <input class="form-control" formControlName="nom">
+      <label class="text-danger" *ngIf="service.formModel.get('nom').touched && service.formModel.get('nom').errors?.required">Le nom est obligatoire !</label>
+    </div>
+    <div class="form-group required">
+      <label>Prenom</label>
+      <input class="form-control" formControlName="prenom">
+      <label class="text-danger" *ngIf="service.formModel.get('prenom').touched && service.formModel.get('prenom').errors?.required">Le prénom est obligatoire !</label>
+    </div>
+    <div class="form-group required">
+      <label>Date de naissance</label>
+      <div class="input-group">
+        <input placeholder="Select date" type="text" id="example" class="form-control">
+        <label for="example">Try me...</label>
+        <i class="fas fa-calendar input-prefix" tabindex=0></i>
+      </div>
+      <label class="text-danger" *ngIf="service.formModel.get('dateNaissance').touched && service.formModel.get('dateNaissance').errors?.required">La date de naissance est obligatoire !</label>
+    </div>
+    <div class="form-group required">
+      <label>Sexe</label>
+      <input class="form-control" formControlName="sexe">
+      <label class="text-danger" *ngIf="service.formModel.get('sexe').touched && service.formModel.get('sexe').errors?.required">This field is mandatory</label>
+    </div>
+    <div class="form-group required">
+      <label>Rue</label>
+      <input class="form-control" formControlName="rue">
+      <label class="text-danger" *ngIf="service.formModel.get('rue').touched && service.formModel.get('rue').errors?.required">This field is mandatory</label>
+    </div>
+    <div class="form-group required">
+      <label>Numéro de rue</label>
+      <input class="form-control" formControlName="numeroRue">
+      <label class="text-danger" *ngIf="service.formModel.get('numeroRue').touched && service.formModel.get('numeroRue').errors?.required">This field is mandatory</label>
+    </div>
+    <div class="form-group required">
+      <label>Code Postal</label>
+      <input class="form-control" formControlName="codePostal">
+      <label class="text-danger" *ngIf="service.formModel.get('codePostal').touched && service.formModel.get('codePostal').errors?.required">This field is mandatory</label>
+    </div>
+    <div class="form-group required">
+      <label>Ville</label>
+      <input class="form-control" formControlName="ville">
+      <label class="text-danger" *ngIf="service.formModel.get('ville').touched && service.formModel.get('ville').errors?.required">This field is mandatory</label>
+    </div>
     <div class="form-group">
-      <label>Username</label>
+      <label>Pays</label>
+      <select class="browser-default custom-select">
+        <option selected>Choisissez le pays : </option>
+        <option *ngFor="let pays of allCountries" [value]="pays.id">{{pays.nom}}</option>
+      </select>
+      <label class="text-danger" *ngIf="service.formModel.get('pays').touched && service.formModel.get('pays').errors?.required">This field is mandatory</label>
+    </div>
+    <div class="form-group">
+      <label>Nom d'utilisateur</label>
       <input class="form-control" formControlName="userName">
       <label class="text-danger" *ngIf="service.formModel.get('userName').touched && service.formModel.get('userName').errors?.required">This field is mandatory</label>
     </div>
@@ -12,19 +64,19 @@
       <label class="text-danger" *ngIf="service.formModel.get('email').touched && service.formModel.get('email').errors?.email">Invalid email address</label>
     </div>
     <div class="form-group">
-      <label>FullName</label>
+      <label>Nom complet</label>
       <input class="form-control" formControlName="fullName">
       <label class="text-danger" *ngIf="service.formModel.get('fullName').touched && service.formModel.get('fullName').errors?.required">This field is mandatory</label>
     </div>
     <div formGroupName="passwords">
       <div class="form-group">
-        <label>Password</label>
+        <label>Mot de passe</label>
         <input type="password" class="form-control" formControlName="password">
         <label class="text-danger" *ngIf="service.formModel.get('passwords.password').touched && service.formModel.get('passwords.password').errors?.required">This field is mandatory</label>
         <label class="text-danger" *ngIf="service.formModel.get('passwords.password').touched && service.formModel.get('passwords.password').errors?.minlength">Minimum 4 characters</label>
       </div>
       <div class="form-group">
-        <label>Confirm password</label>
+        <label>Confirmer le mot de passe</label>
         <input type="password" class="form-control" formControlName="confirmPassword">
         <label class="text-danger" *ngIf="service.formModel.get('passwords.confirmPassword').touched && service.formModel.get('passwords.confirmPassword').errors?.required">This field is mandatory</label>
         <label class="text-danger" *ngIf="service.formModel.get('passwords.confirmPassword').touched && service.formModel.get('passwords.confirmPassword').errors?.passwordMismatch">Confirm password doesn't match</label>
@@ -35,3 +87,7 @@
     </div>
   </form>
 </div>
+<script src="text/javascript">
+  // Data Picker Initialization
+  $('.datepicker').datepicker();
+</script>

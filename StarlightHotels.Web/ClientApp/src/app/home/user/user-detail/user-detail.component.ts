@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { UserService } from '../../../services/user.service';
-import { UserModel } from '../../../models/user.model';
+import { Utilisateur } from '../../../models/user.model';
 import { Router } from '@angular/router';
 
 @Component({
@@ -9,7 +9,7 @@ import { Router } from '@angular/router';
   styleUrls: ['./user-detail.component.css']
 })
 export class UserDetailComponent implements OnInit {
-  user: UserModel;
+  user: Utilisateur;
 
   constructor(private router: Router, private userService: UserService) { }
 

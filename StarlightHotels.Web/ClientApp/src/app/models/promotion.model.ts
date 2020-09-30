@@ -1,9 +1,6 @@
-import { Injectable } from '@angular/core';
-
-@Injectable({
-  providedIn: 'root'
-})
-export class PromotionService {
-
-  constructor() { }
+export class PromotionModel
+{
+  id?: number;
+  libelle: string;
+  coefficient: number;
 }

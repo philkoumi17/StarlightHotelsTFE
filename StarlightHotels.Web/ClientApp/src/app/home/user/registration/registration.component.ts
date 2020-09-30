@@ -2,6 +2,7 @@ import { Component, OnInit, Inject } from '@angular/core';
 import { UserService } from '../../../services/user.service';
 import { ToastrService } from 'ngx-toastr';
 import { MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog';
+import { Pays } from '../../../models/pays.model';
 
 @Component({
   selector: 'app-registration',
@@ -10,18 +11,25 @@ import { MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog';
 })
 export class RegistrationComponent implements OnInit
 {
+  allCountries: Pays[];
+
   constructor(public service: UserService, private toastr: ToastrService,
               public dialogRef: MatDialogRef<RegistrationComponent>,
               @Inject(MAT_DIALOG_DATA) public data: any) { }
 
   ngOnInit(): void {
     this.service.formModel.reset();
+    this.service.getAllCountries().subscribe(
+      (data) => {
+        this.allCountries = data;
+      }
+    );
   }
 
   onSubmit(): void{
     this.service.register().subscribe(
       (res: any) => {
-        if (res.succeeded)
+        if(res.succeeded)
         {
           this.service.formModel.reset();
           this.toastr.success('New user created', 'Registration successful !');
@@ -30,7 +38,7 @@ export class RegistrationComponent implements OnInit
         else
         {
           res.errors.forEach(element => {
-            switch (element.code)
+            switch(element.code)
             {
               case 'DuplicateUserName':
                 // Username is already taken

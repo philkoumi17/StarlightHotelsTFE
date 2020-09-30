@@ -4,7 +4,7 @@ import { AuthenticationService } from '../../services/authentication.service';
 import { UserComponent } from '../user/user.component';
 import { Router } from '@angular/router';
 import { UserService } from '../../services/user.service';
-import { UserModel } from 'src/app/models/user.model';
+import { Utilisateur } from 'src/app/models/user.model';
 
 @Component({
   selector: 'app-navbar',
@@ -12,8 +12,9 @@ import { UserModel } from 'src/app/models/user.model';
   styles: [
   ]
 })
-export class NavbarComponent implements OnInit {
-  user: UserModel = {
+export class NavbarComponent implements OnInit
+{
+  user: Utilisateur = {
     fullName: '',
     email: '',
     userName: ''
@@ -22,9 +23,9 @@ export class NavbarComponent implements OnInit {
   constructor(public dialog: MatDialog, private router: Router, private authService: AuthenticationService,
     private userService: UserService) { }
 
-  // tslint:disable-next-line: typedef
   async ngOnInit() {
-    if (this.authService.isAuthenticated()) {
+    if(this.authService.isAuthenticated())
+    {
       await this.userService.getUserProfileAsync().then(
         (data) => {
           this.user = data;
@@ -34,7 +35,8 @@ export class NavbarComponent implements OnInit {
     }
   }
 
-  openUserDialog(): void {
+  openUserDialog(): void
+  {
     console.log('this.openUserDialog()');
     const dialogRef = this.dialog.open(UserComponent, {
       disableClose: false,
@@ -44,13 +46,13 @@ export class NavbarComponent implements OnInit {
     });
   }
 
-  // tslint:disable-next-line: typedef
-  isConnected() {
+  isConnected()
+  {
     return this.authService.isAuthenticated();
   }
 
-  // tslint:disable-next-line: typedef
-  onLogout() {
+  onLogout()
+  {
     localStorage.removeItem('token');
     this.router.navigate(['/']);
   }

@@ -1,7 +1,9 @@
 import { Injectable } from '@angular/core';
 import { FormBuilder, Validators, FormGroup } from '@angular/forms';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { UserModel } from '../models/user.model';
+import { Utilisateur } from '../models/user.model';
+import { Pays } from '../models/pays.model';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -21,7 +23,7 @@ export class UserService
     numeroRue: ['', Validators.required],
     codePostal: ['', Validators.required],
     ville: ['', Validators.required],
-    paysId: ['', Validators.required],
+    pays: [null, [Validators.required]],
     email : ['', Validators.email],
     fullName : ['', Validators.required],
     passwords : this.fb.group({
@@ -50,7 +52,7 @@ export class UserService
 
   register()
   {
-    var body: UserModel = {
+    var body: Utilisateur = {
       userName: this.formModel.value.userName,
       email: this.formModel.value.email,
       nom: this.formModel.value.nom,
@@ -76,11 +78,15 @@ export class UserService
 
   getUserProfile()
   {
-    return this.http.get<UserModel>(this.BaseURI + '/UserProfile');
+    return this.http.get<Utilisateur>(this.BaseURI + '/UserProfile');
   }
 
   getUserProfileAsync()
   {
-    return this.http.get<UserModel>(this.BaseURI + '/UserProfile').toPromise();
+    return this.http.get<Utilisateur>(this.BaseURI + '/UserProfile').toPromise();
+  }
+
+  getAllCountries(): Observable<Pays[]> {
+    return this.http.get<Pays[]>(`${this.BaseURI}/Account/GetAllCountries`);
   }
 }
