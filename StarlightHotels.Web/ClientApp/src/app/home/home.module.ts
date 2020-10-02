@@ -36,6 +36,7 @@ import { ReservationDetailTarifComponent } from './reservation/reservation-creat
 import { ReservationDetailComponent } from './reservation/reservation-detail/reservation-detail.component';
 import { ParticipantComponent } from './participant/participant.component';
 import { AddParticipantComponent } from './participant/add-participant/add-participant.component';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 
 @
 NgModule({
@@ -76,7 +77,8 @@ NgModule({
     MatRadioModule,
     MatDatepickerModule,
     MatNativeDateModule,
-    NgbModule
+    NgbModule,
+    MatSnackBarModule
   ],
   providers: [UserService, {
     provide: HTTP_INTERCEPTORS,

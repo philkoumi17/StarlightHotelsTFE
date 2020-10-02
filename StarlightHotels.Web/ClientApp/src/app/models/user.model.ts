@@ -13,4 +13,5 @@ export class Utilisateur
   email?: string;
   fullName?: string;
   password?: string;
+  phoneNumber?: string;
 }

@@ -1,87 +1,145 @@
 <div class="container">
   <img src="/assets/img/add_user.png" class="mx-auto d-block">
   <form [formGroup]="service.formModel" autocomplete="off" (submit)="onSubmit()">
-    <div class="form-group required">
-      <label>Nom</label>
-      <input class="form-control" formControlName="nom">
-      <label class="text-danger" *ngIf="service.formModel.get('nom').touched && service.formModel.get('nom').errors?.required">Le nom est obligatoire !</label>
-    </div>
-    <div class="form-group required">
-      <label>Prenom</label>
-      <input class="form-control" formControlName="prenom">
-      <label class="text-danger" *ngIf="service.formModel.get('prenom').touched && service.formModel.get('prenom').errors?.required">Le prénom est obligatoire !</label>
-    </div>
-    <div class="form-group required">
-      <label>Date de naissance</label>
-      <div class="input-group">
-        <input placeholder="Select date" type="text" id="example" class="form-control">
-        <label for="example">Try me...</label>
-        <i class="fas fa-calendar input-prefix" tabindex=0></i>
+
+    <div class="row">
+      <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 mb-2">
+        <mat-form-field class="example-full-width mb-3" appearance="outline">
+          <mat-label>Nom</mat-label>
+          <input matInput formControlName="nom" required>
+          <mat-error *ngIf="service.formModel.get('nom').hasError('required')">
+            Le nom est obligatoire !
+          </mat-error>
+        </mat-form-field>
       </div>
-      <label class="text-danger" *ngIf="service.formModel.get('dateNaissance').touched && service.formModel.get('dateNaissance').errors?.required">La date de naissance est obligatoire !</label>
-    </div>
-    <div class="form-group required">
-      <label>Sexe</label>
-      <input class="form-control" formControlName="sexe">
-      <label class="text-danger" *ngIf="service.formModel.get('sexe').touched && service.formModel.get('sexe').errors?.required">This field is mandatory</label>
-    </div>
-    <div class="form-group required">
-      <label>Rue</label>
-      <input class="form-control" formControlName="rue">
-      <label class="text-danger" *ngIf="service.formModel.get('rue').touched && service.formModel.get('rue').errors?.required">This field is mandatory</label>
-    </div>
-    <div class="form-group required">
-      <label>Numéro de rue</label>
-      <input class="form-control" formControlName="numeroRue">
-      <label class="text-danger" *ngIf="service.formModel.get('numeroRue').touched && service.formModel.get('numeroRue').errors?.required">This field is mandatory</label>
-    </div>
-    <div class="form-group required">
-      <label>Code Postal</label>
-      <input class="form-control" formControlName="codePostal">
-      <label class="text-danger" *ngIf="service.formModel.get('codePostal').touched && service.formModel.get('codePostal').errors?.required">This field is mandatory</label>
-    </div>
-    <div class="form-group required">
-      <label>Ville</label>
-      <input class="form-control" formControlName="ville">
-      <label class="text-danger" *ngIf="service.formModel.get('ville').touched && service.formModel.get('ville').errors?.required">This field is mandatory</label>
-    </div>
-    <div class="form-group">
-      <label>Pays</label>
-      <select class="browser-default custom-select">
-        <option selected>Choisissez le pays : </option>
-        <option *ngFor="let pays of allCountries" [value]="pays.id">{{pays.nom}}</option>
-      </select>
-      <label class="text-danger" *ngIf="service.formModel.get('pays').touched && service.formModel.get('pays').errors?.required">This field is mandatory</label>
-    </div>
-    <div class="form-group">
-      <label>Nom d'utilisateur</label>
-      <input class="form-control" formControlName="userName">
-      <label class="text-danger" *ngIf="service.formModel.get('userName').touched && service.formModel.get('userName').errors?.required">This field is mandatory</label>
-    </div>
-    <div class="form-group">
-      <label>Email</label>
-      <input class="form-control" formControlName="email">
-      <label class="text-danger" *ngIf="service.formModel.get('email').touched && service.formModel.get('email').errors?.email">Invalid email address</label>
-    </div>
-    <div class="form-group">
-      <label>Nom complet</label>
-      <input class="form-control" formControlName="fullName">
-      <label class="text-danger" *ngIf="service.formModel.get('fullName').touched && service.formModel.get('fullName').errors?.required">This field is mandatory</label>
-    </div>
-    <div formGroupName="passwords">
-      <div class="form-group">
-        <label>Mot de passe</label>
-        <input type="password" class="form-control" formControlName="password">
-        <label class="text-danger" *ngIf="service.formModel.get('passwords.password').touched && service.formModel.get('passwords.password').errors?.required">This field is mandatory</label>
-        <label class="text-danger" *ngIf="service.formModel.get('passwords.password').touched && service.formModel.get('passwords.password').errors?.minlength">Minimum 4 characters</label>
-      </div>
-      <div class="form-group">
-        <label>Confirmer le mot de passe</label>
-        <input type="password" class="form-control" formControlName="confirmPassword">
-        <label class="text-danger" *ngIf="service.formModel.get('passwords.confirmPassword').touched && service.formModel.get('passwords.confirmPassword').errors?.required">This field is mandatory</label>
-        <label class="text-danger" *ngIf="service.formModel.get('passwords.confirmPassword').touched && service.formModel.get('passwords.confirmPassword').errors?.passwordMismatch">Confirm password doesn't match</label>
+      <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 mb-2">
+        <mat-form-field class="example-full-width mb-3" appearance="outline">
+          <mat-label>Prénom</mat-label>
+          <input matInput formControlName="prenom" required>
+          <mat-error *ngIf="service.formModel.get('prenom').hasError('required')">
+            Le prénom est obligatoire !
+          </mat-error>
+        </mat-form-field>
       </div>
     </div>
+
+    <div class="row">
+      <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 mb-2">
+        <mat-form-field class="example-full-width mb-3" appearance="outline">
+          <mat-label>Date de naissance</mat-label>
+          <input matInput [matDatepicker]="picker" formControlName="dateNaissance" [max]="maxDate">
+          <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+          <mat-datepicker #picker startView="year"></mat-datepicker>
+          <mat-error *ngIf="service.formModel.get('dateNaissance').hasError('required')">
+            La date de naissance est obligatoire !
+          </mat-error>
+        </mat-form-field>
+      </div>
+      <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 mb-2">
+        <mat-form-field class="example-full-width mb-3" appearance="outline">
+          <mat-label>Sexe:</mat-label>
+          <mat-select formControlName="sexe">
+            <mat-option [value]="'H'">
+              Homme
+            </mat-option>
+            <mat-option [value]="'F'">
+              Femme
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 mb-2">
+        <mat-form-field class="example-full-width mb-3" appearance="outline">
+          <mat-label>Numéro de rue</mat-label>
+          <input matInput formControlName="numeroRue" required>
+        </mat-form-field>
+      </div>
+      <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 mb-2">
+        <mat-form-field class="example-full-width mb-3" appearance="outline">
+          <mat-label>Rue</mat-label>
+          <input matInput formControlName="rue" required>
+        </mat-form-field>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 mb-2">
+        <mat-form-field class="example-full-width mb-3" appearance="outline">
+          <mat-label>Code Postal</mat-label>
+          <input matInput formControlName="codePostal">
+        </mat-form-field>
+      </div>
+      <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 mb-2">
+        <mat-form-field class="example-full-width mb-3" appearance="outline">
+          <mat-label>Ville</mat-label>
+          <input matInput formControlName="ville">
+        </mat-form-field>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 mb-2">
+        <mat-form-field class="example-full-width mb-3" appearance="outline">
+          <mat-label>Pays:</mat-label>
+          <mat-select formControlName="paysId" #choosedValue>
+            <mat-option>
+              Choisissez le pays :
+            </mat-option>
+            <mat-option *ngFor="let pays of allCountries" [value]="pays.id">{{pays.nom}}</mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+    </div>
+
+
+    <div class="row">
+      <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 mb-2">
+        <mat-form-field class="example-full-width mb-3" appearance="outline">
+          <mat-label>Email</mat-label>
+          <input type="email" matInput formControlName="email" required>
+          <mat-error *ngIf="service.formModel.get('email').hasError('required')">
+            L'email est obligatoire !
+          </mat-error>
+        </mat-form-field>
+      </div>
+      <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 mb-2">
+        <mat-form-field class="example-full-width mb-3" appearance="outline">
+          <mat-label>Numéro de Téléphone</mat-label>
+          <input matInput formControlName="phoneNumber" required>
+          <mat-error *ngIf="service.formModel.get('phoneNumber').hasError('required')">
+            Le numéro de téléphone est obligatoire !
+          </mat-error>
+        </mat-form-field>
+      </div>
+    </div>
+
+    <div class="row" formGroupName="passwords">
+      <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 mb-2">
+        <mat-form-field class="example-full-width mb-3" appearance="outline">
+          <mat-label>Mot de passe</mat-label>
+          <input type="password" matInput formControlName="password" required>
+          <mat-error *ngIf="service.formModel.get('passwords.password').hasError('required')">
+            Le mot de passe est obligatoire !
+          </mat-error>
+          <mat-error *ngIf="service.formModel.get('passwords.password').hasError('minlength')">
+            Minimum 4 characters
+          </mat-error>
+        </mat-form-field>
+      </div>
+      <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 mb-2">
+        <mat-form-field class="example-full-width mb-3" appearance="outline">
+          <mat-label>Confirmer le mot de passe</mat-label>
+          <input type="password" matInput formControlName="confirmPassword" required>
+          <mat-error *ngIf="service.formModel.get('passwords.confirmPassword').hasError('required')">
+            Le mot de passe est obligatoire !
+          </mat-error>
+          <mat-error *ngIf="service.formModel.get('passwords.confirmPassword').hasError('passwordMismatch')">
+            Confirm password doesn't match
+          </mat-error>
+        </mat-form-field>
+      </div>
+    </div>
+
     <div class="form-group">
       <button type="submit" class="btn btn-primary" [disabled]="service.formModel.valid">Sign Up</button>
     </div>

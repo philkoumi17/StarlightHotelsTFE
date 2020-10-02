@@ -1,9 +1,9 @@
 import { Component, OnInit, EventEmitter, Output } from '@angular/core';
-import { NgForm } from '@angular/forms';
+import { NgForm, FormBuilder, Validators } from '@angular/forms';
 import { UserService } from '../../../services/user.service';
 import { AuthenticationService } from '../../../services/authentication.service';
 import { Router } from '@angular/router';
-import { ToastrService } from 'ngx-toastr';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-login',
@@ -12,17 +12,20 @@ import { ToastrService } from 'ngx-toastr';
   ]
 })
 export class LoginComponent implements OnInit {
-  formModel = {
-    UserName: '',
-    Password: ''
-  };
+
+  formModel;
 
   @Output() closeDialog: EventEmitter<any> = new EventEmitter();
 
-  constructor(private service: UserService, private router: Router, private toastr: ToastrService,
-              private authService: AuthenticationService) { }
+  constructor(private service: UserService, private router: Router, private snackBar: MatSnackBar,
+    private authService: AuthenticationService,private fb: FormBuilder) { }
 
   ngOnInit(): void {
+    this.formModel = this.fb.group({
+      userName: ['', Validators.required],
+      password: ['', Validators.required]
+    });
+
     if (localStorage.getItem('token') != null)
     {
       this.router.navigateByUrl('/home');
@@ -30,9 +33,9 @@ export class LoginComponent implements OnInit {
   }
 
   // tslint:disable-next-line: typedef
-  onSubmit(form: NgForm)
+  onSubmit()
   {
-    this.service.login(form.value).subscribe(
+    this.service.login(this.formModel.getRawValue()).subscribe(
       (res: any) => {
         this.authService.setToken(res.token);
         this.router.navigateByUrl('/home');
@@ -41,7 +44,13 @@ export class LoginComponent implements OnInit {
         // tslint:disable-next-line: triple-equals
         if (err.status == 400)
         {
-          this.toastr.error('Incorrect username or password !', 'Authentication failed');
+          //this.toastr.error('Incorrect username or password !', 'Authentication failed');
+          this.snackBar.open('Incorrect username or password !, Authentication failed!', '', {
+            duration: 2000,
+            verticalPosition: 'top',
+            horizontalPosition: 'center',
+            panelClass: 'snackbar-danger',
+          });
         }
         else
         {
