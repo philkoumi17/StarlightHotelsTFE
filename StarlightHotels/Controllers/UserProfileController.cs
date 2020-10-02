@@ -38,9 +38,17 @@ namespace StarlightHotels.API.Controllers
             var user = await _userManager.FindByIdAsync(userId);
             var userM = new AccountViewModel()
             {
-                FullName = user.FullName,
+                Nom = user.Nom,
+                Prenom = user.Prenom,
+                DateNaissance = user.DateNaissance,
+                Sexe = user.Sexe,
+                NumeroRue = user.NumeroRue,
+                Rue = user.Rue,
+                CodePostal = user.CodePostal,
+                Ville = user.Ville,
+                PaysId = user.PaysId,
                 Email = user.Email,
-                UserName = user.UserName
+                PhoneNumber = user.PhoneNumber
             };
 
             return Ok(userM);

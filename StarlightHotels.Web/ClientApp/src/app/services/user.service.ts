@@ -14,7 +14,6 @@ export class UserService
   constructor(private fb: FormBuilder, private http: HttpClient) { }
 
   formModel = this.fb.group({
-    userName: ['', Validators.required],
     nom: ['', Validators.required],
     prenom: ['', Validators.required],
     dateNaissance: ['', Validators.required],
@@ -23,13 +22,13 @@ export class UserService
     numeroRue: ['', Validators.required],
     codePostal: ['', Validators.required],
     ville: ['', Validators.required],
-    pays: [null, [Validators.required]],
+    paysId: [null, [Validators.required]],
     email : ['', Validators.email],
-    fullName : ['', Validators.required],
     passwords : this.fb.group({
       password : ['', Validators.required, Validators.minLength(4)],
       confirmPassword : ['', Validators.required]
-    }, {validator: this.comparePasswords })
+    }, { validator: this.comparePasswords }),
+    phoneNumber: ['', Validators.required]
   });
 
   comparePasswords(fb: FormGroup)
@@ -53,7 +52,6 @@ export class UserService
   register()
   {
     var body: Utilisateur = {
-      userName: this.formModel.value.userName,
       email: this.formModel.value.email,
       nom: this.formModel.value.nom,
       prenom: this.formModel.value.prenom,
@@ -64,10 +62,10 @@ export class UserService
       codePostal: this.formModel.value.codePostal,
       ville: this.formModel.value.ville,
       paysId: this.formModel.value.paysId,
-      fullName: this.formModel.value.fullName,
       password: this.formModel.value.passwords.password,
+      phoneNumber: this.formModel.value.phoneNumber
     };
-    console.log(body);
+
     return this.http.post(this.BaseURI + '/Account/Register', body);
   }
 

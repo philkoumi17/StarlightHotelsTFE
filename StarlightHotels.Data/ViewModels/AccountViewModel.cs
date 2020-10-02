@@ -1,14 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace StarlightHotels.Models.ViewModels
 {
     public class AccountViewModel
     {
-        public string UserName { get; set; }
-
         public string Nom { get; set; }
 
         public string Prenom { get; set; }
@@ -17,9 +12,9 @@ namespace StarlightHotels.Models.ViewModels
 
         public string Sexe { get; set; }
 
-        public string Rue { get; set; }
-
         public string NumeroRue { get; set; }
+
+        public string Rue { get; set; }
 
         public string CodePostal { get; set; }
 
@@ -31,7 +26,7 @@ namespace StarlightHotels.Models.ViewModels
 
         public string Password { get; set; }
 
-        public string FullName { get; set; }
+        public string PhoneNumber { get; set; }
 
         // public string Role { get; set; }
     }
