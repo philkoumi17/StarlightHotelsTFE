@@ -46,17 +46,17 @@ export class SearchComponent implements OnInit {
       }
     );
 
-    if (this.searchInstance) {
-      if (this.searchInstance.paysId) {
+    if(this.searchInstance)
+    {
+      if(this.searchInstance.paysId)
+      {
         this.getCities(this.searchInstance.paysId).then(
           (data) => {
             this.setSearchForm();
           });
       }
     }
-
   }
-
 
   createSearchForm(): FormGroup {
     return this.fb.group({

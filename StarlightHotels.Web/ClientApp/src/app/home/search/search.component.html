@@ -6,7 +6,6 @@
     <div class="container">
       <form [formGroup]="searchForm" (ngSubmit)="onSearch()">
         <div class="row">
-
           <div class="col-sm">
             <mat-form-field class="example-full-width mb-3" appearance="outline">
               <mat-label>Country:</mat-label>
@@ -41,8 +40,8 @@
             </mat-form-field>
           </div>
 
-          <div class="col-sm">
-            <button [disabled]="!searchForm.valid " class="btn btn-primary mt-4 mr-3 ">Search</button>
+          <div class="col-sm" style="margin-top: 40px;">
+            <button [disabled]="!searchForm.valid" class="btn btn-primary mt-4 mr-3">Search</button>
           </div>
         </div>
 

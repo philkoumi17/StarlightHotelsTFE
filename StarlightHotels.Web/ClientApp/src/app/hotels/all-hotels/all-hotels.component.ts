@@ -14,6 +14,7 @@ import { DeleteDialogComponent } from './dialogs/delete/delete.component';
 import { MatMenuTrigger } from '@angular/material/menu';
 import { SelectionModel } from '@angular/cdk/collections';
 import { FormBuilder } from '@angular/forms';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-all-hotels',
@@ -43,7 +44,8 @@ export class AllHotelComponent implements OnInit {
     public dialog: MatDialog,
     public hotelService: HotelService,
     private snackBar: MatSnackBar,
-    public fb: FormBuilder
+    public fb: FormBuilder,
+    private toastr: ToastrService
   ) { }
   @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
   @ViewChild(MatSort, { static: true }) sort: MatSort;
@@ -73,12 +75,7 @@ export class AllHotelComponent implements OnInit {
           this.hotelService.formModel.value
         );
         this.refreshTable();
-        this.showNotification(
-          'snackbar-success',
-          'Add Record Successfully...!!!',
-          'bottom',
-          'center'
-        );
+        this.toastr.success('Nouvel hôtel créé', 'Enregistrement avec succès');
       }
     });
   }
@@ -103,37 +100,12 @@ export class AllHotelComponent implements OnInit {
         ] = this.hotelService.formModel.value;
         // And lastly refresh table
         this.refreshTable();
-        this.showNotification(
-          'black',
-          'Edit Record Successfully...!!!',
-          'bottom',
-          'center'
-        );
+        console.log("start");
+        this.toastr.success('Hotel modifié', 'Enregistrement avec succès');
       }
     });
   }
-  deleteItem(row) {
-    this.id = row.id;
-    const dialogRef = this.dialog.open(DeleteDialogComponent, {
-      data: row,
-    });
-    dialogRef.afterClosed().subscribe((result) => {
-      if (result === 1) {
-        const foundIndex = this.exampleDatabase.dataChange.value.findIndex(
-          (x) => x.id === this.id
-        );
-        // for delete we use splice in order to remove single object from DataService
-        this.exampleDatabase.dataChange.value.splice(foundIndex, 1);
-        this.refreshTable();
-        this.showNotification(
-          'snackbar-danger',
-          'Delete Record Successfully...!!!',
-          'bottom',
-          'center'
-        );
-      }
-    });
-  }
+
   private refreshTable() {
     this.paginator._changePageSize(this.paginator.pageSize);
   }
