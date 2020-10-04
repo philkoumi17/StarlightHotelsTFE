@@ -5,20 +5,13 @@
         <li class="nav-item active">
           <a class="nav-link" href="#">Home</a>
         </li>
-        <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown" id="hotelsdropdownlink" aria-haspopup="true" aria-expanded="false">Hotels</a>
-          <div class="dropdown-menu">
-            <a href="#" class="dropdown-item">Show hotels</a>
-            <a href="#" class="dropdown-item">New Hotel</a>
-          </div>
-        </li>
         <li class="nav-item">
           <a class="nav-link" href="#">Promotions</a>
         </li>
-        <li class="nav-item">
+        <li class="nav-item" *ngIf="isConnected()">
           <a class="nav-link" href="#">My bookings</a>
         </li>
-        <li class="nav-item">
+        <li class="nav-item" *ngIf="isAdmin()">
           <a class="nav-link" href="/dashboard">Administration</a>
         </li>
         <li class="nav-item">

@@ -41,7 +41,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { AgmCoreModule } from '@agm/core';
 import { ClickOutsideModule } from 'ng-click-outside';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import {
   NgxMatDatetimePickerModule,
   NgxMatNativeDateModule,
@@ -49,6 +49,7 @@ import {
 } from '@angular-material-components/datetime-picker';
 import { HotelService } from './services/hotel.service';
 import { ToastrModule } from 'ngx-toastr';
+import { AuthInterceptor } from './auth/auth.interceptor';
 const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
   suppressScrollX: true,
   wheelPropagation: false,
@@ -105,6 +106,7 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
       provide: PERFECT_SCROLLBAR_CONFIG,
       useValue: DEFAULT_PERFECT_SCROLLBAR_CONFIG,
     },
+    { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },
     DynamicScriptLoaderService,
     ConfigService,
     RightSidebarService,

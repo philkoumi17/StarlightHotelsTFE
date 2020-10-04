@@ -29,7 +29,7 @@ export class NavbarComponent implements OnInit
       await this.userService.getUserProfileAsync().then(
         (data) => {
           this.user = data;
-          console.log(this.user.fullName);
+          //console.log(this.user);
         }
       );
     }
@@ -49,6 +49,10 @@ export class NavbarComponent implements OnInit
   isConnected()
   {
     return this.authService.isAuthenticated();
+  }
+
+  isAdmin() {
+    return this.authService.isAuthenticated() && this.user.role == 'Admin';
   }
 
   onLogout()

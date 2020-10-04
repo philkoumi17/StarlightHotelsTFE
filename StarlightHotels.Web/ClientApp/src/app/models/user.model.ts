@@ -14,4 +14,5 @@ export class Utilisateur
   fullName?: string;
   password?: string;
   phoneNumber?: string;
+  role?: string;
 }
