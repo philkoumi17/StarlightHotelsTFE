@@ -40,7 +40,7 @@ export class RegistrationComponent implements OnInit
           this.snackBar.open('New user created, Registration successful !', '', {
             duration: 2000,
             verticalPosition: 'top',
-            horizontalPosition: 'center',
+            horizontalPosition: 'right',
             panelClass: 'snackbar-success',
           });
           this.dialogRef.close();
@@ -57,7 +57,7 @@ export class RegistrationComponent implements OnInit
                 this.snackBar.open('Username is already taken, Registration failed !', '', {
                   duration: 2000,
                   verticalPosition: 'top',
-                  horizontalPosition: 'center',
+                  horizontalPosition: 'right',
                   panelClass: 'snackbar-danger',
                 });
                 break;
@@ -67,7 +67,7 @@ export class RegistrationComponent implements OnInit
                 this.snackBar.open(element.description + ', Registration failed !', '', {
                   duration: 2000,
                   verticalPosition: 'top',
-                  horizontalPosition: 'center',
+                  horizontalPosition: 'right',
                   panelClass: 'snackbar-danger',
                 });
                 break;

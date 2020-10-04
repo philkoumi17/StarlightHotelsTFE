@@ -8,6 +8,8 @@ namespace StarlightHotels.Models.ViewModels
 
         public string Prenom { get; set; }
 
+        public string FullName { get; set; }
+
         public DateTime DateNaissance { get; set; }
 
         public string Sexe { get; set; }
@@ -28,6 +30,6 @@ namespace StarlightHotels.Models.ViewModels
 
         public string PhoneNumber { get; set; }
 
-        // public string Role { get; set; }
+        public string Role { get; set; }
     }
 }

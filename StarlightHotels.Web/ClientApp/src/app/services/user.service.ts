@@ -81,6 +81,7 @@ export class UserService
 
   getUserProfileAsync()
   {
+    console.log(this.BaseURI + '/UserProfile');
     return this.http.get<Utilisateur>(this.BaseURI + '/UserProfile').toPromise();
   }
 

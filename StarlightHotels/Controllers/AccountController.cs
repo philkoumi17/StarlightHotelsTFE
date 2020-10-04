@@ -58,12 +58,17 @@ namespace StarlightHotels.API.Controllers
                 Email = model.Email,
                 PhoneNumber = model.PhoneNumber,
                 UserName = model.Email,
-                FullName = $"{model.Prenom} {model.Nom}"
+                FullName = $"{model.Prenom} {model.Nom}",
             };
 
             try
             {
                 var result = await _userManager.CreateAsync(applicationUser, model.Password);
+                if (result.Succeeded)
+                {
+                    await _userManager.AddToRoleAsync(applicationUser, "Client");
+                }
+
                 return Ok(result);
             }
             catch (DbUpdateConcurrencyException)
@@ -77,19 +82,19 @@ namespace StarlightHotels.API.Controllers
        [Route("Login")]
         public async Task<IActionResult> Login(LoginViewModel model)
         {
-            var user = await _userManager.FindByNameAsync(model.UserName);
-            if (user != null && await _userManager.CheckPasswordAsync(user, model.Password))
+            var applicationUser = await _userManager.FindByNameAsync(model.UserName);
+            if (applicationUser != null && await _userManager.CheckPasswordAsync(applicationUser, model.Password))
             {
                 // Get role assigned to the user
-                //var role = await _userManager.GetRolesAsync(user);
+                var role = await _userManager.GetRolesAsync(applicationUser);
                 IdentityOptions _options = new IdentityOptions();
 
                 var tokenDescriptor = new SecurityTokenDescriptor
                 {
                     Subject = new ClaimsIdentity(new Claim[]
                     {
-                        new Claim("UserID", user.Id.ToString()),
-                        //new Claim(_options.ClaimsIdentity.RoleClaimType, role.FirstOrDefault()),
+                        new Claim("UserID", applicationUser?.Id.ToString()),
+                        new Claim(_options.ClaimsIdentity.RoleClaimType, role?.FirstOrDefault()),
                     }),
                     Expires = DateTime.UtcNow.AddDays(1),
                     SigningCredentials = new SigningCredentials(

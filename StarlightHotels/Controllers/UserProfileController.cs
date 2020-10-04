@@ -36,19 +36,23 @@ namespace StarlightHotels.API.Controllers
 
             string userId = tokenClaim.Value;
             var user = await _userManager.FindByIdAsync(userId);
+            var role = await _userManager.GetRolesAsync(user);
+
             var userM = new AccountViewModel()
             {
                 Nom = user.Nom,
                 Prenom = user.Prenom,
                 DateNaissance = user.DateNaissance,
                 Sexe = user.Sexe,
-                NumeroRue = user.NumeroRue,
-                Rue = user.Rue,
-                CodePostal = user.CodePostal,
-                Ville = user.Ville,
+                NumeroRue = user.NumeroRue ?? string.Empty,
+                Rue = user.Rue ?? string.Empty,
+                CodePostal = user.CodePostal ?? string.Empty,
+                Ville = user.Ville ?? string.Empty,
                 PaysId = user.PaysId,
                 Email = user.Email,
-                PhoneNumber = user.PhoneNumber
+                PhoneNumber = user.PhoneNumber ?? string.Empty,
+                FullName = user.FullName,
+                Role = role?.FirstOrDefault()
             };
 
             return Ok(userM);
