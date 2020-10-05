@@ -38,7 +38,7 @@ export const ROUTES: RouteInfo[] = [
     submenu: [
       {
         path: '/hotels/all-hotels',
-        title: 'List des hotels',
+        title: 'Liste des hotels',
         iconType: '',
         icon: '',
         class: 'ml-menu',
@@ -49,7 +49,7 @@ export const ROUTES: RouteInfo[] = [
       },
       {
         path: '/hotels/add-hotel',
-        title: 'Ajouter une hotel',
+        title: 'Ajouter un hôtel',
         iconType: '',
         icon: '',
         class: 'ml-menu',
@@ -64,7 +64,7 @@ export const ROUTES: RouteInfo[] = [
   /* Bookings */
   {
     path: '',
-    title: 'Booking',
+    title: 'Réservations',
     iconType: 'material-icons-two-tone',
     icon: 'person',
     class: 'menu-toggle',
@@ -74,7 +74,7 @@ export const ROUTES: RouteInfo[] = [
     submenu: [
       {
         path: '/booking/all-booking',
-        title: 'All Booking',
+        title: 'Liste des réservations',
         iconType: '',
         icon: '',
         class: 'ml-menu',
@@ -85,7 +85,7 @@ export const ROUTES: RouteInfo[] = [
       },
       {
         path: '/booking/add-booking',
-        title: 'Add Booking',
+        title: 'Ajouter une réservation',
         iconType: '',
         icon: '',
         class: 'ml-menu',
@@ -109,7 +109,7 @@ export const ROUTES: RouteInfo[] = [
   },
   {
     path: '',
-    title: 'Rooms',
+    title: 'Chambres',
     iconType: 'material-icons-two-tone',
     icon: 'people_alt',
     class: 'menu-toggle',

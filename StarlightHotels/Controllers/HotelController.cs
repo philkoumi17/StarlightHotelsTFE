@@ -152,5 +152,15 @@ namespace StarlightHotels.API.Controllers
 
             return Ok(hotels);
         }
+
+        // Get: api/Hotel/GetAllPromotedHotels
+        [HttpGet]
+        [Route("GetAllPromotedHotels")]
+        public async Task<ActionResult<List<HotelModel>>> GetAllPromotedHotels()
+        {
+            var promoHotels = await _context.Hotels.Where(h => h.EnPromotion == true && h.Actif == true).ToListAsync();
+
+            return Ok(promoHotels);
+        }
     }
 }

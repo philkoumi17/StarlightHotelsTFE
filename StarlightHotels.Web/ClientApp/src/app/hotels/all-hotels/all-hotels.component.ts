@@ -75,7 +75,12 @@ export class AllHotelComponent implements OnInit {
           this.hotelService.formModel.value
         );
         this.refreshTable();
-        this.toastr.success('Nouvel hôtel créé', 'Enregistrement avec succès');
+        this.snackBar.open('Nouvel hôtel créé, Enregistrement avec succès !', '', {
+          duration: 2000,
+          verticalPosition: 'top',
+          horizontalPosition: 'right',
+          panelClass: 'snackbar-success',
+        });
       }
     });
   }
@@ -100,8 +105,12 @@ export class AllHotelComponent implements OnInit {
         ] = this.hotelService.formModel.value;
         // And lastly refresh table
         this.refreshTable();
-        console.log("start");
-        this.toastr.success('Hotel modifié', 'Enregistrement avec succès');
+        this.snackBar.open('Hôtel modifié, Modifié avec succès !', '', {
+          duration: 2000,
+          verticalPosition: 'top',
+          horizontalPosition: 'right',
+          panelClass: 'snackbar-success',
+        });
       }
     });
   }

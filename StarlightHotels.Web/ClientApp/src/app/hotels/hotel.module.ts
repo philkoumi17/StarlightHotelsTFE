@@ -25,8 +25,7 @@ import { MaterialFileInputModule } from 'ngx-material-file-input';
 import { MatTabsModule } from '@angular/material/tabs';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
-import { ToastrModule } from 'ngx-toastr';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
 @NgModule({
   declarations: [
     AllHotelComponent,
@@ -36,7 +35,6 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     EditHotelComponent
   ],
   imports: [
-    BrowserAnimationsModule,
     CommonModule,
     FormsModule,
     ReactiveFormsModule,
@@ -58,10 +56,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     MaterialFileInputModule,
     MatMenuModule,
     HotelRoutingModule,
-    MatSlideToggleModule,
-    ToastrModule.forRoot({
-      progressBar: true
-    }),
+    MatSlideToggleModule
   ]
 })
 export class HotelModule { }

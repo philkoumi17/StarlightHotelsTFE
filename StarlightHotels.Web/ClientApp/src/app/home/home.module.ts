@@ -36,10 +36,13 @@ import { ReservationDetailTarifComponent } from './reservation/reservation-creat
 import { ReservationDetailComponent } from './reservation/reservation-detail/reservation-detail.component';
 import { ParticipantComponent } from './participant/participant.component';
 import { AddParticipantComponent } from './participant/add-participant/add-participant.component';
+import { CarrouselComponent } from './carrousel/carrousel.component';
+import { NewspartnersandnetworksComponent } from './newspartnersandnetworks/newspartnersandnetworks.component';
+import { PromoandtoplistComponent } from './promoandtoplist/promoandtoplist.component';
+import { WeatherComponent } from './weather/weather.component';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 
-@
-NgModule({
+@NgModule({
   declarations: [
     HomeComponent,
     ContactComponent,
@@ -60,7 +63,11 @@ NgModule({
     ReservationDetailTarifComponent,
     ReservationDetailComponent,
     ParticipantComponent,
-    AddParticipantComponent
+    AddParticipantComponent,
+    CarrouselComponent,
+    NewspartnersandnetworksComponent,
+    PromoandtoplistComponent,
+    WeatherComponent
   ],
   imports: [
     ReactiveFormsModule,

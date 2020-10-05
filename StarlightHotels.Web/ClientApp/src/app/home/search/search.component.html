@@ -1,93 +1,93 @@
 <div class="card card-primary">
-  <div class="card-header">
-    <h3 class="card-title"><i class="fas fa-search"></i> Search</h3>
-  </div>
-  <div class="card-body" style="align-content: center;">
-    <div class="container">
-      <form [formGroup]="searchForm" (ngSubmit)="onSearch()">
-        <div class="row">
-          <div class="col-sm">
-            <mat-form-field class="example-full-width mb-3" appearance="outline">
-              <mat-label>Country:</mat-label>
-              <mat-select formControlName="paysId" #choosedValue (valueChange)="getCities(choosedValue.value)" [disabled]="isRoomSelection">
-                <mat-option [value]="'all'">
-                  All
-                </mat-option>
-                <mat-option *ngFor="let pays of allCountries" [value]="pays.id">{{pays.nom}}</mat-option>
-              </mat-select>
-            </mat-form-field>
-          </div>
-
-          <div class="col-sm">
-            <mat-form-field class="example-full-width mb-3" appearance="outline">
-              <mat-label>Arrived Date</mat-label>
-              <input matInput [matDatepicker]="picker" formControlName="arrivalDate" [min]="minDate" required>
-              <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-              <mat-datepicker #picker></mat-datepicker>
-              <mat-error *ngIf="searchForm.get('arrivalDate').hasError('required')">
-                Please select date
-              </mat-error>
-            </mat-form-field>
-          </div>
-
-          <div class="col-sm ">
-            <mat-form-field class="example-full-width mb-3" appearance="outline">
-              <mat-label>Adults:</mat-label>
-              <input matInput formControlName="totalAdult" type="number" required>
-              <mat-error *ngIf="searchForm.get('totalAdult').hasError('required')">
-                Number of Adults is required
-              </mat-error>
-            </mat-form-field>
-          </div>
-
-          <div class="col-sm" style="margin-top: 40px;">
-            <button [disabled]="!searchForm.valid" class="btn btn-primary mt-4 mr-3">Search</button>
-          </div>
-        </div>
-
-        <div class="row">
-
-          <div class="col-sm">
-            <mat-form-field class="example-full-width mb-3" appearance="outline">
-              <mat-label>City:</mat-label>
-              <mat-select formControlName="city" [disabled]="isRoomSelection">
-                <mat-option [value]="'all'">
-                  All
-                </mat-option>
-                <mat-option *ngFor="let city of allCities" [value]="city">{{city}}</mat-option>
-              </mat-select>
-            </mat-form-field>
-          </div>
-
-          <div class="col-sm">
-            <mat-form-field class="example-full-width mb-3" appearance="outline">
-              <mat-label>Depart Date</mat-label>
-              <input matInput [matDatepicker]="picker1" formControlName="departureDate" [min]="minDate" required>
-              <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
-              <mat-datepicker #picker1></mat-datepicker>
-              <mat-error *ngIf="searchForm.get('departureDate').hasError('required')">
-                Please select date
-              </mat-error>
-            </mat-form-field>
-          </div>
-
-          <div class="col-sm ">
-            <mat-form-field class="example-full-width mb-3" appearance="outline">
-              <mat-label>Children:</mat-label>
-              <input matInput formControlName="totalChildren" type="number" required>
-              <mat-error *ngIf="searchForm.get('totalChildren').hasError('required')">
-                Number of children is required
-              </mat-error>
-            </mat-form-field>
-          </div>
-
-          <div class="col-sm">
-          </div>
-        </div>
-        <div class="row error text-danger" *ngIf="error">
-          <label for="error">{{errorMessage}}</label>
-        </div>
-      </form>
+    <div class="card-header">
+        <h3 class="card-title"><i class="fas fa-search"></i> Search</h3>
     </div>
-  </div>
+    <div class="card-body" style="align-content: center;">
+        <div class="container">
+            <form [formGroup]="searchForm" (ngSubmit)="onSearch()">
+                <div class="row">
+                    <div class="col-sm">
+                        <mat-form-field class="example-full-width mb-3" appearance="outline">
+                            <mat-label>Country:</mat-label>
+                            <mat-select formControlName="paysId" #choosedValue (valueChange)="getCities(choosedValue.value)" [disabled]="isRoomSelection">
+                                <mat-option [value]="'all'">
+                                    All
+                                </mat-option>
+                                <mat-option *ngFor="let pays of allCountries" [value]="pays.id">{{pays.nom}}</mat-option>
+                            </mat-select>
+                        </mat-form-field>
+                    </div>
+
+                    <div class="col-sm">
+                        <mat-form-field class="example-full-width mb-3" appearance="outline">
+                            <mat-label>Arrived Date</mat-label>
+                            <input matInput [matDatepicker]="picker" formControlName="arrivalDate" [min]="minDate" required>
+                            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                            <mat-datepicker #picker></mat-datepicker>
+                            <mat-error *ngIf="searchForm.get('arrivalDate').hasError('required')">
+                                Please select date
+                            </mat-error>
+                        </mat-form-field>
+                    </div>
+
+                    <div class="col-sm ">
+                        <mat-form-field class="example-full-width mb-3" appearance="outline">
+                            <mat-label>Adults:</mat-label>
+                            <input matInput formControlName="totalAdult" type="number" required>
+                            <mat-error *ngIf="searchForm.get('totalAdult').hasError('required')">
+                                Number of Adults is required
+                            </mat-error>
+                        </mat-form-field>
+                    </div>
+
+                    <div class="col-sm" style="margin-top: 40px;">
+                        <button [disabled]="!searchForm.valid" class="btn btn-primary mt-4 mr-3">Search</button>
+                    </div>
+                </div>
+
+                <div class="row">
+
+                    <div class="col-sm">
+                        <mat-form-field class="example-full-width mb-3" appearance="outline">
+                            <mat-label>City:</mat-label>
+                            <mat-select formControlName="city" [disabled]="isRoomSelection">
+                                <mat-option [value]="'all'">
+                                    All
+                                </mat-option>
+                                <mat-option *ngFor="let city of allCities" [value]="city">{{city}}</mat-option>
+                            </mat-select>
+                        </mat-form-field>
+                    </div>
+
+                    <div class="col-sm">
+                        <mat-form-field class="example-full-width mb-3" appearance="outline">
+                            <mat-label>Depart Date</mat-label>
+                            <input matInput [matDatepicker]="picker1" formControlName="departureDate" [min]="minDate" required>
+                            <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+                            <mat-datepicker #picker1></mat-datepicker>
+                            <mat-error *ngIf="searchForm.get('departureDate').hasError('required')">
+                                Please select date
+                            </mat-error>
+                        </mat-form-field>
+                    </div>
+
+                    <div class="col-sm ">
+                        <mat-form-field class="example-full-width mb-3" appearance="outline">
+                            <mat-label>Children:</mat-label>
+                            <input matInput formControlName="totalChildren" type="number" required>
+                            <mat-error *ngIf="searchForm.get('totalChildren').hasError('required')">
+                                Number of children is required
+                            </mat-error>
+                        </mat-form-field>
+                    </div>
+
+                    <div class="col-sm">
+                    </div>
+                </div>
+                <div class="row error text-danger" *ngIf="error">
+                    <label for="error">{{errorMessage}}</label>
+                </div>
+            </form>
+        </div>
+    </div>
 </div>
