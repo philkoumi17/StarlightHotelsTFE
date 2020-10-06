@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { UserService } from '../../../services/user.service';
 import { Utilisateur } from '../../../models/user.model';
-import { Router } from '@angular/router';
+import { AuthenticationService } from '../../../services/authentication.service';
 
 @Component({
   selector: 'app-user-detail',
@@ -11,16 +10,9 @@ import { Router } from '@angular/router';
 export class UserDetailComponent implements OnInit {
   user: Utilisateur;
 
-  constructor(private router: Router, private userService: UserService) { }
+  constructor(private authService: AuthenticationService) { }
 
   ngOnInit(): void {
-    this.userService.getUserProfile().subscribe(
-      res => {
-        this.user = res;
-      },
-      err => {
-        console.log(err);
-      },
-    );
+    this.authService.currentUserData.subscribe(data => this.user = data);
   }
 }
