@@ -24,12 +24,11 @@ export class NavbarComponent implements OnInit
     private userService: UserService) { }
 
   async ngOnInit() {
-    if(this.authService.isAuthenticated())
-    {
+    if (this.authService.isAuthenticated()) {
       await this.userService.getUserProfileAsync().then(
         (data) => {
+          this.authService.setUser(data);
           this.user = data;
-          //console.log(this.user);
         }
       );
     }
@@ -37,13 +36,24 @@ export class NavbarComponent implements OnInit
 
   openUserDialog(): void
   {
-    console.log('this.openUserDialog()');
     const dialogRef = this.dialog.open(UserComponent, {
       disableClose: false,
       width: '50%',
       height: '80%',
       data: { data: null }
     });
+
+    dialogRef.afterClosed().subscribe(async () => {
+      if (this.authService.isAuthenticated()) {
+        await this.userService.getUserProfileAsync().then(
+          (data) => {
+            this.authService.setUser(data);
+            this.user = data;
+          }
+        );
+      }
+
+    })
   }
 
   isConnected()
@@ -52,12 +62,11 @@ export class NavbarComponent implements OnInit
   }
 
   isAdmin() {
-    return this.authService.isAuthenticated() && this.user.role == 'Admin';
+    return this.authService.isAuthenticated() && this.user && this.user.role == 'Admin';
   }
 
   onLogout()
   {
     localStorage.removeItem('token');
-    this.router.navigate(['/']);
   }
 }
