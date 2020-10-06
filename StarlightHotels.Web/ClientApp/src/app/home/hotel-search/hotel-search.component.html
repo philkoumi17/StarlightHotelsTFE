@@ -13,7 +13,8 @@
             alt="Card image">
         <div class="card-body">
             <p class="card-text">{{ hotel.description }}</p>
-            <a [routerLink]="['/home/book-hotel/', hotel.id]" class="btn btn-info">Book !</a>
+            <a [routerLink]="['/home/book-hotel/', hotel.id]" class="btn btn-indigo">Réserver !</a>
+            <a [routerLink]="['home/hotel-detail/', hotel.id]" class="btn btn-info">Détails !</a>
         </div>
     </div>
 </section>

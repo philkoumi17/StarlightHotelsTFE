@@ -11,6 +11,7 @@ import { ContactComponent } from './contact/contact.component';
 import { UserComponent } from './user/user.component';
 import { RegistrationComponent } from './user/registration/registration.component';
 import { LoginComponent } from './user/login/login.component';
+import { HotelDetailComponent } from './hotel-detail/hotel-detail.component';
 
 const routes: Routes = [
   {
@@ -19,7 +20,8 @@ const routes: Routes = [
     pathMatch: 'full'
   },
   { path: 'home', component: HomeComponent },
-  { path: 'home/hotel-search', component: HotelSearchComponent},
+  { path: 'home/hotel-search', component: HotelSearchComponent },
+  { path: 'home/hotel-detail/:id', component: HotelDetailComponent },
   { path: 'home/list-of-bookings', component: ReservationComponent },
   { path: 'home/book-hotel/:id', component: ReservationCreateComponent },
   { path: 'home/confirm-reservation/:id', component: ReservationConfirmationComponent },

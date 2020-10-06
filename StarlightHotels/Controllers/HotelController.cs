@@ -126,7 +126,7 @@ namespace StarlightHotels.API.Controllers
             }
             else
             {
-                hotels = await _context.Hotels.Where(h => h.PaysId == searchHotel.PaysId && h.Ville == searchHotel .City && h.Actif).ToListAsync();
+                hotels = await _context.Hotels.Where(h => h.PaysId == searchHotel.PaysId && h.Ville == searchHotel.City && h.Actif).ToListAsync();
             }
 
             return Ok(hotels);
@@ -162,5 +162,24 @@ namespace StarlightHotels.API.Controllers
 
             return Ok(promoHotels);
         }
+
+        //// Get: api/Hotel/DetailHotel/id
+        //[HttpGet("{id}")]
+        //[Route("DetailsHotel")]
+        //public async Task<ActionResult<List<HotelModel>>> DetailsHotel(int hotelId)
+        //{
+        //    var hotel = await _context.Hotels.FindAsync(hotelId);
+        //    var hotelRooms = await _context.HotelCategories.Where(hC => hC.HotelId == hotelId).ToListAsync();
+        //    var hotelThemes = await _context.HotelThemes.Where(hT => hT.HotelId == hotelId).ToListAsync();
+        //    var hotelFormules = await _context.HotelFormules.Where(hF => hF.HotelId == hotelId).ToListAsync();
+        //    var hotelServicesFree = await _context.HotelServices.Where(hS => hS.HotelId == hotelId && hS.Service.Payant == false).ToListAsync();
+        //    var hotelServicesNoFree = await _context.HotelServices.Where(hS => hS.HotelId == hotelId && hS.Service.Payant == true).ToListAsync();
+        //    var hotels = await _context.Hotels.Where(h => h.HotelCategories == hotelRooms  
+        //                 && h.HotelThemes == hotelThemes && h.HotelFormules == hotelFormules
+        //                 && (h.HotelServices == hotelServicesFree) || (h.HotelServices == hotelServicesNoFree)
+        //                 && h.Actif == true).ToListAsync();
+
+        //    return Ok(hotels);
+        //}
     }
 }
