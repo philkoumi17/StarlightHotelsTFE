@@ -5,6 +5,7 @@ import { Hotel } from '../models/hotel.model';
 import { SearchHotelModel } from '../models/search-hotel.model';
 import { Observable, BehaviorSubject } from 'rxjs';
 import { Pays } from '../models/pays.model';
+import { HotelDetail } from '../models/hotel-detail.model';
 
 @Injectable({
   providedIn: 'root'
@@ -125,7 +126,6 @@ export class HotelService
   }
 
   // update hotel
-  // tslint:disable-next-line: typedef
   setHotel(hotel)
   {
     this.hotelBehavior.next(hotel);
@@ -151,5 +151,10 @@ export class HotelService
   {
     this.searchBehavior.next(searchHotelModel);
     return await this.http.post<Hotel[]>(this.baseURI + '/Hotel/SearchHotels', searchHotelModel).toPromise();
+  }
+
+  async detailsHotel(hotelId: number)
+  {
+    return await this.http.get<HotelDetail>(this.baseURI + '/Hotel/detail/' + hotelId).toPromise();
   }
 }

@@ -1,6 +1,6 @@
 import { Component, OnInit, Inject } from '@angular/core';
 import { Pays } from 'src/app/models/pays.model';
-import { Hotel } from 'src/app/models/hotel.model';
+import { HotelDetail } from 'src/app/models/hotel-detail.model';
 import { HotelService } from 'src/app/services/hotel.service';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 
@@ -12,7 +12,8 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 })
 
 export class HotelDetailComponent implements OnInit {
-  hotel: Hotel;
+  hotelDetails: HotelDetail;
+  allCountries: Pays[];
   edit: boolean;
 
   constructor(private service: HotelService, private dialogRef: MatDialogRef<HotelDetailComponent>,
@@ -22,10 +23,14 @@ export class HotelDetailComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.service.getHotelById(this.data.id).then(result => {
-      // tslint:disable-next-line: triple-equals
-      this.hotel = result;
+    this.service.detailsHotel(this.data.id).then(result => {
+      this.hotelDetails = result;
     });
+    this.service.getCountries().subscribe(
+      (data) => {
+        this.allCountries = data;
+      }
+    );
   }
 
   editHotel()
@@ -33,7 +38,6 @@ export class HotelDetailComponent implements OnInit {
     this.edit = true;
   }
 
-  // tslint:disable-next-line: typedef
   close()
   {
     this.dialogRef.close();

@@ -163,23 +163,30 @@ namespace StarlightHotels.API.Controllers
             return Ok(promoHotels);
         }
 
-        //// Get: api/Hotel/DetailHotel/id
-        //[HttpGet("{id}")]
-        //[Route("DetailsHotel")]
-        //public async Task<ActionResult<List<HotelModel>>> DetailsHotel(int hotelId)
-        //{
-        //    var hotel = await _context.Hotels.FindAsync(hotelId);
-        //    var hotelRooms = await _context.HotelCategories.Where(hC => hC.HotelId == hotelId).ToListAsync();
-        //    var hotelThemes = await _context.HotelThemes.Where(hT => hT.HotelId == hotelId).ToListAsync();
-        //    var hotelFormules = await _context.HotelFormules.Where(hF => hF.HotelId == hotelId).ToListAsync();
-        //    var hotelServicesFree = await _context.HotelServices.Where(hS => hS.HotelId == hotelId && hS.Service.Payant == false).ToListAsync();
-        //    var hotelServicesNoFree = await _context.HotelServices.Where(hS => hS.HotelId == hotelId && hS.Service.Payant == true).ToListAsync();
-        //    var hotels = await _context.Hotels.Where(h => h.HotelCategories == hotelRooms  
-        //                 && h.HotelThemes == hotelThemes && h.HotelFormules == hotelFormules
-        //                 && (h.HotelServices == hotelServicesFree) || (h.HotelServices == hotelServicesNoFree)
-        //                 && h.Actif == true).ToListAsync();
+        // Get: api/Hotel/detail/id
+        [HttpGet("DetailsHotel/{hotelId}")]
+        public async Task<ActionResult<HotelDetailsViewModel>> DetailsHotel(int hotelId)
+        {
+            var hotelDetail = new HotelDetailsViewModel()
+            {
+                HotelInfos = await _context.Hotels.FindAsync(hotelId),
+                HotelRooms = await _context.HotelCategories.Where(hC => hC.HotelId == hotelId).ToListAsync(),
+                HotelThemes = await _context.HotelThemes.Where(hT => hT.HotelId == hotelId).ToListAsync(),
+                HotelFormules = await _context.HotelFormules.Where(hF => hF.HotelId == hotelId).ToListAsync(),
+                HotelServicesFree = await _context.HotelServices.Where(hS => hS.HotelId == hotelId && hS.Service.Payant == false).ToListAsync(),
+                HotelServicesNoFree = await _context.HotelServices.Where(hS => hS.HotelId == hotelId && hS.Service.Payant == true).ToListAsync()
+            };
 
-        //    return Ok(hotels);
-        //}
+            return Ok(hotelDetail);
+        }
+
+        // Return the list of countries
+        // Get: api/Hotel/GetPictures
+        [HttpGet]
+        [Route("GetPictures")]
+        public async Task<ActionResult<IEnumerable<ImageModel>>> GetPictures()
+        {
+            return await _context.Images.ToListAsync();
+        }
     }
 }

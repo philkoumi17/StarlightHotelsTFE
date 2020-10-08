@@ -7,7 +7,15 @@ namespace StarlightHotels.Models.ViewModels
 {
     public class SearchReservationViewModel
     {
-        public int ClientId { get; set; }
+        public ReservationModel ReservationDetails { get; set; }
+
+        public ApplicationUser ApplicationUser { get; set; }
+
+        public HotelModel Hotel { get; set; }
+
+        public List<FormuleModel> Formules { get; set; }
+
+        public List<EtatModel> Etats { get; set; }
 
         public string City { get; set; }
 
