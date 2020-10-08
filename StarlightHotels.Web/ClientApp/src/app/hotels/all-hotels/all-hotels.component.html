@@ -154,7 +154,7 @@
                           Actif
                         </mat-header-cell>
                         <mat-cell *matCellDef="let row" (contextmenu)="onContextMenu($event, row)">
-                          <mat-slide-toggle [checked]="row.actif" (click)="$event.stopPropagation()"></mat-slide-toggle>
+                          <mat-slide-toggle [checked]="row.actif" (click)="$event.stopPropagation()" (change)="editActif(row)"></mat-slide-toggle>
                         </mat-cell>
                       </ng-container>
                       <!-- actions -->

@@ -10,7 +10,7 @@
                         <mat-form-field class="example-full-width mb-3" appearance="outline">
                             <mat-label>Country:</mat-label>
                             <mat-select formControlName="paysId" #choosedValue (valueChange)="getCities(choosedValue.value)" [disabled]="isRoomSelection">
-                                <mat-option [value]="'all'">
+                                <mat-option [value]="0">
                                     All
                                 </mat-option>
                                 <mat-option *ngFor="let pays of allCountries" [value]="pays.id">{{pays.nom}}</mat-option>
