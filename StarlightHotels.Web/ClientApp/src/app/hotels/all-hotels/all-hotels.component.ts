@@ -115,6 +115,18 @@ export class AllHotelComponent implements OnInit {
     });
   }
 
+  editActif(row) {
+    row.actif = !row.actif;
+    this.hotelService.updateHotel(row)
+
+    this.snackBar.open('Hôtel modifié avec succès !', '', {
+      duration: 2000,
+      verticalPosition: 'top',
+      horizontalPosition: 'right',
+      panelClass: 'snackbar-success',
+    });
+  }
+
   private refreshTable() {
     this.paginator._changePageSize(this.paginator.pageSize);
   }
