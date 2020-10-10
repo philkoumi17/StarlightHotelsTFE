@@ -17,7 +17,7 @@ namespace StarlightHotels.Models
 
         [Column("SERV_Id")]
         [Display(Name = "Service")]
-        public int ServId { get; set; }
+        public int ServiceId { get; set; }
         public ServiceModel Service { get; set; }
     }
 }

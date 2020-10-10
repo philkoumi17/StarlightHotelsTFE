@@ -23,7 +23,7 @@ namespace StarlightHotels.Models
 
         [Column("CH_CAT_Id")]
         [Display(Name = "Categorie")]
-        public int CatId { get; set; }
+        public int CategorieId { get; set; }
         public CategorieModel Categorie { get; set; }
 
         public List<ChambreReserveeModel> ChambreReservees { get; set; }

@@ -48,13 +48,13 @@ namespace StarlightHotels.Models
         // Relation with the room entity
         [Column("RESCH_CH_Num")]
         [Display(Name = "Chambre")]
-        public int ChNum { get; set; }
+        public int ChambreId { get; set; }
         public ChambreModel Chambre { get; set; }
 
         // Relation with the booking entity
         [Column("RES_Id")]
         [Display(Name = "Réservation")]
-        public int IdRes { get; set; }
+        public int ReservationId { get; set; }
         public ReservationModel Reservation { get; set; }
 
         public List<ChambreReserveeServiceModel> ChambreReserveeServices { get; set; }
