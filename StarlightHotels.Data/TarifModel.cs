@@ -22,12 +22,12 @@ namespace StarlightHotels.Models
 
         [Column("TAR_CAT_Id")]
         [Display(Name = "Categorie")]
-        public int CatId { get; set; }
+        public int CategorieId { get; set; }
         public CategorieModel Categorie { get; set; }
 
         [Column("TAR_SA_Id")]
         [Display(Name = "Saison")]
-        public int SaId { get; set; }
+        public int SaisonId { get; set; }
         public SaisonModel Saison { get; set; }
     }
 }

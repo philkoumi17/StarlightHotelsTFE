@@ -28,7 +28,7 @@ namespace StarlightHotels.Models
 
         [Column("FAC_RES_Id")]
         [Display(Name = "Réservation")]
-        public int ResId { get; set; }
+        public int ReservationId { get; set; }
         public ReservationModel Reservation { get; set; }
     }
 }

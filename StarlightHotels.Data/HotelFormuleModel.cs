@@ -17,7 +17,7 @@ namespace StarlightHotels.Models
 
         [Column("FOR_Id")]
         [Display(Name = "Formule")]
-        public int FormId { get; set; }
+        public int FormuleId { get; set; }
         public FormuleModel Formule { get; set; }
     }
 }

@@ -8,12 +8,12 @@ namespace StarlightHotels.Models
     {
         [Column("PART_Id")]
         [Display(Name = "Participant")]
-        public int PartId { get; set; }
+        public int ParticipantId { get; set; }
         public ParticipantModel Participant { get; set; }
 
         [Column("RES_Id")]
         [Display(Name = "Reservation")]
-        public int ResId { get; set; }
+        public int ReservationId { get; set; }
         public ReservationModel Reservation { get; set; }
     }
 }

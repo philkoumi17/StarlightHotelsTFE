@@ -16,7 +16,7 @@ namespace StarlightHotels.Models
 
         [Column("PR_Id")]
         [Display(Name = "Promotion")]
-        public int PromoId { get; set; }
+        public int PromotionId { get; set; }
         public PromotionModel Promotion { get; set; }
 
         [Column("HOTELPR_DateDebut")]

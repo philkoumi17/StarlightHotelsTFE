@@ -17,7 +17,7 @@ namespace StarlightHotels.Models
 
         [Column("CAT_Id")]
         [Display(Name = "Categorie")]
-        public int CatId { get; set; }
+        public int CategorieId { get; set; }
         public CategorieModel Categorie { get; set; }
 
         [Column("HOTCAT_Image")]
