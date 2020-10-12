@@ -6,6 +6,7 @@ import { HotelService } from '../../services/hotel.service';
 import { Pays } from '../../models/pays.model';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { SearchHotelModel } from '../../models/search-hotel.model';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-search',
@@ -34,7 +35,8 @@ export class SearchComponent implements OnInit {
     private service: HotelService,
     private toastr: ToastrService,
     public formatter: NgbDateParserFormatter,
-    private fb: FormBuilder) {
+    private fb: FormBuilder,
+    private snackBar: MatSnackBar) {
     this.searchForm = this.createSearchForm();
     this.minDate = new Date();
   }
@@ -102,6 +104,15 @@ export class SearchComponent implements OnInit {
       (data) => {
         this.service.setHotel(data);
         this.router.navigateByUrl('home/hotel-search');
+      }).catch(() => {
+
+        this.snackBar.open("La date de départ ne peut pas être inférienu à la date d'arriver!", '', {
+          duration: 5000,
+          verticalPosition: 'top',
+          horizontalPosition: 'right',
+          panelClass: 'snackbar-danger',
+        });
+
       });
   }
 }
