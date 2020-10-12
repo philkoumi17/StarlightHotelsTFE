@@ -4,7 +4,7 @@ import { AuthenticationService } from '../../services/authentication.service';
 import { UserComponent } from '../user/user.component';
 import { Router } from '@angular/router';
 import { UserService } from '../../services/user.service';
-import { Utilisateur } from 'src/app/models/user.model';
+import { UtilisateurModel } from 'src/app/models/user.model';
 
 @Component({
   selector: 'app-navbar',
@@ -14,14 +14,14 @@ import { Utilisateur } from 'src/app/models/user.model';
 })
 export class NavbarComponent implements OnInit
 {
-  user: Utilisateur = {
+  user: UtilisateurModel = {
     fullName: '',
     email: '',
     userName: ''
   };
 
   constructor(public dialog: MatDialog, private router: Router, private authService: AuthenticationService,
-    private userService: UserService) { }
+              private userService: UserService) { }
 
   async ngOnInit() {
     if (this.authService.isAuthenticated()) {
@@ -52,8 +52,7 @@ export class NavbarComponent implements OnInit
           }
         );
       }
-
-    })
+    });
   }
 
   isConnected()

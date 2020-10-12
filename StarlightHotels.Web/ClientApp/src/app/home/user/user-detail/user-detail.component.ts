@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Utilisateur } from '../../../models/user.model';
+import { UtilisateurModel } from '../../../models/user.model';
 import { AuthenticationService } from '../../../services/authentication.service';
 
 @Component({
@@ -8,7 +8,7 @@ import { AuthenticationService } from '../../../services/authentication.service'
   styleUrls: ['./user-detail.component.css']
 })
 export class UserDetailComponent implements OnInit {
-  user: Utilisateur;
+  user: UtilisateurModel;
 
   constructor(private authService: AuthenticationService) { }
 

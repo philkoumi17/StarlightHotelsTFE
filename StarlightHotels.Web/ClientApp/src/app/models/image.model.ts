@@ -4,6 +4,5 @@ export class Image
 {
   id?: number;
   image: string;
-  hotelId?: number;
   hotel?: Hotel;
 }

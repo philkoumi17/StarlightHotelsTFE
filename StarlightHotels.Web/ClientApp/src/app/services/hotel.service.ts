@@ -6,6 +6,7 @@ import { SearchHotelModel } from '../models/search-hotel.model';
 import { Observable, BehaviorSubject } from 'rxjs';
 import { Pays } from '../models/pays.model';
 import { HotelDetail } from '../models/hotel-detail.model';
+import { Image } from '../models/image.model';
 
 @Injectable({
   providedIn: 'root'
@@ -151,6 +152,21 @@ export class HotelService
   {
     this.searchBehavior.next(searchHotelModel);
     return await this.http.post<Hotel[]>(this.baseURI + '/Hotel/SearchHotels', searchHotelModel).toPromise();
+  }
+
+  async getAllPromotedHotels()
+  {
+    return await this.http.get<Hotel[]>(this.baseURI + '/Hotel/GetAllPromotedHotels').toPromise();
+  }
+
+  async getAllTopHotels()
+  {
+    return await this.http.get<Hotel[]>(this.baseURI + '/Hotel/GetAllTopHotels').toPromise();
+  }
+
+  getPictures(hotelId: number): Observable<Image[]>
+  {
+    return this.http.get<Image[]>(this.baseURI + '/Hotel/GetPictures/' + hotelId);
   }
 
   async detailsHotel(hotelId: number)

@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { FormBuilder, Validators, FormGroup } from '@angular/forms';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Utilisateur } from '../models/user.model';
+import { UtilisateurModel } from '../models/user.model';
 import { Pays } from '../models/pays.model';
 import { Observable } from 'rxjs';
 
@@ -36,9 +36,9 @@ export class UserService
     let confirmPasswordCtrl = fb.get('confirmPassword');
     // PasswordMismatch
     // confirmPswrdCtrl.errors={passwordMismatch:true}
-    if(confirmPasswordCtrl.errors == null || 'passwordMismatch' in confirmPasswordCtrl.errors)
+    if (confirmPasswordCtrl.errors == null || 'passwordMismatch' in confirmPasswordCtrl.errors)
     {
-      if(fb.get('password').value != confirmPasswordCtrl.value)
+      if (fb.get('password').value != confirmPasswordCtrl.value)
       {
         confirmPasswordCtrl.setErrors({passwordMismatch: true});
       }
@@ -51,7 +51,7 @@ export class UserService
 
   register()
   {
-    var body: Utilisateur = {
+    var body: UtilisateurModel = {
       email: this.formModel.value.email,
       nom: this.formModel.value.nom,
       prenom: this.formModel.value.prenom,
@@ -76,13 +76,13 @@ export class UserService
 
   getUserProfile()
   {
-    return this.http.get<Utilisateur>(this.BaseURI + '/UserProfile');
+    return this.http.get<UtilisateurModel>(this.BaseURI + '/UserProfile');
   }
 
   getUserProfileAsync()
   {
     console.log(this.BaseURI + '/UserProfile');
-    return this.http.get<Utilisateur>(this.BaseURI + '/UserProfile').toPromise();
+    return this.http.get<UtilisateurModel>(this.BaseURI + '/UserProfile').toPromise();
   }
 
   getAllCountries(): Observable<Pays[]> {

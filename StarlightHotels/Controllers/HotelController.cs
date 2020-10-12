@@ -143,10 +143,10 @@ namespace StarlightHotels.API.Controllers
             return Ok(hotels);
         }
 
-        // Get: api/Hotel/SearchHotelsByTop
+        // Get: api/Hotel/GetAllTopHotels
         [HttpGet]
-        [Route("SearchHotelsByTop")]
-        public async Task<ActionResult<List<HotelModel>>> SearchHotelsByTop()
+        [Route("GetAllTopHotels")]
+        public async Task<ActionResult<List<HotelModel>>> GetAllTopHotels()
         {
             var hotels = await _context.Hotels.Where(h => h.TopDestination == true && h.Actif == true).ToListAsync();
 
@@ -180,13 +180,13 @@ namespace StarlightHotels.API.Controllers
             return Ok(hotelDetail);
         }
 
-        // Return the list of countries
-        // Get: api/Hotel/GetPictures
+        // Return the list of hotel's pictures
+        // Get: api/Hotel/GetPictures/id
         [HttpGet]
-        [Route("GetPictures")]
-        public async Task<ActionResult<IEnumerable<ImageModel>>> GetPictures()
+        [Route("GetPictures/{hotelId}")]
+        public async Task<ActionResult<IEnumerable<ImageModel>>> GetPictures(int hotelId)
         {
-            return await _context.Images.ToListAsync();
+            return await _context.Images.Where(image => image.HotelId == hotelId).ToListAsync();
         }
     }
 }

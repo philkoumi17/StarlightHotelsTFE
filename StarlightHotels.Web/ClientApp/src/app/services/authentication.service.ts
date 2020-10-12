@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import * as jwt_decode from 'jwt-decode';
-import { Utilisateur } from '../models/user.model';
+import { UtilisateurModel } from '../models/user.model';
 import { BehaviorSubject } from 'rxjs';
 
 @Injectable({
@@ -8,10 +8,10 @@ import { BehaviorSubject } from 'rxjs';
 })
 export class AuthenticationService {
 
-  currentUser: Utilisateur;
+  currentUser: UtilisateurModel;
 
   // Observable
-  private currentUserBehavior = new BehaviorSubject<Utilisateur>(this.currentUser);
+  private currentUserBehavior = new BehaviorSubject<UtilisateurModel>(this.currentUser);
   currentUserData = this.currentUserBehavior.asObservable();
 
   constructor() { }
@@ -37,7 +37,7 @@ export class AuthenticationService {
     return false;
   }
 
-  setUser(user: Utilisateur) {
+  setUser(user: UtilisateurModel) {
     this.currentUserBehavior.next(user);
   }
 }
