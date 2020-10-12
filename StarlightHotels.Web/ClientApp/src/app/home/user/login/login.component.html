@@ -1,33 +1,33 @@
 <div class="container">
-  <img src="/assets/img/single_user.png" class="mx-auto d-block">
-  <form [formGroup]="formModel" autocomplete="off" (submit)="onSubmit()">
+    <img src="/assets/img/single_user.png" class="mx-auto d-block">
+    <form [formGroup]="formModel" autocomplete="off" (submit)="onSubmit()">
 
-    <div class="row">
-      <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 mb-2">
-        <mat-form-field class="example-full-width mb-3" appearance="outline">
-          <mat-label>Email</mat-label>
-          <input type="email" matInput formControlName="userName" required>
-          <mat-error *ngIf="formModel.get('userName').hasError('required')">
-            L'email est obligatoire !
-          </mat-error>
-        </mat-form-field>
-      </div>
-    </div>
+        <div class="row">
+            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 mb-2">
+                <mat-form-field class="example-full-width mb-3" appearance="outline">
+                    <mat-label>Email</mat-label>
+                    <input type="email" matInput formControlName="userName" required>
+                    <mat-error *ngIf="formModel.get('userName').hasError('required')">
+                        L'email est obligatoire !
+                    </mat-error>
+                </mat-form-field>
+            </div>
+        </div>
 
-    <div class="row">
-      <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 mb-2">
-        <mat-form-field class="example-full-width mb-3" appearance="outline">
-          <mat-label>Mot de passe</mat-label>
-          <input type="password" matInput formControlName="password" required>
-          <mat-error *ngIf="formModel.get('password').hasError('required')">
-            Le mot de passe est obligatoire !
-          </mat-error>
-        </mat-form-field>
-      </div>
-    </div>
+        <div class="row">
+            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 mb-2">
+                <mat-form-field class="example-full-width mb-3" appearance="outline">
+                    <mat-label>Mot de passe</mat-label>
+                    <input type="password" matInput formControlName="password" required>
+                    <mat-error *ngIf="formModel.get('password').hasError('required')">
+                        Le mot de passe est obligatoire !
+                    </mat-error>
+                </mat-form-field>
+            </div>
+        </div>
 
-    <div class="form-group">
-      <button type="submit" class="btn btn-lg btn-block" [disabled]="formModel.invalid">Sign In</button>
-    </div>
-  </form>
+        <div class="form-group">
+            <button type="submit" class="btn btn-success btn-block" [disabled]="formModel.invalid">Connectez-vous</button>
+        </div>
+    </form>
 </div>

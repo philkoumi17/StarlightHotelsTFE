@@ -1,6 +1,6 @@
 <div class="card card-primary">
     <div class="card-header">
-        <h3 class="card-title"><i class="fas fa-search"></i> Search</h3>
+        <h3 class="card-title"><i class="fas fa-search"></i> Recherche rapide</h3>
     </div>
     <div class="card-body" style="align-content: center;">
         <div class="container">
@@ -8,7 +8,7 @@
                 <div class="row">
                     <div class="col-sm">
                         <mat-form-field class="example-full-width mb-3" appearance="outline">
-                            <mat-label>Country:</mat-label>
+                            <mat-label>Pays</mat-label>
                             <mat-select formControlName="paysId" #choosedValue (valueChange)="getCities(choosedValue.value)" [disabled]="isRoomSelection">
                                 <mat-option [value]="0">
                                     All
@@ -20,7 +20,7 @@
 
                     <div class="col-sm">
                         <mat-form-field class="example-full-width mb-3" appearance="outline">
-                            <mat-label>Arrived Date</mat-label>
+                            <mat-label>Date d'arrivée</mat-label>
                             <input matInput [matDatepicker]="picker" formControlName="arrivalDate" [min]="minDate" required>
                             <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
                             <mat-datepicker #picker></mat-datepicker>
@@ -32,7 +32,7 @@
 
                     <div class="col-sm ">
                         <mat-form-field class="example-full-width mb-3" appearance="outline">
-                            <mat-label>Adults:</mat-label>
+                            <mat-label>Adultes</mat-label>
                             <input matInput formControlName="totalAdult" type="number" required>
                             <mat-error *ngIf="searchForm.get('totalAdult').hasError('required')">
                                 Number of Adults is required
@@ -41,7 +41,7 @@
                     </div>
 
                     <div class="col-sm" style="margin-top: 40px;">
-                        <button [disabled]="!searchForm.valid" class="btn btn-primary mt-4 mr-3">Search</button>
+                        <button [disabled]="!searchForm.valid" class="btn btn-primary mt-4 mr-3">Recherche</button>
                     </div>
                 </div>
 
@@ -49,7 +49,7 @@
 
                     <div class="col-sm">
                         <mat-form-field class="example-full-width mb-3" appearance="outline">
-                            <mat-label>City:</mat-label>
+                            <mat-label>Ville</mat-label>
                             <mat-select formControlName="city" [disabled]="isRoomSelection">
                                 <mat-option [value]="'all'">
                                     All
@@ -61,7 +61,7 @@
 
                     <div class="col-sm">
                         <mat-form-field class="example-full-width mb-3" appearance="outline">
-                            <mat-label>Depart Date</mat-label>
+                            <mat-label>Date de départ</mat-label>
                             <input matInput [matDatepicker]="picker1" formControlName="departureDate" [min]="minDate" required>
                             <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
                             <mat-datepicker #picker1></mat-datepicker>
@@ -73,7 +73,7 @@
 
                     <div class="col-sm ">
                         <mat-form-field class="example-full-width mb-3" appearance="outline">
-                            <mat-label>Children:</mat-label>
+                            <mat-label>Enfants</mat-label>
                             <input matInput formControlName="totalChildren" type="number" required>
                             <mat-error *ngIf="searchForm.get('totalChildren').hasError('required')">
                                 Number of children is required

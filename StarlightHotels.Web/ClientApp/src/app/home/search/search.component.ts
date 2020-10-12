@@ -94,7 +94,6 @@ export class SearchComponent implements OnInit {
    * Action on search
    * */
   async onSearch() {
-
     this.error = false;
     this.errorMessage = '';
 
@@ -105,14 +104,12 @@ export class SearchComponent implements OnInit {
         this.service.setHotel(data);
         this.router.navigateByUrl('home/hotel-search');
       }).catch(() => {
-
-        this.snackBar.open("La date de départ ne peut pas être inférienu à la date d'arriver!", '', {
+        this.snackBar.open("La date de départ ne peut pas être inférieur à la date d'arrivée !", '', {
           duration: 5000,
           verticalPosition: 'top',
           horizontalPosition: 'right',
           panelClass: 'snackbar-danger',
         });
-
       });
   }
 }

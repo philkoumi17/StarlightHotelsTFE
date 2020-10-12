@@ -117,7 +117,7 @@ export class AllHotelComponent implements OnInit {
 
   editActif(row) {
     row.actif = !row.actif;
-    this.hotelService.updateHotel(row)
+    this.hotelService.updateHotel(row);
 
     this.snackBar.open('Hôtel modifié avec succès !', '', {
       duration: 2000,
