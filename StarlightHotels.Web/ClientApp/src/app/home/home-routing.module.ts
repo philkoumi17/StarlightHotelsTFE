@@ -12,6 +12,7 @@ import { UserComponent } from './user/user.component';
 import { RegistrationComponent } from './user/registration/registration.component';
 import { LoginComponent } from './user/login/login.component';
 import { HotelDetailComponent } from './hotel-detail/hotel-detail.component';
+import { ForbiddenComponent } from './forbidden/forbidden.component';
 
 const routes: Routes = [
   {
@@ -31,6 +32,7 @@ const routes: Routes = [
   { path: 'home/user/registration', component: RegistrationComponent },
   { path: 'home/user/login', component: LoginComponent },
   { path: 'home/user/user-detail', component: UserDetailComponent },
+  { path: 'forbidden', component: ForbiddenComponent }
 ];
 @NgModule({
   imports: [RouterModule.forChild(routes)],

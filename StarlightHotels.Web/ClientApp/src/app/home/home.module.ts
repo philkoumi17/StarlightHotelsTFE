@@ -41,6 +41,7 @@ import { NewspartnersandnetworksComponent } from './newspartnersandnetworks/news
 import { PromoandtoplistComponent } from './promoandtoplist/promoandtoplist.component';
 import { WeatherComponent } from './weather/weather.component';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { ForbiddenComponent } from './forbidden/forbidden.component';
 
 @NgModule({
   declarations: [
@@ -67,7 +68,8 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
     CarrouselComponent,
     NewspartnersandnetworksComponent,
     PromoandtoplistComponent,
-    WeatherComponent
+    WeatherComponent,
+    ForbiddenComponent
   ],
   imports: [
     ReactiveFormsModule,
