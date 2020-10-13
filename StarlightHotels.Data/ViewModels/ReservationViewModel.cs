@@ -5,9 +5,9 @@ using System.Threading.Tasks;
 
 namespace StarlightHotels.Models.ViewModels
 {
-    public class SearchReservationViewModel
+    public class ReservationViewModel
     {
-        public ReservationModel ReservationDetails { get; set; }
+        public ChambreReserveeModel ReservationDetails { get; set; }
 
         public ApplicationUser ApplicationUser { get; set; }
 
@@ -16,8 +16,6 @@ namespace StarlightHotels.Models.ViewModels
         public List<FormuleModel> Formules { get; set; }
 
         public List<EtatModel> Etats { get; set; }
-
-        public string City { get; set; }
 
         public DateTimeOffset? ArrivalDate { get; set; }
 

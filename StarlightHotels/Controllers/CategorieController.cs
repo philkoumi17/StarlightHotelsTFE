@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
@@ -84,6 +85,14 @@ namespace StarlightHotels.API.Controllers
         private bool CategorieExists(int id)
         {
             return _context.Categories.Any(e => e.Id == id);
+        }
+
+        // GET: api/Categorie/GetChambres
+        [HttpGet]
+        [Route("GetChambres")]
+        public async Task<ActionResult<IEnumerable<ChambreModel>>> GetChambres()
+        {
+            return await _context.Chambres.ToListAsync();
         }
     }
 }

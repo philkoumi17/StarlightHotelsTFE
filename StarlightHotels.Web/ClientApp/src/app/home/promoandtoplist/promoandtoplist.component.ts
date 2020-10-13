@@ -10,10 +10,10 @@ export class PromoandtoplistComponent implements OnInit {
   hotelsList = [];
   hotelsTopList = [];
 
-  constructor(private hotelService: HotelService) { 
+  constructor(private hotelService: HotelService) {
     this.hotelService.getAllPromotedHotels().then(res => {
       this.hotelsList = res;
-      console.log(res);
+      console.log('this is my hotels list', res);
     });
 
     this.hotelService.getAllTopHotels().then(data => {
