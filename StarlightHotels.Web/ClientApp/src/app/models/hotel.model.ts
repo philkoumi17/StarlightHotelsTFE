@@ -1,4 +1,5 @@
 import { Pays } from './pays.model';
+import { Image } from './image.model';
 
 export class Hotel {
   id?: number;
@@ -18,4 +19,6 @@ export class Hotel {
   coefficient: number;
   checkIn: string;
   checkOut: string;
+  images?: Image[];
+  stars?: number[];
 }

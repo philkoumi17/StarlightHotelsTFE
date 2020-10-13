@@ -164,9 +164,9 @@ export class HotelService
     return await this.http.get<Hotel[]>(this.baseURI + '/Hotel/GetAllTopHotels').toPromise();
   }
 
-  getPictures(hotelId: number): Observable<Image[]>
+  getPictures(hotelId: number)
   {
-    return this.http.get<Image[]>(this.baseURI + '/Hotel/GetPictures/' + hotelId);
+    return this.http.get<Image[]>(this.baseURI + '/Hotel/GetPictures/' + hotelId).toPromise();
   }
 
   async detailsHotel(hotelId: number)
