@@ -7,7 +7,6 @@ namespace StarlightHotels.Core.Entities
     [Table("Pays")]
     public class PaysModel
     {
-        [Key]
         [Column("PAYS_Id")]
         [Display(Name = "Id")]
         public int Id { get; set; }

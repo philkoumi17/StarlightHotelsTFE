@@ -10,7 +10,6 @@ namespace StarlightHotels.Core.Entities
     [Table(name:"Facture")]
     public class FactureModel
     {
-        [Key]
         [Column("FAC_Id")]
         [Display(Name = "Id")]
         public int Id { get; set; }

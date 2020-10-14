@@ -8,7 +8,6 @@ namespace StarlightHotels.Core.Entities
     [Table("ReservationChambre")]
     public class ChambreReserveeModel
     {
-        [Key]
         [Column("RESCH_Id")]
         [Display(Name = "RESCH_Id")]
         public int IdResCh { get; set; }

@@ -7,7 +7,6 @@ namespace StarlightHotels.Core.Entities
     [Table("Theme")]
     public class ThemeModel
     {
-        [Key]
         [Column("THEME_Id")]
         [Display(Name = "Id")]
         public int Id { get; set; }

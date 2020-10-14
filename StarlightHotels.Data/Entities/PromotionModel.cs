@@ -7,7 +7,6 @@ namespace StarlightHotels.Core.Entities
     [Table("Promotion")]
     public class PromotionModel
     {
-        [Key]
         [Column("PRO_Id")]
         [Display(Name = "Id")]
         public int Id { get; set; }

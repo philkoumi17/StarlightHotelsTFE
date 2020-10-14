@@ -7,7 +7,6 @@ namespace StarlightHotels.Core.Entities
     [Table("Chambre")]
     public class ChambreModel
     {
-        [Key]
         [Column("CH_Num")]
         [Display(Name = "Numéro de chambre")]
         public int ChNum { get; set; }

@@ -7,7 +7,6 @@ namespace StarlightHotels.Core.Entities
     [Table("Etat")]
     public class EtatModel
     {
-        [Key]
         [Column("ETAT_Id")]
         [Display(Name = "Id")]
         public int Id { get; set; }

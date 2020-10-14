@@ -10,7 +10,6 @@ namespace StarlightHotels.Core.Entities
     [Table("Participant")]
     public class ParticipantModel
     {
-        [Key]
         [Column("PART_Id")]
         [Display(Name = "Id")]
         public int Id { get; set; }

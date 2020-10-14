@@ -10,7 +10,6 @@ namespace StarlightHotels.Core.Entities
     [Table("Image")]
     public class ImageModel
     {
-        [Key]
         [Column("IM_Id")]
         [Display(Name = "Id")]
         public int Id { get; set; }

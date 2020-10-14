@@ -10,7 +10,6 @@ namespace StarlightHotels.Core.Entities
     [Table("Formule")]
     public class FormuleModel
     {
-        [Key]
         [Column("FOR_Id")]
         [Display(Name = "FOR_Id")]
         public int Id { get; set; }

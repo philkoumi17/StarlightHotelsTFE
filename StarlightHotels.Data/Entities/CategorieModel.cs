@@ -10,7 +10,6 @@ namespace StarlightHotels.Core.Entities
     [Table("Categorie")]
     public class CategorieModel
     {
-        [Key]
         [Column("CAT_Id")]
         [Display(Name = "Id")]
         public int Id { get; set; }

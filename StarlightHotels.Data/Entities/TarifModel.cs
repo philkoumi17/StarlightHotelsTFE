@@ -10,7 +10,6 @@ namespace StarlightHotels.Core.Entities
     [Table("Tarif")]
     public class TarifModel
     {
-        [Key]
         [Column("TAR_Id")]
         [Display(Name = "Id")]
         public int Id { get; set; }

@@ -14,12 +14,88 @@ namespace StarlightHotels.DAL.Data
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
-            
-            /* Many-to-many relationships */
 
-            // Gestion pour la table HotelCategorie
+            #region Table Key
+            modelBuilder.Entity<HotelModel>()
+                .HasKey(ht => new { ht.Id });
+
+            modelBuilder.Entity<HotelPromotionModel>()
+                .HasKey(hp => new { hp.HotelId, hp.PromotionId });
+
+            modelBuilder.Entity<PromotionModel>()
+                .HasKey(p => new { p.Id });
+
+            modelBuilder.Entity<HotelThemeModel>()
+                .HasKey(ht => new { ht.HotelId, ht.ThemeId });
+
+            modelBuilder.Entity<ThemeModel>()
+                .HasKey(t => new {t.Id });
+
+            modelBuilder.Entity<ImageModel>()
+                .HasKey(i => new { i.Id });
+
+            modelBuilder.Entity<HotelFormuleModel>()
+                .HasKey(hf => new { hf.HotelId, hf.FormuleId });
+
+            modelBuilder.Entity<FormuleModel>()
+                .HasKey(i => new { i.Id });
+
             modelBuilder.Entity<HotelCategorieModel>()
                 .HasKey(ht => new { ht.HotelId, ht.CategorieId });
+
+            modelBuilder.Entity<CategorieModel>()
+                .HasKey(i => new { i.Id });
+
+            modelBuilder.Entity<TarifModel>()
+                .HasKey(i => new { i.Id });
+
+            modelBuilder.Entity<SaisonModel>()
+                .HasKey(i => new { i.Id });
+
+            modelBuilder.Entity<ChambreModel>()
+                .HasKey(c => new { c.ChNum });
+
+            modelBuilder.Entity<ChambreReserveeModel>()
+                .HasKey(c => new { c.IdResCh });
+
+            modelBuilder.Entity<ChambreReserveeServiceModel>()
+                .HasKey(hp => new { hp.ChambreReserveeId, hp.ServiceId });
+
+            modelBuilder.Entity<PaysModel>()
+                .HasKey(p => new { p.Id});
+
+            modelBuilder.Entity<HotelServiceModel>()
+                .HasKey(hs => new { hs.HotelId, hs.ServiceId });
+
+            modelBuilder.Entity<EtatModel>()
+                .HasKey(p => new { p.Id });
+
+            modelBuilder.Entity<ReservationModel>()
+                .HasKey(r => new { r.IdRes });
+
+            modelBuilder.Entity<ParticipantModel>()
+                .HasKey(p => new { p.Id });
+
+            modelBuilder.Entity<ParticipantReservationModel>()
+               .HasKey(pr => new { pr.ParticipantId, pr.ReservationId });
+
+            modelBuilder.Entity<FactureModel>()
+                .HasKey(f => new { f.Id });
+
+            #endregion
+
+
+            #region Many-to-many relationships
+            
+            modelBuilder.Entity<HotelPromotionModel>()
+                .HasOne(pt => pt.Promotion)
+                .WithMany(t => t.HotelPromotions)
+                .HasForeignKey(pt => pt.PromotionId);
+
+            modelBuilder.Entity<HotelPromotionModel>()
+                .HasOne(pt => pt.Hotel)
+                .WithMany(t => t.HotelPromotions)
+                .HasForeignKey(pt => pt.HotelId);
 
             modelBuilder.Entity<HotelCategorieModel>()
                 .HasOne(pt => pt.Hotel)
@@ -31,10 +107,6 @@ namespace StarlightHotels.DAL.Data
                 .WithMany(t => t.HotelCategories)
                 .HasForeignKey(pt => pt.CategorieId);
 
-            // Gestion pour la table HotelFormule
-            modelBuilder.Entity<HotelFormuleModel>()
-                .HasKey(hf => new { hf.HotelId, hf.FormuleId });
-
             modelBuilder.Entity<HotelFormuleModel>()
                 .HasOne(pt => pt.Hotel)
                 .WithMany(p => p.HotelFormules)
@@ -44,24 +116,6 @@ namespace StarlightHotels.DAL.Data
                 .HasOne(pt => pt.Formule)
                 .WithMany(t => t.HotelFormules)
                 .HasForeignKey(pt => pt.FormuleId);
-
-            // Gestion pour la table HotelPromotion
-            modelBuilder.Entity<HotelPromotionModel>()
-                .HasKey(hp => new { hp.HotelId, hp.PromotionId });
-
-            modelBuilder.Entity<HotelPromotionModel>()
-                .HasOne(pt => pt.Hotel)
-                .WithMany(p => p.HotelPromotions)
-                .HasForeignKey(pt => pt.HotelId);
-
-            modelBuilder.Entity<HotelPromotionModel>()
-                .HasOne(pt => pt.Promotion)
-                .WithMany(t => t.HotelPromotions)
-                .HasForeignKey(pt => pt.PromotionId);
-
-            // Gestion pour la table HotelService
-            modelBuilder.Entity<HotelServiceModel>()
-                .HasKey(hs => new { hs.HotelId, hs.ServiceId });
 
             modelBuilder.Entity<HotelServiceModel>()
                 .HasOne(pt => pt.Hotel)
@@ -73,10 +127,6 @@ namespace StarlightHotels.DAL.Data
                 .WithMany(t => t.HotelServices)
                 .HasForeignKey(pt => pt.ServiceId);
 
-            // Gestion pour la table HotelTheme
-            modelBuilder.Entity<HotelThemeModel>()
-                .HasKey(ht => new { ht.HotelId, ht.ThemeId });
-
             modelBuilder.Entity<HotelThemeModel>()
                 .HasOne(pt => pt.Hotel)
                 .WithMany(p => p.HotelThemes)
@@ -87,10 +137,6 @@ namespace StarlightHotels.DAL.Data
                 .WithMany(t => t.HotelThemes)
                 .HasForeignKey(pt => pt.ThemeId);
 
-            // Gestion pour la table ChambreReserveeService
-            modelBuilder.Entity<ChambreReserveeServiceModel>()
-                .HasKey(hp => new { hp.ChambreReserveeId, hp.ServiceId });
-
             modelBuilder.Entity<ChambreReserveeServiceModel>()
                 .HasOne(pt => pt.ChambreReservee)
                 .WithMany(t => t.ChambreReserveeServices)
@@ -99,12 +145,7 @@ namespace StarlightHotels.DAL.Data
             modelBuilder.Entity<ChambreReserveeServiceModel>()
                 .HasOne(pt => pt.Service)
                 .WithMany(p => p.ChambreReserveeServices)
-                .HasForeignKey(pt => pt.ServiceId)
-                .OnDelete(DeleteBehavior.ClientSetNull);
-
-            // Gestion pour la table ParticipantReservation
-            modelBuilder.Entity<ParticipantReservationModel>()
-                .HasKey(pr => new { pr.ParticipantId, pr.ReservationId });
+                .HasForeignKey(pt => pt.ServiceId);
 
             modelBuilder.Entity<ParticipantReservationModel>()
                 .HasOne(pt => pt.Participant)
@@ -114,20 +155,76 @@ namespace StarlightHotels.DAL.Data
             modelBuilder.Entity<ParticipantReservationModel>()
                 .HasOne(pt => pt.Reservation)
                 .WithMany(t => t.ParticipantReservations)
-                .HasForeignKey(pt => pt.ReservationId)
-                .OnDelete(DeleteBehavior.ClientSetNull);
+                .HasForeignKey(pt => pt.ReservationId);
 
-            // Autres relations (One-to-one relationship)
+            #endregion
+
+            #region One-to-many relationships
+            
+            modelBuilder.Entity<ImageModel>()
+               .HasOne(h => h.Hotel)
+               .WithMany(i => i.Images)
+               .HasForeignKey(h => h.HotelId);
+
+            modelBuilder.Entity<HotelModel>()
+               .HasOne(h => h.Pays)
+               .WithMany(i => i.Hotels)
+               .HasForeignKey(h => h.PaysId);
+
+            modelBuilder.Entity<TarifModel>()
+               .HasOne(h => h.Categorie)
+               .WithMany(i => i.Tarifs)
+               .HasForeignKey(h => h.CategorieId);
+
+            modelBuilder.Entity<TarifModel>()
+               .HasOne(h => h.Saison)
+               .WithMany(i => i.Tarifs)
+               .HasForeignKey(h => h.SaisonId);
+
+            modelBuilder.Entity<ChambreModel>()
+               .HasOne(h => h.Hotel)
+               .WithMany(i => i.Chambres)
+               .HasForeignKey(h => h.HotelId);
+
+            modelBuilder.Entity<ChambreModel>()
+               .HasOne(h => h.Categorie)
+               .WithMany(i => i.Chambres)
+               .HasForeignKey(h => h.CategorieId);
+
+            modelBuilder.Entity<ApplicationUser>()
+               .HasOne(h => h.Pays)
+               .WithMany(i => i.ApplicationUsers)
+               .HasForeignKey(h => h.PaysId);
+
+            modelBuilder.Entity<ReservationModel>()
+               .HasOne(h => h.ApplicationUser)
+               .WithMany(i => i.Reservations)
+               .HasForeignKey(h => h.ApplicationUserId);
+
+            modelBuilder.Entity<ReservationModel>()
+               .HasOne(h => h.Etat)
+               .WithMany(i => i.Reservations)
+               .HasForeignKey(h => h.EtatId);
+
+            modelBuilder.Entity<ChambreReserveeModel>()
+               .HasOne(h => h.Chambre)
+               .WithMany(i => i.ChambreReservees)
+               .HasForeignKey(h => h.ChambreId);
+
+            modelBuilder.Entity<ChambreReserveeModel>()
+               .HasOne(h => h.Reservation)
+               .WithMany(i => i.ChambreReservees)
+               .HasForeignKey(h => h.ReservationId);
+            #endregion
+
+            #region One-to-one relationships
+
             modelBuilder.Entity<ReservationModel>()
                 .HasOne(a => a.Facture)
                 .WithOne(b => b.Reservation)
                 .HasForeignKey<FactureModel>(b => b.ReservationId);
 
-            modelBuilder.Entity<ReservationModel>()
-                .HasOne(n => n.ApplicationUser)
-                .WithMany(a => a.Reservations)
-                .HasForeignKey(n => n.ApplicationUserId)
-                .OnDelete(DeleteBehavior.ClientSetNull);
+            #endregion
         }
 
         public DbSet<ApplicationUser> ApplicationUsers { get; set; }
