@@ -13,6 +13,7 @@ using StarlightHotels.API.Extensions;
 using StarlightHotels.Core.Entities;
 using StarlightHotels.DAL.Data;
 using StarlightHotels.Utilities;
+using Newtonsoft.Json;
 
 namespace StarlightHotels.API
 {
@@ -33,8 +34,12 @@ namespace StarlightHotels.API
             // Inject AppSettings
             services.Configure<ApplicationSettings>(Configuration.GetSection("ApplicationSettings"));
 
-            services.AddControllers();
+            services.AddControllers().AddNewtonsoftJson(options =>
+                options.SerializerSettings.ReferenceLoopHandling = ReferenceLoopHandling.Ignore
+            );
+
             services.AddMvc();
+
             services.AddDbContext<ApplicationDbContext>(options =>
                 options.UseSqlServer(Configuration.GetConnectionString("HotelChainConnection")));
 
