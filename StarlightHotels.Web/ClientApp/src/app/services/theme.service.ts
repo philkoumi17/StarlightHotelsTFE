@@ -1,25 +1,25 @@
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
-import { Reservation } from '../models/reservation.model';
+import { Theme } from '../models/theme.model';
 
 @Injectable({
   providedIn: 'root'
 })
-export class ReservationService {
+export class ThemeService {
   readonly baseURI = 'https://localhost:44315/api';
-  list: Reservation[];
-  dataChange: BehaviorSubject<Reservation[]> = new BehaviorSubject<Reservation[]>([]);
+  list: Theme[];
+  dataChange: BehaviorSubject<Theme[]> = new BehaviorSubject<Theme[]>([]);
 
   constructor(private http: HttpClient) { }
 
-  get data(): Reservation[] {
+  get data(): Theme[] {
     return this.dataChange.value;
   }
 
   /* CRUD METHODS */
-  getAllReservations(): void {
-    this.http.get<Reservation[]>(`${this.baseURI}/Reservation/GetReservations`).subscribe(
+  getAllThemes(): void {
+    this.http.get<Theme[]>(`${this.baseURI}/Theme/GetThemes`).subscribe(
       data => {
         this.dataChange.next(data);
       },
@@ -29,8 +29,8 @@ export class ReservationService {
     );
   }
 
-  async getReservationById(resId)
+  async getThemeById(themeId)
   {
-    return await this.http.get<Reservation>(this.baseURI + '/Reservation/' + resId).toPromise();
+    return await this.http.get<Theme>(this.baseURI + '/Theme/' + themeId).toPromise();
   }
 }

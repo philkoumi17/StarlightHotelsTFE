@@ -1,4 +1,4 @@
-export class ParticipantModel
+export class Participant
 {
   id?: number;
   prenom?: string;

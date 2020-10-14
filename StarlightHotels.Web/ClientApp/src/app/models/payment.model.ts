@@ -1,4 +1,4 @@
-export class PaymentModel
+export class Payment
 {
   orderId: string;
   amount: string;

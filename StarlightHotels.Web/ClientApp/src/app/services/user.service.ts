@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { FormBuilder, Validators, FormGroup } from '@angular/forms';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { UtilisateurModel } from '../models/user.model';
+import { Utilisateur } from '../models/user.model';
 import { Pays } from '../models/pays.model';
 import { Observable } from 'rxjs';
 
@@ -51,7 +51,7 @@ export class UserService
 
   register()
   {
-    var body: UtilisateurModel = {
+    var body: Utilisateur = {
       email: this.formModel.value.email,
       nom: this.formModel.value.nom,
       prenom: this.formModel.value.prenom,
@@ -76,13 +76,13 @@ export class UserService
 
   getUserProfile()
   {
-    return this.http.get<UtilisateurModel>(this.BaseURI + '/UserProfile');
+    return this.http.get<Utilisateur>(this.BaseURI + '/UserProfile');
   }
 
   getUserProfileAsync()
   {
     console.log(this.BaseURI + '/UserProfile');
-    return this.http.get<UtilisateurModel>(this.BaseURI + '/UserProfile').toPromise();
+    return this.http.get<Utilisateur>(this.BaseURI + '/UserProfile').toPromise();
   }
 
   getAllCountries(): Observable<Pays[]> {

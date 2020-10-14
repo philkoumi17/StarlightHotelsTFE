@@ -6,7 +6,7 @@ import { Hotel } from './hotel.model';
 
 export class HotelDetail {
   hotelInfos: Hotel;
-  hotelRooms: Categorie[];
+  hotelCategories: Categorie[];
   hotelThemes: Theme[];
   hotelFormules: Formule[];
   hotelServicesFree: Service[];

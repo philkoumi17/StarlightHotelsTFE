@@ -1,4 +1,4 @@
-export class PromotionModel
+export class Promotion
 {
   id?: number;
   libelle: string;

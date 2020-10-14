@@ -1,25 +1,25 @@
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
-import { Reservation } from '../models/reservation.model';
+import { Saison } from '../models/saison.model';
 
 @Injectable({
   providedIn: 'root'
 })
-export class ReservationService {
+export class SaisonService {
   readonly baseURI = 'https://localhost:44315/api';
-  list: Reservation[];
-  dataChange: BehaviorSubject<Reservation[]> = new BehaviorSubject<Reservation[]>([]);
+  list: Saison[];
+  dataChange: BehaviorSubject<Saison[]> = new BehaviorSubject<Saison[]>([]);
 
   constructor(private http: HttpClient) { }
 
-  get data(): Reservation[] {
+  get data(): Saison[] {
     return this.dataChange.value;
   }
 
   /* CRUD METHODS */
-  getAllReservations(): void {
-    this.http.get<Reservation[]>(`${this.baseURI}/Reservation/GetReservations`).subscribe(
+  getAllSaisons(): void {
+    this.http.get<Saison[]>(`${this.baseURI}/Saison/GetSaisons`).subscribe(
       data => {
         this.dataChange.next(data);
       },
@@ -29,8 +29,8 @@ export class ReservationService {
     );
   }
 
-  async getReservationById(resId)
+  async getSaisonById(saisonId)
   {
-    return await this.http.get<Reservation>(this.baseURI + '/Reservation/' + resId).toPromise();
+    return await this.http.get<Saison>(this.baseURI + '/Saison/' + saisonId).toPromise();
   }
 }

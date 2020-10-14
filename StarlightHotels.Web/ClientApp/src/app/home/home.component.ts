@@ -12,21 +12,4 @@ export class HomeComponent {
 
   constructor() {
   }
-
-  // getHotelImage(hotelId: number){
-  //   this.hotelService.getPictures(hotelId).subscribe(res => {
-  //     console.log(res);
-  //     return res;
-  //   });
-  // }
-
-  // mapImage(id:number){
-  //  let data= this.hotelImage.filter(element => {
-  //       if(element.id==id){
-  //         return element;
-  //       }
-  //   });
-
-  //   return data;
-  // }
 }

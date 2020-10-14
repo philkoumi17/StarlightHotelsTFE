@@ -1,25 +1,25 @@
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
-import { Reservation } from '../models/reservation.model';
+import { Image } from '../models/image.model';
 
 @Injectable({
   providedIn: 'root'
 })
-export class ReservationService {
+export class ImageService {
   readonly baseURI = 'https://localhost:44315/api';
-  list: Reservation[];
-  dataChange: BehaviorSubject<Reservation[]> = new BehaviorSubject<Reservation[]>([]);
+  list: Image[];
+  dataChange: BehaviorSubject<Image[]> = new BehaviorSubject<Image[]>([]);
 
   constructor(private http: HttpClient) { }
 
-  get data(): Reservation[] {
+  get data(): Image[] {
     return this.dataChange.value;
   }
 
   /* CRUD METHODS */
-  getAllReservations(): void {
-    this.http.get<Reservation[]>(`${this.baseURI}/Reservation/GetReservations`).subscribe(
+  getAllImages(): void {
+    this.http.get<Image[]>(`${this.baseURI}/Image/GetImages`).subscribe(
       data => {
         this.dataChange.next(data);
       },
@@ -29,8 +29,8 @@ export class ReservationService {
     );
   }
 
-  async getReservationById(resId)
+  async getImageById(imageId)
   {
-    return await this.http.get<Reservation>(this.baseURI + '/Reservation/' + resId).toPromise();
+    return await this.http.get<Image>(this.baseURI + '/Image/' + imageId).toPromise();
   }
 }

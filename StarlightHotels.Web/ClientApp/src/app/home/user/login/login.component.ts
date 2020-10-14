@@ -18,7 +18,7 @@ export class LoginComponent implements OnInit {
   @Output() closeDialog: EventEmitter<any> = new EventEmitter();
 
   constructor(private service: UserService, private router: Router, private snackBar: MatSnackBar,
-    private authService: AuthenticationService,private fb: FormBuilder) { }
+              private authService: AuthenticationService, private fb: FormBuilder) { }
 
   ngOnInit(): void {
     this.formModel = this.fb.group({
@@ -44,7 +44,7 @@ export class LoginComponent implements OnInit {
         // tslint:disable-next-line: triple-equals
         if (err.status == 400)
         {
-          //this.toastr.error('Incorrect username or password !', 'Authentication failed');
+          // this.toastr.error('Incorrect username or password !', 'Authentication failed');
           this.snackBar.open('Incorrect username or password !, Authentication failed!', '', {
             duration: 2000,
             verticalPosition: 'top',

@@ -1,25 +1,25 @@
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
-import { Reservation } from '../models/reservation.model';
+import { Promotion } from '../models/promotion.model';
 
 @Injectable({
   providedIn: 'root'
 })
-export class ReservationService {
+export class PromotionService {
   readonly baseURI = 'https://localhost:44315/api';
-  list: Reservation[];
-  dataChange: BehaviorSubject<Reservation[]> = new BehaviorSubject<Reservation[]>([]);
+  list: Promotion[];
+  dataChange: BehaviorSubject<Promotion[]> = new BehaviorSubject<Promotion[]>([]);
 
   constructor(private http: HttpClient) { }
 
-  get data(): Reservation[] {
+  get data(): Promotion[] {
     return this.dataChange.value;
   }
 
   /* CRUD METHODS */
-  getAllReservations(): void {
-    this.http.get<Reservation[]>(`${this.baseURI}/Reservation/GetReservations`).subscribe(
+  getAllPromotions(): void {
+    this.http.get<Promotion[]>(`${this.baseURI}/Promotion/GetPromotions`).subscribe(
       data => {
         this.dataChange.next(data);
       },
@@ -29,8 +29,8 @@ export class ReservationService {
     );
   }
 
-  async getReservationById(resId)
+  async getPromotionById(partId)
   {
-    return await this.http.get<Reservation>(this.baseURI + '/Reservation/' + resId).toPromise();
+    return await this.http.get<Promotion>(this.baseURI + '/Promotion/' + partId).toPromise();
   }
 }

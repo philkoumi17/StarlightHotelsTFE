@@ -168,7 +168,7 @@ namespace StarlightHotels.API.Controllers
             var hotelDetail = new HotelDetailsViewModel()
             {
                 HotelInfos = await _context.Hotels.FindAsync(hotelId),
-                HotelRooms = await _context.HotelCategories.Where(hC => hC.HotelId == hotelId).ToListAsync(),
+                // HotelRooms = await _context.HotelCategories.Where(hC => hC.HotelId == hotelId).ToListAsync(),
                 HotelThemes = await _context.HotelThemes.Where(hT => hT.HotelId == hotelId).ToListAsync(),
                 HotelFormules = await _context.HotelFormules.Where(hF => hF.HotelId == hotelId).ToListAsync(),
                 HotelServicesFree = await _context.HotelServices.Where(hS => hS.HotelId == hotelId && hS.Service.Payant == false).ToListAsync(),

@@ -1,25 +1,25 @@
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
-import { Reservation } from '../models/reservation.model';
+import { Chambre } from '../models/chambre.model';
 
 @Injectable({
   providedIn: 'root'
 })
-export class ReservationService {
+export class ChambreService {
   readonly baseURI = 'https://localhost:44315/api';
-  list: Reservation[];
-  dataChange: BehaviorSubject<Reservation[]> = new BehaviorSubject<Reservation[]>([]);
+  list: Chambre[];
+  dataChange: BehaviorSubject<Chambre[]> = new BehaviorSubject<Chambre[]>([]);
 
   constructor(private http: HttpClient) { }
 
-  get data(): Reservation[] {
+  get data(): Chambre[] {
     return this.dataChange.value;
   }
 
   /* CRUD METHODS */
-  getAllReservations(): void {
-    this.http.get<Reservation[]>(`${this.baseURI}/Reservation/GetReservations`).subscribe(
+  getAllChambres(): void {
+    this.http.get<Chambre[]>(`${this.baseURI}/Chambre/GetChambres`).subscribe(
       data => {
         this.dataChange.next(data);
       },
@@ -29,8 +29,8 @@ export class ReservationService {
     );
   }
 
-  async getReservationById(resId)
+  async getChambreByNum(numChambre)
   {
-    return await this.http.get<Reservation>(this.baseURI + '/Reservation/' + resId).toPromise();
+    return await this.http.get<Chambre>(this.baseURI + '/Chambre/' + numChambre).toPromise();
   }
 }

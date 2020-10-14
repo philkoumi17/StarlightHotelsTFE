@@ -1,6 +1,5 @@
 import { Component, OnInit, Inject } from '@angular/core';
 import { UserService } from '../../../services/user.service';
-import { ToastrService } from 'ngx-toastr';
 import { MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog';
 import { Pays } from '../../../models/pays.model';
 import { MatSnackBar } from '@angular/material/snack-bar';
@@ -36,7 +35,7 @@ export class RegistrationComponent implements OnInit
         if(res.succeeded)
         {
           this.service.formModel.reset();
-          //this.toastr.success('New user created', 'Registration successful !');
+          // this.toastr.success('New user created', 'Registration successful !');
           this.snackBar.open('New user created, Registration successful !', '', {
             duration: 2000,
             verticalPosition: 'top',
@@ -53,7 +52,7 @@ export class RegistrationComponent implements OnInit
               case 'DuplicateUserName':
 
                 // Username is already taken
-                //this.toastr.error('Username is already taken', 'Registration failed !');
+                // this.toastr.error('Username is already taken', 'Registration failed !');
                 this.snackBar.open('Username is already taken, Registration failed !', '', {
                   duration: 2000,
                   verticalPosition: 'top',
@@ -63,7 +62,7 @@ export class RegistrationComponent implements OnInit
                 break;
               default:
                 // Registration failed
-                //this.toastr.error(element.description, 'Registration failed !');
+                // this.toastr.error(element.description, 'Registration failed !');
                 this.snackBar.open(element.description + ', Registration failed !', '', {
                   duration: 2000,
                   verticalPosition: 'top',

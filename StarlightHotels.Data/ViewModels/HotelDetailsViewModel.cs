@@ -9,7 +9,7 @@ namespace StarlightHotels.Core.ViewModels
     {
         public HotelModel HotelInfos { get; set; }
 
-        public List<HotelCategorieModel> HotelRooms { get; set; }
+        public List<HotelCategorieModel> HotelCategories { get; set; }
 
         public List<HotelThemeModel> HotelThemes { get; set; }
 
