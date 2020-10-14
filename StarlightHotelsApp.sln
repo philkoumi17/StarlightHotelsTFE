@@ -17,7 +17,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "StarlightHotels.Utilities",
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Entities", "Entities", "{A9B1B7D6-FAB5-4D89-9C8E-935EDEFAB817}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "StarlightHotels.Models", "StarlightHotels.Data\StarlightHotels.Models.csproj", "{01B51B0B-6BCE-495B-821B-ABA9C91D2648}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "StarlightHotels.Core", "StarlightHotels.Data\StarlightHotels.Core.csproj", "{01B51B0B-6BCE-495B-821B-ABA9C91D2648}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "StarlightHotels.DAL", "StarlightHotels.DAL\StarlightHotels.DAL.csproj", "{3AD6AC96-784E-444D-A01B-7E52C27775F4}"
 EndProject

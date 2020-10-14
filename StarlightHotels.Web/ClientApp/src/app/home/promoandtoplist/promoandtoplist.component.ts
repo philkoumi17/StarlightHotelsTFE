@@ -8,33 +8,39 @@ import { Hotel } from '../../models/hotel.model';
   styleUrls: ['./promoandtoplist.component.sass']
 })
 export class PromoandtoplistComponent implements OnInit {
-  hotelsList : Hotel[] = [];
+  hotelsList: Hotel[] = [];
   hotelsTopList = [];
 
   constructor(private hotelService: HotelService) {
     this.hotelService.getAllPromotedHotels().then(res => {
       this.hotelsList = res;
-
       this.hotelsList.forEach(h => {
         this.hotelService.getPictures(h.id).then((img) => {
           h.images = img;
-          console.log(img);
         });
         h.stars = [];
-        for (var _i = 0; _i < h.nbEtoiles; _i++) {
-          h.stars.push(_i);
+        for (let i = 0; i < h.nbEtoiles; i++)
+        {
+          h.stars.push(i);
         }
-      })
-
-      console.log('this is my hotels list', res);
+      });
     });
 
     this.hotelService.getAllTopHotels().then(data => {
       this.hotelsTopList = data;
+      this.hotelsTopList.forEach(ht => {
+        this.hotelService.getPictures(ht.id).then((img) => {
+          ht.images = img;
+        });
+        ht.stars = [];
+        for (let i = 0; i < ht.nbEtoiles; i++)
+        {
+          ht.stars.push(i);
+        }
+      });
     });
   }
 
   ngOnInit(): void {
   }
-
 }

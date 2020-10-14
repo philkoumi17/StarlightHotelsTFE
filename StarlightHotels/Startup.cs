@@ -9,9 +9,9 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.IdentityModel.Tokens;
-using Microsoft.OpenApi.Models;
+using StarlightHotels.API.Extensions;
+using StarlightHotels.Core.Entities;
 using StarlightHotels.DAL.Data;
-using StarlightHotels.Models;
 using StarlightHotels.Utilities;
 
 namespace StarlightHotels.API
@@ -42,8 +42,7 @@ namespace StarlightHotels.API
                 .AddRoles<IdentityRole>()
                 .AddEntityFrameworkStores<ApplicationDbContext>();
 
-            // Register the Swagger generator, defining 1 or more Swagger documents
-            services.AddSwaggerGen(c => { c.SwaggerDoc("v1", new OpenApiInfo { Title = "My API", Version = "v1" }); });
+            services.AddSwaggerDocumentation();
 
             services.Configure<IdentityOptions>(options =>
             {
@@ -123,12 +122,7 @@ namespace StarlightHotels.API
             // Enable middleware to serve generated Swagger as a JSON endpoint.
             app.UseSwagger();
 
-            // Enable middleware to serve swagger-ui (HTML, JS, CSS, etc.),
-            // specifying the Swagger JSON endpoint.
-            app.UseSwaggerUI(c =>
-            {
-                c.SwaggerEndpoint("/swagger/v1/swagger.json", "My API V1");
-            });
+            app.UseSwaggerDocumentation();
 
             app.UseRouting();
 

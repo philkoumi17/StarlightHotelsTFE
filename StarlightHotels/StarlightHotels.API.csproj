@@ -25,7 +25,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\StarlightHotels.DAL\StarlightHotels.DAL.csproj" />
-    <ProjectReference Include="..\StarlightHotels.Data\StarlightHotels.Models.csproj" />
+    <ProjectReference Include="..\StarlightHotels.Data\StarlightHotels.Core.csproj" />
     <ProjectReference Include="..\StarlightHotels.Utilities\StarlightHotels.Utilities.csproj" />
   </ItemGroup>
 

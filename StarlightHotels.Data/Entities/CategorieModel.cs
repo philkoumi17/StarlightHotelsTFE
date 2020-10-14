@@ -5,7 +5,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace StarlightHotels.Models
+namespace StarlightHotels.Core.Entities
 {
     [Table("Categorie")]
     public class CategorieModel

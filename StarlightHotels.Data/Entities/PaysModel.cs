@@ -2,7 +2,7 @@
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace StarlightHotels.Models
+namespace StarlightHotels.Core.Entities
 {
     [Table("Pays")]
     public class PaysModel

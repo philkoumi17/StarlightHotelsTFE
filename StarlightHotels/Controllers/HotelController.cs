@@ -3,15 +3,13 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using StarlightHotels.Core.Entities;
+using StarlightHotels.Core.ViewModels;
 using StarlightHotels.DAL.Data;
-using StarlightHotels.Models;
-using StarlightHotels.Models.ViewModels;
 
 namespace StarlightHotels.API.Controllers
 {
-    [Route("api/[controller]")]
-    [ApiController]
-    public class HotelController : ControllerBase
+    public class HotelController : BaseApiController
     {
         private readonly ApplicationDbContext _context;
 
@@ -143,16 +141,6 @@ namespace StarlightHotels.API.Controllers
             return Ok(hotels);
         }
 
-        // Get: api/Hotel/GetAllTopHotels
-        [HttpGet]
-        [Route("GetAllTopHotels")]
-        public async Task<ActionResult<List<HotelModel>>> GetAllTopHotels()
-        {
-            var hotels = await _context.Hotels.Where(h => h.TopDestination == true && h.Actif == true).ToListAsync();
-
-            return Ok(hotels);
-        }
-
         // Get: api/Hotel/GetAllPromotedHotels
         [HttpGet]
         [Route("GetAllPromotedHotels")]
@@ -161,6 +149,16 @@ namespace StarlightHotels.API.Controllers
             var promoHotels = await _context.Hotels.Where(h => h.EnPromotion == true && h.Actif == true).ToListAsync();
 
             return Ok(promoHotels);
+        }
+
+        // Get: api/Hotel/GetAllTopHotels
+        [HttpGet]
+        [Route("GetAllTopHotels")]
+        public async Task<ActionResult<List<HotelModel>>> GetAllTopHotels()
+        {
+            var hotelsTop = await _context.Hotels.Where(h => h.TopDestination == true && h.EnPromotion == true && h.Actif == true).ToListAsync();
+
+            return Ok(hotelsTop);
         }
 
         // Get: api/Hotel/detail/id

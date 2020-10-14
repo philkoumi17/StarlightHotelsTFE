@@ -10,16 +10,14 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
+using StarlightHotels.Core.Entities;
+using StarlightHotels.Core.ViewModels;
 using StarlightHotels.DAL.Data;
-using StarlightHotels.Models;
-using StarlightHotels.Models.ViewModels;
 using StarlightHotels.Utilities;
 
 namespace StarlightHotels.API.Controllers
 {
-    [Route("api/[controller]")]
-    [ApiController]
-    public class AccountController : ControllerBase
+    public class AccountController : BaseApiController
     {
         private UserManager<ApplicationUser> _userManager;
         private SignInManager<ApplicationUser> _signInManager;

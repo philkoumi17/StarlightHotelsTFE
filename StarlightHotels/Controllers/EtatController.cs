@@ -3,14 +3,12 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using StarlightHotels.Core.Entities;
 using StarlightHotels.DAL.Data;
-using StarlightHotels.Models;
 
 namespace StarlightHotels.API.Controllers
 {
-    [Route("api/[controller]")]
-    [ApiController]
-    public class EtatController : ControllerBase
+    public class EtatController : BaseApiController
     {
         private readonly ApplicationDbContext _context;
 

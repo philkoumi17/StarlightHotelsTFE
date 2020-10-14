@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using Microsoft.AspNetCore.Identity;
 
-namespace StarlightHotels.Models
+namespace StarlightHotels.Core.Entities
 {
     public class ApplicationUser : IdentityUser
     {

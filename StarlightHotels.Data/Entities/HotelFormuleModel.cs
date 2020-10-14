@@ -5,19 +5,19 @@ using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace StarlightHotels.Models
+namespace StarlightHotels.Core.Entities
 {
-    [Table("HotelService")]
-    public class HotelServiceModel
+    [Table("HotelFormule")]
+    public class HotelFormuleModel
     {
         [Column("HOTEL_Id")]
         [Display(Name = "Hotel")]
         public int HotelId { get; set; }
         public HotelModel Hotel { get; set; }
 
-        [Column("SERV_Id")]
-        [Display(Name = "Service")]
-        public int ServiceId { get; set; }
-        public ServiceModel Service { get; set; }
+        [Column("FOR_Id")]
+        [Display(Name = "Formule")]
+        public int FormuleId { get; set; }
+        public FormuleModel Formule { get; set; }
     }
 }

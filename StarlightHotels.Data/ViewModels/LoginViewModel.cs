@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace StarlightHotels.Models.ViewModels
+namespace StarlightHotels.Core.ViewModels
 {
     public class LoginViewModel
     {

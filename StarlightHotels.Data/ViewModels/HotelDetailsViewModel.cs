@@ -1,8 +1,9 @@
-﻿using System;
+﻿using StarlightHotels.Core.Entities;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace StarlightHotels.Models.ViewModels
+namespace StarlightHotels.Core.ViewModels
 {
     public class HotelDetailsViewModel
     {

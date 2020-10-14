@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Text;
 
-namespace StarlightHotels.Models
+namespace StarlightHotels.Core.Entities
 {
     [Table("HotelPromotion")]
     public class HotelPromotionModel

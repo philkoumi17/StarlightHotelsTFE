@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace StarlightHotels.Models.ViewModels
+namespace StarlightHotels.Core.ViewModels
 {
     public class AccountViewModel
     {
