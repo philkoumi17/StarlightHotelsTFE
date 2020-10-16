@@ -27,6 +27,7 @@ export class PromoandtoplistComponent implements OnInit {
         {
           h.stars.push(i);
         }
+        this.tarifService.getAllTarifs();
       });
     });
 
@@ -41,6 +42,7 @@ export class PromoandtoplistComponent implements OnInit {
         {
           ht.stars.push(i);
         }
+        this.tarifService.getAllTarifs();
       });
     });
 
