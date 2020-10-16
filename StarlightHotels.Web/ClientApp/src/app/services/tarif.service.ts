@@ -33,4 +33,9 @@ export class TarifService {
   {
     return await this.http.get<Tarif>(this.baseURI + '/Tarif/' + tarifId).toPromise();
   }
+
+  // GET: api/Tarif/GetTarifCategorie/1
+  async getTarifCategorieById(tarifId) {
+    return await this.http.get<Tarif>(this.baseURI + '/Tarif/GetTarifCategorie/' + tarifId).toPromise();
+  }
 }

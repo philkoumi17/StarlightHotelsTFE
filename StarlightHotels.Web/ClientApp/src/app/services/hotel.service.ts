@@ -7,6 +7,10 @@ import { Observable, BehaviorSubject } from 'rxjs';
 import { Pays } from '../models/pays.model';
 import { HotelDetail } from '../models/hotel-detail.model';
 import { Image } from '../models/image.model';
+import { CategorieService } from './categorie.service';
+import { HotelCategorie } from '../models/hotel-categorie.model';
+import { TarifService } from './tarif.service';
+import { Tarif } from '../models/tarif.model';
 
 @Injectable({
   providedIn: 'root'
@@ -33,7 +37,10 @@ export class HotelService
     return this.dataChange.value;
   }
 
-  constructor(private http: HttpClient, private fb: FormBuilder) { }
+  constructor(private http: HttpClient,
+    private fb: FormBuilder,
+    private categorieService: CategorieService,
+    private tarifService: TarifService) { }
 
   formModel = this.fb.group({
     nom: ['', [Validators.required]],
@@ -152,6 +159,49 @@ export class HotelService
   {
     this.searchBehavior.next(searchHotelModel);
     return await this.http.post<Hotel[]>(this.baseURI + '/Hotel/SearchHotels', searchHotelModel).toPromise();
+  }
+
+  async getAllHotelDetails() {
+    await this.getAllHotelsAync().then((data) => {
+      let hotelList: Hotel[] = data;
+
+      hotelList.forEach(async h => {
+        //Get images
+        await this.getPictures(h.id).then((img) => {
+          h.images = img;
+        });
+
+        //Set Stars
+        h.stars = [];
+        for (let i = 0; i < h.nbEtoiles; i++) {
+          h.stars.push(i);
+        }
+
+        this.categorieService.GetHotelCategory(h.id).then((res) => {
+          let hotelCatList: HotelCategorie[] = res;
+
+          let tarif: Tarif[];
+          hotelCatList.forEach(async (hotelCat) => {
+            await this.tarifService.getTarifCategorieById(hotelCat.categorieId).then((result) => {
+              let hotelTarif: Tarif = result;
+              //if (hotelTarif) {
+              //  tarif.push(hotelTarif);
+              //}
+              console.log('result' + hotelTarif);              
+            });
+          });
+
+          //h.tarif = tarif;
+
+        })
+
+      });
+
+    })
+  }
+
+  async getAllHotelsAync() {
+    return await this.http.get<Hotel[]>(this.baseURI + '/Hotel/GetHotels').toPromise();
   }
 
   async getAllPromotedHotels()

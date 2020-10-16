@@ -91,5 +91,13 @@ namespace StarlightHotels.API.Controllers
         {
             return await _context.Chambres.ToListAsync();
         }
+
+        // GET: api/Categorie/GetHotelCategory/1
+        [HttpGet]
+        [Route("GetHotelCategory/{id}")]
+        public async Task<ActionResult<IEnumerable<HotelCategorieModel>>> GetHotelCategory(int id)
+        {
+            return await _context.HotelCategories.Where(h => h.HotelId == id).ToListAsync();
+        }
     }
 }

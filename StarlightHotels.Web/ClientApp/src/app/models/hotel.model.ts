@@ -1,5 +1,6 @@
 import { Pays } from './pays.model';
 import { Image } from './image.model';
+import { Tarif } from './tarif.model';
 
 export class Hotel {
   id?: number;
@@ -21,4 +22,5 @@ export class Hotel {
   checkOut: string;
   images?: Image[];
   stars?: number[];
+  tarif?: Tarif[];
 }
