@@ -39,8 +39,8 @@ export class HotelService
 
   constructor(private http: HttpClient,
     private fb: FormBuilder,
-    private categorieService: CategorieService,
-    private tarifService: TarifService) { }
+    private categorieService?: CategorieService,
+    private tarifService?: TarifService) { }
 
   formModel = this.fb.group({
     nom: ['', [Validators.required]],
@@ -161,8 +161,8 @@ export class HotelService
     return await this.http.post<Hotel[]>(this.baseURI + '/Hotel/SearchHotels', searchHotelModel).toPromise();
   }
 
-  async getAllHotelDetails() {
-    await this.getAllHotelsAync().then((data) => {
+  async getAllHotelDetails(): Promise<Hotel[]> {
+    return await this.getAllHotelsAync().then((data) => {
       let hotelList: Hotel[] = data;
 
       hotelList.forEach(async h => {
@@ -177,26 +177,16 @@ export class HotelService
           h.stars.push(i);
         }
 
-        this.categorieService.GetHotelCategory(h.id).then((res) => {
+        await this.categorieService.GetHotelCategory(h.id).then(async (res) => {
           let hotelCatList: HotelCategorie[] = res;
-
-          let tarif: Tarif[];
-          hotelCatList.forEach(async (hotelCat) => {
-            await this.tarifService.getTarifCategorieById(hotelCat.categorieId).then((result) => {
-              let hotelTarif: Tarif = result;
-              //if (hotelTarif) {
-              //  tarif.push(hotelTarif);
-              //}
-              console.log('result' + hotelTarif);              
-            });
+          await this.tarifService.getTarifCategorieById(hotelCatList).then((result) => {
+            h.tarif = result;
           });
-
-          //h.tarif = tarif;
-
-        })
+        });
 
       });
 
+      return hotelList;
     })
   }
 

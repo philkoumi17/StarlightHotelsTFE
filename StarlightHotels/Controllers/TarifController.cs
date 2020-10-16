@@ -101,11 +101,12 @@ namespace StarlightHotels.API.Controllers
         }
 
         // GET: api/Tarif/GetTarifCategorie/1
-        [HttpGet]
-        [Route("GetTarifCategorie/{id}")]
-        public async Task<ActionResult<TarifModel>> GetTarifCategorie(int id)
+        [HttpPost]
+        [Route("GetTarifCategorie")]
+        public async Task<ActionResult<IEnumerable<TarifModel>>> GetTarifCategorie(List<HotelCategorieModel> hotelCategories)
         {
-            return await _context.Tarifs.Where(t => t.CategorieId == id).FirstOrDefaultAsync();
+            var listCategorieId = hotelCategories.Select(cat => cat.CategorieId);
+            return await _context.Tarifs.Where(t => listCategorieId.Contains(t.Id)).ToListAsync();
         }
     }
 }
