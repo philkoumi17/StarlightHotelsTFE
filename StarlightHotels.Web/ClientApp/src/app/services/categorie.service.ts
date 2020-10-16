@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Categorie } from '../models/categorie.model';
+import { HotelCategorie } from '../models/hotel-categorie.model';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { BehaviorSubject } from 'rxjs';
 
@@ -32,5 +33,10 @@ export class CategorieService {
   async getCategorieById(categorieId)
   {
     return await this.http.get<Categorie>(this.baseURI + '/Categorie/' + categorieId).toPromise();
+  }
+
+  // GET: api/Categorie/GetHotelCategory/1
+  async GetHotelCategory(hotelId) {
+    return await this.http.get<HotelCategorie[]>(this.baseURI + '/Categorie/GetHotelCategory/' + hotelId).toPromise();
   }
 }

@@ -16,6 +16,8 @@ export class PromoandtoplistComponent implements OnInit {
   hotelsTopList: Hotel[] = [];
 
   constructor(private hotelService: HotelService, private tarifService: TarifService) {
+
+
     this.hotelService.getAllPromotedHotels().then(res => {
       this.hotelsList = res;
       this.hotelsList.forEach(h => {
@@ -49,6 +51,10 @@ export class PromoandtoplistComponent implements OnInit {
     this.tarifService.getAllTarifs();
   }
 
-  ngOnInit(): void {
+  async ngOnInit() {
+
+    await this.hotelService.getAllHotelDetails().then((data) => {
+      console.log(data);
+    });
   }
 }
