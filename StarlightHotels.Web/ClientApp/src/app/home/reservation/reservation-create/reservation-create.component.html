@@ -1,182 +1,79 @@
 <app-navbar></app-navbar>
 <section class="homecontent">
-  <h1>Name of the hotel</h1>
-  <i class="fas fa-star"></i>
-  <i class="fas fa-star"></i>
-  <i class="fas fa-star"></i>
-  <i class="fas fa-star"></i>
+    <h1>{{this.hotel.nom}}</h1>
+    <small *ngFor="let number of stars">
+      <i class="fas fa-star"></i>
+  </small>
 
-  <app-search [searchInstance]="searchInstance" [isRoomSelection]="isRoomSelection"></app-search>
+    <app-search [searchInstance]="searchInstance" [isRoomSelection]="isRoomSelection"></app-search>
 
-  <div class="row">
-    <div class="col-sm-12">
-      <div class="card card-default">
-        <div class="card-header">
-          <h3 class="card-title" style="text-align: center;"><i class="fas fa-bed"></i> - Rooms</h3>
-        </div>
-        <div class="card-header">
-          <div class="card-body" style="border-radius: 0%;">
-            <div class="row">
-              <div class="col-lg-2">
-                <img src="http://placehold.it/150x150" alt="" />
-              </div>
-              <div class="col-lg-5">
-                <label for="">Type de chambre</label>
-                <p><span>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ducimus blanditiis nostrum rem! Velit non aliquam nihil reiciendis iure, adipisci dolor. Veritatis animi, hic blanditiis illum incidunt laborum rerum magni voluptas?</span><span>Vitae, eum qui? Consequuntur natus magni voluptatem, repellat unde aperiam alias nam? Corrupti totam reiciendis culpa perspiciatis, sint, error consectetur ullam fugiat, nisi facilis aspernatur. Molestiae optio pariatur ipsa eaque!</span></p>
-              </div>
-              <div class="col-lg-5">
-                <div class="form-group">
-                  <div class="col-sm-9">
-                    <mat-form-field class="example-full-width mb-3" appearance="outline">
-                      <mat-label>Quantity:</mat-label>
-                      <mat-select #choosedValue (valueChange)="getNbPart(choosedValue.value)">
-                        <mat-option [value]="0">
-                          Choose ..
-                        </mat-option>
-                        <mat-option *ngFor="let in of [0,1,2,3,4];let i = index" [value]="i">{{ i }}</mat-option>
-                      </mat-select>
-                    </mat-form-field>
-                  </div>
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="card card-default">
+                <div class="card-header">
+                    <h3 class="card-title" style="text-align: center;"><i class="fas fa-bed"></i> - Rooms</h3>
                 </div>
-                <div class="form-group">
-                  <label for="">Prix / nuit: </label>
-                  <div class="col-md-8">
-                    <input readonly="True" class="form-control text-box single-line" id="prix0" name="" type="number" value="123">
-                  </div>
-                  <i class="fas fa-euro-sign"></i>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
 
-        <!--Participants-->
-        <div *ngFor="let participant of participantList">
-          <app-add-participant [participant]="participant"></app-add-participant>
-        </div>
 
-        <div class="card-header">
-          <div class="card-body" style="border-radius: 0%;">
-            <div class="row">
-              <div class="col-lg-2">
-                <img src="http://placehold.it/150x150" alt="" />
-              </div>
-              <div class="col-lg-5">
-                <label for="">Type de chambre</label>
-                <p><span>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ducimus blanditiis nostrum rem! Velit non aliquam nihil reiciendis iure, adipisci dolor. Veritatis animi, hic blanditiis illum incidunt laborum rerum magni voluptas?</span><span>Vitae, eum qui? Consequuntur natus magni voluptatem, repellat unde aperiam alias nam? Corrupti totam reiciendis culpa perspiciatis, sint, error consectetur ullam fugiat, nisi facilis aspernatur. Molestiae optio pariatur ipsa eaque!</span></p>
-              </div>
-              <div class="col-lg-5">
-                <div class="form-group">
-                  <label for="exampleFormControlSelect1">Quantité: </label>
-                  <div class="col-sm-9">
-                    <select class="form-control" id="exampleFormControlSelect1" style="width: auto;">
-                      <option>0</option>
-                      <option>1</option>
-                      <option>2</option>
-                      <option>3</option>
-                      <option>4</option>
-                      <option>5</option>
-                    </select>
-                  </div>
+
+                <div class="card-header" *ngFor="let categoie of joinedcategoryList">
+                    <div class="card-body" style="border-radius: 0%;">
+                        <div class="row">
+                            <div class="col-lg-2">
+                                <img style="width: 150px;" src={{categoie.imageUrl}} alt="" />
+                            </div>
+                            <div class="col-lg-5">
+                                <label for="">{{categoie.type}}</label>
+                                <p><span>{{categoie.descriptif}}</span></p>
+                            </div>
+                            <div class="col-lg-5">
+                                <div class="form-group">
+                                    <div class="col-sm-9">
+                                        <mat-form-field class="example-full-width mb-3" appearance="outline">
+                                            <mat-label>Quantity:</mat-label>
+                                            <mat-select #choosedValue (valueChange)="getNbPart(choosedValue.value)">
+                                                <mat-option [value]="0">
+                                                    Choose ..
+                                                </mat-option>
+                                                <mat-option *ngFor="let in of [0,1,2,3,4];let i = index" [value]="i">{{ i }}</mat-option>
+                                            </mat-select>
+                                        </mat-form-field>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="">Prix / nuit: </label>
+                                    <div class="col-md-8">
+                                        <input readonly="True" class="form-control text-box single-line" id="prix0" name="" type="number" value="123">
+                                    </div>
+                                    <i class="fas fa-euro-sign"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-                <div class="form-group">
-                  <label for="">Prix / nuit: </label>
-                  <div class="col-md-8">
-                    <input readonly="True" class="form-control text-box single-line" id="prix0" name="" type="number" value="123">
-                  </div>
-                  <i class="fas fa-euro-sign"></i>
+
+                <!--Participants-->
+                <!-- <div *ngFor="let participant of participantList">
+                    <app-add-participant [participant]="participant"></app-add-participant>
+                </div> -->
+
+                <h3>
+                    <div class="row">
+                        <div class="form-group ml-auto">
+                            <label class="control-label">Montant total: </label>
+                            <div class="col-md-8">
+                                <input readonly="true" class="form-control text-box single-line" id="txtResaAmount" name="Resa.ReservationAmount" type="text" value="0,00">
+                                <i class="fas fa-euro-sign"></i>
+                            </div>
+                        </div>
+                    </div>
+                </h3>
+                <div class="form-group ml-auto">
+                    <!--<button class="btn btn-primary" routerLink="/home/book-hotel/confirm">Next</button>-->
+                    <a [routerLink]="['/home/confirm-reservation/', reservationId]" class="btn btn-info">Next !</a>
                 </div>
-              </div>
             </div>
-          </div>
         </div>
-        <div class="card-header">
-          <div class="card-body" style="border-radius: 0%;">
-            <div class="row">
-              <div class="col-lg-2">
-                <img src="http://placehold.it/150x150" alt="" />
-              </div>
-              <div class="col-lg-5">
-                <label for="">Type de chambre</label>
-                <p><span>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ducimus blanditiis nostrum rem! Velit non aliquam nihil reiciendis iure, adipisci dolor. Veritatis animi, hic blanditiis illum incidunt laborum rerum magni voluptas?</span><span>Vitae, eum qui? Consequuntur natus magni voluptatem, repellat unde aperiam alias nam? Corrupti totam reiciendis culpa perspiciatis, sint, error consectetur ullam fugiat, nisi facilis aspernatur. Molestiae optio pariatur ipsa eaque!</span></p>
-              </div>
-              <div class="col-lg-5">
-                <div class="form-group">
-                  <label for="exampleFormControlSelect1">Quantité: </label>
-                  <div class="col-sm-9">
-                    <select class="form-control" id="exampleFormControlSelect1" style="width: auto;">
-                      <option>0</option>
-                      <option>1</option>
-                      <option>2</option>
-                      <option>3</option>
-                      <option>4</option>
-                      <option>5</option>
-                    </select>
-                  </div>
-                </div>
-                <div class="form-group">
-                  <label for="">Prix / nuit: </label>
-                  <div class="col-md-8">
-                    <input readonly="True" class="form-control text-box single-line" id="prix0" name="" type="number" value="123">
-                  </div>
-                  <i class="fas fa-euro-sign"></i>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="card-header">
-          <div class="card-body" style="border-radius: 0%;">
-            <div class="row">
-              <div class="col-lg-2">
-                <img src="http://placehold.it/150x150" alt="" />
-              </div>
-              <div class="col-lg-5">
-                <label for="">Type de chambre</label>
-                <p><span>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ducimus blanditiis nostrum rem! Velit non aliquam nihil reiciendis iure, adipisci dolor. Veritatis animi, hic blanditiis illum incidunt laborum rerum magni voluptas?</span><span>Vitae, eum qui? Consequuntur natus magni voluptatem, repellat unde aperiam alias nam? Corrupti totam reiciendis culpa perspiciatis, sint, error consectetur ullam fugiat, nisi facilis aspernatur. Molestiae optio pariatur ipsa eaque!</span></p>
-              </div>
-              <div class="col-lg-5">
-                <div class="form-group">
-                  <label for="exampleFormControlSelect1">Quantité: </label>
-                  <div class="col-sm-9">
-                    <select class="form-control" id="exampleFormControlSelect1" style="width: auto;">
-                      <option>0</option>
-                      <option>1</option>
-                      <option>2</option>
-                      <option>3</option>
-                      <option>4</option>
-                      <option>5</option>
-                    </select>
-                  </div>
-                </div>
-                <div class="form-group">
-                  <label for="">Prix / nuit: </label>
-                  <div class="col-md-8">
-                    <input readonly="True" class="form-control text-box single-line" id="prix0" name="" type="number" value="123">
-                  </div>
-                  <i class="fas fa-euro-sign"></i>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <h3>
-          <div class="row">
-            <div class="form-group ml-auto">
-              <label class="control-label">Montant total: </label>
-              <div class="col-md-8">
-                <input readonly="true" class="form-control text-box single-line" id="txtResaAmount" name="Resa.ReservationAmount" type="text" value="0,00">
-                <i class="fas fa-euro-sign"></i>
-              </div>
-            </div>
-          </div>
-        </h3>
-        <div class="form-group ml-auto">
-          <!--<button class="btn btn-primary" routerLink="/home/book-hotel/confirm">Next</button>-->
-          <a [routerLink]="['/home/confirm-reservation/', reservationId]" class="btn btn-info">Next !</a>
-        </div>
-      </div>
     </div>
-  </div>
-  </section>
-  <app-footer></app-footer>
+</section>
+<app-footer></app-footer>

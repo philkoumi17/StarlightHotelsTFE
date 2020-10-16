@@ -19,15 +19,8 @@ export class CategorieService {
   }
 
   /* CRUD METHODS */
-  getAllCategories(): void {
-    this.http.get<Categorie[]>(`${this.baseURI}/Categorie/GetCategories`).subscribe(
-      data => {
-        this.dataChange.next(data);
-      },
-      (error: HttpErrorResponse) => {
-        console.log(error.name + ' ' + error.message);
-      }
-    );
+  async getAllCategories() {
+    return await this.http.get<Categorie[]>(`${this.baseURI}/Categorie/GetCategories`).toPromise();
   }
 
   async getCategorieById(categorieId)

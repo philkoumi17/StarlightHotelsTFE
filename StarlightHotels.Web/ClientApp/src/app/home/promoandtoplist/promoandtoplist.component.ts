@@ -14,10 +14,8 @@ export class PromoandtoplistComponent implements OnInit {
   listeTarifs: Tarif[] = [];
   hotelsList: Hotel[] = [];
   hotelsTopList: Hotel[] = [];
-
+ lowest = 9999999;
   constructor(private hotelService: HotelService, private tarifService: TarifService) {
-
-
     this.hotelService.getAllPromotedHotels().then(res => {
       this.hotelsList = res;
       this.hotelsList.forEach(h => {
@@ -29,7 +27,17 @@ export class PromoandtoplistComponent implements OnInit {
         {
           h.stars.push(i);
         }
-        this.tarifService.getAllTarifs();
+        this.tarifService.getAllTarifs().then(res1 => {
+          this.listeTarifs = res1;
+          this.listeTarifs.forEach(l => {
+            if (this.lowest > l.prix){
+              this.lowest = l.prix;
+              this.tarifM = l;
+            }
+
+          })
+          
+        });
       });
     });
 
@@ -53,8 +61,8 @@ export class PromoandtoplistComponent implements OnInit {
 
   async ngOnInit() {
 
-    await this.hotelService.getAllHotelDetails().then((data) => {
-      console.log(data);
-    });
+    // await this.hotelService.getAllHotelDetails().then((data) => {
+    //   console.log(data);
+    // });
   }
 }

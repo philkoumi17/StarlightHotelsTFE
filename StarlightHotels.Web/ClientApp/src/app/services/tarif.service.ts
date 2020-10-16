@@ -18,15 +18,8 @@ export class TarifService {
   }
 
   /* CRUD METHODS */
-  getAllTarifs(): void {
-    this.http.get<Tarif[]>(`${this.baseURI}/Tarif/GetTarifs`).subscribe(
-      data => {
-        this.dataChange.next(data);
-      },
-      (error: HttpErrorResponse) => {
-        console.log(error.name + ' ' + error.message);
-      }
-    );
+  async getAllTarifs() {
+    return await this.http.get<Tarif[]>(`${this.baseURI}/Tarif/GetTarifs`).toPromise();
   }
 
   async getTarifById(tarifId)
