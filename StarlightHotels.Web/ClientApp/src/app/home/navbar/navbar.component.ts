@@ -4,7 +4,7 @@ import { AuthenticationService } from '../../services/authentication.service';
 import { UserComponent } from '../user/user.component';
 import { Router } from '@angular/router';
 import { UserService } from '../../services/user.service';
-import { UtilisateurModel } from 'src/app/models/user.model';
+import { Utilisateur } from 'src/app/models/user.model';
 
 @Component({
   selector: 'app-navbar',
@@ -14,7 +14,7 @@ import { UtilisateurModel } from 'src/app/models/user.model';
 })
 export class NavbarComponent implements OnInit
 {
-  user: UtilisateurModel = {
+  user: Utilisateur = {
     fullName: '',
     email: '',
     userName: ''
@@ -61,7 +61,7 @@ export class NavbarComponent implements OnInit
   }
 
   isAdmin() {
-    return this.authService.isAuthenticated() && this.user && this.user.role == 'Admin';
+    return this.authService.isAuthenticated() && this.user && this.user.role === 'Admin';
   }
 
   onLogout()

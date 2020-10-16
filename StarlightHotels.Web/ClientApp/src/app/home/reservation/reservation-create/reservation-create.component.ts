@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { NgbDateStruct } from '@ng-bootstrap/ng-bootstrap';
-import { ParticipantModel } from '../../../models/participant.model';
+import { Participant } from '../../../models/participant.model';
 import { ReservationService } from '../../../services/reservation.service';
 import { BehaviorSubject } from 'rxjs';
 import { HotelService } from '../../../services/hotel.service';
@@ -20,10 +20,10 @@ export class ReservationCreateComponent implements OnInit {
   hotelId;
   isRoomSelection: boolean = true;
 
-  participantList: ParticipantModel[] = [];
+  participantList: Participant[] = [];
   searchInstance: SearchHotelModel = {} as SearchHotelModel;
 
-  reservationId = 1; //TODO, set reservation id after save data in db
+  reservationId = 1; // TODO, set reservation id after save data in db
 
   constructor(
     private reservationService: ReservationService,
@@ -36,18 +36,15 @@ export class ReservationCreateComponent implements OnInit {
       this.hotelId = params.get('id');
     });
 
-    //TODO: Get hotel rooms
+    // TODO: Get hotel rooms
     console.log(this.hotelId);
-
 
     let today = new Date();
     this.minDate = { year: today.getFullYear(), month: today.getMonth(), day: today.getDay() };
 
     this.hotelService.searchData.subscribe(data => this.searchInstance = data);
-    this.reservationService.participantData.subscribe(data => this.participantList = data);
+    // this.reservationService.participantData.subscribe(data => this.participantList = data);
   }
-
-
 
   getNbPart(value: number) {
 
@@ -55,11 +52,11 @@ export class ReservationCreateComponent implements OnInit {
       this.participantList.splice(-1, 1);
     } else if (this.participantList.length < value) {
 
-      for (var _i = this.participantList.length; _i < value; _i++) {
-        let participant: ParticipantModel = {} as ParticipantModel;
+      // tslint:disable-next-line: variable-name
+      for (let _i = this.participantList.length; _i < value; _i++) {
+        let participant: Participant = {} as Participant;
         this.participantList.push(participant);
       }
-      
     }
     return;
   }

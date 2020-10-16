@@ -83,5 +83,21 @@ namespace StarlightHotels.API.Controllers
         {
             return _context.Tarifs.Any(e => e.Id == id);
         }
+
+        // GET: api/Tarif/Saison
+        [HttpGet]
+        [Route("GetSaisons")]
+        public async Task<ActionResult<IEnumerable<SaisonModel>>> GetSaisons()
+        {
+            return await _context.Saisons.ToListAsync();
+        }
+
+        // GET: api/Tarif/Categorie
+        [HttpGet]
+        [Route("GetCategories")]
+        public async Task<ActionResult<IEnumerable<CategorieModel>>> GetCategories()
+        {
+            return await _context.Categories.ToListAsync();
+        }
     }
 }

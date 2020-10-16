@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { HotelService } from 'src/app/services/hotel.service';
+import { HotelService } from '../../services/hotel.service';
+import { TarifService } from '../../services/tarif.service';
 import { Hotel } from '../../models/hotel.model';
+import { Tarif } from '../../models/tarif.model';
 
 @Component({
   selector: 'app-promoandtoplist',
@@ -8,10 +10,12 @@ import { Hotel } from '../../models/hotel.model';
   styleUrls: ['./promoandtoplist.component.sass']
 })
 export class PromoandtoplistComponent implements OnInit {
+  tarifM: Tarif;
+  listeTarifs: Tarif[] = [];
   hotelsList: Hotel[] = [];
-  hotelsTopList = [];
+  hotelsTopList: Hotel[] = [];
 
-  constructor(private hotelService: HotelService) {
+  constructor(private hotelService: HotelService, private tarifService: TarifService) {
     this.hotelService.getAllPromotedHotels().then(res => {
       this.hotelsList = res;
       this.hotelsList.forEach(h => {
@@ -39,6 +43,8 @@ export class PromoandtoplistComponent implements OnInit {
         }
       });
     });
+
+    this.tarifService.getAllTarifs();
   }
 
   ngOnInit(): void {

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { PaymentModel } from '../../../models/payment.model';
+import { Payment } from '../../../models/payment.model';
 
 @Component({
   selector: 'app-reservation-confirmation',
@@ -8,20 +8,19 @@ import { PaymentModel } from '../../../models/payment.model';
 })
 export class ReservationConfirmationComponent implements OnInit {
 
-  payment: PaymentModel = {} as PaymentModel
+  payment: Payment = {} as Payment;
 
   constructor() { }
 
   ngOnInit(): void {
 
-    //TODO: Get reservation deatils from DB
+    // TODO: Get reservation deatils from DB
 
-    //TODO: get payment system info
+    // TODO: get payment system info
 
 
-    //set payment data
-    //this.payment
-   
+    // set payment data
+    // this.payment
   }
 
 }

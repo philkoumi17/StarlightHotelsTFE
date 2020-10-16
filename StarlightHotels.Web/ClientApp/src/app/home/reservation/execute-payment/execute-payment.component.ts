@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewChild, ElementRef, Input } from '@angular/core';
-import { PaymentModel } from '../../../models/payment.model';
+import { Payment } from '../../../models/payment.model';
 
 @Component({
   selector: 'app-execute-payment',
@@ -10,7 +10,7 @@ export class ExecutePaymentComponent implements OnInit {
 
   @ViewChild('form') form: ElementRef;
 
-  @Input() payment: PaymentModel = {} as PaymentModel
+  @Input() payment: Payment = {} as Payment;
 
   constructor() { }
 

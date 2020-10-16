@@ -5,7 +5,9 @@
     <div class="col-md-4" *ngFor="let hotel of hotelsList">
         <div class="card bg-light mb-3">
             <div class="card-header text-center">
-                <strong>49&euro; / nuit</strong>
+                <strong>
+                    {{ this.hotel?.coefficient * this.tarifM?.prix }}&euro; / nuit
+                </strong>
                 <br>
                 <small *ngFor="let number of hotel.stars">
                     <i class="fas fa-star"></i>
@@ -50,7 +52,9 @@
     <div class="col-md-4" *ngFor="let hotelTop of hotelsTopList">
         <div class="card bg-light mb-3">
             <div class="card-header text-center">
-                <strong>49&euro; / nuit</strong>
+                <strong>
+                    {{ this.hotelTop?.coefficient * this.tarifM?.prix }}&euro; / nuit
+                </strong>
                 <br>
                 <small *ngFor="let number of hotelTop.stars">
                     <i class="fas fa-star"></i>
