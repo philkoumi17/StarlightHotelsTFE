@@ -2,6 +2,7 @@ import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 import { Tarif } from '../models/tarif.model';
+import { HotelCategorie } from '../models/hotel-categorie.model';
 
 @Injectable({
   providedIn: 'root'
@@ -28,7 +29,8 @@ export class TarifService {
   }
 
   // GET: api/Tarif/GetTarifCategorie/1
-  async getTarifCategorieById(tarifId) {
-    return await this.http.get<Tarif>(this.baseURI + '/Tarif/GetTarifCategorie/' + tarifId).toPromise();
+  async getTarifCategorieById(hotelCatList: HotelCategorie[]) {
+
+    return await this.http.post<Tarif[]>(this.baseURI + '/Tarif/GetTarifCategorie/', hotelCatList).toPromise();
   }
 }
