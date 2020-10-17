@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { NgbDateStruct } from '@ng-bootstrap/ng-bootstrap';
 import { Participant } from '../../../models/participant.model';
 import { ReservationService } from '../../../services/reservation.service';
-import { BehaviorSubject } from 'rxjs';
 import { HotelService } from '../../../services/hotel.service';
 import { SearchHotelModel } from '../../../models/search-hotel.model';
 import { ActivatedRoute } from '@angular/router';
@@ -10,8 +9,8 @@ import { Hotel } from 'src/app/models/hotel.model';
 import { Categorie } from 'src/app/models/categorie.model';
 import { CategorieService } from 'src/app/services/categorie.service';
 import { HotelCategorie } from 'src/app/models/hotel-categorie.model';
-import { JoinHotelCategorie } from '../../../models/join-hotel-categorie.model';
 import { TarifService } from 'src/app/services/tarif.service';
+import { Tarif } from '../../../models/tarif.model';
 
 @Component({
   selector: 'app-reservation-create',
@@ -27,6 +26,7 @@ export class ReservationCreateComponent implements OnInit {
   hotelId;
   isRoomSelection: boolean = true;
   hotelCategoryList: HotelCategorie[];
+  tarifList: Tarif[];
   categoryList: Categorie[];
   joinedcategoryList: HotelCategorie[] = [];
   joinedcategory: HotelCategorie;
@@ -51,8 +51,7 @@ export class ReservationCreateComponent implements OnInit {
     console.log(this.hotelId);
     this.hotelService.getHotelById(this.hotelId).then(res => {
       this.hotel = res;
-      for (let i = 0; i < this.hotel.nbEtoiles; i++)
-      {
+      for (let i = 0; i < this.hotel.nbEtoiles; i++) {
         this.stars.push(i);
       }
     });
@@ -68,36 +67,42 @@ export class ReservationCreateComponent implements OnInit {
       this.categoryList = res;
     });
 
-   // get price from service
+    // get price from service
     await this.categorieService.GetHotelCategory(hotelId).then(async (res) => {
-      this.joinedcategoryList = res;
-      console.log(this.joinedcategoryList);
-      await this.tarifService.getTarifCategorieById(this.joinedcategoryList).then((result) => {
-       // h.tarif = result;
-       console.log(result);
+      this.hotelCategoryList = res;
+      await this.tarifService.getTarifCategorieById(this.hotelCategoryList).then((result) => {
+        this.tarifList = result;
+
+        this.tarifList.forEach(tarif => {
+          this.hotelCategoryList.forEach(hotelcategorie => {
+            if (tarif.id === hotelcategorie.categorieId) {
+              hotelcategorie.prix = tarif.prix;
+            }
+          });
+        });
+
       });
     });
-    // this.categorieService.GetHotelCategory(hotelId).then(res => {
-    //  this.hotelCategoryList = res;
-    //  this.categoryList.forEach(obj  => {
-    //    this.hotelCategoryList.forEach( hotelcategorie => {
-    //      // another loop
-    //     if (obj.id === hotelcategorie.categorieId){
-    //       this.joinedcategory = {
-    //         descriptif : obj.descriptif,
-    //         type: obj.type,
-    //         imageUrl: hotelcategorie.imageUrl
-    //         // price:
-    //       };
-    //       this.joinedcategoryList.push(this.joinedcategory);
-    //     }
-    //    });
-    // });
+
+    this.categoryList.forEach(obj => {
+      this.hotelCategoryList.forEach(hotelcategorie => {
+        // another loop
+        if (obj.id === hotelcategorie.categorieId) {
+          this.joinedcategory = {
+            descriptif: obj.descriptif,
+            type: obj.type,
+            imageUrl: hotelcategorie.imageUrl,
+            prix: hotelcategorie.prix,
+          };
+          this.joinedcategoryList.push(this.joinedcategory);
+        }
+      });
+    });
   }
 
   getNbPart(value: number) {
 
-    if (this.participantList.length > value) {
+      if(this.participantList.length > value) {
       this.participantList.splice(-1, 1);
     } else if (this.participantList.length < value) {
 
@@ -107,6 +112,8 @@ export class ReservationCreateComponent implements OnInit {
         this.participantList.push(participant);
       }
     }
+    //TODO: Calculate total price
+
     return;
   }
 }

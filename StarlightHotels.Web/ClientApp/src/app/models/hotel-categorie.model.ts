@@ -5,4 +5,5 @@ export class HotelCategorie
   imageUrl?: string;
   descriptif?: string;
   type?: string;
+  prix?: number;
 }
