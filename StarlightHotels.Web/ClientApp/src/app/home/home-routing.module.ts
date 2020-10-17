@@ -13,6 +13,7 @@ import { RegistrationComponent } from './user/registration/registration.componen
 import { LoginComponent } from './user/login/login.component';
 import { HotelDetailComponent } from './hotel-detail/hotel-detail.component';
 import { ForbiddenComponent } from './forbidden/forbidden.component';
+import { ConfirmedReservationComponent } from './reservation/confirmed-reservation/confirmed-reservation.component';
 
 const routes: Routes = [
   {
@@ -27,6 +28,7 @@ const routes: Routes = [
   { path: 'home/book-hotel/:id', component: ReservationCreateComponent },
   { path: 'home/confirm-reservation/:id', component: ReservationConfirmationComponent },
   { path: 'home/book-hotel/detailTarif/:id', component: ReservationDetailTarifComponent },
+  { path: 'home/book-hotel/confirmed', component: ConfirmedReservationComponent },
   { path: 'home/contact', component: ContactComponent },
   { path: 'home/user', component: UserComponent },
   { path: 'home/user/registration', component: RegistrationComponent },

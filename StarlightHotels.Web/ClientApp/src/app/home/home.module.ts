@@ -99,7 +99,8 @@ import { FactureComponent } from './facture/facture.component';
   entryComponents: [
     ReservationCreateComponent,
     ReservationDetailComponent,
-    ReservationConfirmationComponent
+    ReservationConfirmationComponent,
+    ConfirmedReservationComponent
   ],
   schemas: [
     CUSTOM_ELEMENTS_SCHEMA,
