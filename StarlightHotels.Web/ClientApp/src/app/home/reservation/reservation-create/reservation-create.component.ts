@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { NgbDateStruct } from '@ng-bootstrap/ng-bootstrap';
 import { Participant } from '../../../models/participant.model';
 import { ReservationService } from '../../../services/reservation.service';
 import { HotelService } from '../../../services/hotel.service';
@@ -11,6 +10,7 @@ import { CategorieService } from 'src/app/services/categorie.service';
 import { HotelCategorie } from 'src/app/models/hotel-categorie.model';
 import { TarifService } from 'src/app/services/tarif.service';
 import { Tarif } from '../../../models/tarif.model';
+import * as moment from 'moment';
 
 @Component({
   selector: 'app-reservation-create',
@@ -18,10 +18,7 @@ import { Tarif } from '../../../models/tarif.model';
   styleUrls: ['./reservation-create.component.css']
 })
 export class ReservationCreateComponent implements OnInit {
-  modelArrival: NgbDateStruct;
-  modelDeparture: NgbDateStruct;
-  minDate: NgbDateStruct;
-  hotel: Hotel;
+  hotel: Hotel = {} as Hotel;
   stars: number[] = [];
   hotelId;
   isRoomSelection: boolean = true;
@@ -32,8 +29,12 @@ export class ReservationCreateComponent implements OnInit {
   joinedcategory: HotelCategorie;
   participantList: Participant[] = [];
   searchInstance: SearchHotelModel = {} as SearchHotelModel;
-
   reservationId = 1; // TODO, set reservation id after save data in db
+
+  confimOrder: boolean;
+  confirmedCategoryList: HotelCategorie[] = [];
+  totalAmount: number = 0;
+
 
   constructor(
     private categorieService: CategorieService,
@@ -57,7 +58,6 @@ export class ReservationCreateComponent implements OnInit {
     });
     this.getCategory(this.hotelId);
     let today = new Date();
-    this.minDate = { year: today.getFullYear(), month: today.getMonth(), day: today.getDay() };
 
     this.hotelService.searchData.subscribe(data => this.searchInstance = data);
     // this.reservationService.participantData.subscribe(data => this.participantList = data);
@@ -89,6 +89,7 @@ export class ReservationCreateComponent implements OnInit {
         // another loop
         if (obj.id === hotelcategorie.categorieId) {
           this.joinedcategory = {
+            categorieId: hotelcategorie.categorieId,
             descriptif: obj.descriptif,
             type: obj.type,
             imageUrl: hotelcategorie.imageUrl,
@@ -112,8 +113,64 @@ export class ReservationCreateComponent implements OnInit {
         this.participantList.push(participant);
       }
     }
-    //TODO: Calculate total price
 
     return;
+  }
+
+  doAction() {
+    this.confimOrder = !this.confimOrder;
+  }
+
+  /**
+   * Set the confirmation details
+   * @param categorie
+   * @param quantity
+   */
+  setConfirmation(categorie: HotelCategorie, quantity: number) {
+    categorie.quantity = quantity;
+
+    console.log(this.searchInstance.arrivalDate);
+    console.log(this.searchInstance.departureDate);
+
+    let numberOfDays = 0;
+    if (this.searchInstance.arrivalDate && this.searchInstance.departureDate) {
+      var diff = Math.abs(this.searchInstance.departureDate.getTime() - this.searchInstance.arrivalDate.getTime());
+      numberOfDays = Math.ceil(diff / (1000 * 3600 * 24));
+
+      console.log(numberOfDays);
+    }
+
+    let found = false;
+    this.confirmedCategoryList.forEach((confirmedCategory, index) => {
+      // another loop
+      if (confirmedCategory.categorieId == categorie.categorieId) {
+        found = true;
+        if (quantity > 0) {
+          confirmedCategory.quantity = quantity;
+        } else {
+          this.confirmedCategoryList.splice(index, 1);
+        }
+      }
+    });
+
+    if (!found && quantity > 0) {
+      this.confirmedCategoryList.push(categorie);
+    }
+
+    //calculate total amount
+    let totalQuantity = 0;
+    this.confirmedCategoryList.forEach((confirmedCategory, index) => {
+      totalQuantity += confirmedCategory.quantity * confirmedCategory.prix;
+    });
+
+    this.totalAmount = numberOfDays * totalQuantity;
+
+    return;
+  }
+
+
+  createReservation() {
+    //Create reservation object
+
   }
 }

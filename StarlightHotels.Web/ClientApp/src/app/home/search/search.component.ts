@@ -1,5 +1,4 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { NgbDateParserFormatter, NgbCalendar, NgbDate, NgbDateStruct } from '@ng-bootstrap/ng-bootstrap';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { HotelService } from '../../services/hotel.service';
@@ -34,7 +33,6 @@ export class SearchComponent implements OnInit {
     private router: Router,
     private service: HotelService,
     private toastr: ToastrService,
-    public formatter: NgbDateParserFormatter,
     private fb: FormBuilder,
     private snackBar: MatSnackBar) {
     this.searchForm = this.createSearchForm();
@@ -104,12 +102,12 @@ export class SearchComponent implements OnInit {
         this.service.setHotel(data);
         this.router.navigateByUrl('home/hotel-search');
       }).catch(() => {
-        this.snackBar.open("La date de départ ne peut pas être inférieur à la date d'arrivée !", '', {
-          duration: 5000,
-          verticalPosition: 'top',
-          horizontalPosition: 'right',
-          panelClass: 'snackbar-danger',
-        });
+        //this.snackBar.open("La date de départ ne peut pas être inférieur à la date d'arrivée !", '', {
+        //  duration: 5000,
+        //  verticalPosition: 'top',
+        //  horizontalPosition: 'right',
+        //  panelClass: 'snackbar-danger',
+        //});
       });
   }
 }
