@@ -1,140 +1,140 @@
 <app-navbar></app-navbar>
-<section class="homecontent row-mb-5" *ngIf="!confimOrder">
-  <h1>{{this.hotel.nom}}</h1>
-  <small *ngFor="let number of stars">
+<section class="homecontent row-mb-5" *ngIf="!confirmOrder">
+    <h1>{{this.hotel.nom}}</h1>
+    <small *ngFor="let number of stars">
     <i class="fas fa-star"></i>
   </small>
 
-  <app-search class="row-mt-3" [searchInstance]="searchInstance" [isRoomSelection]="isRoomSelection"></app-search>
+    <app-search class="row-mt-3" [searchInstance]="searchInstance" [isRoomSelection]="isRoomSelection"></app-search>
 
-  <div class="row">
-    <div class="col-sm-12">
-      <div class="card card-default">
-        <div class="card-header">
-          <h3 class="card-title" style="text-align: center;"><i class="fas fa-bed"></i> - Chambres</h3>
-        </div>
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="card card-default">
+                <div class="card-header">
+                    <h3 class="card-title" style="text-align: center;"><i class="fas fa-bed"></i> - Chambres</h3>
+                </div>
 
-        <div class="card-body">
-          <div class="row" *ngFor="let categorie of joinedcategoryList">
-            <div class="col-lg-2">
-              <img style="width: 150px;" src={{categorie.imageUrl}} alt="" />
-            </div>
-            <div class="col-lg-5">
-              <label>Type de chambre : {{categorie.type}}</label>
-              <p><span>{{categorie.descriptif}}</span></p>
-            </div>
-            <div class="col-lg-5">
-              <div class="form-group">
-                <div class="col-sm-9">
-                  <mat-form-field class="example-full-width mb-3" appearance="outline">
-                    <mat-label>Quantité :</mat-label>
-                    <mat-select #choosedValue (valueChange)="setConfirmation(categorie, choosedValue.value)">
-                      <mat-option *ngFor="let in of [0,1,2,3,4];let i = index" [value]="i">{{ i }}</mat-option>
-                    </mat-select>
-                  </mat-form-field>
-                </div>
-              </div>
-              <div class="form-group">
-                <div class="col-md-9">
-                  <mat-form-field class="example-full-width mb-3" appearance="outline">
-                    <mat-label>Prix / nuit : <i class="fas fa-euro-sign"></i></mat-label>
-                    <input matInput type="number" value="{{categorie.prix}}" readonly>
-                  </mat-form-field>
-                </div>
-              </div>
-            </div>
-          </div>
-          <!--Participants-->
-          <!--<div *ngFor="let participant of participantList">
+                <div class="card-body">
+                    <div class="row" *ngFor="let categorie of joinedcategoryList">
+                        <div class="col-lg-2">
+                            <img style="width: 150px;" src={{categorie.imageUrl}} alt="" />
+                        </div>
+                        <div class="col-lg-5">
+                            <label>Type de chambre : {{categorie.type}}</label>
+                            <p><span>{{categorie.descriptif}}</span></p>
+                        </div>
+                        <div class="col-lg-5">
+                            <div class="form-group">
+                                <div class="col-sm-9">
+                                    <mat-form-field class="example-full-width mb-3" appearance="outline">
+                                        <mat-label>Quantité :</mat-label>
+                                        <mat-select #choosedValue (valueChange)="setConfirmation(categorie, choosedValue.value)">
+                                            <mat-option *ngFor="let in of [0,1,2,3,4];let i = index" [value]="i">{{ i }}</mat-option>
+                                        </mat-select>
+                                    </mat-form-field>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-md-9">
+                                    <mat-form-field class="example-full-width mb-3" appearance="outline">
+                                        <mat-label>Prix / nuit : <i class="fas fa-euro-sign"></i></mat-label>
+                                        <input matInput type="number" value="{{categorie.prix}}" readonly>
+                                    </mat-form-field>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!--Participants-->
+                    <!--<div *ngFor="let participant of participantList">
             <app-add-participant [participant]="participant"></app-add-participant>
           </div>-->
 
-        </div>
-
-        <div class="card-footer">
-          <div class="row">
-            <div class="col-lg-5">
-              <div class="form-group">
-                <div class="col-md-9">
-                  <mat-form-field class="example-full-width mb-3" appearance="outline">
-                    <mat-label>Montant total : <i class="fas fa-euro-sign"></i></mat-label>
-                    <input matInput type="number" value="{{totalAmount}}" readonly>
-                  </mat-form-field>
-                  <button mat-raised-button color="primary" (click)="doAction()">Suivant</button>
                 </div>
-              </div>
+
+                <div class="card-footer">
+                    <div class="row">
+                        <div class="col-lg-5">
+                            <div class="form-group">
+                                <div class="col-md-9">
+                                    <mat-form-field class="example-full-width mb-3" appearance="outline">
+                                        <mat-label>Montant total : <i class="fas fa-euro-sign"></i></mat-label>
+                                        <input matInput type="number" value="{{totalAmount}}" readonly>
+                                    </mat-form-field>
+                                    <button mat-raised-button color="primary" (click)="doAction()">Suivant</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
-          </div>
         </div>
-      </div>
     </div>
-  </div>
 
 </section>
 
 
-<section class="homecontent" *ngIf="confimOrder">
-  <div class="row">
-    <div class="col-sm-12">
-      <div class="card card-default">
-        <div class="card-header">
-          <h3 class="card-title" style="text-align: center;"><i class="fas fa-bed"></i> - Confirmation Details</h3>
-        </div>
-
-
-        <div class="card-body">
-          <div class="row" *ngFor="let categorie of confirmedCategoryList">
-            <div class="col-lg-2">
-              <img style="width: 150px;" src={{categorie.imageUrl}} alt="" />
-            </div>
-            <div class="col-lg-5">
-              <label>Type de chambre : {{categorie.type}}</label>
-              <p><span>{{categorie.descriptif}}</span></p>
-            </div>
-            <div class="col-lg-5">
-              <div class="form-group">
-                <div class="col-sm-9">
-                  <mat-form-field class="example-full-width mb-3" appearance="outline">
-                    <mat-label>Quantité : </mat-label>
-                    <input matInput value="{{categorie.quantity}}" readonly>
-                  </mat-form-field>
+<section class="homecontent" *ngIf="confirmOrder">
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="card card-default">
+                <div class="card-header">
+                    <h3 class="card-title" style="text-align: center;"><i class="fas fa-bed"></i> - Confirmation Details</h3>
                 </div>
-              </div>
-              <div class="form-group">
-                <div class="col-md-9">
-                  <mat-form-field class="example-full-width mb-3" appearance="outline">
-                    <mat-label>Prix / nuit : <i class="fas fa-euro-sign"></i></mat-label>
-                    <input matInput type="number" value="{{categorie.prix}}" readonly>
-                  </mat-form-field>
+
+
+                <div class="card-body">
+                    <div class="row" *ngFor="let categorie of confirmedCategoryList">
+                        <div class="col-lg-2">
+                            <img style="width: 150px;" src={{categorie.imageUrl}} alt="" />
+                        </div>
+                        <div class="col-lg-5">
+                            <label>Type de chambre : {{categorie.type}}</label>
+                            <p><span>{{categorie.descriptif}}</span></p>
+                        </div>
+                        <div class="col-lg-5">
+                            <div class="form-group">
+                                <div class="col-sm-9">
+                                    <mat-form-field class="example-full-width mb-3" appearance="outline">
+                                        <mat-label>Quantité : </mat-label>
+                                        <input matInput value="{{categorie.quantity}}" readonly>
+                                    </mat-form-field>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-md-9">
+                                    <mat-form-field class="example-full-width mb-3" appearance="outline">
+                                        <mat-label>Prix / nuit : <i class="fas fa-euro-sign"></i></mat-label>
+                                        <input matInput type="number" value="{{categorie.prix}}" readonly>
+                                    </mat-form-field>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-              </div>
-            </div>
-          </div>
-        </div>
 
-        <div class="card-footer">
-          <div class="row">
-            <div class="col-lg-5">
-              <div class="form-group">
-                <div class="col-md-9">
-                  <mat-form-field class="example-full-width mb-3" appearance="outline">
-                    <mat-label>Montant total : <i class="fas fa-euro-sign"></i></mat-label>
-                    <input matInput type="number" value="{{totalAmount}}" readonly>
-                  </mat-form-field>
-                  <button mat-raised-button color="primary" (click)="doAction()">Précédent</button>
+                <div class="card-footer">
+                    <div class="row">
+                        <div class="col-lg-5">
+                            <div class="form-group">
+                                <div class="col-md-9">
+                                    <mat-form-field class="example-full-width mb-3" appearance="outline">
+                                        <mat-label>Montant total : <i class="fas fa-euro-sign"></i></mat-label>
+                                        <input matInput type="number" value="{{totalAmount}}" readonly>
+                                    </mat-form-field>
+                                    <button mat-raised-button color="primary" (click)="doAction()">Précédent</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-              </div>
+
+
+                <!--Execute Ingenico Payment-->
+                <!--<app-execute-payment [payment]="payment"></app-execute-payment>-->
+
             </div>
-          </div>
         </div>
-
-
-        <!--Execute Ingenico Payment-->
-        <!--<app-execute-payment [payment]="payment"></app-execute-payment>-->
-
-      </div>
     </div>
-  </div>
 </section>
 
 <app-footer></app-footer>

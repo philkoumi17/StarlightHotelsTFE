@@ -31,7 +31,7 @@ export class ReservationCreateComponent implements OnInit {
   searchInstance: SearchHotelModel = {} as SearchHotelModel;
   reservationId = 1; // TODO, set reservation id after save data in db
 
-  confimOrder: boolean;
+  confirmOrder: boolean;
   confirmedCategoryList: HotelCategorie[] = [];
   totalAmount: number = 0;
 
@@ -101,12 +101,14 @@ export class ReservationCreateComponent implements OnInit {
     });
   }
 
-  getNbPart(value: number) {
-
-      if(this.participantList.length > value) {
+  getNbPart(value: number)
+  {
+    if (this.participantList.length > value)
+    {
       this.participantList.splice(-1, 1);
-    } else if (this.participantList.length < value) {
-
+    }
+    else if (this.participantList.length < value)
+    {
       // tslint:disable-next-line: variable-name
       for (let _i = this.participantList.length; _i < value; _i++) {
         let participant: Participant = {} as Participant;
@@ -118,7 +120,7 @@ export class ReservationCreateComponent implements OnInit {
   }
 
   doAction() {
-    this.confimOrder = !this.confimOrder;
+    this.confirmOrder = !this.confirmOrder;
   }
 
   /**
@@ -133,8 +135,9 @@ export class ReservationCreateComponent implements OnInit {
     console.log(this.searchInstance.departureDate);
 
     let numberOfDays = 0;
-    if (this.searchInstance.arrivalDate && this.searchInstance.departureDate) {
-      var diff = Math.abs(this.searchInstance.departureDate.getTime() - this.searchInstance.arrivalDate.getTime());
+    if (this.searchInstance.arrivalDate && this.searchInstance.departureDate)
+    {
+      let diff = Math.abs(this.searchInstance.departureDate.getTime() - this.searchInstance.arrivalDate.getTime());
       numberOfDays = Math.ceil(diff / (1000 * 3600 * 24));
 
       console.log(numberOfDays);
@@ -143,7 +146,7 @@ export class ReservationCreateComponent implements OnInit {
     let found = false;
     this.confirmedCategoryList.forEach((confirmedCategory, index) => {
       // another loop
-      if (confirmedCategory.categorieId == categorie.categorieId) {
+      if (confirmedCategory.categorieId === categorie.categorieId) {
         found = true;
         if (quantity > 0) {
           confirmedCategory.quantity = quantity;
@@ -157,7 +160,7 @@ export class ReservationCreateComponent implements OnInit {
       this.confirmedCategoryList.push(categorie);
     }
 
-    //calculate total amount
+    // calculate total amount
     let totalQuantity = 0;
     this.confirmedCategoryList.forEach((confirmedCategory, index) => {
       totalQuantity += confirmedCategory.quantity * confirmedCategory.prix;
@@ -170,7 +173,7 @@ export class ReservationCreateComponent implements OnInit {
 
 
   createReservation() {
-    //Create reservation object
+    // Create reservation object
 
   }
 }

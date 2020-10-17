@@ -1,5 +1,5 @@
 <!-- <h2>Redirection vers la plateforme de paiement</h2> -->
-<form #form ngNoForm  method="post" action="https://ogone.test.v-psp.com/ncol/test/orderstandard_utf8.asp" id=form1 name=form1>
+<form #form ngNoForm method="post" action="https://ogone.test.v-psp.com/ncol/test/orderstandard_utf8.asp" id=form1 name=form1>
 
     <!-- paramètres généraux : voir Paramètres de formulaire -->
     <input type="hidden" name="PSPID" value="mystermask01">
@@ -30,7 +30,7 @@
     <input type="hidden" name="FONTTYPE" value="">
 
     <!-- redirection après la transaction : voir Feedback au client sur la transaction -->
-    <input type="hidden" name="ACCEPTURL" value="">
+    <input type="hidden" name="ACCEPTURL" value="http://localhost:4200/home/book-hotel/confirmed">
     <input type="hidden" name="DECLINEURL" value="">
     <input type="hidden" name="EXCEPTIONURL" value="">
     <input type="hidden" name="CANCELURL" value="">

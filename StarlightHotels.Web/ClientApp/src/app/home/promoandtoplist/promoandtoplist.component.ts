@@ -14,7 +14,8 @@ export class PromoandtoplistComponent implements OnInit {
   listeTarifs: Tarif[] = [];
   hotelsList: Hotel[] = [];
   hotelsTopList: Hotel[] = [];
- lowest = 9999999;
+  lowest = 9999999;
+
   constructor(private hotelService: HotelService, private tarifService: TarifService) {
     this.hotelService.getAllPromotedHotels().then(res => {
       this.hotelsList = res;
@@ -34,9 +35,7 @@ export class PromoandtoplistComponent implements OnInit {
               this.lowest = l.prix;
               this.tarifM = l;
             }
-
-          })
-          
+          });
         });
       });
     });
