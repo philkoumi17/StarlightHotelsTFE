@@ -1,5 +1,5 @@
 <app-navbar></app-navbar>
-<section class="homecontent">
+<section class="homecontent row-mb-5">
     <h1>{{this.hotel.nom}}</h1>
     <small *ngFor="let number of stars">
         <i class="fas fa-star"></i>
@@ -21,25 +21,22 @@
                                 <img style="width: 150px;" src={{categoie.imageUrl}} alt="" />
                             </div>
                             <div class="col-lg-5">
-                                <label for="">{{categoie.type}}</label>
+                                <label>Type de chambre : {{categoie.type}}</label>
                                 <p><span>{{categoie.descriptif}}</span></p>
                             </div>
                             <div class="col-lg-5">
                                 <div class="form-group">
                                     <div class="col-sm-9">
                                         <mat-form-field class="example-full-width mb-3" appearance="outline">
-                                            <mat-label>Quantity:</mat-label>
+                                            <mat-label>Quantité :</mat-label>
                                             <mat-select #choosedValue (valueChange)="getNbPart(choosedValue.value)">
-                                                <mat-option [value]="0">
-                                                    Choose ..
-                                                </mat-option>
                                                 <mat-option *ngFor="let in of [0,1,2,3,4];let i = index" [value]="i">{{ i }}</mat-option>
                                             </mat-select>
                                         </mat-form-field>
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label for="">Prix / nuit: </label>
+                                    <label>Prix / nuit: </label>
                                     <div class="col-md-8">
                                         <input readonly="True" class="form-control text-box single-line" id="prix0" name="" type="number" value="123">
                                     </div>

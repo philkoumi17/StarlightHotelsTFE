@@ -3,24 +3,24 @@
         <div class="collapse navbar-collapse" id="navbarExample01">
             <ul class="navbar-nav mr-auto mb-2 mb-lg-0">
                 <li class="nav-item active">
-                    <a class="nav-link" href="#">Home</a>
+                    <a class="nav-link" href="/home">Accueil</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Promotions</a>
+                    <a class="nav-link">Promotions</a>
                 </li>
                 <li class="nav-item" *ngIf="isConnected()">
-                    <a class="nav-link" href="/home/list-of-bookings">My bookings</a>
+                    <a class="nav-link" href="/home/list-of-bookings">Mes réservations</a>
                 </li>
                 <li class="nav-item" *ngIf="isAdmin()">
                     <a class="nav-link" href="/dashboard">Administration</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">About</a>
+                    <a class="nav-link">A propos</a>
                 </li>
             </ul>
             <ul class="nav navbar-nav navbar-right mr-3" *ngIf="!isConnected()">
                 <li class="nav-item">
-                    <a class="nav-link" (click)="openUserDialog()">Connect here</a>
+                    <a class="nav-link" (click)="openUserDialog()">Connectez-vous ici !</a>
                 </li>
             </ul>
             <ul class="nav navbar-nav navbar-right mr-3" *ngIf="isConnected()">
@@ -34,12 +34,12 @@
                             <ul class="user_dw_menu">
                                 <li>
                                     <a href="/home/user/user-detail">
-                                        <i class="material-icons">person</i>Profile
+                                        <i class="material-icons">person</i>Mon profil
                                     </a>
                                 </li>
                                 <li>
                                     <a (click)="onLogout()">
-                                        <i class="material-icons">power_settings_new</i>Logout
+                                        <i class="material-icons">power_settings_new</i>Déconnexion
                                     </a>
                                 </li>
                             </ul>

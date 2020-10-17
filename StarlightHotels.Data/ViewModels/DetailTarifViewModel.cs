@@ -10,7 +10,7 @@ namespace StarlightHotels.Core.ViewModels
 
         public decimal PrixChambre { get; set; }
 
-        public decimal PrixFormunle { get; set; }
+        public decimal PrixFormule { get; set; }
 
         public decimal MontantJour { get; set; }
     }

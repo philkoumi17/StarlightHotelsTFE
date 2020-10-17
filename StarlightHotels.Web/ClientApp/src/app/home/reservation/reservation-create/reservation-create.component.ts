@@ -11,6 +11,7 @@ import { Categorie } from 'src/app/models/categorie.model';
 import { CategorieService } from 'src/app/services/categorie.service';
 import { HotelCategorie } from 'src/app/models/hotel-categorie.model';
 import { JoinHotelCategorie } from '../../../models/join-hotel-categorie.model';
+import { TarifService } from 'src/app/services/tarif.service';
 
 @Component({
   selector: 'app-reservation-create',
@@ -27,8 +28,8 @@ export class ReservationCreateComponent implements OnInit {
   isRoomSelection: boolean = true;
   hotelCategoryList: HotelCategorie[];
   categoryList: Categorie[];
-  joinedcategoryList: JoinHotelCategorie[] = [];
-  joinedcategory: JoinHotelCategorie;
+  joinedcategoryList: HotelCategorie[] = [];
+  joinedcategory: HotelCategorie;
   participantList: Participant[] = [];
   searchInstance: SearchHotelModel = {} as SearchHotelModel;
 
@@ -38,6 +39,7 @@ export class ReservationCreateComponent implements OnInit {
     private categorieService: CategorieService,
     private reservationService: ReservationService,
     private hotelService: HotelService,
+    private tarifService: TarifService,
     private route: ActivatedRoute) { }
 
   ngOnInit(): void {
@@ -61,28 +63,36 @@ export class ReservationCreateComponent implements OnInit {
     this.hotelService.searchData.subscribe(data => this.searchInstance = data);
     // this.reservationService.participantData.subscribe(data => this.participantList = data);
   }
-  getCategory(hotelId: number) {
+  async getCategory(hotelId: number) {
     this.categorieService.getAllCategories().then(res => {
       this.categoryList = res;
     });
+
    // get price from service
-    this.categorieService.GetHotelCategory(hotelId).then(res => {
-     this.hotelCategoryList = res;
-     this.categoryList.forEach(obj  => {
-       this.hotelCategoryList.forEach( hotelcategorie => {
-         // another loop
-        if (obj.id === hotelcategorie.categorieId){
-          this.joinedcategory = {
-            descriptif : obj.descriptif,
-            type: obj.type,
-            imageUrl: hotelcategorie.imageUrl
-            // price:
-          };
-          this.joinedcategoryList.push(this.joinedcategory);
-        }
-       });
+    await this.categorieService.GetHotelCategory(hotelId).then(async (res) => {
+      this.joinedcategoryList = res;
+      console.log(this.joinedcategoryList);
+      await this.tarifService.getTarifCategorieById(this.joinedcategoryList).then((result) => {
+       // h.tarif = result;
+       console.log(result);
+      });
     });
-   });
+    // this.categorieService.GetHotelCategory(hotelId).then(res => {
+    //  this.hotelCategoryList = res;
+    //  this.categoryList.forEach(obj  => {
+    //    this.hotelCategoryList.forEach( hotelcategorie => {
+    //      // another loop
+    //     if (obj.id === hotelcategorie.categorieId){
+    //       this.joinedcategory = {
+    //         descriptif : obj.descriptif,
+    //         type: obj.type,
+    //         imageUrl: hotelcategorie.imageUrl
+    //         // price:
+    //       };
+    //       this.joinedcategoryList.push(this.joinedcategory);
+    //     }
+    //    });
+    // });
   }
 
   getNbPart(value: number) {
