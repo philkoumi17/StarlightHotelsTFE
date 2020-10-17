@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { FormBuilder, Validators, FormGroup, FormControl } from '@angular/forms';
-import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Hotel } from '../models/hotel.model';
 import { SearchHotelModel } from '../models/search-hotel.model';
 import { Observable, BehaviorSubject } from 'rxjs';
@@ -38,9 +38,9 @@ export class HotelService
   }
 
   constructor(private http: HttpClient,
-    private fb: FormBuilder,
-    private categorieService?: CategorieService,
-    private tarifService?: TarifService) { }
+              private fb: FormBuilder,
+              private categorieService?: CategorieService,
+              private tarifService?: TarifService) { }
 
   formModel = this.fb.group({
     nom: ['', [Validators.required]],
@@ -63,14 +63,12 @@ export class HotelService
 
   /** CRUD METHODS */
   getAllHotels(): void {
-    this.http.get<Hotel[]>(`${this.baseURI}/Hotel/GetHotels`).subscribe(
-      data => {
-        this.dataChange.next(data);
-      },
-      (error: HttpErrorResponse) => {
-        console.log(error.name + ' ' + error.message);
-      }
-    );
+    this.http.get<Hotel[]>(`${this.baseURI}/Hotel/GetHotels`).subscribe(data => {
+      this.dataChange.next(data);
+    },
+    (error: HttpErrorResponse) => {
+      console.log(error.name + ' ' + error.message);
+    });
   }
 
   getCountries(): Observable<Pays[]>
@@ -109,27 +107,24 @@ export class HotelService
     };
     console.log(body);
     console.log(this.baseURI + '/Hotel');
-    this.http.post<Hotel>(this.baseURI + '/Hotel', body).subscribe(
-      data => {
-        return data;
-      },
-      (error: HttpErrorResponse) => {
-        console.log(error.name + ' ' + error.message);
-      }
-    );
+    this.http.post<Hotel>(this.baseURI + '/Hotel', body).subscribe(data => {
+      return data;
+    },
+    (error: HttpErrorResponse) => {
+      console.log(error.name + ' ' + error.message);
+    });
   }
 
   updateHotel(hotel: Hotel)
   {
-    if (hotel && hotel.id) {
-      this.http.put<Hotel>(this.baseURI + '/Hotel/' + hotel.id, hotel).subscribe(
-        data => {
-          return data;
-        },
-        (error: HttpErrorResponse) => {
-          console.log(error.name + ' ' + error.message);
-        }
-      );
+    if (hotel && hotel.id)
+    {
+      this.http.put<Hotel>(this.baseURI + '/Hotel/' + hotel.id, hotel).subscribe(data => {
+        return data;
+      },
+      (error: HttpErrorResponse) => {
+        console.log(error.name + ' ' + error.message);
+      });
     }
   }
 
@@ -146,14 +141,12 @@ export class HotelService
 
   refreshList()
   {
-    this.http.get(this.baseURI + '/Hotel')
-    .toPromise()
-    .then(res => this.list = res as Hotel[]);
+    this.http.get(this.baseURI + '/Hotel').toPromise().then(res =>
+      this.list = res as Hotel[]);
   }
 
   /**
    * Search for hotels
-   * @param searchHotelModel
    */
   async searchHotels(searchHotelModel: SearchHotelModel)
   {
@@ -161,64 +154,47 @@ export class HotelService
     return await this.http.post<Hotel[]>(this.baseURI + '/Hotel/SearchHotels', searchHotelModel).toPromise();
   }
 
-  async getAllHotelDetails() {
-    await this.getAllHotelsAync().then((data) => {
+  async getAllHotelDetails(): Promise<Hotel[]> {
+    return await this.getAllHotelsAync().then((data) => {
       let hotelList: Hotel[] = data;
+      hotelList.forEach(async h => {
+        // Get images
+        await this.getPictures(h.id).then((img) => {
+          h.images = img;
+        });
 
-  //     hotelList.forEach(async h => {
-  //       // Get images
-  //       await this.getPictures(h.id).then((img) => {
-  //         h.images = img;
-  //       });
+        // Set Stars
+        h.stars = [];
+        for (let i = 0; i < h.nbEtoiles; i++) {
+          h.stars.push(i);
+        }
 
-  //       // Set Stars
-  //       h.stars = [];
-  //       for (let i = 0; i < h.nbEtoiles; i++) {
-  //         h.stars.push(i);
-  //       }
-
-        this.categorieService.GetHotelCategory(h.id).then((res) => {
+        await this.categorieService.GetHotelCategory(h.id).then(async (res) => {
           let hotelCatList: HotelCategorie[] = res;
-
-          let tarif: Tarif[];
-          hotelCatList.forEach(async (hotelCat) => {
-            await this.tarifService.getTarifCategorieById(hotelCat.categorieId).then((result) => {
-              let hotelTarif: Tarif = result;
-              //if (hotelTarif) {
-              //  tarif.push(hotelTarif);
-              //}
-              console.log('result' + hotelTarif);              
-            });
+          await this.tarifService.getTarifCategorieById(hotelCatList).then((result) => {
+            h.tarif = result;
           });
-
-          //h.tarif = tarif;
-
-        })
-
+        });
       });
-
-    })
+      return hotelList;
+    });
   }
 
   async getAllHotelsAync() {
     return await this.http.get<Hotel[]>(this.baseURI + '/Hotel/GetHotels').toPromise();
   }
-
   async getAllPromotedHotels()
   {
     return await this.http.get<Hotel[]>(this.baseURI + '/Hotel/GetAllPromotedHotels').toPromise();
   }
-
   async getAllTopHotels()
   {
     return await this.http.get<Hotel[]>(this.baseURI + '/Hotel/GetAllTopHotels').toPromise();
   }
-
   getPictures(hotelId: number)
   {
     return this.http.get<Image[]>(this.baseURI + '/Hotel/GetPictures/' + hotelId).toPromise();
   }
-
   async detailsHotel(hotelId: number)
   {
     return await this.http.get<HotelDetail>(this.baseURI + '/Hotel/detail/' + hotelId).toPromise();
