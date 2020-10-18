@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Inject, OnInit } from '@angular/core';
 import { Participant } from '../../../models/participant.model';
 import { ReservationService } from '../../../services/reservation.service';
 import { HotelService } from '../../../services/hotel.service';
@@ -11,6 +11,9 @@ import { HotelCategorie } from 'src/app/models/hotel-categorie.model';
 import { TarifService } from 'src/app/services/tarif.service';
 import { Tarif } from '../../../models/tarif.model';
 import * as moment from 'moment';
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { Formule } from 'src/app/models/formule.model';
 
 @Component({
   selector: 'app-reservation-create',
@@ -35,12 +38,12 @@ export class ReservationCreateComponent implements OnInit {
   confirmedCategoryList: HotelCategorie[] = [];
   totalAmount: number = 0;
 
-
   constructor(
     private categorieService: CategorieService,
-    private reservationService: ReservationService,
+    private bookingService: ReservationService,
     private hotelService: HotelService,
     private tarifService: TarifService,
+    private snackBar: MatSnackBar,
     private route: ActivatedRoute) { }
 
   ngOnInit(): void {
@@ -62,12 +65,13 @@ export class ReservationCreateComponent implements OnInit {
     this.hotelService.searchData.subscribe(data => this.searchInstance = data);
     // this.reservationService.participantData.subscribe(data => this.participantList = data);
   }
+
   async getCategory(hotelId: number) {
     this.categorieService.getAllCategories().then(res => {
       this.categoryList = res;
     });
 
-    // get price from service
+    // Get price from service
     await this.categorieService.GetHotelCategory(hotelId).then(async (res) => {
       this.hotelCategoryList = res;
       await this.tarifService.getTarifCategorieById(this.hotelCategoryList).then((result) => {
@@ -80,7 +84,6 @@ export class ReservationCreateComponent implements OnInit {
             }
           });
         });
-
       });
     });
 
@@ -115,13 +118,23 @@ export class ReservationCreateComponent implements OnInit {
         this.participantList.push(participant);
       }
     }
-
     return;
+  }
+
+  /* Booking form appear in the other component */
+  OnServiceChanged(formule: Formule)
+  {
+    console.log(formule);
   }
 
   doAction() {
     this.confirmOrder = !this.confirmOrder;
   }
+
+  // saveBookingLater()
+  // {
+  //   this.reservationService.
+  // }
 
   /**
    * Set the confirmation details
@@ -160,7 +173,7 @@ export class ReservationCreateComponent implements OnInit {
       this.confirmedCategoryList.push(categorie);
     }
 
-    // calculate total amount
+    // Calculate total amount
     let totalQuantity = 0;
     this.confirmedCategoryList.forEach((confirmedCategory, index) => {
       totalQuantity += confirmedCategory.quantity * confirmedCategory.prix;
@@ -171,9 +184,55 @@ export class ReservationCreateComponent implements OnInit {
     return;
   }
 
+  // createReservation() {
+  //   // Create reservation object
+  //   this.bookingService.insertBooking().subscribe(
+  //     (res: any) => {
+  //       if(res.succeeded)
+  //       {
+  //         this.bookingService.formModel.reset();
+  //         // this.toastr.success('New user created', 'Registration successful !');
+  //         this.snackBar.open('New booking created, Booking successful !', '', {
+  //           duration: 2000,
+  //           verticalPosition: 'top',
+  //           horizontalPosition: 'right',
+  //           panelClass: 'snackbar-success',
+  //         });
+  //         this.dialogRef.close();
+  //       }
+  //       else
+  //       {
+  //         res.errors.forEach(element => {
+  //           switch(element.code)
+  //           {
+  //             case 'DuplicateUserName':
 
-  createReservation() {
-    // Create reservation object
-
-  }
+  //               // Username is already taken
+  //               // this.toastr.error('Username is already taken', 'Registration failed !');
+  //               this.snackBar.open('Booking is already taken, Booking failed !', '', {
+  //                 duration: 2000,
+  //                 verticalPosition: 'top',
+  //                 horizontalPosition: 'right',
+  //                 panelClass: 'snackbar-danger',
+  //               });
+  //               break;
+  //             default:
+  //               // Registration failed
+  //               // this.toastr.error(element.description, 'Registration failed !');
+  //               this.snackBar.open(element.description + ', Booking failed !', '', {
+  //                 duration: 2000,
+  //                 verticalPosition: 'top',
+  //                 horizontalPosition: 'right',
+  //                 panelClass: 'snackbar-danger',
+  //               });
+  //               break;
+  //           }
+  //         });
+  //       }
+  //     },
+  //     err => {
+  //       console.log(err);
+  //     }
+  //   );
+  // }
 }

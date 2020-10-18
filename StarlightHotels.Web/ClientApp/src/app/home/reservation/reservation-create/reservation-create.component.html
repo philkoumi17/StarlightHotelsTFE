@@ -44,11 +44,11 @@
                             </div>
                         </div>
                     </div>
-                    <!--Participants-->
-                    <!--<div *ngFor="let participant of participantList">
-            <app-add-participant [participant]="participant"></app-add-participant>
-          </div>-->
 
+                    <!-- Booking form -->
+                    <div>
+                        <app-booking-form (onServiceChange)="OnServiceChanged($event)"></app-booking-form>
+                    </div>
                 </div>
 
                 <div class="card-footer">
@@ -122,6 +122,8 @@
                                         <input matInput type="number" value="{{totalAmount}}" readonly>
                                     </mat-form-field>
                                     <button mat-raised-button color="primary" (click)="doAction()">Précédent</button>
+                                    <button mat-raised-button color="secondary">Payer plus tard</button>
+                                    <button mat-raised-button color="primary">Payer en ligne</button>
                                 </div>
                             </div>
                         </div>

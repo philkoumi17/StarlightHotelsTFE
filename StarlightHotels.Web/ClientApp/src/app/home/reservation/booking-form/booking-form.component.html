@@ -1,0 +1,26 @@
+<div class="card card-primary">
+    <div class="card-header">
+        <h3 class="card-title"><i class="fas fa-users"></i> Formulaire de réservation</h3>
+    </div>
+    <div class="card-body" style="align-content: center;">
+        <div class="container">
+            <form>
+                <div class="row">
+                    <div class="col-sm">
+                        <h5>Choisissez la formule : </h5>
+                    </div>
+                    <div class="col-sm">
+                        <mat-form-field class="example-full-width mb-3" appearance="outline">
+                            <mat-label>Formule : </mat-label>
+                            <mat-select #choosedValue (valueChange)="OnServiceChanged(choosedValue.value)">
+                                <mat-option *ngFor="let formule of allFormules" [value]="formule">
+                                    {{formule.libelle}}
+                                </mat-option>
+                            </mat-select>
+                        </mat-form-field>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

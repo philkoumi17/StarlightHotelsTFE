@@ -25,14 +25,13 @@ export class RegistrationComponent implements OnInit
         this.allCountries = data;
       }
     );
-
     this.maxDate = new Date();
   }
 
   onSubmit(): void{
     this.service.register().subscribe(
       (res: any) => {
-        if(res.succeeded)
+        if (res.succeeded)
         {
           this.service.formModel.reset();
           // this.toastr.success('New user created', 'Registration successful !');
@@ -47,10 +46,9 @@ export class RegistrationComponent implements OnInit
         else
         {
           res.errors.forEach(element => {
-            switch(element.code)
+            switch (element.code)
             {
               case 'DuplicateUserName':
-
                 // Username is already taken
                 // this.toastr.error('Username is already taken', 'Registration failed !');
                 this.snackBar.open('Username is already taken, Registration failed !', '', {

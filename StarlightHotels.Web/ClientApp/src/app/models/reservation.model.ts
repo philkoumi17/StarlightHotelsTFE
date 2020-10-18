@@ -1,10 +1,8 @@
-import { Etat } from "./etat.model";
-import { Utilisateur } from "./user.model";
-
 export class Reservation
 {
   id?: number;
-  utilisateur: Utilisateur;
+  utilisateurId?: number;
   dateReservation: Date;
-  etat: Etat;
+  montant: number;
+  etatId?: number;
 }

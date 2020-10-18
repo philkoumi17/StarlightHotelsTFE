@@ -10,7 +10,6 @@ import { Hotel } from '../../models/hotel.model';
   styleUrls: ['./add-hotel.component.sass']
 })
 export class AddHotelComponent {
-
   hotel: Hotel;
   allCountries: Pays[];
   allCities: string[] = [];
