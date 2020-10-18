@@ -3,17 +3,20 @@ import { Participant } from '../../../models/participant.model';
 import { ReservationService } from '../../../services/reservation.service';
 import { HotelService } from '../../../services/hotel.service';
 import { SearchHotelModel } from '../../../models/search-hotel.model';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Hotel } from 'src/app/models/hotel.model';
 import { Categorie } from 'src/app/models/categorie.model';
 import { CategorieService } from 'src/app/services/categorie.service';
 import { HotelCategorie } from 'src/app/models/hotel-categorie.model';
 import { TarifService } from 'src/app/services/tarif.service';
 import { Tarif } from '../../../models/tarif.model';
-import * as moment from 'moment';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { Formule } from 'src/app/models/formule.model';
+import { AuthenticationService } from '../../../services/authentication.service';
+import { Reservation } from '../../../models/reservation.model';
+import { Utilisateur } from '../../../models/user.model';
+import { Payment } from '../../../models/payment.model';
+import { UserService } from '../../../services/user.service';
 
 @Component({
   selector: 'app-reservation-create',
@@ -34,25 +37,29 @@ export class ReservationCreateComponent implements OnInit {
   searchInstance: SearchHotelModel = {} as SearchHotelModel;
   reservationId = 1; // TODO, set reservation id after save data in db
 
+  user: Utilisateur;
   confirmOrder: boolean;
   confirmedCategoryList: HotelCategorie[] = [];
   totalAmount: number = 0;
+  payment: Payment = {} as Payment;
 
   constructor(
+    private authService: AuthenticationService,
+    private userService: UserService,
     private categorieService: CategorieService,
     private bookingService: ReservationService,
     private hotelService: HotelService,
     private tarifService: TarifService,
     private snackBar: MatSnackBar,
+    private router: Router,
     private route: ActivatedRoute) { }
 
-  ngOnInit(): void {
+  async ngOnInit() {
     this.route.paramMap.subscribe(params => {
       this.hotelId = params.get('id');
     });
 
     // TODO: Get hotel rooms
-    console.log(this.hotelId);
     this.hotelService.getHotelById(this.hotelId).then(res => {
       this.hotel = res;
       for (let i = 0; i < this.hotel.nbEtoiles; i++) {
@@ -64,6 +71,14 @@ export class ReservationCreateComponent implements OnInit {
 
     this.hotelService.searchData.subscribe(data => this.searchInstance = data);
     // this.reservationService.participantData.subscribe(data => this.participantList = data);
+
+    if (this.authService.isAuthenticated()) {
+      await this.userService.getUserProfileAsync().then(
+        (data) => {
+          this.user = data;
+        }
+      );
+    }
   }
 
   async getCategory(hotelId: number) {
@@ -124,17 +139,46 @@ export class ReservationCreateComponent implements OnInit {
   /* Booking form appear in the other component */
   OnServiceChanged(formule: Formule)
   {
-    console.log(formule);
+    let numberOfDays = 0;
+    if (this.searchInstance.arrivalDate && this.searchInstance.departureDate) {
+      let diff = Math.abs(this.searchInstance.departureDate.getTime() - this.searchInstance.arrivalDate.getTime());
+      numberOfDays = Math.ceil(diff / (1000 * 3600 * 24));
+    }
+    let totalFormule = numberOfDays * formule.montant;
+    this.totalAmount += totalFormule;
   }
 
   doAction() {
-    this.confirmOrder = !this.confirmOrder;
-  }
+    if (!this.authService.isAuthenticated()) {
+      this.snackBar.open("Veiller vous connecter avant de confirmer la réservation", '', {
+        duration: 5000,
+        verticalPosition: 'top',
+        horizontalPosition: 'right',
+        panelClass: 'snackbar-danger',
+      });
 
-  // saveBookingLater()
-  // {
-  //   this.reservationService.
-  // }
+      return;
+    }
+
+    if (this.searchInstance.arrivalDate && this.searchInstance.departureDate) {
+      this.confirmOrder = !this.confirmOrder;
+      window.scroll(0, 0);
+    } else {
+      this.snackBar.open("Sélectionner une date de départ et une date d'arrivée!", '', {
+        duration: 5000,
+        verticalPosition: 'top',
+        horizontalPosition: 'right',
+        panelClass: 'snackbar-danger',
+      });
+      return;
+    }
+
+    if (this.confirmOrder) {
+      this.payment.amount = this.totalAmount;
+      this.payment.applicationUserId = this.user.id;
+      this.payment.dateReservation = new Date();
+    }
+  }
 
   /**
    * Set the confirmation details
@@ -144,16 +188,11 @@ export class ReservationCreateComponent implements OnInit {
   setConfirmation(categorie: HotelCategorie, quantity: number) {
     categorie.quantity = quantity;
 
-    console.log(this.searchInstance.arrivalDate);
-    console.log(this.searchInstance.departureDate);
-
     let numberOfDays = 0;
     if (this.searchInstance.arrivalDate && this.searchInstance.departureDate)
     {
       let diff = Math.abs(this.searchInstance.departureDate.getTime() - this.searchInstance.arrivalDate.getTime());
       numberOfDays = Math.ceil(diff / (1000 * 3600 * 24));
-
-      console.log(numberOfDays);
     }
 
     let found = false;
@@ -184,55 +223,27 @@ export class ReservationCreateComponent implements OnInit {
     return;
   }
 
-  // createReservation() {
-  //   // Create reservation object
-  //   this.bookingService.insertBooking().subscribe(
-  //     (res: any) => {
-  //       if(res.succeeded)
-  //       {
-  //         this.bookingService.formModel.reset();
-  //         // this.toastr.success('New user created', 'Registration successful !');
-  //         this.snackBar.open('New booking created, Booking successful !', '', {
-  //           duration: 2000,
-  //           verticalPosition: 'top',
-  //           horizontalPosition: 'right',
-  //           panelClass: 'snackbar-success',
-  //         });
-  //         this.dialogRef.close();
-  //       }
-  //       else
-  //       {
-  //         res.errors.forEach(element => {
-  //           switch(element.code)
-  //           {
-  //             case 'DuplicateUserName':
+    /** Create Reservation */
+   createReservation() {
+     // Create reservation object
+     let body: Reservation = {
+       applicationUserId: this.user.id,
+       dateReservation: new Date(),
+       montant: this.totalAmount,
+       etatId: 1
+     };
 
-  //               // Username is already taken
-  //               // this.toastr.error('Username is already taken', 'Registration failed !');
-  //               this.snackBar.open('Booking is already taken, Booking failed !', '', {
-  //                 duration: 2000,
-  //                 verticalPosition: 'top',
-  //                 horizontalPosition: 'right',
-  //                 panelClass: 'snackbar-danger',
-  //               });
-  //               break;
-  //             default:
-  //               // Registration failed
-  //               // this.toastr.error(element.description, 'Registration failed !');
-  //               this.snackBar.open(element.description + ', Booking failed !', '', {
-  //                 duration: 2000,
-  //                 verticalPosition: 'top',
-  //                 horizontalPosition: 'right',
-  //                 panelClass: 'snackbar-danger',
-  //               });
-  //               break;
-  //           }
-  //         });
-  //       }
-  //     },
-  //     err => {
-  //       console.log(err);
-  //     }
-  //   );
-  // }
+     this.bookingService.insertBooking(body).then((result) => {
+         //Route vers confirmation page
+       this.router.navigateByUrl('home/confirm-reservation/' + result.idRes);
+
+     }).catch(() => {
+       this.snackBar.open("Une erreur s'est produit lors de la réservation", '', {
+         duration: 5000,
+         verticalPosition: 'top',
+         horizontalPosition: 'right',
+         panelClass: 'snackbar-danger',
+       });
+     })
+   }
 }

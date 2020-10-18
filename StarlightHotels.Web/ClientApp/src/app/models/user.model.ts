@@ -1,5 +1,6 @@
 export class Utilisateur
 {
+  id?: string;
   userName?: string;
   nom?: string;
   prenom?: string;

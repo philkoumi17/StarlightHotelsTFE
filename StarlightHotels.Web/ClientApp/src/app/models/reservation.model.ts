@@ -1,7 +1,7 @@
 export class Reservation
 {
-  id?: number;
-  utilisateurId?: number;
+  idRes?: number;
+  applicationUserId?: string;
   dateReservation: Date;
   montant: number;
   etatId?: number;

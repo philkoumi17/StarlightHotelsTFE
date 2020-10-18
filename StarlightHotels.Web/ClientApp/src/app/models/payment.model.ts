@@ -1,6 +1,9 @@
 export class Payment
 {
-  orderId: string;
-  amount: string;
+  orderId: number;
+  amount: number;
   shaSign?: string;
+  reservationId?: number;
+  applicationUserId?: string;
+  dateReservation: Date;
 }

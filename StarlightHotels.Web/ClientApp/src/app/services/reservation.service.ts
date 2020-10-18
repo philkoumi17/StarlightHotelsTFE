@@ -55,21 +55,8 @@ export class ReservationService {
     return this.http.get<Service[]>(`${this.baseURI}/Reservation/GetServices`);
   }
 
-  insertBooking()
+  async insertBooking(body: Reservation)
   {
-    let body: Reservation = {
-      utilisateurId: this.formModel.value.utilisateurId,
-      dateReservation: this.formModel.value.dateReservation,
-      montant: this.formModel.value.montant,
-      etatId: this.formModel.value.etatId
-    };
-    console.log(body);
-    console.log(this.baseURI + '/Reservation');
-    this.http.post<Reservation>(this.baseURI + '/Reservation', body).subscribe(data => {
-      return data;
-    },
-    (error: HttpErrorResponse) => {
-      console.log(error.name + ' ' + error.message);
-    });
+    return await this.http.post<Reservation>(this.baseURI + '/Reservation', body).toPromise();
   }
 }

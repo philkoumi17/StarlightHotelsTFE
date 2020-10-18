@@ -6,10 +6,10 @@
         <div class="container">
             <form [formGroup]="searchForm" (ngSubmit)="onSearch()">
                 <div class="row">
-                    <div class="col-sm">
+                    <div class="col-sm" *ngIf="!isRoomSelection">
                         <mat-form-field class="example-full-width mb-3" appearance="outline">
                             <mat-label>Pays</mat-label>
-                            <mat-select formControlName="paysId" #choosedValue (valueChange)="getCities(choosedValue.value)" [disabled]="isRoomSelection">
+                            <mat-select formControlName="paysId" #choosedValue (valueChange)="getCities(choosedValue.value)">
                                 <mat-option [value]="0">
                                     All
                                 </mat-option>
@@ -47,10 +47,10 @@
 
                 <div class="row">
 
-                    <div class="col-sm">
+                    <div class="col-sm" *ngIf="!isRoomSelection">
                         <mat-form-field class="example-full-width mb-3" appearance="outline">
                             <mat-label>Ville</mat-label>
-                            <mat-select formControlName="city" [disabled]="isRoomSelection">
+                            <mat-select formControlName="city">
                                 <mat-option [value]="'all'">
                                     All
                                 </mat-option>

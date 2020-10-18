@@ -6,6 +6,7 @@ import { Pays } from '../../models/pays.model';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { SearchHotelModel } from '../../models/search-hotel.model';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import * as moment from 'moment';
 
 @Component({
   selector: 'app-search',
@@ -16,7 +17,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 export class SearchComponent implements OnInit {
 
   @Input() searchInstance: SearchHotelModel;
-  @Input() isRoomSelection: boolean;
+  @Input() isRoomSelection: boolean = false;
 
   searchForm: FormGroup;
 
@@ -46,10 +47,8 @@ export class SearchComponent implements OnInit {
       }
     );
 
-    if(this.searchInstance)
-    {
-      if(this.searchInstance.paysId)
-      {
+    if (this.searchInstance) {
+      if (this.searchInstance.paysId) {
         this.getCities(this.searchInstance.paysId).then(
           (data) => {
             this.setSearchForm();
@@ -96,18 +95,24 @@ export class SearchComponent implements OnInit {
     this.errorMessage = '';
 
     let searchHotelModel: SearchHotelModel = this.searchForm.getRawValue();
+    if (moment(searchHotelModel.arrivalDate).isAfter(searchHotelModel.departureDate)) {
+      this.snackBar.open("La date de départ ne peut pas être inférieur à la date d'arrivée !", '', {
+          duration: 5000,
+          verticalPosition: 'top',
+          horizontalPosition: 'right',
+          panelClass: 'snackbar-danger',
+      });
+      return;
+    }
 
-    await this.service.searchHotels(searchHotelModel).then(
+    await this.service.searchHotels(searchHotelModel, this.isRoomSelection).then(
       (data) => {
         this.service.setHotel(data);
-        this.router.navigateByUrl('home/hotel-search');
+        if (!this.isRoomSelection) {
+          this.router.navigateByUrl('home/hotel-search');
+        }
       }).catch(() => {
-        //this.snackBar.open("La date de départ ne peut pas être inférieur à la date d'arrivée !", '', {
-        //  duration: 5000,
-        //  verticalPosition: 'top',
-        //  horizontalPosition: 'right',
-        //  panelClass: 'snackbar-danger',
-        //});
+        
       });
   }
 }

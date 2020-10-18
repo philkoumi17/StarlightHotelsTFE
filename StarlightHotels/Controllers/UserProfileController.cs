@@ -35,6 +35,7 @@ namespace StarlightHotels.API.Controllers
 
             var userM = new AccountViewModel()
             {
+                Id = user.Id,
                 Nom = user.Nom,
                 Prenom = user.Prenom,
                 DateNaissance = user.DateNaissance,

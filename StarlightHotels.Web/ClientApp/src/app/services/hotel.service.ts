@@ -28,7 +28,7 @@ export class HotelService
   hotelData = this.hotelBehavior.asObservable();
 
   searchInstance: SearchHotelModel = {} as SearchHotelModel;
-  private searchBehavior = new BehaviorSubject<SearchHotelModel>(this.searchInstance);
+  searchBehavior = new BehaviorSubject<SearchHotelModel>(this.searchInstance);
   searchData = this.searchBehavior.asObservable();
 
 
@@ -148,9 +148,12 @@ export class HotelService
   /**
    * Search for hotels
    */
-  async searchHotels(searchHotelModel: SearchHotelModel)
+  async searchHotels(searchHotelModel: SearchHotelModel, isRoomSelection?: boolean)
   {
     this.searchBehavior.next(searchHotelModel);
+    if (isRoomSelection) {
+      return; //do not search for hotel
+    }
     return await this.http.post<Hotel[]>(this.baseURI + '/Hotel/SearchHotels', searchHotelModel).toPromise();
   }
 
