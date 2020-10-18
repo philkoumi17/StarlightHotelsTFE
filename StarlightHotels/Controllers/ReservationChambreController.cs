@@ -17,7 +17,7 @@ namespace StarlightHotels.API.Controllers
             _context = context;
         }
 
-        // GET: api/ChambreReservee
+        // GET: api/ReservationChambre
         [HttpGet]
         [Route("GetChambreReservees")]
         public async Task<ActionResult<IEnumerable<ChambreReserveeModel>>> GetChambreReservees()
@@ -25,7 +25,7 @@ namespace StarlightHotels.API.Controllers
             return await _context.ChambreReservees.ToListAsync();
         }
 
-        // GET: api/ChambreReservee/5
+        // GET: api/ReservationChambre/5
         [HttpGet("{id}")]
         public async Task<ActionResult<ChambreReserveeModel>> GetChambreReservee(int id)
         {
@@ -39,7 +39,7 @@ namespace StarlightHotels.API.Controllers
             return chRes;
         }
 
-        // PUT: api/ChambreReservee/5
+        // PUT: api/ReservationChambre/5
         [HttpPut("{id}")]
         public async Task<IActionResult> PutChambreReservee(int id, ChambreReserveeModel chRes)
         {
@@ -69,7 +69,7 @@ namespace StarlightHotels.API.Controllers
             return NoContent();
         }
 
-        // POST: api/Hotel
+        // POST: api/ReservationChambre
         // To protect from overposting attacks, enable the specific properties you want to bind to, for
         // more details, see https://go.microsoft.com/fwlink/?linkid=2123754.
         [HttpPost]

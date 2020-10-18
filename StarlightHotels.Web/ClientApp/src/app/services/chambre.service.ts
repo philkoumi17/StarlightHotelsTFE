@@ -2,6 +2,7 @@ import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 import { Chambre } from '../models/chambre.model';
+import { ReservationChambre } from '../models/reservationChambre.model';
 
 @Injectable({
   providedIn: 'root'
@@ -32,5 +33,9 @@ export class ChambreService {
   async getChambreByNum(numChambre)
   {
     return await this.http.get<Chambre>(this.baseURI + '/Chambre/' + numChambre).toPromise();
+  }
+
+  async insertRoom(room: ReservationChambre) {
+    return await this.http.post<ReservationChambre>(this.baseURI + '/ReservationChambre', room).toPromise();
   }
 }

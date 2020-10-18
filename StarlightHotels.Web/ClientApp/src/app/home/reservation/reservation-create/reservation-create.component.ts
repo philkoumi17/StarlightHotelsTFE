@@ -17,6 +17,8 @@ import { Reservation } from '../../../models/reservation.model';
 import { Utilisateur } from '../../../models/user.model';
 import { Payment } from '../../../models/payment.model';
 import { UserService } from '../../../services/user.service';
+import { ChambreService } from '../../../services/chambre.service';
+import { ReservationChambre } from '../../../models/reservationChambre.model';
 
 @Component({
   selector: 'app-reservation-create',
@@ -42,12 +44,14 @@ export class ReservationCreateComponent implements OnInit {
   confirmedCategoryList: HotelCategorie[] = [];
   totalAmount: number = 0;
   payment: Payment = {} as Payment;
+  selectedformule: Formule = {};
 
   constructor(
     private authService: AuthenticationService,
     private userService: UserService,
     private categorieService: CategorieService,
     private bookingService: ReservationService,
+    private chambreService: ChambreService,
     private hotelService: HotelService,
     private tarifService: TarifService,
     private snackBar: MatSnackBar,
@@ -139,12 +143,13 @@ export class ReservationCreateComponent implements OnInit {
   /* Booking form appear in the other component */
   OnServiceChanged(formule: Formule)
   {
+    this.selectedformule = formule;
     let numberOfDays = 0;
     if (this.searchInstance.arrivalDate && this.searchInstance.departureDate) {
       let diff = Math.abs(this.searchInstance.departureDate.getTime() - this.searchInstance.arrivalDate.getTime());
       numberOfDays = Math.ceil(diff / (1000 * 3600 * 24));
     }
-    let totalFormule = numberOfDays * formule.montant;
+    let totalFormule = numberOfDays * this.selectedformule.montant;
     this.totalAmount += totalFormule;
   }
 
@@ -233,9 +238,26 @@ export class ReservationCreateComponent implements OnInit {
        etatId: 1
      };
 
+     
+
      this.bookingService.insertBooking(body).then((result) => {
+
+       let room: ReservationChambre = {
+         nbAdultes: this.searchInstance.totalAdult,
+         nbEnfants: this.searchInstance.totalChildren,
+         dateArrivee: this.searchInstance.arrivalDate,
+         dateDepart: this.searchInstance.departureDate,
+         litSupplementaire: false,
+         montantTotal: this.totalAmount,
+         formuleId: this.selectedformule.id,
+         //chambreId: 
+         reservationId: result.idRes,
+       };
+
+       this.chambreService.insertRoom(room).then((room) => {
          //Route vers confirmation page
-       this.router.navigateByUrl('home/confirm-reservation/' + result.idRes);
+         this.router.navigateByUrl('home/confirm-reservation/' + result.idRes);
+       })
 
      }).catch(() => {
        this.snackBar.open("Une erreur s'est produit lors de la réservation", '', {
