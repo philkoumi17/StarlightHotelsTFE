@@ -44,7 +44,7 @@ export class ReservationCreateComponent implements OnInit {
   confirmedCategoryList: HotelCategorie[] = [];
   totalAmount: number = 0;
   payment: Payment = {} as Payment;
-  selectedformule: Formule = {};
+  selectedformule: Formule = {} as Formule;
 
   constructor(
     private authService: AuthenticationService,
