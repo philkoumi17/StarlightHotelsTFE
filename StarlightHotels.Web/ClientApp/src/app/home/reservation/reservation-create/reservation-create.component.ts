@@ -249,8 +249,6 @@ export class ReservationCreateComponent implements OnInit {
        etatId: 1
      };
 
-
-
      this.bookingService.insertBooking(body).then((result) => {
        let room: ReservationChambre = {
          nbAdultes: this.searchInstance.totalAdult,
@@ -260,13 +258,19 @@ export class ReservationCreateComponent implements OnInit {
          litSupplementaire: false,
          montantTotal: this.totalAmount,
          formuleId: this.selectedformule.id,
-         // chambreId:
+         chambreId: 1,
          reservationId: result.idRes,
        };
 
        this.chambreService.insertRoom(room).then((room) => {
          // Route vers confirmation page
-         this.router.navigateByUrl('home/confirm-reservation/' + result.idRes);
+         this.router.navigateByUrl('home/book-hotel/confirmed/' + result.idRes);
+         this.snackBar.open("Merci pour la réservation", '', {
+          duration: 5000,
+          verticalPosition: 'top',
+          horizontalPosition: 'right',
+          panelClass: 'snackbar-success',
+         });
        });
 
      }).catch(() => {

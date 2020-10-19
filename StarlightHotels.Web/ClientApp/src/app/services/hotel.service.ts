@@ -71,6 +71,10 @@ export class HotelService
     });
   }
 
+  async getHotels() {
+    return await this.http.get<Hotel[]>(`${this.baseURI}/Hotel/GetHotels`).toPromise();
+  }
+
   getCountries(): Observable<Pays[]>
   {
     return this.http.get<Pays[]>(`${this.baseURI}/Hotel/GetCountries`);

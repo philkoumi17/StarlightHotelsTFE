@@ -4,7 +4,7 @@
     <div class="container-fluid">
         <div class="row clearfix">
             <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-                <div class="card">
+                <div class="card" id="invoice">
                     <div class="body">
                         <div class="row">
                             <div class="col-md-12">
@@ -109,7 +109,7 @@
                                             <div class="clearfix"></div>
                                             <hr>
                                             <div class="text-right">
-                                                <button class="btn btn-primary"><i
+                                                <button class="btn btn-primary" style="margin-right: auto;" (click)="download()"><i
                                                         class="fas fa-print mr-2"></i> Télécharger</button>
                                                 <button class="btn btn-warning"><i class="far fa-stop-circle"></i> Annuler</button>
                                             </div>

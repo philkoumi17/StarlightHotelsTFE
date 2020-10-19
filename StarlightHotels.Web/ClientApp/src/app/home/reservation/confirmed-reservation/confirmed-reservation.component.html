@@ -3,7 +3,7 @@
 <h1>Réservation n° 1635</h1>
 
 <div class="container">
-    <h1 class="my-5">Votre réservation (n°1635)</h1>
+    <h1 class="my-5">Votre réservation est enregistré</h1>
 
     <div class="alert alert-success">
         <h4 class="alert-heading">Bravo !</h4>
@@ -13,7 +13,7 @@
                     <a>Starlight Hotels</a>
                 </strong> pour le séjour
             <strong>
-                    <a>Hotel</a>
+                    <a>{{hotel.nom}}</a>
                 </strong> a bien été prise en compte !
         </p>
     </div>
@@ -37,7 +37,7 @@
 
                 <hr>
 
-                <h2 class="alert-heading">Votre hôte</h2>
+                <h2 class="alert-heading">Vos informations</h2>
 
                 <div class="row mb-3">
                     <div class="col-3">
@@ -45,34 +45,24 @@
                     </div>
                     <div class="col-9">
                         <h4>
-                            <a href="">Philippe Koumi</a>
+                            <a href="">{{ user.fullName }}</a>
                         </h4>
-
-                        <span class="badge badge-primary"> annonces</span>
                     </div>
                 </div>
-
-
-                <a href="" class="btn btn-primary">Plus d'infos sur le client</a>
-            </div>
-
-            <div class="alert alert-light" id="comment">
-                <h2 class="alert-heading">Votre avis compte !</h2>
-                <blockquote>
-                    Description complète
-                </blockquote>
+                <br>
+                <a href="/home/user/user-detail" class="btn btn-primary">Plus d'infos sur le client</a>
             </div>
         </div>
         <div class="col">
             <div class="alert alert-light">
-                <h2 class="alert-heading">Votre hébergement</h2>
+                <h2 class="alert-heading">Votre séjour</h2>
 
                 <h4>
-                    <a href="">Name of the hotel</a>
+                    <a>{{hotel.nom}}</a>
                 </h4>
 
-                <img src="" alt="Image de" class="img-fluid">
-
+                <img src="http://placehold.it/50x50" alt="Image de" class="img-fluid">
+                <br>
                 <a href="" class="btn btn-primary">Plus d'informations</a>
             </div>
         </div>
