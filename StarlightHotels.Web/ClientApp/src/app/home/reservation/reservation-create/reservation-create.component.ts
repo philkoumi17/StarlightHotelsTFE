@@ -66,7 +66,8 @@ export class ReservationCreateComponent implements OnInit {
     // TODO: Get hotel rooms
     this.hotelService.getHotelById(this.hotelId).then(res => {
       this.hotel = res;
-      for (let i = 0; i < this.hotel.nbEtoiles; i++) {
+      for (let i = 0; i < this.hotel.nbEtoiles; i++)
+      {
         this.stars.push(i);
       }
     });
@@ -76,7 +77,8 @@ export class ReservationCreateComponent implements OnInit {
     this.hotelService.searchData.subscribe(data => this.searchInstance = data);
     // this.reservationService.participantData.subscribe(data => this.participantList = data);
 
-    if (this.authService.isAuthenticated()) {
+    if (this.authService.isAuthenticated())
+    {
       await this.userService.getUserProfileAsync().then(
         (data) => {
           this.user = data;
@@ -98,7 +100,8 @@ export class ReservationCreateComponent implements OnInit {
 
         this.tarifList.forEach(tarif => {
           this.hotelCategoryList.forEach(hotelcategorie => {
-            if (tarif.id === hotelcategorie.categorieId) {
+            if (tarif.id === hotelcategorie.categorieId)
+            {
               hotelcategorie.prix = tarif.prix;
             }
           });
@@ -109,7 +112,8 @@ export class ReservationCreateComponent implements OnInit {
     this.categoryList.forEach(obj => {
       this.hotelCategoryList.forEach(hotelcategorie => {
         // another loop
-        if (obj.id === hotelcategorie.categorieId) {
+        if (obj.id === hotelcategorie.categorieId)
+        {
           this.joinedcategory = {
             categorieId: hotelcategorie.categorieId,
             descriptif: obj.descriptif,
@@ -132,7 +136,8 @@ export class ReservationCreateComponent implements OnInit {
     else if (this.participantList.length < value)
     {
       // tslint:disable-next-line: variable-name
-      for (let _i = this.participantList.length; _i < value; _i++) {
+      for (let _i = this.participantList.length; _i < value; _i++)
+      {
         let participant: Participant = {} as Participant;
         this.participantList.push(participant);
       }
@@ -145,7 +150,8 @@ export class ReservationCreateComponent implements OnInit {
   {
     this.selectedformule = formule;
     let numberOfDays = 0;
-    if (this.searchInstance.arrivalDate && this.searchInstance.departureDate) {
+    if (this.searchInstance.arrivalDate && this.searchInstance.departureDate)
+    {
       let diff = Math.abs(this.searchInstance.departureDate.getTime() - this.searchInstance.arrivalDate.getTime());
       numberOfDays = Math.ceil(diff / (1000 * 3600 * 24));
     }
@@ -154,8 +160,9 @@ export class ReservationCreateComponent implements OnInit {
   }
 
   doAction() {
-    if (!this.authService.isAuthenticated()) {
-      this.snackBar.open("Veiller vous connecter avant de confirmer la réservation", '', {
+    if (!this.authService.isAuthenticated())
+    {
+      this.snackBar.open("Veuiller vous connecter avant de confirmer la réservation", '', {
         duration: 5000,
         verticalPosition: 'top',
         horizontalPosition: 'right',
@@ -165,10 +172,13 @@ export class ReservationCreateComponent implements OnInit {
       return;
     }
 
-    if (this.searchInstance.arrivalDate && this.searchInstance.departureDate) {
+    if (this.searchInstance.arrivalDate && this.searchInstance.departureDate)
+    {
       this.confirmOrder = !this.confirmOrder;
       window.scroll(0, 0);
-    } else {
+    }
+    else
+    {
       this.snackBar.open("Sélectionner une date de départ et une date d'arrivée!", '', {
         duration: 5000,
         verticalPosition: 'top',
@@ -178,7 +188,8 @@ export class ReservationCreateComponent implements OnInit {
       return;
     }
 
-    if (this.confirmOrder) {
+    if (this.confirmOrder)
+    {
       this.payment.amount = this.totalAmount;
       this.payment.applicationUserId = this.user.id;
       this.payment.dateReservation = new Date();
@@ -238,10 +249,9 @@ export class ReservationCreateComponent implements OnInit {
        etatId: 1
      };
 
-     
+
 
      this.bookingService.insertBooking(body).then((result) => {
-
        let room: ReservationChambre = {
          nbAdultes: this.searchInstance.totalAdult,
          nbEnfants: this.searchInstance.totalChildren,
@@ -250,22 +260,22 @@ export class ReservationCreateComponent implements OnInit {
          litSupplementaire: false,
          montantTotal: this.totalAmount,
          formuleId: this.selectedformule.id,
-         //chambreId: 
+         // chambreId:
          reservationId: result.idRes,
        };
 
        this.chambreService.insertRoom(room).then((room) => {
-         //Route vers confirmation page
+         // Route vers confirmation page
          this.router.navigateByUrl('home/confirm-reservation/' + result.idRes);
-       })
+       });
 
      }).catch(() => {
-       this.snackBar.open("Une erreur s'est produit lors de la réservation", '', {
+       this.snackBar.open("Une erreur s'est produite lors de la réservation", '', {
          duration: 5000,
          verticalPosition: 'top',
          horizontalPosition: 'right',
          panelClass: 'snackbar-danger',
        });
-     })
+     });
    }
 }

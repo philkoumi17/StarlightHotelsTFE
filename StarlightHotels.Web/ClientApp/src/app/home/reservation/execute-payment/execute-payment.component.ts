@@ -38,7 +38,7 @@ export class ExecutePaymentComponent implements OnInit {
 
     await this.bookingService.insertBooking(body).then((result) => {
       this.payment.orderId = result.idRes;
-      //Route vers confirmation page
+      // Route vers confirmation page
       this.form.nativeElement.submit();
 
     }).catch(() => {
@@ -48,7 +48,6 @@ export class ExecutePaymentComponent implements OnInit {
         horizontalPosition: 'right',
         panelClass: 'snackbar-danger',
       });
-    })
+    });
   }
-
 }

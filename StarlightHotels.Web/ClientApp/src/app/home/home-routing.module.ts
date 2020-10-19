@@ -28,7 +28,7 @@ const routes: Routes = [
   { path: 'home/book-hotel/:id', component: ReservationCreateComponent },
   { path: 'home/confirm-reservation/:id', component: ReservationConfirmationComponent },
   { path: 'home/book-hotel/detailTarif/:id', component: ReservationDetailTarifComponent },
-  { path: 'home/book-hotel/confirmed', component: ConfirmedReservationComponent },
+  { path: 'home/book-hotel/confirmed/:id', component: ConfirmedReservationComponent },
   { path: 'home/contact', component: ContactComponent },
   { path: 'home/user', component: UserComponent },
   { path: 'home/user/registration', component: RegistrationComponent },
