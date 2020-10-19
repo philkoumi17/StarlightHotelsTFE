@@ -102,7 +102,8 @@ import { BookingFormComponent } from './reservation/booking-form/booking-form.co
     ReservationCreateComponent,
     ReservationDetailComponent,
     ReservationConfirmationComponent,
-    ConfirmedReservationComponent
+    ConfirmedReservationComponent,
+    FactureComponent
   ],
   schemas: [
     CUSTOM_ELEMENTS_SCHEMA,

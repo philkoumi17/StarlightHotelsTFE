@@ -14,6 +14,8 @@ import { LoginComponent } from './user/login/login.component';
 import { HotelDetailComponent } from './hotel-detail/hotel-detail.component';
 import { ForbiddenComponent } from './forbidden/forbidden.component';
 import { ConfirmedReservationComponent } from './reservation/confirmed-reservation/confirmed-reservation.component';
+import { ReservationDetailComponent } from './reservation/reservation-detail/reservation-detail.component';
+import { FactureComponent } from './facture/facture.component';
 
 const routes: Routes = [
   {
@@ -27,6 +29,7 @@ const routes: Routes = [
   { path: 'home/list-of-bookings', component: ReservationComponent },
   { path: 'home/book-hotel/:id', component: ReservationCreateComponent },
   { path: 'home/confirm-reservation/:id', component: ReservationConfirmationComponent },
+  { path: 'home/book-hotel/detailBooking/:id', component: ReservationDetailComponent },
   { path: 'home/book-hotel/detailTarif/:id', component: ReservationDetailTarifComponent },
   { path: 'home/book-hotel/confirmed/:id', component: ConfirmedReservationComponent },
   { path: 'home/contact', component: ContactComponent },
@@ -34,7 +37,8 @@ const routes: Routes = [
   { path: 'home/user/registration', component: RegistrationComponent },
   { path: 'home/user/login', component: LoginComponent },
   { path: 'home/user/user-detail', component: UserDetailComponent },
-  { path: 'forbidden', component: ForbiddenComponent }
+  { path: 'forbidden', component: ForbiddenComponent },
+  { path: 'home/invoice', component: FactureComponent }
 ];
 @NgModule({
   imports: [RouterModule.forChild(routes)],

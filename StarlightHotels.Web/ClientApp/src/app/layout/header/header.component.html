@@ -41,10 +41,10 @@
                                         </span>
                                         <span class="menu-info">
                                           <span class="menu-title">{{notification.userName}}</span>
-                                          <span class="menu-desc">
+                                        <span class="menu-desc">
                                             <i class="material-icons">access_time</i> {{notification.time}}
                                           </span>
-                                          <span class="menu-desc">{{notification.message}}</span>
+                                        <span class="menu-desc">{{notification.message}}</span>
                                         </span>
                                     </a>
                                 </li>
@@ -79,7 +79,7 @@
                                     </a>
                                 </li>
                                 <li>
-                                    <a routerLink="/authentication/signin" onClick="return false;">
+                                    <a routerLink="/authentication/signin" (click)="onLogout()">
                                         <mat-icon aria-hidden="false" class="mr-2 ">power_settings_new
                                         </mat-icon>Logout
                                     </a>

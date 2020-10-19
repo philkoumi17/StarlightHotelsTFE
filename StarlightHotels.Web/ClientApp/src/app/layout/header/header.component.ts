@@ -9,6 +9,7 @@ import {
 } from '@angular/core';
 import { RightSidebarService } from '../../shared/services/rightsidebar.service';
 import { ConfigService } from '../../shared/services/config.service';
+import { Router } from '@angular/router';
 const document: any = window.document;
 
 @Component({
@@ -23,6 +24,7 @@ export class HeaderComponent implements OnInit, AfterViewInit {
   constructor(
     // tslint:disable-next-line: no-shadowed-variable
     @Inject(DOCUMENT) private document: Document,
+    private router: Router,
     private renderer: Renderer2,
     public elementRef: ElementRef,
     private dataService: RightSidebarService,
@@ -163,5 +165,11 @@ export class HeaderComponent implements OnInit, AfterViewInit {
       (this.dataService.currentStatus._isScalar = !this.dataService
         .currentStatus._isScalar)
     );
+  }
+
+  onLogout()
+  {
+    localStorage.removeItem('token');
+    this.router.navigateByUrl('/home');
   }
 }
