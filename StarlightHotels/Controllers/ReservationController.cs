@@ -99,5 +99,13 @@ namespace StarlightHotels.API.Controllers
         {
             return await _context.Services.ToListAsync();
         }
+
+        // GET: api/Reservation/GetEtats
+        [HttpGet]
+        [Route("GetEtats")]
+        public async Task<ActionResult<IEnumerable<EtatModel>>> GetEtats()
+        {
+            return await _context.Etats.ToListAsync();
+        }
     }
 }

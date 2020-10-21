@@ -3,6 +3,8 @@ import { HotelService } from '../../services/hotel.service';
 import { TarifService } from '../../services/tarif.service';
 import { Hotel } from '../../models/hotel.model';
 import { Tarif } from '../../models/tarif.model';
+import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
+import { HotelDetailComponent } from '../hotel-detail/hotel-detail.component';
 
 @Component({
   selector: 'app-promoandtoplist',
@@ -16,7 +18,7 @@ export class PromoandtoplistComponent implements OnInit {
   hotelsTopList: Hotel[] = [];
   lowest = 9999999;
 
-  constructor(private hotelService: HotelService, private tarifService: TarifService) {
+  constructor(private hotelService: HotelService, private tarifService: TarifService, public dialog: MatDialog) {
     this.hotelService.getAllPromotedHotels().then(res => {
       this.hotelsList = res;
       this.hotelsList.forEach(h => {
@@ -63,5 +65,43 @@ export class PromoandtoplistComponent implements OnInit {
     // await this.hotelService.getAllHotelDetails().then((data) => {
     //   console.log(data);
     // });
+  }
+
+  openDialogHotelDetail(data)
+  {
+    // tslint:disable-next-line: no-debugger
+    debugger;
+    const dialogConfig = new MatDialogConfig();
+    dialogConfig.disableClose = true;
+    dialogConfig.autoFocus = true;
+    dialogConfig.position = {
+        top: '100px',
+        left: '500px'
+    };
+    dialogConfig.width = '500px';
+    dialogConfig.height = '500px';
+    dialogConfig.data = {
+        id: data.id
+    };
+    this.dialog.open(HotelDetailComponent, dialogConfig);
+  }
+
+  openDialogHotelDetailTop(data)
+  {
+    // tslint:disable-next-line: no-debugger
+    debugger;
+    const dialogConfig = new MatDialogConfig();
+    dialogConfig.disableClose = true;
+    dialogConfig.autoFocus = true;
+    dialogConfig.position = {
+        top: '100px',
+        left: '500px'
+    };
+    dialogConfig.width = '500px';
+    dialogConfig.height = '500px';
+    dialogConfig.data = {
+        id: data.id
+    };
+    this.dialog.open(HotelDetailComponent, dialogConfig);
   }
 }

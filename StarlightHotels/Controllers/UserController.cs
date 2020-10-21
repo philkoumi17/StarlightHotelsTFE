@@ -36,5 +36,14 @@ namespace StarlightHotels.API.Controllers
         {
             return await _context.ApplicationUsers.ToListAsync();
         }
+
+        // Return the list of user's bookings
+        // Get: api/User/GetReservations/id
+        [HttpGet]
+        [Route("GetReservations/{resId}")]
+        public async Task<ActionResult<IEnumerable<ReservationModel>>> GetReservations(int resId)
+        {
+            return await _context.Reservations.Where(res => res.IdRes == resId).ToListAsync();
+        }
     }
 }

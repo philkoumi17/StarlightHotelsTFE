@@ -1,3 +1,5 @@
+import { Reservation } from './reservation.model';
+
 export class ReservationChambre
 {
   idResCh?: number;
@@ -10,4 +12,5 @@ export class ReservationChambre
   formuleId?: number;
   chambreId?: number;
   reservationId?: number;
+  reservations?: Reservation[];
 }

@@ -19,6 +19,7 @@ import { Payment } from '../../../models/payment.model';
 import { UserService } from '../../../services/user.service';
 import { ChambreService } from '../../../services/chambre.service';
 import { ReservationChambre } from '../../../models/reservationChambre.model';
+import { Chambre } from 'src/app/models/chambre.model';
 
 @Component({
   selector: 'app-reservation-create',
@@ -40,6 +41,7 @@ export class ReservationCreateComponent implements OnInit {
   reservationId = 1; // TODO, set reservation id after save data in db
 
   user: Utilisateur;
+  chambre: Chambre;
   confirmOrder: boolean;
   confirmedCategoryList: HotelCategorie[] = [];
   totalAmount: number = 0;
@@ -258,7 +260,7 @@ export class ReservationCreateComponent implements OnInit {
          litSupplementaire: false,
          montantTotal: this.totalAmount,
          formuleId: this.selectedformule.id,
-         chambreId: 1,
+         chambreId: this.chambre.id,
          reservationId: result.idRes,
        };
 

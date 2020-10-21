@@ -1,3 +1,5 @@
+import { Reservation } from './reservation.model';
+
 export class Utilisateur
 {
   id?: string;
@@ -16,4 +18,5 @@ export class Utilisateur
   password?: string;
   phoneNumber?: string;
   role?: string;
+  reservations?: Reservation[];
 }

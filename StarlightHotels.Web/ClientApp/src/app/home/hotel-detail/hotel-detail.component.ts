@@ -3,6 +3,8 @@ import { Pays } from 'src/app/models/pays.model';
 import { HotelDetail } from 'src/app/models/hotel-detail.model';
 import { HotelService } from 'src/app/services/hotel.service';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { Hotel } from 'src/app/models/hotel.model';
+import { HotelSearchComponent } from '../hotel-search/hotel-search.component';
 
 @Component({
   selector: 'app-hotel-detail',
@@ -12,25 +14,30 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 })
 
 export class HotelDetailComponent implements OnInit {
+  hotel: Hotel;
   hotelDetails: HotelDetail;
   allCountries: Pays[];
   edit: boolean;
 
-  constructor(private service: HotelService, private dialogRef: MatDialogRef<HotelDetailComponent>,
+  constructor(private service: HotelService, private dialogRef: MatDialogRef<HotelSearchComponent>,
               @Inject(MAT_DIALOG_DATA) public data: any)
   {
     // this.id = data.Id;
   }
 
   ngOnInit(): void {
-    this.service.detailsHotel(this.data.id).then(result => {
-      this.hotelDetails = result;
+    this.service.getHotelById(this.data.id).then(result => {
+      // tslint:disable-next-line: triple-equals
+      this.hotel = result;
     });
-    this.service.getCountries().subscribe(
-      (data) => {
-        this.allCountries = data;
-      }
-    );
+    // this.service.detailsHotel(this.data.id).then(result => {
+    //   this.hotelDetails = result;
+    // });
+    // this.service.getCountries().subscribe(
+    //   (data) => {
+    //     this.allCountries = data;
+    //   }
+    // );
   }
 
   editHotel()

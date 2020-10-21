@@ -4,13 +4,14 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Utilisateur } from '../models/user.model';
 import { Pays } from '../models/pays.model';
 import { Observable } from 'rxjs';
+import { Reservation } from '../models/reservation.model';
 
 @Injectable({
   providedIn: 'root'
 })
 export class UserService
 {
-  readonly BaseURI = 'https://localhost:44315/api';
+  readonly baseURI = 'https://localhost:44315/api';
   constructor(private fb: FormBuilder, private http: HttpClient) { }
 
   formModel = this.fb.group({
@@ -66,26 +67,31 @@ export class UserService
       phoneNumber: this.formModel.value.phoneNumber
     };
 
-    return this.http.post(this.BaseURI + '/Account/Register', body);
+    return this.http.post(this.baseURI + '/Account/Register', body);
   }
 
   login(formData)
   {
-    return this.http.post(this.BaseURI + '/Account/Login', formData);
+    return this.http.post(this.baseURI + '/Account/Login', formData);
   }
 
   getUserProfile()
   {
-    return this.http.get<Utilisateur>(this.BaseURI + '/UserProfile');
+    return this.http.get<Utilisateur>(this.baseURI + '/UserProfile');
   }
 
   getUserProfileAsync()
   {
-    console.log(this.BaseURI + '/UserProfile');
-    return this.http.get<Utilisateur>(this.BaseURI + '/UserProfile').toPromise();
+    console.log(this.baseURI + '/UserProfile');
+    return this.http.get<Utilisateur>(this.baseURI + '/UserProfile').toPromise();
   }
 
   getAllCountries(): Observable<Pays[]> {
-    return this.http.get<Pays[]>(`${this.BaseURI}/Account/GetAllCountries`);
+    return this.http.get<Pays[]>(`${this.baseURI}/Account/GetAllCountries`);
+  }
+
+  getBookings(reservationId: number)
+  {
+    return this.http.get<Reservation[]>(this.baseURI + '/User/GetReservations/' + reservationId).toPromise();
   }
 }

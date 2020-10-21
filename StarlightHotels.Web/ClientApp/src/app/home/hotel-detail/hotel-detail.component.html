@@ -1,103 +1,73 @@
-<div class="row">
-    <h1 class="page-header" style="color: #B7003D">
-        {{ hotelDetails.hotelInfos.nom }} - {{ hotelDetails.hotelInfos.ville }}, {{ hotelDetails.hotelInfos.paysId }}
-        <div class="small" style="color: #EFD807">
-            <i class="fas fa-star"></i> {{ hotelDetails.hotelInfos.nbEtoiles }}
-        </div>
-    </h1>
-
-    <div id="etoiles"></div>
-</div>
-
-<div class="card">
-    <div class="card-header">
-        <h3 class="card-title text-center"><i class="fas fa-map-pin"></i> DESCRIPTION GENERALE</h3>
-    </div>
-    <div class="card-body" style="font-size: large;">
-        {{ hotelDetails.hotelInfos.description }}
-    </div>
-</div>
-<div class="card">
-    <div class="card-header">
-        <h3 class="card-title text-center"><i class="far fa-list-alt"></i> PLUS DE DETAILS</h3>
-    </div>
-    <div class="card-body text-center">
-        <table class="table-striped table-bordered col-lg-12 text-center" style="font-size: large; padding: 15px">
+<div class="container">
+    <mat-dialog-content>
+        <mat-toolbar color="accent" style="background-color:darkblue;">
+            Hotel details
+        </mat-toolbar>
+        <br>
+        <table class="table" *ngIf="hotel">
             <tr>
-                <td>Nombre de chambres :</td>
-                <td> {{ hotelDetails.hotelInfos.nbChambres }}</td>
+                <th> Nom </th>
+                <td> {{hotel.nom}} </td>
             </tr>
             <tr>
-                <td>Telephone :</td>
-                <td><i class="fas fa-phone-alt"></i> {{ hotelDetails.hotelInfos.telephone }}</td>
+                <th> Nombre d'étoiles </th>
+                <td> {{hotel.nbEtoiles}} </td>
             </tr>
             <tr>
-                <td>Adresse :</td>
-                <td>{{ hotelDetails.hotelInfos.adresse }} + {{ hotelDetails.hotelInfos.codePostal }}, {{ hotelDetails.hotelInfos.ville}} - {{ hotelDetails.hotelInfos.paysId }}</td>
+                <th> Nombre de chambres </th>
+                <td> {{hotel.nbChambres}} </td>
             </tr>
             <tr>
-                <td>Check-in:</td>
-                <td><i class="far fa-clock"></i> {{ hotelDetails.hotelInfos.checkIn }} </td>
+                <th> Description </th>
+                <td> {{hotel.description}} </td>
             </tr>
             <tr>
-                <td>Check-out:</td>
-                <td><i class="far fa-clock"></i> {{ hotelDetails.hotelInfos.checkOut }}</td>
+                <th> Adresse </th>
+                <td> {{hotel.adresse}} </td>
             </tr>
             <tr>
-                <td>Formules :</td>
-                <td>{{ hotelDetails.hotelFormules }}</td>
+                <th> Code postal </th>
+                <td> {{hotel.codePostal}} </td>
             </tr>
             <tr>
-                <td>Type de chambres :</td>
-                <td>{{ hotelDetails.hotelCategories }}</td>
+                <th> Ville </th>
+                <td> {{hotel.ville}} </td>
             </tr>
             <tr>
-                <td>Thèmes de l'hotel :</td>
-                <td>{{ hotelDetails.hotelThemes }}</td>
+                <th> Pays </th>
+                <td> {{hotel.pays}} </td>
             </tr>
             <tr>
-                <td>Services payants :</td>
-                <td>{{ hotelDetails.hotelServicesNoFree }}</td>
+                <th> Téléphone </th>
+                <td> {{hotel.telephone}} </td>
             </tr>
             <tr>
-                <td>Services gratuits offerts :</td>
-                <td>{{ hotelDetails.hotelServicesFree }}</td>
+                <th> Avec promotion </th>
+                <td> {{hotel.enPromotion}} </td>
+            </tr>
+            <tr>
+                <th> Top destination </th>
+                <td> {{hotel.topDestination}} </td>
+            </tr>
+            <tr>
+                <th> Actif </th>
+                <td> {{hotel.actif}} </td>
+            </tr>
+            <tr>
+                <th> Coefficient </th>
+                <td> {{hotel.coefficient}} </td>
+            </tr>
+            <tr>
+                <th> Check-In </th>
+                <td> {{hotel.checkIn | date}} </td>
+            </tr>
+            <tr>
+                <th> Check-Out </th>
+                <td> {{hotel.checkOut | date}} </td>
             </tr>
         </table>
-    </div>
-</div>
-<div class="card">
-    <div class="card-header">
-        <h3 class="card-title text-center"><i class="fas fa-images"></i> GALERIE D'IMAGES</h3>
-    </div>
-    <div class="card-body">
-        <div id="myCarousel" class="carousel slide" data-ride="carousel">
-            <!-- Wrapper for slides -->
-            <div class="carousel-inner">
-                <div class="item active">
-                    <img src="#" />
-                </div>
-                <div class="item">
-                    <img src="#" />
-                </div>
-            </div>
-
-            <!-- Left and right controls -->
-            <a class="carousel-control-prev" href="#carousel-example-1z" role="button" data-slide="prev">
-                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                <span class="sr-only">Previous</span>
-            </a>
-            <a class="carousel-control-next" href="#carousel-example-1z" role="button" data-slide="next">
-                <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                <span class="sr-only">Next</span>
-            </a>
-        </div>
-    </div>
-</div>
-<div class="card">
-    <div class="card-header">
-        <h3 class="card-title text-center"><i class="fas fa-map-pin"></i> RESERVATION</h3>
-    </div>
-    <div class="card-body">
-    </div>
+    </mat-dialog-content>
+    <mat-dialog-actions align="center">
+        <button class="mat-raised-button btn btn-danger" (click)="close()">Close</button>
+    </mat-dialog-actions>
 </div>
